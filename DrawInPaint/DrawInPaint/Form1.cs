@@ -10,19 +10,25 @@ using System.Windows.Forms;
 
 namespace DrawInPaint
 {
+
+    public enum Shape { PEN, ERASER, RECTANGLE, ELLIPSE }
+
     public partial class Form1 : Form
     {
         //Khai bao bien
-        Point old = new Point();
-        Point current = new Point();
-        Color currentColor = Color.Black;
+        //Pen, doan thang
+        Point old, current;
+
+        Color curColor = Color.Black;
         Pen pen;
         Graphics gra;
         Bitmap bm;
-        enum Tool{PEN, BRUSH, ERASER, SPECIAL_SHAPE };
+        Shape curShape;
+        
 
-        int currentSize = 1;
+        int curSize = 1;
         bool isDown = false;
+        int wid, hei;
 
         public Form1()
         {
@@ -30,7 +36,8 @@ namespace DrawInPaint
             InitComboBox();
             bm = new Bitmap(this.Width, this.Height);
             gra = Graphics.FromImage(bm);
-            pen = new Pen(Color.Black, currentSize);
+            pen = new Pen(Color.Black, curSize);
+            curShape = Shape.PEN;
 
             //Dieu chinh net ve cho but
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
@@ -39,58 +46,120 @@ namespace DrawInPaint
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            
 
         }
 
         
+        //ColorButton
 
-        private void ColorButton_Click(object sender, EventArgs e)
-        {
-            ColorDialog cld = new ColorDialog();
-            if(cld.ShowDialog() == DialogResult.OK)
-            {
-                ColorButton.BackColor = cld.Color;
-                currentColor = cld.Color;
-                pen.Color = cld.Color;
-            }
-        }
+        
+
+
+        //ComboBox
 
         private void InitComboBox()
         {
             for(int i=2; i<=10; i+=2)
             {
-                comboBox1.Items.Add(i);
+                ComboBox1.Items.Add(i);
             }
-            comboBox1.SelectedIndex = 0;
+            ComboBox1.SelectedIndex = 0;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pen = new Pen(currentColor, Convert.ToInt32(comboBox1.Text));
+            pen = new Pen(curColor, Convert.ToInt32(ComboBox1.Text));
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
         }
+
+        private void RightColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog cld = new ColorDialog();
+            if (cld.ShowDialog() == DialogResult.OK)
+            {
+                RightColor.BackColor = cld.Color;
+                curColor = cld.Color;
+                pen.Color = cld.Color;
+            }
+        }
+        //Xu li cac su kien chuot de ve
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
             isDown = false;
-            Pen pen = new Pen(currentColor, currentSize);
+            if (curShape != Shape.PEN)
+            {
+                if (curShape == Shape.RECTANGLE)
+                    gra.DrawRectangle(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
+                else if(curShape ==Shape.ELLIPSE)
+                    gra.DrawEllipse(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
+                this.BackgroundImage = (Bitmap)bm.Clone();
+            }
+
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             isDown = true;
-            old = e.Location;
+            old = new Point(e.Location.X, e.Location.Y);
+
+
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
+            
+            wid = current.X - old.X;
+            hei = current.Y - old.Y;
             if (isDown)
             {
-                current = e.Location;
-                gra.DrawLine(pen, old, current);
-                this.BackgroundImage = (Bitmap)bm.Clone();
-                old = current;
+                current = new Point(e.Location.X, e.Location.Y);
+                this.Refresh();
             }
         }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+
+            if (isDown)
+            {
+                if (curShape == Shape.PEN)
+                {
+                    gra.DrawLine(pen, old, current);
+                    old = current;
+                    this.BackgroundImage = (Bitmap)bm.Clone();
+                }
+                else if (curShape == Shape.RECTANGLE)
+                {
+                    e.Graphics.DrawRectangle(pen, wid>0 ? old.X : current.X, hei>0 ? old.Y: current.Y , Math.Abs(wid), Math.Abs(hei));
+                }
+                else if(curShape == Shape.ELLIPSE)
+                {
+                    e.Graphics.DrawEllipse(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
+                }
+            }
+
+        }
+
+        //Cac Shape de ve
+
+        private void PenButton_Click(object sender, EventArgs e)
+        {
+            curShape = Shape.PEN;
+            
+        }
+
+        private void RecButton_Click(object sender, EventArgs e)
+        {
+            curShape = Shape.RECTANGLE;
+        }
+
+        private void ElipseButton_Click(object sender, EventArgs e)
+        {
+            curShape = Shape.ELLIPSE;
+        }
+
+        
     }
 }
