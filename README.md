@@ -7,3 +7,4 @@
   * Phóng to, thu nhỏ hình vẽ
   * Thanh menu với các chức năng New, Save, Open...
   * Hiển thị tọa độ của bút vẽ
+  * Tùy chỉnh thuộc tính hình ảnh ( Độ mờ, kích thước,...)
