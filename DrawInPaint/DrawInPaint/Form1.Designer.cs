@@ -39,11 +39,14 @@
             // 
             // RightColor
             // 
+            this.RightColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RightColor.AutoSize = true;
             this.RightColor.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.RightColor.ForeColor = System.Drawing.Color.NavajoWhite;
-            this.RightColor.Location = new System.Drawing.Point(781, 3);
+            this.RightColor.Location = new System.Drawing.Point(1191, 2);
+            this.RightColor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RightColor.Name = "RightColor";
-            this.RightColor.Size = new System.Drawing.Size(77, 73);
+            this.RightColor.Size = new System.Drawing.Size(68, 58);
             this.RightColor.TabIndex = 4;
             this.RightColor.UseVisualStyleBackColor = false;
             this.RightColor.Click += new System.EventHandler(this.RightColor_Click);
@@ -58,24 +61,30 @@
             this.ButtonPanel.Controls.Add(this.RightColor);
             this.ButtonPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonPanel.Location = new System.Drawing.Point(0, 0);
+            this.ButtonPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ButtonPanel.Name = "ButtonPanel";
-            this.ButtonPanel.Size = new System.Drawing.Size(998, 78);
+            this.ButtonPanel.Size = new System.Drawing.Size(1262, 62);
             this.ButtonPanel.TabIndex = 1;
             // 
             // ComboBox1
             // 
+            this.ComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBox1.FormattingEnabled = true;
-            this.ComboBox1.Location = new System.Drawing.Point(645, 33);
+            this.ComboBox1.Location = new System.Drawing.Point(1077, 20);
+            this.ComboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ComboBox1.Name = "ComboBox1";
-            this.ComboBox1.Size = new System.Drawing.Size(121, 28);
+            this.ComboBox1.Size = new System.Drawing.Size(108, 24);
             this.ComboBox1.TabIndex = 3;
             this.ComboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // RecButton
             // 
-            this.RecButton.Location = new System.Drawing.Point(457, 15);
+            this.RecButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RecButton.AutoSize = true;
+            this.RecButton.Location = new System.Drawing.Point(914, 6);
+            this.RecButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RecButton.Name = "RecButton";
-            this.RecButton.Size = new System.Drawing.Size(78, 63);
+            this.RecButton.Size = new System.Drawing.Size(82, 50);
             this.RecButton.TabIndex = 1;
             this.RecButton.Text = "Rectangle";
             this.RecButton.UseVisualStyleBackColor = true;
@@ -83,9 +92,12 @@
             // 
             // PenButton
             // 
-            this.PenButton.Location = new System.Drawing.Point(373, 15);
+            this.PenButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PenButton.AutoSize = true;
+            this.PenButton.Location = new System.Drawing.Point(839, 6);
+            this.PenButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PenButton.Name = "PenButton";
-            this.PenButton.Size = new System.Drawing.Size(78, 63);
+            this.PenButton.Size = new System.Drawing.Size(69, 50);
             this.PenButton.TabIndex = 0;
             this.PenButton.Text = "Pen";
             this.PenButton.UseVisualStyleBackColor = true;
@@ -93,9 +105,12 @@
             // 
             // ElipseButton
             // 
-            this.ElipseButton.Location = new System.Drawing.Point(541, 15);
+            this.ElipseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ElipseButton.AutoSize = true;
+            this.ElipseButton.Location = new System.Drawing.Point(1002, 6);
+            this.ElipseButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ElipseButton.Name = "ElipseButton";
-            this.ElipseButton.Size = new System.Drawing.Size(78, 63);
+            this.ElipseButton.Size = new System.Drawing.Size(69, 50);
             this.ElipseButton.TabIndex = 2;
             this.ElipseButton.Text = "Ellipse";
             this.ElipseButton.UseVisualStyleBackColor = true;
@@ -103,11 +118,13 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScroll = true;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(998, 588);
+            this.ClientSize = new System.Drawing.Size(1262, 673);
             this.Controls.Add(this.ButtonPanel);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
@@ -115,6 +132,7 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             this.ButtonPanel.ResumeLayout(false);
+            this.ButtonPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }

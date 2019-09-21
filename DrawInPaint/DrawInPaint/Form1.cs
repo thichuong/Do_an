@@ -46,7 +46,9 @@ namespace DrawInPaint
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            
+
+            //Tang do muot cho net ve
+            gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
         }
 
@@ -150,6 +152,7 @@ namespace DrawInPaint
             
         }
 
+      
         private void RecButton_Click(object sender, EventArgs e)
         {
             curShape = Shape.RECTANGLE;
