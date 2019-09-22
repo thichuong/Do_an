@@ -18,3 +18,13 @@ D:\Git\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.pdb
 D:\Git\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe.config
 D:\Git\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe
 D:\Git\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.pdb
+C:\Users\Admin\Desktop\Paint-master\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe.config
+C:\Users\Admin\Desktop\Paint-master\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe
+C:\Users\Admin\Desktop\Paint-master\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.pdb
+C:\Users\Admin\Desktop\Paint-master\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\Paint-master\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.Form1.resources
+C:\Users\Admin\Desktop\Paint-master\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.Properties.Resources.resources
+C:\Users\Admin\Desktop\Paint-master\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\Paint-master\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Paint-master\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.exe
+C:\Users\Admin\Desktop\Paint-master\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.pdb

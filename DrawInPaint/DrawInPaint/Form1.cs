@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+
 
 namespace DrawInPaint
 {
@@ -22,12 +25,13 @@ namespace DrawInPaint
         Color curColor = Color.Black;
         Pen pen;
         Graphics gra;
-        Bitmap bm;
+        Bitmap bm,btam;
         Shape curShape;
-        
+        int Seclet=1;
 
         int curSize = 1;
         bool isDown = false;
+   
         int wid, hei;
 
         public Form1()
@@ -36,9 +40,11 @@ namespace DrawInPaint
             InitComboBox();
             bm = new Bitmap(this.Width, this.Height);
             gra = Graphics.FromImage(bm);
+           
             pen = new Pen(Color.Black, curSize);
             curShape = Shape.PEN;
-
+           
+           
             //Dieu chinh net ve cho but
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
@@ -46,8 +52,11 @@ namespace DrawInPaint
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            
+           
 
+            //Tang do muot cho net ve
+            gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            
         }
 
         
@@ -88,13 +97,18 @@ namespace DrawInPaint
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
             isDown = false;
-            if (curShape != Shape.PEN)
+            switch(Seclet)
             {
-                if (curShape == Shape.RECTANGLE)
+                case 2:
                     gra.DrawRectangle(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
-                else if(curShape ==Shape.ELLIPSE)
+                    this.BackgroundImage = (Bitmap)bm.Clone();
+                    break;
+                case 3:
                     gra.DrawEllipse(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
-                this.BackgroundImage = (Bitmap)bm.Clone();
+                    this.BackgroundImage = (Bitmap)bm.Clone();
+                    break;
+                default:
+                    break;
             }
 
         }
@@ -103,6 +117,14 @@ namespace DrawInPaint
         {
             isDown = true;
             old = new Point(e.Location.X, e.Location.Y);
+            if (Seclet==4 )
+            {
+                Color targetColor = bm.GetPixel(e.X,e.Y);
+
+                  FloodFill(bm, e.Location,bm.GetPixel(e.X,e.Y) , pen.Color);
+                  this.BackgroundImage = (Bitmap)bm.Clone();
+
+            }
 
 
         }
@@ -124,20 +146,26 @@ namespace DrawInPaint
 
             if (isDown)
             {
-                if (curShape == Shape.PEN)
+                switch(Seclet)
                 {
-                    gra.DrawLine(pen, old, current);
-                    old = current;
-                    this.BackgroundImage = (Bitmap)bm.Clone();
+                    case 1:
+
+                        gra.DrawLine(pen, old, current);
+                        old = current;
+                        this.BackgroundImage = (Bitmap)bm.Clone();
+                        break;
+                    case 2:
+                        e.Graphics.DrawRectangle(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
+                        break;
+                    case 3:
+                        e.Graphics.DrawEllipse(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
+                        break;
+                   
+
+                    default:
+                        break;
                 }
-                else if (curShape == Shape.RECTANGLE)
-                {
-                    e.Graphics.DrawRectangle(pen, wid>0 ? old.X : current.X, hei>0 ? old.Y: current.Y , Math.Abs(wid), Math.Abs(hei));
-                }
-                else if(curShape == Shape.ELLIPSE)
-                {
-                    e.Graphics.DrawEllipse(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
-                }
+
             }
 
         }
@@ -147,17 +175,96 @@ namespace DrawInPaint
         private void PenButton_Click(object sender, EventArgs e)
         {
             curShape = Shape.PEN;
+            Seclet = 1;
             
+        }
+
+        private void BucketButton_Click(object sender, EventArgs e)
+        {
+            Seclet = 4;
+        }
+
+        private void FloodFill(Bitmap bmp, Point pt,Color ponitColor,  Color replaceColor)
+        {
+            BitmapData data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height),ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+            int[] bits = new int[data.Stride / 4 * data.Height];
+            Marshal.Copy(data.Scan0, bits, 0, bits.Length);
+            int x = pt.X, y = pt.Y;
+            Stack<Point> check = new Stack<Point>();
+            int To = replaceColor.ToArgb();
+            int From = bits[x + y * data.Stride / 4]; 
+            bits[x + y * data.Stride / 4] = To;
+            if (From != To)
+            {
+                check.Push(new Point(x, y));
+                while (check.Count > 0)
+                {
+                    Point cur = check.Pop();
+ 
+                        Point next = new Point(cur.X , cur.Y -1);
+                        if (next.X >= 0 && next.Y >= 0 &&
+                            next.X < data.Width &&
+                            next.Y < data.Height)
+                        {
+                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                            {
+                                check.Push(next);
+                                bits[next.X + next.Y * data.Stride / 4] = To;
+                            }
+                        }
+                        next = new Point(cur.X, cur.Y + 1);
+                        if (next.X >= 0 && next.Y >= 0 &&
+                            next.X < data.Width &&
+                            next.Y < data.Height)
+                        {
+                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                            {
+                                check.Push(next);
+                                bits[next.X + next.Y * data.Stride / 4] = To;
+                            }
+                        }
+                        next = new Point(cur.X - 1, cur.Y );
+                        if (next.X >= 0 && next.Y >= 0 &&
+                            next.X < data.Width &&
+                            next.Y < data.Height)
+                        {
+                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                            {
+                                check.Push(next);
+                                bits[next.X + next.Y * data.Stride / 4] = To;
+                            }
+                        }
+                        next = new Point(cur.X + 1, cur.Y);
+                        if (next.X >= 0 && next.Y >= 0 &&
+                            next.X < data.Width &&
+                            next.Y < data.Height)
+                        {
+                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                            {
+                                check.Push(next);
+                                bits[next.X + next.Y * data.Stride / 4] = To;
+                            }
+                        }
+                    
+                }
+            }
+
+            Marshal.Copy(bits, 0, data.Scan0, bits.Length);
+            bmp.UnlockBits(data);
+            this.Refresh();
         }
 
         private void RecButton_Click(object sender, EventArgs e)
         {
             curShape = Shape.RECTANGLE;
+            Seclet = 2;
+
         }
 
         private void ElipseButton_Click(object sender, EventArgs e)
         {
             curShape = Shape.ELLIPSE;
+            Seclet = 3;
         }
 
         
