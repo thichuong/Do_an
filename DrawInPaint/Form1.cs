@@ -119,7 +119,7 @@ namespace DrawInPaint
             if (Seclet==4 )
             {
                  Color targetColor = bm.GetPixel(e.X,e.Y);
-                 FloodFill(bm, e.Location,bm.GetPixel(e.X,e.Y) , pen.Color);
+                 FloodFill(bm, e.Location,bm.GetPixel(e.X,e.Y) , pen.Color);//Gọi hàm tô màu
                  this.BackgroundImage = (Bitmap)bm.Clone();
 
             }
@@ -182,7 +182,7 @@ namespace DrawInPaint
             Seclet = 4;
         }
         
-        private void FloodFill(Bitmap bmp, Point pt,Color ponitColor,  Color replaceColor)
+        private void FloodFill(Bitmap bmp, Point pt,Color ponitColor,  Color replaceColor) // Hàm tô màu
         {
             BitmapData data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height),ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             int[] bits = new int[data.Stride / 4 * data.Height];
