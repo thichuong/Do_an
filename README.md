@@ -1,9 +1,9 @@
 # PHẦN MỀM PAINT
 
 ## Giới thiệu:
-     Đây là một phân mềm đồ họa đơn giản dành cho máy tính, hỗ trợ nhiều chức năng dễ dàng thao tác cho người dùng trong lĩnh vực đồ họa.
+  * Đây là một phân mềm đồ họa đơn giản dành cho máy tính, hỗ trợ nhiều chức năng dễ dàng thao tác cho người dùng trong lĩnh vực đồ họa.
 ## Đối tượng:
-     Phần mềm phù hợp với mọi đối tượng
+  * Phần mềm phù hợp với mọi đối tượng
 ## Tính năng:
   * Các tool như cọ vẽ, bút vẽ, tô màu, tẩy...
   * Vẽ một số hình đặc biệt (hình tròn, hình chữ nhật, đoạn thẳng...)
