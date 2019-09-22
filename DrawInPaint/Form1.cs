@@ -204,44 +204,50 @@ namespace DrawInPaint
                             next.X < data.Width &&
                             next.Y < data.Height)
                         {
-                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                       
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
                             {
                                 check.Push(next);
-                                bits[next.X + next.Y * data.Stride / 4] = To;
+                                
                             }
-                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                         }
                         next = new Point(cur.X, cur.Y + 1);
                         if (next.X >= 0 && next.Y >= 0 &&
                             next.X < data.Width &&
                             next.Y < data.Height)
                         {
-                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
                             {
                                 check.Push(next);
-                                bits[next.X + next.Y * data.Stride / 4] = To;
+                                
                             }
-                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                         }
                         next = new Point(cur.X - 1, cur.Y );
                         if (next.X >= 0 && next.Y >= 0 &&
                             next.X < data.Width &&
                             next.Y < data.Height)
-                        {
-                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                         
+                        
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
                             {
-                                check.Push(next);
-                                bits[next.X + next.Y * data.Stride / 4] = To;
+                                check.Push(next);          
                             }
-                        }
-                        next = new Point(cur.X + 1, cur.Y);
-                        if (next.X >= 0 && next.Y >= 0 &&
+                             bits[next.X + next.Y * data.Stride / 4] = To;
+                         }
+                         next = new Point(cur.X + 1, cur.Y);
+                         if (next.X >= 0 && next.Y >= 0 &&
                             next.X < data.Width &&
                             next.Y < data.Height)
                         {
-                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
                             {
-                                check.Push(next);
-                                bits[next.X + next.Y * data.Stride / 4] = To;
+                                check.Push(next);                   
                             }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
                         }
                     
                 }
