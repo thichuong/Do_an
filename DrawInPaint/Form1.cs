@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-
 
 
 namespace DrawInPaint
@@ -26,7 +25,7 @@ namespace DrawInPaint
         Color curColor = Color.Black;
         Pen pen;
         Graphics gra;
-        Bitmap bm;
+        Bitmap bm,btam;
         Shape curShape;
         int Seclet=1;
 
@@ -41,9 +40,11 @@ namespace DrawInPaint
             InitComboBox();
             bm = new Bitmap(this.Width, this.Height);
             gra = Graphics.FromImage(bm);
+           
             pen = new Pen(Color.Black, curSize);
             curShape = Shape.PEN;
-
+           
+           
             //Dieu chinh net ve cho but
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
@@ -55,7 +56,7 @@ namespace DrawInPaint
 
             //Tang do muot cho net ve
             gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
+            
         }
 
         
@@ -119,7 +120,7 @@ namespace DrawInPaint
             if (Seclet==4 )
             {
                  Color targetColor = bm.GetPixel(e.X,e.Y);
-                 FloodFill(bm, e.Location,bm.GetPixel(e.X,e.Y) , pen.Color);//Gọi hàm tô màu
+                 FloodFill(bm, e.Location,bm.GetPixel(e.X,e.Y) , pen.Color);
                  this.BackgroundImage = (Bitmap)bm.Clone();
 
             }
@@ -181,8 +182,8 @@ namespace DrawInPaint
         {
             Seclet = 4;
         }
-        
-        private void FloodFill(Bitmap bmp, Point pt,Color ponitColor,  Color replaceColor) // Hàm tô màu
+
+        private void FloodFill(Bitmap bmp, Point pt,Color ponitColor,  Color replaceColor)
         {
             BitmapData data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height),ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             int[] bits = new int[data.Stride / 4 * data.Height];
@@ -211,7 +212,7 @@ namespace DrawInPaint
                                 
                             }
                         bits[next.X + next.Y * data.Stride / 4] = To;
-                         }
+                    }
                         next = new Point(cur.X, cur.Y + 1);
                         if (next.X >= 0 && next.Y >= 0 &&
                             next.X < data.Width &&
@@ -224,21 +225,21 @@ namespace DrawInPaint
                                 
                             }
                         bits[next.X + next.Y * data.Stride / 4] = To;
-                         }
+                    }
                         next = new Point(cur.X - 1, cur.Y );
                         if (next.X >= 0 && next.Y >= 0 &&
                             next.X < data.Width &&
                             next.Y < data.Height)
-                         
+                        {
                         
                         if (bits[next.X + next.Y * data.Stride / 4] == From)
                             {
                                 check.Push(next);          
                             }
-                             bits[next.X + next.Y * data.Stride / 4] = To;
-                         }
-                         next = new Point(cur.X + 1, cur.Y);
-                         if (next.X >= 0 && next.Y >= 0 &&
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
+                        next = new Point(cur.X + 1, cur.Y);
+                        if (next.X >= 0 && next.Y >= 0 &&
                             next.X < data.Width &&
                             next.Y < data.Height)
                         {
@@ -257,7 +258,7 @@ namespace DrawInPaint
             bmp.UnlockBits(data);
             this.Refresh();
         }
-       
+
         private void RecButton_Click(object sender, EventArgs e)
         {
             curShape = Shape.RECTANGLE;
