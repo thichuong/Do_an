@@ -119,10 +119,9 @@ namespace DrawInPaint
             old = new Point(e.Location.X, e.Location.Y);
             if (Seclet==4 )
             {
-                Color targetColor = bm.GetPixel(e.X,e.Y);
-
-                  FloodFill(bm, e.Location,bm.GetPixel(e.X,e.Y) , pen.Color);
-                  this.BackgroundImage = (Bitmap)bm.Clone();
+                 Color targetColor = bm.GetPixel(e.X,e.Y);
+                 FloodFill(bm, e.Location,bm.GetPixel(e.X,e.Y) , pen.Color);
+                 this.BackgroundImage = (Bitmap)bm.Clone();
 
             }
 
@@ -206,44 +205,50 @@ namespace DrawInPaint
                             next.X < data.Width &&
                             next.Y < data.Height)
                         {
-                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                       
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
                             {
                                 check.Push(next);
-                                bits[next.X + next.Y * data.Stride / 4] = To;
+                                
                             }
-                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
                         next = new Point(cur.X, cur.Y + 1);
                         if (next.X >= 0 && next.Y >= 0 &&
                             next.X < data.Width &&
                             next.Y < data.Height)
                         {
-                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
                             {
                                 check.Push(next);
-                                bits[next.X + next.Y * data.Stride / 4] = To;
+                                
                             }
-                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
                         next = new Point(cur.X - 1, cur.Y );
                         if (next.X >= 0 && next.Y >= 0 &&
                             next.X < data.Width &&
                             next.Y < data.Height)
                         {
-                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
                             {
-                                check.Push(next);
-                                bits[next.X + next.Y * data.Stride / 4] = To;
+                                check.Push(next);          
                             }
-                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
                         next = new Point(cur.X + 1, cur.Y);
                         if (next.X >= 0 && next.Y >= 0 &&
                             next.X < data.Width &&
                             next.Y < data.Height)
                         {
-                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
                             {
-                                check.Push(next);
-                                bits[next.X + next.Y * data.Stride / 4] = To;
+                                check.Push(next);                   
                             }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
                         }
                     
                 }
