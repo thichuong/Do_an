@@ -29,7 +29,7 @@ namespace DrawInPaint
         Shape curShape;
         int Seclet=1;
 
-        int curSize = 1;
+        int curSize = 4;
         bool isDown = false;
    
         int wid, hei;
@@ -52,11 +52,11 @@ namespace DrawInPaint
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-           
+
 
             //Tang do muot cho net ve
             gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            
+           
         }
 
         
@@ -73,7 +73,8 @@ namespace DrawInPaint
             {
                 ComboBox1.Items.Add(i);
             }
-            ComboBox1.SelectedIndex = 0;
+            ComboBox1.SelectedIndex = 1;
+            
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -110,6 +111,8 @@ namespace DrawInPaint
                 default:
                     break;
             }
+           old = new Point(-1, -1);
+           current = new Point(-1, -1);
 
         }
 
@@ -120,7 +123,7 @@ namespace DrawInPaint
             if (Seclet==4 )
             {
                  Color targetColor = bm.GetPixel(e.X,e.Y);
-                 FloodFill(bm, e.Location,bm.GetPixel(e.X,e.Y) , pen.Color);
+                 Fill(bm, e.Location,bm.GetPixel(e.X,e.Y) , pen.Color); //goi ham to mau
                  this.BackgroundImage = (Bitmap)bm.Clone();
 
             }
@@ -138,6 +141,7 @@ namespace DrawInPaint
                 current = new Point(e.Location.X, e.Location.Y);
                 this.Refresh();
             }
+
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -166,6 +170,7 @@ namespace DrawInPaint
                 }
 
             }
+           
 
         }
 
@@ -183,81 +188,7 @@ namespace DrawInPaint
             Seclet = 4;
         }
 
-        private void FloodFill(Bitmap bmp, Point pt,Color ponitColor,  Color replaceColor)
-        {
-            BitmapData data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height),ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
-            int[] bits = new int[data.Stride / 4 * data.Height];
-            Marshal.Copy(data.Scan0, bits, 0, bits.Length);
-            int x = pt.X, y = pt.Y;
-            Stack<Point> check = new Stack<Point>();
-            int To = replaceColor.ToArgb();
-            int From = bits[x + y * data.Stride / 4]; 
-            bits[x + y * data.Stride / 4] = To;
-            if (From != To)
-            {
-                check.Push(new Point(x, y));
-                while (check.Count > 0)
-                {
-                    Point cur = check.Pop();
- 
-                        Point next = new Point(cur.X , cur.Y -1);
-                        if (next.X >= 0 && next.Y >= 0 &&
-                            next.X < data.Width &&
-                            next.Y < data.Height)
-                        {
-                       
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
-                            {
-                                check.Push(next);
-                                
-                            }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
-                    }
-                        next = new Point(cur.X, cur.Y + 1);
-                        if (next.X >= 0 && next.Y >= 0 &&
-                            next.X < data.Width &&
-                            next.Y < data.Height)
-                        {
-                        
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
-                            {
-                                check.Push(next);
-                                
-                            }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
-                    }
-                        next = new Point(cur.X - 1, cur.Y );
-                        if (next.X >= 0 && next.Y >= 0 &&
-                            next.X < data.Width &&
-                            next.Y < data.Height)
-                        {
-                        
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
-                            {
-                                check.Push(next);          
-                            }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
-                    }
-                        next = new Point(cur.X + 1, cur.Y);
-                        if (next.X >= 0 && next.Y >= 0 &&
-                            next.X < data.Width &&
-                            next.Y < data.Height)
-                        {
-                        
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
-                            {
-                                check.Push(next);                   
-                            }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
-                        }
-                    
-                }
-            }
-
-            Marshal.Copy(bits, 0, data.Scan0, bits.Length);
-            bmp.UnlockBits(data);
-            this.Refresh();
-        }
+       
 
         private void RecButton_Click(object sender, EventArgs e)
         {
@@ -271,7 +202,83 @@ namespace DrawInPaint
             curShape = Shape.ELLIPSE;
             Seclet = 3;
         }
+        //Ham to mau
+        private void Fill(Bitmap bmp, Point pt, Color ponitColor, Color replaceColor)
+        {
+            BitmapData data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+            int[] bits = new int[data.Stride / 4 * data.Height];
+            Marshal.Copy(data.Scan0, bits, 0, bits.Length);
+            int x = pt.X, y = pt.Y;
+            Stack<Point> check = new Stack<Point>();
+            int To = replaceColor.ToArgb();
+            int From = bits[x + y * data.Stride / 4];
+            bits[x + y * data.Stride / 4] = To;
+            if (From != To)
+            {
+                check.Push(new Point(x, y));
+                while (check.Count > 0)
+                {
+                    Point cur = check.Pop();
 
-        
+                    Point next = new Point(cur.X, cur.Y - 1);
+                    if (next.X >= 0 && next.Y >= 0 &&
+                        next.X < data.Width &&
+                        next.Y < data.Height)
+                    {
+
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        {
+                            check.Push(next);
+                         
+                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
+                    next = new Point(cur.X, cur.Y + 1);
+                    if (next.X >= 0 && next.Y >= 0 &&
+                        next.X < data.Width &&
+                        next.Y < data.Height)
+                    {
+
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        {
+                            check.Push(next);
+                            
+                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
+                    next = new Point(cur.X - 1, cur.Y);
+                    if (next.X >= 0 && next.Y >= 0 &&
+                        next.X < data.Width &&
+                        next.Y < data.Height)
+                    {
+
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        {
+                            check.Push(next);
+                            
+                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
+                    next = new Point(cur.X + 1, cur.Y);
+                    if (next.X >= 0 && next.Y >= 0 &&
+                        next.X < data.Width &&
+                        next.Y < data.Height)
+                    {
+
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        {
+                            check.Push(next);
+                            
+                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
+
+                }
+            }
+
+            Marshal.Copy(bits, 0, data.Scan0, bits.Length);
+            bmp.UnlockBits(data);
+            this.Refresh();
+        }
     }
 }
