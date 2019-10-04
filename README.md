@@ -37,9 +37,9 @@
 
      * 15/10/2019, Điều chỉnh,  hoàn thiện các chức năng
 
-     * 18/10/2019, Update v1.0
+     * 18/10/2019, Update v0.1
 
-***----->Hoàn thành phiên bản 1.0: Phần mềm vẽ với các chức năng cơ bản***
+***----->Hoàn thành phiên bản 0.1: Phần mềm vẽ với các chức năng cơ bản***
 
 ## II/Giai đoạn 2:
 
@@ -55,9 +55,9 @@
 
      * 3/11/2019, Thêm một số hiệu ứng hình ảnh cơ bản, chức năng rotate
 
-     * 6/11/2019  Update v2.0
+     * 6/11/2019  Update v0.2
 
-***----->Hoàn thành phiên bản 2.0: Phần mềm vẽ có khả năng lưu trữ và các chức năng phức tạp***
+***----->Hoàn thành phiên bản 0.2: Phần mềm vẽ có khả năng lưu trữ và các chức năng phức tạp***
 
 ## III/Giai đoạn 3:
 
@@ -71,9 +71,9 @@
 
      * 30/11-10/12/2019 Kiểm tra, so sánh tính năng hiện tại của sản phẩm với các phần mềm cùng mục đích. Thêm ( hoặc tối ưu) các tính năng giúp phần mềm có mặt cạnh tranh so với các sản phẩm khác Sửa lỗi, tối ưu phần mềm về mặt tính năng và giao diện.
 
-     * 4/12/2019, Hoàn thiện sản phẩm(v3.0)
+     * 4/12/2019, Hoàn thiện sản phẩm(v1.0)
 
-***---->Hoàn thành phiên bản 3.0: Phần mềm vẽ hoàn thiện với các tính năng mang tính cạnh tranh so với các phần mềm tương tự***
+***---->Hoàn thành phiên bản v1.0: Phần mềm vẽ hoàn thiện với các tính năng mang tính cạnh tranh so với các phần mềm tương tự***
 
 
  ## Thành viên:
