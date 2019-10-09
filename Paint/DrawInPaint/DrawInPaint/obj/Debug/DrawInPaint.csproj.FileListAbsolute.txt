@@ -58,3 +58,32 @@ C:\Users\KC\OneDrive\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint
 C:\Users\KC\OneDrive\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csproj.CoreCompileInputs.cache
 C:\Users\KC\OneDrive\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.exe
 C:\Users\KC\OneDrive\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.pdb
+C:\Users\Admin\Desktop\Paint-master\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe.config
+C:\Users\Admin\Desktop\Paint-master\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe
+C:\Users\Admin\Desktop\Paint-master\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.pdb
+C:\Users\Admin\Desktop\Paint-master\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\Paint-master\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.Form1.resources
+C:\Users\Admin\Desktop\Paint-master\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.Properties.Resources.resources
+C:\Users\Admin\Desktop\Paint-master\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\Paint-master\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Paint-master\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.exe
+C:\Users\Admin\Desktop\Paint-master\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.pdb
+C:\Users\Admin\Desktop\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe.config
+C:\Users\Admin\Desktop\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe
+C:\Users\Admin\Desktop\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.pdb
+C:\Users\Admin\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.Form1.resources
+C:\Users\Admin\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.Properties.Resources.resources
+C:\Users\Admin\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.exe
+C:\Users\Admin\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.pdb
+C:\Users\Thi Chuong\Desktop\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe.config
+C:\Users\Thi Chuong\Desktop\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe
+C:\Users\Thi Chuong\Desktop\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.pdb
+C:\Users\Thi Chuong\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csprojAssemblyReference.cache
+C:\Users\Thi Chuong\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.Form1.resources
+C:\Users\Thi Chuong\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.Properties.Resources.resources
+C:\Users\Thi Chuong\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csproj.GenerateResource.cache
+C:\Users\Thi Chuong\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.exe
+C:\Users\Thi Chuong\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.pdb

@@ -26,13 +26,13 @@ namespace DrawInPaint
         Pen pen;
         SolidBrush eraser;
         Graphics gra;
-        Bitmap bm;
+        Bitmap bm ;
         Shape curShape;
         
         int curSize;
         bool isDown;
         int wid, hei;
-        
+
 
 
 
@@ -42,9 +42,8 @@ namespace DrawInPaint
             InitializeComponent();
             InitComboBox();
 
-            bm = new Bitmap(this.Width, this.Height);
-            gra = Graphics.FromImage(bm);
-
+            bm = new Bitmap(pictureBox1.Width, pictureBox1.Height, pictureBox1.CreateGraphics());
+            gra = Graphics.FromImage(bm);   
             fColor = Color.Black;
             bColor = Color.White;
 
@@ -53,11 +52,11 @@ namespace DrawInPaint
 
 
             curShape = Shape.BRUSH;
-            ButtonPanel.Width = this.Width;
+            ButtonPanel.Width = pictureBox1.Width;
             ButtonPanel.Cursor = Cursors.Default;
 
 
-            
+
 
             isDown = false;
             curSize = 10;
@@ -71,47 +70,46 @@ namespace DrawInPaint
             //Handle with Buttons' image
             //brush
             Image tempImg1 = Image.FromFile("Images\\brush.png");
-            BrushButton.Image = Resize(tempImg1, BrushButton.Width*0.8, BrushButton.Height*0.8);
+            BrushButton.Image = Resize(tempImg1, BrushButton.Width * 0.8, BrushButton.Height * 0.8);
 
             //fill
             Image tempImg2 = Image.FromFile("Images\\fillBucket.png");
-            FillButton.Image = Resize(tempImg2, BrushButton.Width*0.8, BrushButton.Height*0.8);
+            FillButton.Image = Resize(tempImg2, BrushButton.Width * 0.8, BrushButton.Height * 0.8);
 
             //eraser
             Image tempImg3 = Image.FromFile("Images\\eraser.png");
-            EraserButton.Image = Resize(tempImg3, BrushButton.Width*0.8, BrushButton.Height*0.8);
+            EraserButton.Image = Resize(tempImg3, BrushButton.Width * 0.8, BrushButton.Height * 0.8);
 
 
 
 
             //Modify stroke
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
-            
+
 
             //Smoothing
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            gra.Clear(Color.White);
         }
 
 
         //Handle drawing panel's size
+
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            ButtonPanel.Width = this.Width;
-
             Bitmap temp = bm;
-            bm = new Bitmap(this.Width, this.Height);
+            bm = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             gra = Graphics.FromImage(bm);
+            gra.Clear(Color.White);
             gra.DrawImage(temp, 0, 0, temp.Width, temp.Height);
-            this.BackgroundImage = (Bitmap)bm.Clone();
+            pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
         }
-
-
         //ColorButton
 
-        private void ForeColor_Click(object sender, EventArgs e)
+    private void ForeColor_Click(object sender, EventArgs e)
         {
             ColorDialog cld = new ColorDialog();
             if (cld.ShowDialog() == DialogResult.OK)
@@ -141,7 +139,7 @@ namespace DrawInPaint
 
         private void InitComboBox()
         {
-            for(int i=2; i<=10; i+=2)
+            for (int i = 2; i <= 10; i += 2)
             {
                 ComboBox1.Items.Add(i);
             }
@@ -156,68 +154,20 @@ namespace DrawInPaint
             eraser = new SolidBrush(bColor);
         }
 
-        
+
 
         //Mouse events
 
-        private void Form1_MouseUp(object sender, MouseEventArgs e)
-        {
-            isDown = false;
-            switch(curShape)
-            {
-                case Shape.RECTANGLE:
-                    gra.DrawRectangle(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
-                    this.BackgroundImage = (Bitmap)bm.Clone();
-                    break;
-                case Shape.ELLIPSE:
-                    gra.DrawEllipse(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
-                    this.BackgroundImage = (Bitmap)bm.Clone();
-                    break;
-                case Shape.LINE:
-                    gra.DrawLine(pen,old, current);
-                    this.BackgroundImage = (Bitmap)bm.Clone();
-                    break;
-                default:
-                    break;
-            }
-            wid = hei = 0;
-        }
-
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
-        {
-            isDown = true;
-            old = new Point(e.Location.X, e.Location.Y);
-            if (curShape == Shape.FILLBUCKET )
-            {
-                Color targetColor = bm.GetPixel(e.X,e.Y);
-
-                Fill(bm, e.Location,bm.GetPixel(e.X,e.Y) , pen.Color);
-                this.BackgroundImage = (Bitmap)bm.Clone();
-            }
-            
-        }
-
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        private void Picture1_Paint(object sender, PaintEventArgs e)
         {
             if (isDown)
             {
-                current = new Point(e.Location.X, e.Location.Y);
-                wid = current.X - old.X;
-                hei = current.Y - old.Y;
-                this.Refresh();
-            }
-        }
-
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-            if (isDown)
-            {
-                switch(curShape)
+                switch (curShape)
                 {
                     case Shape.BRUSH:
                         gra.DrawLine(pen, old, current);
                         old = current;
-                        this.BackgroundImage = (Bitmap)bm.Clone();
+                        pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
                         break;
                     case Shape.RECTANGLE:
                         e.Graphics.DrawRectangle(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
@@ -227,23 +177,79 @@ namespace DrawInPaint
                         break;
                     case Shape.LINE:
                         gra.DrawLine(pen, old, current);
-                        this.BackgroundImage = (Bitmap)bm.Clone();
+                        pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
+                       
                         break;
                     case Shape.ERASER:
-                        gra.FillRectangle(eraser, current.X-curSize, current.Y-curSize, curSize, curSize);
+                        gra.FillRectangle(eraser, current.X - curSize, current.Y - curSize, curSize, curSize);
                         Pen temp = new Pen(bColor, curSize * 2);
                         temp.SetLineCap(System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.DashCap.Round);
                         gra.DrawLine(temp, old, current);
                         old = current;
-                        this.BackgroundImage = (Bitmap)bm.Clone();
+                        pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
+                       
                         break;
+
                     default:
                         break;
                 }
+               
             }
         }
 
+        private void Picture1_MouseUp(object sender, MouseEventArgs e)
+ 
+        {
+            isDown = false;
+            switch (curShape)
+            {
+                case Shape.RECTANGLE:
+                    gra.DrawRectangle(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
 
+                    pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
+                    break;
+                case Shape.ELLIPSE:
+                    gra.DrawEllipse(pen, wid > 0 ? old.X : current.X, hei > 0 ? old.Y : current.Y, Math.Abs(wid), Math.Abs(hei));
+                   
+                    pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
+                    break;
+                case Shape.LINE:
+                    gra.DrawLine(pen, old, current);
+                    
+                   pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
+                    break;
+                default:
+                    break;
+            }
+            
+            wid = hei = 0;
+        }
+
+        private void Picture1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDown)
+            {
+                current = new Point(e.Location.X, e.Location.Y);
+                wid = current.X - old.X;
+                hei = current.Y - old.Y;
+                
+                pictureBox1.Refresh();
+
+            }
+        }
+
+        private void Picture1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDown = true;
+            old = new Point(e.Location.X, e.Location.Y);
+            if (curShape == Shape.FILLBUCKET)
+            {
+                Fill(bm, e.Location, bm.GetPixel(e.X, e.Y), pen.Color);
+                
+                pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
+                
+            }
+        }
         //Shapes
 
         private void PenButton_Click(object sender, EventArgs e)
@@ -251,30 +257,30 @@ namespace DrawInPaint
             curShape = Shape.BRUSH;
             this.Cursor = Cursors.Cross;
         }
-        
+
         private void RecButton_Click(object sender, EventArgs e)
         {
             curShape = Shape.RECTANGLE;
             this.Cursor = Cursors.Cross;
         }
-        
+
         private void ElipseButton_Click(object sender, EventArgs e)
         {
             curShape = Shape.ELLIPSE;
             this.Cursor = Cursors.Cross;
         }
-        
+
         private void FillBucketButton_Click(object sender, EventArgs e)
         {
             curShape = Shape.FILLBUCKET;
             Bitmap bmp = new Bitmap(new Bitmap("Images\\fillBucket.png"), 30, 30);
             this.Cursor = new Cursor(bmp.GetHicon());
         }
-        
+
         private void EraserButton_Click(object sender, EventArgs e)
         {
             curShape = Shape.ERASER;
-            Bitmap bmp = new Bitmap(new Bitmap("Images\\eraserCursor.png"), curSize*2, curSize*2);
+            Bitmap bmp = new Bitmap(new Bitmap("Images\\eraserCursor.png"), curSize * 2, curSize * 2);
             this.Cursor = new Cursor(bmp.GetHicon());
         }
 
@@ -331,9 +337,9 @@ namespace DrawInPaint
                         if (bits[next.X + next.Y * data.Stride / 4] == From)
                         {
                             check.Push(next);
-                            bits[next.X + next.Y * data.Stride / 4] = To;
-                        }
 
+                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
                     }
                     next = new Point(cur.X + 1, cur.Y);
                     if (next.X >= 0 && next.Y >= 0 &&
@@ -354,7 +360,8 @@ namespace DrawInPaint
 
             Marshal.Copy(bits, 0, data.Scan0, bits.Length);
             bmp.UnlockBits(data);
-            this.Refresh();
+            pictureBox1.Refresh();
+           
         }
 
 
@@ -363,7 +370,7 @@ namespace DrawInPaint
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Do you want you exit", "Paint", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show("Do you want you exit", "Paint", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 Application.Exit();
             }
@@ -375,9 +382,10 @@ namespace DrawInPaint
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Bmp (*.bmp)|*.bmp|Jpg (*.jpg)|*.jpg|Jpeg (*.jpeg)|*.jpeg|Png (*.png)|*.png";
 
-            if (sfd.ShowDialog()==DialogResult.OK)
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
                 bm.Save(sfd.FileName);
+                
             }
         }
 
@@ -388,21 +396,25 @@ namespace DrawInPaint
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Image img = Image.FromFile(ofd.FileName);
-                bm = new Bitmap(this.Width, this.Height);
+                bm = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 gra = Graphics.FromImage(bm);
                 gra.DrawImage(img, new Rectangle(0, 0, bm.Width, bm.Height));
-                this.Refresh();
-                this.BackgroundImage = (Bitmap)bm.Clone();
-                
+                //this.Refresh();
+                pictureBox1.Refresh();
+                //this.BackgroundImage = (Bitmap)bm.Clone();
+                pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
             }
         }
 
+       
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             bm = new Bitmap(this.Width, this.Height);
             gra = Graphics.FromImage(bm);
-            this.Refresh();
-            this.BackgroundImage = (Bitmap)bm.Clone();
+            //this.Refresh();
+            pictureBox1.Refresh();
+            // this.BackgroundImage = (Bitmap)bm.Clone();
+            pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
         }
 
 
@@ -417,7 +429,7 @@ namespace DrawInPaint
 
             return tempBm;
         }
-        
+
 
     }
 }
