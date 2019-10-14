@@ -100,12 +100,15 @@ namespace DrawInPaint
 
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            Bitmap temp = bm;
-            bm = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            gra = Graphics.FromImage(bm);
-            gra.Clear(Color.White);
-            gra.DrawImage(temp, 0, 0, temp.Width, temp.Height);
-            pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
+            if (pictureBox1.Width > 0 && pictureBox1.Height > 0)
+            {
+                Bitmap temp = bm;
+                bm = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                gra = Graphics.FromImage(bm);
+                gra.Clear(Color.White);
+                gra.DrawImage(temp, 0, 0, temp.Width, temp.Height);
+                pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
+            }
         }
         //ColorButton
 
