@@ -9,3 +9,13 @@ C:\Users\ACER\Desktop\new\PaintUI\PaintUI\obj\Debug\PaintUI.csproj.GenerateResou
 C:\Users\ACER\Desktop\new\PaintUI\PaintUI\obj\Debug\PaintUI.csproj.CopyComplete
 C:\Users\ACER\Desktop\new\PaintUI\PaintUI\obj\Debug\PaintUI.exe
 C:\Users\ACER\Desktop\new\PaintUI\PaintUI\obj\Debug\PaintUI.pdb
+C:\Users\Thi Chuong\Desktop\Paint-master\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe.config
+C:\Users\Thi Chuong\Desktop\Paint-master\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe
+C:\Users\Thi Chuong\Desktop\Paint-master\Paintv0.1\PaintUI\bin\Debug\PaintUI.pdb
+C:\Users\Thi Chuong\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.csprojAssemblyReference.cache
+C:\Users\Thi Chuong\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.Form1.resources
+C:\Users\Thi Chuong\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.Properties.Resources.resources
+C:\Users\Thi Chuong\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.GenerateResource.cache
+C:\Users\Thi Chuong\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.CopyComplete
+C:\Users\Thi Chuong\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
+C:\Users\Thi Chuong\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
