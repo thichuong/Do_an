@@ -12,21 +12,51 @@ namespace PaintUI
 {
     public partial class Form1 : Form
     {
+        //Khai bao bien
+        Pen pen;
+        Bitmap bm;
+        Graphics gra;
+        Point old, cur;
+        bool isDown;
+        int wid, hei;
+
         public Form1()
         {
             InitializeComponent();
-            HideAllPanel();  
+            HideAllPanel();
+            brushesPanel.Show();
+            pen = new Pen(Color.Black, 10);
+            bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
+            gra = Graphics.FromImage(bm);
+            isDown = false;
+
+            //Modify stroke
+            pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
+
+
+            //Smoothing
+            {
+                this.SetStyle(ControlStyles.UserPaint, true);
+                this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+                this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+                gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                gra.Clear(Color.White);
+            }
+
         }
         //Giau Panels
         private void HideAllPanel()
         {
-            ShapesPanel.Visible = false;
-            TextPanel.Visible = false;
-            CanvasPanel.Visible = false;
-            BrushesPanel.Visible = false;
-            EffectsPanel.Visible = false;
+            shapesPanel.Visible = false;
+            textPanel.Visible = false;
+            canvasPanel.Visible = false;
+            brushesPanel.Visible = false;
+            effectsPanel.Visible = false;
             MenuPanel.Visible = false;
         }
+        
+        
+        
         //Code cac chuc nang cho cac WindowState Butttons
         private void MinimizeButton_Click(object sender, EventArgs e)
         {
@@ -42,69 +72,101 @@ namespace PaintUI
         {
             this.Close();
         }
+        
+        
         //Hien thi cac Panels khi click
         private void TextButton_Click(object sender, EventArgs e)
         {
-            if (!TextPanel.Visible)
+            if (!textPanel.Visible)
             {
                 HideAllPanel();
-                bunifuTransition1.ShowSync(TextPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                BunifuTransition1.ShowSync(textPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
             }
-            else
-                bunifuTransition1.HideSync(TextPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            
         }
         private void ShapesButton_Click(object sender, EventArgs e)
         {
-            if (!ShapesPanel.Visible)
+            if (!shapesPanel.Visible)
             {
                 HideAllPanel();
-                bunifuTransition1.ShowSync(ShapesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                BunifuTransition1.ShowSync(shapesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
             }
-            else
-
-                bunifuTransition1.HideSync(ShapesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);          
+                 
         }
         private void CanvasButton_Click(object sender, EventArgs e)
         {
-            if (!CanvasPanel.Visible)
+            if (!canvasPanel.Visible)
             {
                 HideAllPanel();
-                bunifuTransition1.ShowSync(CanvasPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                BunifuTransition1.ShowSync(canvasPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
             }
-            else           
-                bunifuTransition1.HideSync(CanvasPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+          
         }
 
         private void BrushesButton_Click(object sender, EventArgs e)
         {
-            if (!BrushesPanel.Visible)
+            if (!brushesPanel.Visible)
             {
                 HideAllPanel();
-                bunifuTransition1.ShowSync(BrushesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                BunifuTransition1.ShowSync(brushesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
             }
-            else
             
-                bunifuTransition1.HideSync(BrushesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);      
         }
         private void EffectsButton_Click(object sender, EventArgs e)
         {
-            if (!EffectsPanel.Visible)
+            if (!effectsPanel.Visible)
             {
                 HideAllPanel();
-                bunifuTransition1.ShowSync(EffectsPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                BunifuTransition1.ShowSync(effectsPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
             }
-            else
-                bunifuTransition1.HideSync(EffectsPanel, false, BunifuAnimatorNS.Animation.HorizSlide);            
+                
         }
-        private void MenuButton_Click(object sender, EventArgs e)
+
+        private void MenuButton_MouseClick(object sender, MouseEventArgs e)
         {
             if (!MenuPanel.Visible)
             {
-                HideAllPanel();
-                bunifuTransition1.ShowSync(MenuPanel, false, BunifuAnimatorNS.Animation.VertSlide);
+                MenuPanel.Show();
             }
-            else
-                bunifuTransition1.HideSync(MenuPanel, false, BunifuAnimatorNS.Animation.VertSlide);
+            else MenuPanel.Hide();
+        }
+
+
+
+        //Cac su kien voi mouse
+        private void SketchBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDown)
+            {
+                cur = new Point(e.Location.X, e.Location.Y);
+                wid = cur.X - old.X;
+                hei = cur.Y - old.Y;
+                SketchBox.Refresh();
+
+            }
+        }
+
+        private void SketchBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDown = false;
+            wid = hei = 0;
+        }
+
+        
+        private void SketchBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDown = true;
+            old = new Point(e.Location.X, e.Location.Y);
+        }
+
+        private void SketchBox_Paint(object sender, PaintEventArgs e)
+        {
+            if(isDown)
+            {
+                gra.DrawLine(pen, old, cur);
+                old = cur;
+                SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+            }
         }
 
         //---------------
