@@ -58,3 +58,13 @@ C:\Users\KC\OneDrive\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint
 C:\Users\KC\OneDrive\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csproj.CoreCompileInputs.cache
 C:\Users\KC\OneDrive\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.exe
 C:\Users\KC\OneDrive\Desktop\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.pdb
+C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe.config
+C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.exe
+C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint\DrawInPaint\DrawInPaint\bin\Debug\DrawInPaint.pdb
+C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csprojAssemblyReference.cache
+C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.Form1.resources
+C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.Properties.Resources.resources
+C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csproj.GenerateResource.cache
+C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.csproj.CoreCompileInputs.cache
+C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.exe
+C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint\DrawInPaint\DrawInPaint\obj\Debug\DrawInPaint.pdb
