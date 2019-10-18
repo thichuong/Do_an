@@ -44,7 +44,7 @@
             this.Canvas_Label2.AutoSize = true;
             this.Canvas_Label2.BackColor = System.Drawing.Color.Transparent;
             this.Canvas_Label2.Font = new System.Drawing.Font("Segoe Print", 10F);
-            this.Canvas_Label2.Location = new System.Drawing.Point(53, 118);
+            this.Canvas_Label2.Location = new System.Drawing.Point(47, 76);
             this.Canvas_Label2.Name = "Canvas_Label2";
             this.Canvas_Label2.Size = new System.Drawing.Size(76, 35);
             this.Canvas_Label2.TabIndex = 19;
@@ -55,7 +55,7 @@
             this.Canvas_Label3.AutoSize = true;
             this.Canvas_Label3.BackColor = System.Drawing.Color.Transparent;
             this.Canvas_Label3.Font = new System.Drawing.Font("Segoe Print", 10F);
-            this.Canvas_Label3.Location = new System.Drawing.Point(187, 118);
+            this.Canvas_Label3.Location = new System.Drawing.Point(182, 76);
             this.Canvas_Label3.Name = "Canvas_Label3";
             this.Canvas_Label3.Size = new System.Drawing.Size(80, 35);
             this.Canvas_Label3.TabIndex = 18;
@@ -68,7 +68,7 @@
             this.Canvas_TransparentCheckBox.Checked = true;
             this.Canvas_TransparentCheckBox.CheckedOnColor = System.Drawing.Color.DarkCyan;
             this.Canvas_TransparentCheckBox.ForeColor = System.Drawing.Color.White;
-            this.Canvas_TransparentCheckBox.Location = new System.Drawing.Point(266, 375);
+            this.Canvas_TransparentCheckBox.Location = new System.Drawing.Point(264, 306);
             this.Canvas_TransparentCheckBox.Margin = new System.Windows.Forms.Padding(9, 14, 9, 14);
             this.Canvas_TransparentCheckBox.Name = "Canvas_TransparentCheckBox";
             this.Canvas_TransparentCheckBox.Size = new System.Drawing.Size(20, 20);
@@ -79,7 +79,7 @@
             this.CanvasLabel5.AutoSize = true;
             this.CanvasLabel5.BackColor = System.Drawing.Color.Transparent;
             this.CanvasLabel5.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CanvasLabel5.Location = new System.Drawing.Point(30, 356);
+            this.CanvasLabel5.Location = new System.Drawing.Point(28, 283);
             this.CanvasLabel5.Name = "CanvasLabel5";
             this.CanvasLabel5.Size = new System.Drawing.Size(211, 52);
             this.CanvasLabel5.TabIndex = 16;
@@ -92,7 +92,7 @@
             this.Canvas_ShowCheckBox.Checked = true;
             this.Canvas_ShowCheckBox.CheckedOnColor = System.Drawing.Color.DarkCyan;
             this.Canvas_ShowCheckBox.ForeColor = System.Drawing.Color.White;
-            this.Canvas_ShowCheckBox.Location = new System.Drawing.Point(266, 275);
+            this.Canvas_ShowCheckBox.Location = new System.Drawing.Point(264, 233);
             this.Canvas_ShowCheckBox.Margin = new System.Windows.Forms.Padding(9, 14, 9, 14);
             this.Canvas_ShowCheckBox.Name = "Canvas_ShowCheckBox";
             this.Canvas_ShowCheckBox.Size = new System.Drawing.Size(20, 20);
@@ -103,7 +103,7 @@
             this.Canvas_Label4.AutoSize = true;
             this.Canvas_Label4.BackColor = System.Drawing.Color.Transparent;
             this.Canvas_Label4.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Canvas_Label4.Location = new System.Drawing.Point(30, 256);
+            this.Canvas_Label4.Location = new System.Drawing.Point(28, 213);
             this.Canvas_Label4.Name = "Canvas_Label4";
             this.Canvas_Label4.Size = new System.Drawing.Size(104, 52);
             this.Canvas_Label4.TabIndex = 14;
@@ -113,7 +113,7 @@
             // 
             this.Canvas_HeightComboBox.Font = new System.Drawing.Font("Segoe Print", 12F);
             this.Canvas_HeightComboBox.FormattingEnabled = true;
-            this.Canvas_HeightComboBox.Location = new System.Drawing.Point(165, 168);
+            this.Canvas_HeightComboBox.Location = new System.Drawing.Point(172, 131);
             this.Canvas_HeightComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Canvas_HeightComboBox.Name = "Canvas_HeightComboBox";
             this.Canvas_HeightComboBox.Size = new System.Drawing.Size(112, 50);
@@ -123,7 +123,7 @@
             // 
             this.Canvas_WidthComboBox.Font = new System.Drawing.Font("Segoe Print", 12F);
             this.Canvas_WidthComboBox.FormattingEnabled = true;
-            this.Canvas_WidthComboBox.Location = new System.Drawing.Point(30, 168);
+            this.Canvas_WidthComboBox.Location = new System.Drawing.Point(37, 131);
             this.Canvas_WidthComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Canvas_WidthComboBox.Name = "Canvas_WidthComboBox";
             this.Canvas_WidthComboBox.Size = new System.Drawing.Size(112, 50);
@@ -134,7 +134,7 @@
             this.Canvas_Label1.AutoSize = true;
             this.Canvas_Label1.BackColor = System.Drawing.Color.Transparent;
             this.Canvas_Label1.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Canvas_Label1.Location = new System.Drawing.Point(30, 56);
+            this.Canvas_Label1.Location = new System.Drawing.Point(110, 9);
             this.Canvas_Label1.Name = "Canvas_Label1";
             this.Canvas_Label1.Size = new System.Drawing.Size(82, 52);
             this.Canvas_Label1.TabIndex = 11;
@@ -144,6 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.Canvas_Label2);
             this.Controls.Add(this.Canvas_Label3);
             this.Controls.Add(this.Canvas_TransparentCheckBox);
@@ -154,7 +155,7 @@
             this.Controls.Add(this.Canvas_WidthComboBox);
             this.Controls.Add(this.Canvas_Label1);
             this.Name = "CanvasPanel";
-            this.Size = new System.Drawing.Size(308, 494);
+            this.Size = new System.Drawing.Size(323, 377);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -76,3 +76,4 @@ C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint-atbash\Paintv0.1\PaintUI\o
 C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.CopyComplete
 C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
 C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
+C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.ColorPanel.resources

@@ -64,6 +64,12 @@
     <Compile Include="CanvasPanel.Designer.cs">
       <DependentUpon>CanvasPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="ColorPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColorPanel.Designer.cs">
+      <DependentUpon>ColorPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="EffectsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CanvasPanel.resx">
       <DependentUpon>CanvasPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ColorPanel.resx">
+      <DependentUpon>ColorPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EffectsPanel.resx">
       <DependentUpon>EffectsPanel.cs</DependentUpon>

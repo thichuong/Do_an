@@ -21,13 +21,15 @@ namespace PaintUI
         Point old, cur;
         bool isDown;
         int wid, hei;
+        int penSize;
 
         public Form1()
         {
             InitializeComponent();
             HideAllPanel();
             brushesPanel.Show();
-            pen = new Pen(Color.Black, 10);
+            penSize = 10;
+            pen = new Pen(Color.Black, penSize);
             bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
             gra = Graphics.FromImage(bm);
             isDown = false;
@@ -151,11 +153,13 @@ namespace PaintUI
             menuPanel1.BringToFront();
         }
 
-        
 
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
             isDown = true;
+            pen = new Pen(colorPanel.curColor, penSize);
+            pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
+
             old = new Point(e.Location.X, e.Location.Y);
         }
 
