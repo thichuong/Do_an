@@ -34,7 +34,7 @@ namespace PaintUI
             gra = Graphics.FromImage(bm);
             isDown = false;
             curTool = Tools.BRUSH;
-
+            menuPanel.BringToFront();
             //Modify stroke
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
@@ -48,7 +48,21 @@ namespace PaintUI
                 gra.Clear(Color.White);
             }
 
+
+            menuPanel.ButtonClick += MenuPanel_ButtonClick;
         }
+
+        private void MenuPanel_ButtonClick(object sender, EventArgs e)
+        {
+            bm = new Bitmap(this.Width, this.Height);
+            gra = Graphics.FromImage(bm);
+            //this.Refresh();
+            SketchBox.Refresh();
+            // this.BackgroundImage = (Bitmap)bm.Clone();
+            SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+            
+        }
+
         //Giau Panels
         private void HideAllPanel()
         {
@@ -57,6 +71,7 @@ namespace PaintUI
             canvasPanel.Visible = false;
             brushesPanel.Visible = false;
             effectsPanel.Visible = false;
+            menuPanel.Visible = false;
         }
         
         
@@ -84,7 +99,8 @@ namespace PaintUI
             if (!textPanel.Visible)
             {
                 HideAllPanel();
-                BunifuTransition1.ShowSync(textPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                //BunifuTransition1.ShowSync(textPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                textPanel.Show();
             }
             
         }
@@ -93,7 +109,8 @@ namespace PaintUI
             if (!shapesPanel.Visible)
             {
                 HideAllPanel();
-                BunifuTransition1.ShowSync(shapesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                //BunifuTransition1.ShowSync(shapesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                shapesPanel.Show();
             }
             curTool = Tools.SHAPE;
         }
@@ -102,7 +119,8 @@ namespace PaintUI
             if (!canvasPanel.Visible)
             {
                 HideAllPanel();
-                BunifuTransition1.ShowSync(canvasPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                //BunifuTransition1.ShowSync(canvasPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                canvasPanel.Show();
             }
           
         }
@@ -112,7 +130,8 @@ namespace PaintUI
             if (!brushesPanel.Visible)
             {
                 HideAllPanel();
-                BunifuTransition1.ShowSync(brushesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                //BunifuTransition1.ShowSync(brushesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                brushesPanel.Show();
             }
             curTool = Tools.BRUSH;
         }
@@ -121,7 +140,8 @@ namespace PaintUI
             if (!effectsPanel.Visible)
             {
                 HideAllPanel();
-                BunifuTransition1.ShowSync(effectsPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                //BunifuTransition1.ShowSync(effectsPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                effectsPanel.Show();
             }
                 
         }
@@ -150,10 +170,11 @@ namespace PaintUI
 
         private void MenuButton_Click(object sender, EventArgs e)
         {
-            menuPanel1.BringToFront();
+            bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            //menuPanel1.Show();
         }
 
-
+        
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
             isDown = true;
