@@ -52,7 +52,6 @@ namespace PaintUI
             canvasPanel.Visible = false;
             brushesPanel.Visible = false;
             effectsPanel.Visible = false;
-            MenuPanel.Visible = false;
         }
         
         
@@ -110,7 +109,6 @@ namespace PaintUI
                 HideAllPanel();
                 BunifuTransition1.ShowSync(brushesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
             }
-            
         }
         private void EffectsButton_Click(object sender, EventArgs e)
         {
@@ -121,17 +119,6 @@ namespace PaintUI
             }
                 
         }
-
-        private void MenuButton_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (!MenuPanel.Visible)
-            {
-                MenuPanel.Show();
-            }
-            else MenuPanel.Hide();
-        }
-
-
 
         //Cac su kien voi mouse
         private void SketchBox_MouseMove(object sender, MouseEventArgs e)
@@ -152,7 +139,11 @@ namespace PaintUI
             wid = hei = 0;
         }
 
-        
+        private void MenuButton_Click(object sender, EventArgs e)
+        {
+            menuPanel1.BringToFront();
+        }
+
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
             isDown = true;
