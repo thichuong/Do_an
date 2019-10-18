@@ -13,6 +13,8 @@ namespace PaintUI
     public partial class Form1 : Form
     {
         //Khai bao bien
+        enum Tools {BRUSH, SHAPE, FILLBUCKET};
+        Tools curTool;
         Pen pen;
         Bitmap bm;
         Graphics gra;
@@ -29,6 +31,7 @@ namespace PaintUI
             bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
             gra = Graphics.FromImage(bm);
             isDown = false;
+            curTool = Tools.BRUSH;
 
             //Modify stroke
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
@@ -90,7 +93,7 @@ namespace PaintUI
                 HideAllPanel();
                 BunifuTransition1.ShowSync(shapesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
             }
-                 
+            curTool = Tools.SHAPE;
         }
         private void CanvasButton_Click(object sender, EventArgs e)
         {
@@ -109,6 +112,7 @@ namespace PaintUI
                 HideAllPanel();
                 BunifuTransition1.ShowSync(brushesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
             }
+            curTool = Tools.BRUSH;
         }
         private void EffectsButton_Click(object sender, EventArgs e)
         {
@@ -129,13 +133,16 @@ namespace PaintUI
                 wid = cur.X - old.X;
                 hei = cur.Y - old.Y;
                 SketchBox.Refresh();
-
             }
         }
 
         private void SketchBox_MouseUp(object sender, MouseEventArgs e)
         {
             isDown = false;
+            if(curTool == Tools.SHAPE)
+            {
+                shapesPanel.DrawShapes(SketchBox, bm, gra, old, cur, new Size(wid, hei), pen, true);
+            }
             wid = hei = 0;
         }
 
@@ -143,6 +150,8 @@ namespace PaintUI
         {
             menuPanel1.BringToFront();
         }
+
+        
 
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
@@ -152,13 +161,37 @@ namespace PaintUI
 
         private void SketchBox_Paint(object sender, PaintEventArgs e)
         {
-            if(isDown)
+            if (isDown)
             {
-                gra.DrawLine(pen, old, cur);
-                old = cur;
-                SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+                switch (curTool)
+                {
+                    case Tools.BRUSH:
+                        gra.DrawLine(pen, old, cur);
+                        old = cur;
+                        SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+                        break;
+                    case Tools.SHAPE:
+                        shapesPanel.DrawShapes(SketchBox, bm, e.Graphics, old, cur, new Size(wid, hei), pen, false);
+                        break;
+                    
+                        
+                    /*case Shape.ERASER:
+                        gra.FillRectangle(eraser, cur.X - curSize, cur.Y - curSize, curSize, curSize);
+                        Pen temp = new Pen(bColor, curSize * 2);
+                        temp.SetLineCap(System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.DashCap.Round);
+                        gra.DrawLine(temp, old, cur);
+                        old = cur;
+                        pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
+
+                        break;*/
+
+                    default:
+                        break;
+                }
+
             }
         }
+        
 
         //---------------
 
