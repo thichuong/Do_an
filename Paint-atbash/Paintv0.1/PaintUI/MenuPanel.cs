@@ -20,6 +20,7 @@ namespace PaintUI
         
 
         private void backButton_Click(object sender, EventArgs e)
+<<<<<<< HEAD
         {
             this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
 
@@ -30,6 +31,11 @@ namespace PaintUI
             if (this.ButtonClick != null)
                 this.ButtonClick(this, e);
             this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
+=======
+        {
+            this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
+
+>>>>>>> d38a1441773f4e973437026bb7fa63dc15ac3875
         }
     }
 }

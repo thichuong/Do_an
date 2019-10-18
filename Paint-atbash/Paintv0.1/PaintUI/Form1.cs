@@ -34,7 +34,11 @@ namespace PaintUI
             gra = Graphics.FromImage(bm);
             isDown = false;
             curTool = Tools.BRUSH;
+<<<<<<< HEAD
             menuPanel.BringToFront();
+=======
+            menuPanel1.BringToFront();
+>>>>>>> d38a1441773f4e973437026bb7fa63dc15ac3875
             //Modify stroke
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
@@ -71,7 +75,11 @@ namespace PaintUI
             canvasPanel.Visible = false;
             brushesPanel.Visible = false;
             effectsPanel.Visible = false;
+<<<<<<< HEAD
             menuPanel.Visible = false;
+=======
+            menuPanel1.Visible = false;
+>>>>>>> d38a1441773f4e973437026bb7fa63dc15ac3875
         }
         
         
@@ -170,7 +178,11 @@ namespace PaintUI
 
         private void MenuButton_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+=======
+            BunifuTransition1.ShowSync(menuPanel1, false, BunifuAnimatorNS.Animation.HorizSlide);
+>>>>>>> d38a1441773f4e973437026bb7fa63dc15ac3875
             //menuPanel1.Show();
         }
 
