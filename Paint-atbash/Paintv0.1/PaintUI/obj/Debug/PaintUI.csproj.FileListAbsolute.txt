@@ -77,3 +77,20 @@ C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint-atbash\Paintv0.1\PaintUI\o
 C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
 C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
 C:\Users\KC\OneDrive\Desktop\Paint-update\Paint\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.ColorPanel.resources
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe.config
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\bin\Debug\PaintUI.pdb
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.csprojAssemblyReference.cache
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesPanel.resources
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.CanvasPanel.resources
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.ColorPanel.resources
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.EffectsPanel.resources
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.Form1.resources
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.MenuPanel.resources
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.Properties.Resources.resources
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.ShapesPanel.resources
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.TextPanel.resources
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.GenerateResource.cache
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.CopyComplete
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-atbash\Paint-atbash\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
