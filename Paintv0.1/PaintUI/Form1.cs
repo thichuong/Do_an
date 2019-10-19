@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bunifu.Framework.UI;
 
 namespace PaintUI
 {
@@ -60,8 +61,10 @@ namespace PaintUI
             menuPanel.OpenButtonClick += MenuPanel_OpenButtonClick;
             menuPanel.SaveButtonClick += MenuPanel_SaveButtonClick;
             menuPanel.SaveAsButtonClick += MenuPanel_SaveAsButtonClick;
+            
         }
 
+        
 
         //Xu li cac xu kien cua menuPanel
 
@@ -135,9 +138,27 @@ namespace PaintUI
         {
             this.Close();
         }
-        
-        
-        //Hien thi cac Panels khi click
+
+
+        //Hien thi cac Panels khi click va hover va leave
+        private void MenuButton_MouseLeave(object sender, EventArgs e)
+        {
+            BunifuTileButton button = sender as BunifuTileButton;
+            button.ImageZoom = (int)(button.ImageZoom / 1.5);
+        }
+
+
+        private void MenuButton_MouseHover(object sender, EventArgs e)
+        {
+            BunifuTileButton button = sender as BunifuTileButton;
+            button.ImageZoom = (int)(button.ImageZoom * 1.5);
+        }
+
+        private void MenuButton_Click(object sender, EventArgs e)
+        {
+            bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+        }
+
         private void TextButton_Click(object sender, EventArgs e)
         {
             if (!textPanel.Visible)
@@ -207,16 +228,11 @@ namespace PaintUI
             wid = hei = 0;
         }
 
-        private void MenuButton_Click(object sender, EventArgs e)
-        {
-            bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
-        }
-
         
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
             isDown = true;
-            pen = new Pen(colorPanel.curColor, penSize);
+            pen = new Pen(Color.FromArgb(brushesPanel.getOpacity(), colorPanel.getColor()), brushesPanel.getThickness());
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
             old = new Point(e.Location.X, e.Location.Y);

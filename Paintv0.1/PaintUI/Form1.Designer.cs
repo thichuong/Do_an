@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation2 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
@@ -412,22 +412,22 @@
             // 
             this.bunifuTransition1.AnimationType = BunifuAnimatorNS.AnimationType.HorizSlide;
             this.bunifuTransition1.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
-            animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            this.bunifuTransition1.DefaultAnimation = animation1;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
+            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
+            animation2.MosaicSize = 0;
+            animation2.Padding = new System.Windows.Forms.Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
+            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            this.bunifuTransition1.DefaultAnimation = animation2;
             // 
             // bunifuGradientPanel1
             // 
@@ -492,6 +492,8 @@
             this.RedoButton.Name = "RedoButton";
             this.RedoButton.Size = new System.Drawing.Size(80, 70);
             this.RedoButton.TabIndex = 11;
+            this.RedoButton.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
+            this.RedoButton.MouseHover += new System.EventHandler(this.MenuButton_MouseHover);
             // 
             // UndoButton
             // 
@@ -513,6 +515,8 @@
             this.UndoButton.Name = "UndoButton";
             this.UndoButton.Size = new System.Drawing.Size(80, 70);
             this.UndoButton.TabIndex = 10;
+            this.UndoButton.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
+            this.UndoButton.MouseHover += new System.EventHandler(this.MenuButton_MouseHover);
             // 
             // EffectsButton
             // 
@@ -526,7 +530,7 @@
             this.EffectsButton.ForeColor = System.Drawing.Color.Black;
             this.EffectsButton.Image = global::PaintUI.Properties.Resources.EffectIcon;
             this.EffectsButton.ImagePosition = -3;
-            this.EffectsButton.ImageZoom = 55;
+            this.EffectsButton.ImageZoom = 65;
             this.EffectsButton.LabelPosition = 30;
             this.EffectsButton.LabelText = "Effects";
             this.EffectsButton.Location = new System.Drawing.Point(900, 10);
@@ -535,6 +539,8 @@
             this.EffectsButton.Size = new System.Drawing.Size(100, 90);
             this.EffectsButton.TabIndex = 9;
             this.EffectsButton.Click += new System.EventHandler(this.EffectsButton_Click);
+            this.EffectsButton.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
+            this.EffectsButton.MouseHover += new System.EventHandler(this.MenuButton_MouseHover);
             // 
             // BrushesButton
             // 
@@ -548,7 +554,7 @@
             this.BrushesButton.ForeColor = System.Drawing.Color.Black;
             this.BrushesButton.Image = global::PaintUI.Properties.Resources.BrushesIcon;
             this.BrushesButton.ImagePosition = -1;
-            this.BrushesButton.ImageZoom = 60;
+            this.BrushesButton.ImageZoom = 65;
             this.BrushesButton.LabelPosition = 27;
             this.BrushesButton.LabelText = "Brushes";
             this.BrushesButton.Location = new System.Drawing.Point(760, 10);
@@ -557,6 +563,8 @@
             this.BrushesButton.Size = new System.Drawing.Size(100, 90);
             this.BrushesButton.TabIndex = 8;
             this.BrushesButton.Click += new System.EventHandler(this.BrushesButton_Click);
+            this.BrushesButton.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
+            this.BrushesButton.MouseHover += new System.EventHandler(this.MenuButton_MouseHover);
             // 
             // CanvasButton
             // 
@@ -570,7 +578,7 @@
             this.CanvasButton.ForeColor = System.Drawing.Color.Black;
             this.CanvasButton.Image = global::PaintUI.Properties.Resources.CanvasIcon;
             this.CanvasButton.ImagePosition = -6;
-            this.CanvasButton.ImageZoom = 60;
+            this.CanvasButton.ImageZoom = 65;
             this.CanvasButton.LabelPosition = 30;
             this.CanvasButton.LabelText = "Canvas";
             this.CanvasButton.Location = new System.Drawing.Point(623, 10);
@@ -579,6 +587,8 @@
             this.CanvasButton.Size = new System.Drawing.Size(100, 90);
             this.CanvasButton.TabIndex = 7;
             this.CanvasButton.Click += new System.EventHandler(this.CanvasButton_Click);
+            this.CanvasButton.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
+            this.CanvasButton.MouseHover += new System.EventHandler(this.MenuButton_MouseHover);
             // 
             // ShapesButton
             // 
@@ -592,7 +602,7 @@
             this.ShapesButton.ForeColor = System.Drawing.Color.Black;
             this.ShapesButton.Image = global::PaintUI.Properties.Resources._2dShape;
             this.ShapesButton.ImagePosition = -6;
-            this.ShapesButton.ImageZoom = 60;
+            this.ShapesButton.ImageZoom = 65;
             this.ShapesButton.LabelPosition = 30;
             this.ShapesButton.LabelText = "Shapes";
             this.ShapesButton.Location = new System.Drawing.Point(482, 10);
@@ -601,6 +611,8 @@
             this.ShapesButton.Size = new System.Drawing.Size(100, 90);
             this.ShapesButton.TabIndex = 6;
             this.ShapesButton.Click += new System.EventHandler(this.ShapesButton_Click);
+            this.ShapesButton.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
+            this.ShapesButton.MouseHover += new System.EventHandler(this.MenuButton_MouseHover);
             // 
             // TextButton
             // 
@@ -614,7 +626,7 @@
             this.TextButton.ForeColor = System.Drawing.Color.Black;
             this.TextButton.Image = global::PaintUI.Properties.Resources.TextIcon;
             this.TextButton.ImagePosition = -11;
-            this.TextButton.ImageZoom = 80;
+            this.TextButton.ImageZoom = 65;
             this.TextButton.LabelPosition = 28;
             this.TextButton.LabelText = "Text";
             this.TextButton.Location = new System.Drawing.Point(359, 10);
@@ -623,6 +635,8 @@
             this.TextButton.Size = new System.Drawing.Size(100, 90);
             this.TextButton.TabIndex = 5;
             this.TextButton.Click += new System.EventHandler(this.TextButton_Click);
+            this.TextButton.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
+            this.TextButton.MouseHover += new System.EventHandler(this.MenuButton_MouseHover);
             // 
             // MenuButton
             // 
@@ -644,6 +658,8 @@
             this.MenuButton.Size = new System.Drawing.Size(100, 90);
             this.MenuButton.TabIndex = 4;
             this.MenuButton.Click += new System.EventHandler(this.MenuButton_Click);
+            this.MenuButton.MouseLeave += new System.EventHandler(this.MenuButton_MouseLeave);
+            this.MenuButton.MouseHover += new System.EventHandler(this.MenuButton_MouseHover);
             // 
             // bunifuGradientPanel2
             // 
