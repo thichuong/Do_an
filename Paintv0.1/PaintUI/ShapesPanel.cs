@@ -13,11 +13,14 @@ namespace PaintUI
     public partial class ShapesPanel : UserControl
     {
         enum Shapes { RECTANGLE, ELLIPSE, LINE};
+        Pen penShape;
         Shapes curShape;
+        
         public ShapesPanel()
         {
             InitializeComponent();
             curShape = Shapes.RECTANGLE;
+            thicknessSlide.MaximumValue = 20;
         }
 
         private void rectangleButton_Click(object sender, EventArgs e)
@@ -34,9 +37,11 @@ namespace PaintUI
         {
             curShape = Shapes.LINE;
         }
-
+        
         public void DrawShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size, Pen pen, bool assign)
         {
+            penShape = pen;
+            penShape.Width = thicknessSlide.Value;
             switch (curShape)
             {
                 case Shapes.RECTANGLE:
@@ -54,6 +59,15 @@ namespace PaintUI
                     break;
             }
             if(assign) p.BackgroundImage = (Bitmap)bm.Clone();
+        }
+
+        private void thicknessSlide_ValueChanged(object sender, EventArgs e)
+        {
+           
+        }
+        public void thicknessSlide_SetValue(int with)
+        {
+            thicknessSlide.Value = with;
         }
     }
 }

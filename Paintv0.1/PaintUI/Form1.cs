@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bunifu.Framework.UI;
 
 namespace PaintUI
 {
@@ -14,11 +15,13 @@ namespace PaintUI
     {
         //Khai bao bien
         enum Tools {BRUSH, SHAPE, FILLBUCKET};
+
         Tools curTool;
         Pen pen;
         Bitmap bm;
         Graphics gra;
         Point old, cur;
+
         bool isDown;
         int wid, hei;
         int penSize;
@@ -26,15 +29,21 @@ namespace PaintUI
         public Form1()
         {
             InitializeComponent();
+
             HideAllPanel();
             brushesPanel.Show();
-            penSize = brushesPanel.curSize;
+
+            penSize = 10;
             pen = new Pen(Color.Black, penSize);
             bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
             gra = Graphics.FromImage(bm);
+
             isDown = false;
             curTool = Tools.BRUSH;
-            menuPanel1.BringToFront();
+
+            menuPanel.BringToFront();
+            SketchBox.Cursor = Cursors.Cross;
+            
             //Modify stroke
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
@@ -48,7 +57,59 @@ namespace PaintUI
                 gra.Clear(Color.White);
             }
 
+            menuPanel.NewButtonClick += MenuPanel_NewButtonClick;
+            menuPanel.OpenButtonClick += MenuPanel_OpenButtonClick;
+            menuPanel.SaveButtonClick += MenuPanel_SaveButtonClick;
+            menuPanel.SaveAsButtonClick += MenuPanel_SaveAsButtonClick;
+            
         }
+
+        
+
+        //Xu li cac xu kien cua menuPanel
+
+        private void MenuPanel_SaveAsButtonClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+            
+        }
+
+        private void MenuPanel_SaveButtonClick(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Bmp (*.bmp)|*.bmp|Jpg (*.jpg)|*.jpg|Jpeg (*.jpeg)|*.jpeg|Png (*.png)|*.png";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                bm.Save(sfd.FileName);
+            }
+        }
+
+        private void MenuPanel_OpenButtonClick(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Image files(*.jpg,*.jpeg, *.png, *.bmp)|*jpg; *jpeg; **png; *bmp";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                Image img = Image.FromFile(ofd.FileName);
+                bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+                gra = Graphics.FromImage(bm);
+                gra.DrawImage(img, new Rectangle(0, 0, bm.Width, bm.Height));
+                SketchBox.Refresh();
+                SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+            }
+        }
+
+        private void MenuPanel_NewButtonClick(object sender, EventArgs e)
+        {
+            bm = new Bitmap(this.Width, this.Height);
+            gra = Graphics.FromImage(bm);
+            SketchBox.Refresh();
+            SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+        }
+
+
+
         //Giau Panels
         private void HideAllPanel()
         {
@@ -57,7 +118,7 @@ namespace PaintUI
             canvasPanel.Visible = false;
             brushesPanel.Visible = false;
             effectsPanel.Visible = false;
-            menuPanel1.Visible = false;
+            menuPanel.Visible = false;
         }
         
         
@@ -77,15 +138,32 @@ namespace PaintUI
         {
             this.Close();
         }
-        
-        
-        //Hien thi cac Panels khi click
+
+
+        //Hien thi cac Panels khi click va hover va leave
+        private void MenuButton_MouseLeave(object sender, EventArgs e)
+        {
+            BunifuTileButton button = sender as BunifuTileButton;
+            button.ImageZoom = (int)(button.ImageZoom / 1.5);
+        }
+
+
+        private void MenuButton_MouseHover(object sender, EventArgs e)
+        {
+            BunifuTileButton button = sender as BunifuTileButton;
+            button.ImageZoom = (int)(button.ImageZoom * 1.5);
+        }
+
+        private void MenuButton_Click(object sender, EventArgs e)
+        {
+            bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+        }
+
         private void TextButton_Click(object sender, EventArgs e)
         {
             if (!textPanel.Visible)
             {
                 HideAllPanel();
-                //BunifuTransition1.ShowSync(textPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
                 textPanel.Show();
             }
             
@@ -95,17 +173,16 @@ namespace PaintUI
             if (!shapesPanel.Visible)
             {
                 HideAllPanel();
-                //BunifuTransition1.ShowSync(shapesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
                 shapesPanel.Show();
             }
             curTool = Tools.SHAPE;
+            shapesPanel.thicknessSlide_SetValue(brushesPanel.getThickness());
         }
         private void CanvasButton_Click(object sender, EventArgs e)
         {
             if (!canvasPanel.Visible)
             {
                 HideAllPanel();
-                //BunifuTransition1.ShowSync(canvasPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
                 canvasPanel.Show();
             }
           
@@ -116,7 +193,6 @@ namespace PaintUI
             if (!brushesPanel.Visible)
             {
                 HideAllPanel();
-                //BunifuTransition1.ShowSync(brushesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
                 brushesPanel.Show();
             }
             curTool = Tools.BRUSH;
@@ -126,7 +202,6 @@ namespace PaintUI
             if (!effectsPanel.Visible)
             {
                 HideAllPanel();
-                //BunifuTransition1.ShowSync(effectsPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
                 effectsPanel.Show();
             }
                 
@@ -154,31 +229,12 @@ namespace PaintUI
             wid = hei = 0;
         }
 
-        private void MenuButton_Click(object sender, EventArgs e)
-        {
-            if (!menuPanel1.Visible)
-            {
-                BunifuTransition1.ShowSync(menuPanel1, false, BunifuAnimatorNS.Animation.HorizSlide);
-                //menuPanel1.Show();
-            }
-            else
-            {
-                BunifuTransition1.HideSync(menuPanel1, true);
-            }
-                
-        }
-
-        private void brushesPanel_Load(object sender, EventArgs e)
-        {
-            penSize = brushesPanel.curSize;
-        }
-
+        
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
             isDown = true;
-            pen = new Pen(colorPanel.curColor, brushesPanel.curSize);
+            pen = new Pen(Color.FromArgb(brushesPanel.getOpacity(), colorPanel.getColor()), brushesPanel.getThickness());
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
-
             old = new Point(e.Location.X, e.Location.Y);
         }
 
@@ -196,18 +252,6 @@ namespace PaintUI
                     case Tools.SHAPE:
                         shapesPanel.DrawShapes(SketchBox, bm, e.Graphics, old, cur, new Size(wid, hei), pen, false);
                         break;
-                    
-                        
-                    /*case Shape.ERASER:
-                        gra.FillRectangle(eraser, cur.X - curSize, cur.Y - curSize, curSize, curSize);
-                        Pen temp = new Pen(bColor, curSize * 2);
-                        temp.SetLineCap(System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.DashCap.Round);
-                        gra.DrawLine(temp, old, cur);
-                        old = cur;
-                        pictureBox1.BackgroundImage = (Bitmap)bm.Clone();
-
-                        break;*/
-
                     default:
                         break;
                 }

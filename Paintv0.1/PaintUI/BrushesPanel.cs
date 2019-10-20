@@ -12,17 +12,41 @@ namespace PaintUI
 {
     public partial class BrushesPanel : UserControl
     {
-       public int curSize;
+        public event EventHandler ThicknessChange;
+        public event EventHandler OpacityChange;
+
         public BrushesPanel()
         {
             InitializeComponent();
-            curSize=Brushes_SizeSlider.Value = 4;
-            Brushes_SizeSlider.MaximumValue = 20;
+            thicknessSlide.MaximumValue = 15;
+            thicknessSlide.Value = 4;
+            opacitySlide.Value = 255;
+
         }
 
-        private void Brushes_SizeSlider_ValueChanged(object sender, EventArgs e)
+        private void thicknessSlide_ValueChanged(object sender, EventArgs e)
         {
-            curSize = Brushes_SizeSlider.Value;
+            if (this.ThicknessChange != null)
+                this.ThicknessChange(this, e);
         }
+
+        
+        private void opacitySlide_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.OpacityChange != null)
+                this.OpacityChange(this, e);
+        }
+
+
+        public int getThickness()
+        {
+            return thicknessSlide.Value;
+        }
+
+        public int getOpacity()
+        {
+            return opacitySlide.Value;
+        }
+
     }
 }

@@ -12,18 +12,18 @@ namespace PaintUI
 {
     public partial class ColorPanel : UserControl
     {
-        public Color curColor;
+        public event EventHandler ColorChange;
+
         public ColorPanel()
         {
             InitializeComponent();
-            curColor = Color.Black;
+
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             PictureBox colorCell = sender as PictureBox;
             mainColor.BackColor = colorCell.BackColor;
-            curColor = mainColor.BackColor;
         }
 
         private void addColorButton_Click(object sender, EventArgs e)
@@ -31,11 +31,13 @@ namespace PaintUI
             ColorDialog cld = new ColorDialog();
             if (cld.ShowDialog() == DialogResult.OK)
             {
-                curColor = mainColor.BackColor = cld.Color;
-
-                //pen = new Pen(fColor, curSize);
-                //pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
+                mainColor.BackColor = cld.Color;
             }
+        }
+
+        public Color getColor()
+        {
+            return mainColor.BackColor;
         }
     }
 }
