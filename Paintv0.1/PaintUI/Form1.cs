@@ -206,7 +206,10 @@ namespace PaintUI
             }
                 
         }
-
+        private void FillButton_Click(object sender, EventArgs e)
+        {
+            curTool = Tools.FILLBUCKET;
+        }
         //Cac su kien voi mouse
         private void SketchBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -229,13 +232,19 @@ namespace PaintUI
             wid = hei = 0;
         }
 
-        
+       
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
             isDown = true;
             pen = new Pen(Color.FromArgb(brushesPanel.getOpacity(), colorPanel.getColor()), brushesPanel.getThickness());
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
             old = new Point(e.Location.X, e.Location.Y);
+            if(curTool==Tools.FILLBUCKET)
+            {
+                FillBucket bucket = new FillBucket();
+                bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), pen.Color);
+                SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+            }
         }
 
         private void SketchBox_Paint(object sender, PaintEventArgs e)
@@ -247,6 +256,7 @@ namespace PaintUI
                     case Tools.BRUSH:
                         gra.DrawLine(pen, old, cur);
                         old = cur;
+                        
                         SketchBox.BackgroundImage = (Bitmap)bm.Clone();
                         break;
                     case Tools.SHAPE:
@@ -258,9 +268,33 @@ namespace PaintUI
 
             }
         }
-        
+
 
         //---------------
+        private void bunifuGradientPanel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDown = true;
+            old = e.Location;
+
+        }
+
+      
+
+        private void bunifuGradientPanel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point location;
+            if(isDown)
+            {
+                location= new Point( this.Left + e.X - old.X, this.Top + e.Y - old.Y);
+                old = e.Location;
+                this.Location = location;
+            }
+        }
+
+        private void bunifuGradientPanel1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDown = false;
+        }
 
     }
 }
