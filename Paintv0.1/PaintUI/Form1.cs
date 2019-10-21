@@ -21,7 +21,7 @@ namespace PaintUI
         Bitmap bm;
         Graphics gra;
         Point old, cur;
-
+        Point startPoint;
         bool isDown;
         int wid, hei;
         int penSize;
@@ -29,7 +29,7 @@ namespace PaintUI
         public Form1()
         {
             InitializeComponent();
-
+            
             HideAllPanel();
             brushesPanel.Show();
 
@@ -56,7 +56,7 @@ namespace PaintUI
                 gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 gra.Clear(Color.White);
             }
-
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
             menuPanel.NewButtonClick += MenuPanel_NewButtonClick;
             menuPanel.OpenButtonClick += MenuPanel_OpenButtonClick;
             menuPanel.SaveButtonClick += MenuPanel_SaveButtonClick;
@@ -274,7 +274,7 @@ namespace PaintUI
         private void bunifuGradientPanel1_MouseDown(object sender, MouseEventArgs e)
         {
             isDown = true;
-            old = e.Location;
+            startPoint = e.Location;
 
         }
 
@@ -282,12 +282,12 @@ namespace PaintUI
 
         private void bunifuGradientPanel1_MouseMove(object sender, MouseEventArgs e)
         {
-            Point location;
+            
             if(isDown)
             {
-                location= new Point( this.Left + e.X - old.X, this.Top + e.Y - old.Y);
-                old = e.Location;
-                this.Location = location;
+                Point point = PointToScreen(e.Location);
+               // old = e.Location;
+              // Location = new Point(point.X - startPoint.X, point.Y - startPoint.Y);
             }
         }
 
@@ -296,5 +296,50 @@ namespace PaintUI
             isDown = false;
         }
 
+        protected override void WndProc(ref Message m)
+        {
+            const int RESIZE_HANDLE_SIZE = 10;
+
+            base.WndProc(ref m);
+
+            if (m.Msg == 0x84) /*NCHITTEST*/
+            {
+
+                if ((int)m.Result == 0x01/*HTCLIENT*/)
+                {
+                    Point screenPoint = new Point(m.LParam.ToInt32());
+                    Point clientPoint = this.PointToClient(screenPoint);
+                    if (clientPoint.Y <= RESIZE_HANDLE_SIZE)
+                    {
+                        if (clientPoint.X <= RESIZE_HANDLE_SIZE)
+                            m.Result = (IntPtr)13/*HTTOPLEFT*/ ;
+                        else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
+                            m.Result = (IntPtr)12/*HTTOP*/ ;
+                        else
+                            m.Result = (IntPtr)14/*HTTOPRIGHT*/ ;
+                    }
+                    else if (clientPoint.Y <= (Size.Height - RESIZE_HANDLE_SIZE))
+                    {
+                        if (clientPoint.X <= RESIZE_HANDLE_SIZE)
+                            m.Result = (IntPtr)10/*HTLEFT*/ ;
+                        else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
+                            m.Result = (IntPtr)2/*HTCAPTION*/ ;
+                        else
+                            m.Result = (IntPtr)11/*HTRIGHT*/ ;
+                    }
+                    else
+                    {
+                        if (clientPoint.X <= RESIZE_HANDLE_SIZE)
+                            m.Result = (IntPtr)16/*HTBOTTOMLEFT*/ ;
+                        else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
+                            m.Result = (IntPtr)15/*HTBOTTOM*/ ;
+                        else
+                            m.Result = (IntPtr)17/*HTBOTTOMRIGHT*/ ;
+                    }
+                }
+                return;
+            }
+        }
+       
     }
 }

@@ -64,7 +64,7 @@
             this.shapesPanel = new PaintUI.ShapesPanel();
             this.brushesPanel = new PaintUI.BrushesPanel();
             this.menuPanel = new PaintUI.MenuPanel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.MinimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MaximizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
@@ -79,7 +79,7 @@
             // 
             this.bunifuDragControl1.Fixed = true;
             this.bunifuDragControl1.Horizontal = true;
-            this.bunifuDragControl1.TargetControl = null;
+            this.bunifuDragControl1.TargetControl = this.bunifuGradientPanel1;
             this.bunifuDragControl1.Vertical = true;
             // 
             // MinimizeButton
@@ -89,7 +89,7 @@
             this.bunifuTransition1.SetDecoration(this.MinimizeButton, BunifuAnimatorNS.DecorationType.None);
             this.MinimizeButton.Image = global::PaintUI.Properties.Resources.min;
             this.MinimizeButton.ImageActive = null;
-            this.MinimizeButton.Location = new System.Drawing.Point(1160, 11);
+            this.MinimizeButton.Location = new System.Drawing.Point(1150, 11);
             this.MinimizeButton.Name = "MinimizeButton";
             this.MinimizeButton.Size = new System.Drawing.Size(30, 30);
             this.MinimizeButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -105,7 +105,7 @@
             this.bunifuTransition1.SetDecoration(this.MaximizeButton, BunifuAnimatorNS.DecorationType.None);
             this.MaximizeButton.Image = global::PaintUI.Properties.Resources.max;
             this.MaximizeButton.ImageActive = null;
-            this.MaximizeButton.Location = new System.Drawing.Point(1204, 11);
+            this.MaximizeButton.Location = new System.Drawing.Point(1194, 11);
             this.MaximizeButton.Name = "MaximizeButton";
             this.MaximizeButton.Size = new System.Drawing.Size(30, 30);
             this.MaximizeButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -121,7 +121,7 @@
             this.bunifuTransition1.SetDecoration(this.CloseButton, BunifuAnimatorNS.DecorationType.None);
             this.CloseButton.Image = global::PaintUI.Properties.Resources.exit1;
             this.CloseButton.ImageActive = null;
-            this.CloseButton.Location = new System.Drawing.Point(1239, 11);
+            this.CloseButton.Location = new System.Drawing.Point(1229, 11);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(30, 30);
             this.CloseButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -142,9 +142,9 @@
             this.EditPanel.Controls.Add(this.CropButton);
             this.bunifuTransition1.SetDecoration(this.EditPanel, BunifuAnimatorNS.DecorationType.None);
             this.EditPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.EditPanel.Location = new System.Drawing.Point(0, 141);
+            this.EditPanel.Location = new System.Drawing.Point(1, 142);
             this.EditPanel.Name = "EditPanel";
-            this.EditPanel.Size = new System.Drawing.Size(1280, 60);
+            this.EditPanel.Size = new System.Drawing.Size(1270, 60);
             this.EditPanel.TabIndex = 1;
             // 
             // FillButton
@@ -430,15 +430,15 @@
             this.bunifuGradientPanel1.Controls.Add(this.MinimizeButton);
             this.bunifuTransition1.SetDecoration(this.bunifuGradientPanel1, BunifuAnimatorNS.DecorationType.None);
             this.bunifuGradientPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bunifuGradientPanel1.GradientBottomLeft = System.Drawing.Color.Magenta;
-            this.bunifuGradientPanel1.GradientBottomRight = System.Drawing.Color.DimGray;
-            this.bunifuGradientPanel1.GradientTopLeft = System.Drawing.Color.DarkRed;
-            this.bunifuGradientPanel1.GradientTopRight = System.Drawing.Color.Red;
-            this.bunifuGradientPanel1.Location = new System.Drawing.Point(0, 0);
+            this.bunifuGradientPanel1.GradientBottomLeft = System.Drawing.Color.DodgerBlue;
+            this.bunifuGradientPanel1.GradientBottomRight = System.Drawing.Color.DodgerBlue;
+            this.bunifuGradientPanel1.GradientTopLeft = System.Drawing.Color.DodgerBlue;
+            this.bunifuGradientPanel1.GradientTopRight = System.Drawing.Color.DodgerBlue;
+            this.bunifuGradientPanel1.Location = new System.Drawing.Point(1, 1);
             this.bunifuGradientPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuGradientPanel1.Name = "bunifuGradientPanel1";
             this.bunifuGradientPanel1.Quality = 10;
-            this.bunifuGradientPanel1.Size = new System.Drawing.Size(1280, 47);
+            this.bunifuGradientPanel1.Size = new System.Drawing.Size(1270, 47);
             this.bunifuGradientPanel1.TabIndex = 18;
             this.bunifuGradientPanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bunifuGradientPanel1_MouseDown);
             this.bunifuGradientPanel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.bunifuGradientPanel1_MouseMove);
@@ -448,7 +448,6 @@
             // 
             this.ToolsPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ToolsPanel.BackgroundImage")));
             this.ToolsPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ToolsPanel.Controls.Add(this.button1);
             this.ToolsPanel.Controls.Add(this.RedoButton);
             this.ToolsPanel.Controls.Add(this.UndoButton);
             this.ToolsPanel.Controls.Add(this.EffectsButton);
@@ -459,14 +458,14 @@
             this.ToolsPanel.Controls.Add(this.MenuButton);
             this.bunifuTransition1.SetDecoration(this.ToolsPanel, BunifuAnimatorNS.DecorationType.None);
             this.ToolsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ToolsPanel.GradientBottomLeft = System.Drawing.Color.Magenta;
-            this.ToolsPanel.GradientBottomRight = System.Drawing.Color.DimGray;
-            this.ToolsPanel.GradientTopLeft = System.Drawing.Color.DarkRed;
+            this.ToolsPanel.GradientBottomLeft = System.Drawing.Color.DodgerBlue;
+            this.ToolsPanel.GradientBottomRight = System.Drawing.Color.DodgerBlue;
+            this.ToolsPanel.GradientTopLeft = System.Drawing.Color.DodgerBlue;
             this.ToolsPanel.GradientTopRight = System.Drawing.Color.Red;
-            this.ToolsPanel.Location = new System.Drawing.Point(0, 47);
+            this.ToolsPanel.Location = new System.Drawing.Point(1, 48);
             this.ToolsPanel.Name = "ToolsPanel";
             this.ToolsPanel.Quality = 10;
-            this.ToolsPanel.Size = new System.Drawing.Size(1280, 94);
+            this.ToolsPanel.Size = new System.Drawing.Size(1270, 94);
             this.ToolsPanel.TabIndex = 4;
             // 
             // RedoButton
@@ -484,7 +483,7 @@
             this.RedoButton.ImageZoom = 60;
             this.RedoButton.LabelPosition = 30;
             this.RedoButton.LabelText = "Redo";
-            this.RedoButton.Location = new System.Drawing.Point(1063, 8);
+            this.RedoButton.Location = new System.Drawing.Point(1053, 8);
             this.RedoButton.Margin = new System.Windows.Forms.Padding(4);
             this.RedoButton.Name = "RedoButton";
             this.RedoButton.Size = new System.Drawing.Size(71, 56);
@@ -507,7 +506,7 @@
             this.UndoButton.ImageZoom = 60;
             this.UndoButton.LabelPosition = 30;
             this.UndoButton.LabelText = "Undo";
-            this.UndoButton.Location = new System.Drawing.Point(994, 8);
+            this.UndoButton.Location = new System.Drawing.Point(984, 8);
             this.UndoButton.Margin = new System.Windows.Forms.Padding(4);
             this.UndoButton.Name = "UndoButton";
             this.UndoButton.Size = new System.Drawing.Size(71, 56);
@@ -530,7 +529,7 @@
             this.EffectsButton.ImageZoom = 65;
             this.EffectsButton.LabelPosition = 30;
             this.EffectsButton.LabelText = "Effects";
-            this.EffectsButton.Location = new System.Drawing.Point(800, 8);
+            this.EffectsButton.Location = new System.Drawing.Point(795, 8);
             this.EffectsButton.Margin = new System.Windows.Forms.Padding(4);
             this.EffectsButton.Name = "EffectsButton";
             this.EffectsButton.Size = new System.Drawing.Size(89, 72);
@@ -554,7 +553,7 @@
             this.BrushesButton.ImageZoom = 65;
             this.BrushesButton.LabelPosition = 27;
             this.BrushesButton.LabelText = "Brushes";
-            this.BrushesButton.Location = new System.Drawing.Point(676, 8);
+            this.BrushesButton.Location = new System.Drawing.Point(671, 8);
             this.BrushesButton.Margin = new System.Windows.Forms.Padding(4);
             this.BrushesButton.Name = "BrushesButton";
             this.BrushesButton.Size = new System.Drawing.Size(89, 72);
@@ -578,7 +577,7 @@
             this.CanvasButton.ImageZoom = 65;
             this.CanvasButton.LabelPosition = 30;
             this.CanvasButton.LabelText = "Canvas";
-            this.CanvasButton.Location = new System.Drawing.Point(554, 8);
+            this.CanvasButton.Location = new System.Drawing.Point(549, 8);
             this.CanvasButton.Margin = new System.Windows.Forms.Padding(4);
             this.CanvasButton.Name = "CanvasButton";
             this.CanvasButton.Size = new System.Drawing.Size(89, 72);
@@ -602,7 +601,7 @@
             this.ShapesButton.ImageZoom = 65;
             this.ShapesButton.LabelPosition = 30;
             this.ShapesButton.LabelText = "Shapes";
-            this.ShapesButton.Location = new System.Drawing.Point(428, 8);
+            this.ShapesButton.Location = new System.Drawing.Point(423, 8);
             this.ShapesButton.Margin = new System.Windows.Forms.Padding(4);
             this.ShapesButton.Name = "ShapesButton";
             this.ShapesButton.Size = new System.Drawing.Size(89, 72);
@@ -626,7 +625,7 @@
             this.TextButton.ImageZoom = 65;
             this.TextButton.LabelPosition = 28;
             this.TextButton.LabelText = "Text";
-            this.TextButton.Location = new System.Drawing.Point(319, 8);
+            this.TextButton.Location = new System.Drawing.Point(314, 8);
             this.TextButton.Margin = new System.Windows.Forms.Padding(5);
             this.TextButton.Name = "TextButton";
             this.TextButton.Size = new System.Drawing.Size(89, 72);
@@ -674,11 +673,11 @@
             this.bunifuGradientPanel2.GradientBottomRight = System.Drawing.Color.MistyRose;
             this.bunifuGradientPanel2.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.bunifuGradientPanel2.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.bunifuGradientPanel2.Location = new System.Drawing.Point(980, 201);
+            this.bunifuGradientPanel2.Location = new System.Drawing.Point(971, 202);
             this.bunifuGradientPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuGradientPanel2.Name = "bunifuGradientPanel2";
             this.bunifuGradientPanel2.Quality = 10;
-            this.bunifuGradientPanel2.Size = new System.Drawing.Size(300, 687);
+            this.bunifuGradientPanel2.Size = new System.Drawing.Size(300, 684);
             this.bunifuGradientPanel2.TabIndex = 20;
             // 
             // SketchBox
@@ -705,7 +704,7 @@
             this.colorPanel.BackColor = System.Drawing.Color.Transparent;
             this.bunifuTransition1.SetDecoration(this.colorPanel, BunifuAnimatorNS.DecorationType.None);
             this.colorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.colorPanel.Location = new System.Drawing.Point(0, 406);
+            this.colorPanel.Location = new System.Drawing.Point(0, 403);
             this.colorPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.colorPanel.Name = "colorPanel";
             this.colorPanel.Size = new System.Drawing.Size(300, 281);
@@ -715,7 +714,8 @@
             // 
             this.effectsPanel.BackColor = System.Drawing.Color.Transparent;
             this.bunifuTransition1.SetDecoration(this.effectsPanel, BunifuAnimatorNS.DecorationType.None);
-            this.effectsPanel.Location = new System.Drawing.Point(-3, 0);
+            this.effectsPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.effectsPanel.Location = new System.Drawing.Point(0, 0);
             this.effectsPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.effectsPanel.Name = "effectsPanel";
             this.effectsPanel.Size = new System.Drawing.Size(300, 410);
@@ -766,28 +766,23 @@
             this.menuPanel.BackColor = System.Drawing.Color.Aquamarine;
             this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bunifuTransition1.SetDecoration(this.menuPanel, BunifuAnimatorNS.DecorationType.None);
-            this.menuPanel.Location = new System.Drawing.Point(0, 47);
+            this.menuPanel.Location = new System.Drawing.Point(2, 49);
             this.menuPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.menuPanel.Name = "menuPanel";
             this.menuPanel.Size = new System.Drawing.Size(295, 507);
             this.menuPanel.TabIndex = 19;
             // 
-            // button1
+            // timer1
             // 
-            this.bunifuTransition1.SetDecoration(this.button1, BunifuAnimatorNS.DecorationType.None);
-            this.button1.Location = new System.Drawing.Point(978, 59);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(1280, 888);
+            this.ClientSize = new System.Drawing.Size(1273, 888);
             this.Controls.Add(this.bunifuGradientPanel2);
             this.Controls.Add(this.EditPanel);
             this.Controls.Add(this.ToolsPanel);
@@ -797,6 +792,8 @@
             this.bunifuTransition1.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
+            this.Padding = new System.Windows.Forms.Padding(1, 1, 2, 2);
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.MinimizeButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MaximizeButton)).EndInit();
@@ -844,7 +841,7 @@
         private System.Windows.Forms.PictureBox SketchBox;
         private ColorPanel colorPanel;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
