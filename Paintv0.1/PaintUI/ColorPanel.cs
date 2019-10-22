@@ -12,8 +12,6 @@ namespace PaintUI
 {
     public partial class ColorPanel : UserControl
     {
-        public event EventHandler ColorChange;
-
         public ColorPanel()
         {
             InitializeComponent();
@@ -23,7 +21,7 @@ namespace PaintUI
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             PictureBox colorCell = sender as PictureBox;
-            mainColor.BackColor = colorCell.BackColor;
+            mainColor1.BackColor = colorCell.BackColor;
         }
 
         private void addColorButton_Click(object sender, EventArgs e)
@@ -31,13 +29,27 @@ namespace PaintUI
             ColorDialog cld = new ColorDialog();
             if (cld.ShowDialog() == DialogResult.OK)
             {
-                mainColor.BackColor = cld.Color;
+                mainColor1.BackColor = cld.Color;
             }
         }
 
-        public Color getColor()
+        public Color getColor1()
         {
-            return mainColor.BackColor;
+            return mainColor1.BackColor;
+        }
+        public Color getColor2()
+        {
+            return mainColor2.BackColor;
+        }
+
+        private void mainColor1_Click(object sender, EventArgs e)
+        {
+            mainColor1.BringToFront();
+        }
+
+        private void mainColor2_Click(object sender, EventArgs e)
+        {
+            mainColor2.BringToFront();
         }
     }
 }

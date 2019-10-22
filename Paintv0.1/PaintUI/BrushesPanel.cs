@@ -18,8 +18,10 @@ namespace PaintUI
         public BrushesPanel()
         {
             InitializeComponent();
-            thicknessSlide.MaximumValue = 15;
-            thicknessSlide.Value = 4;
+            DoubleBuffered = true;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+            thicknessSlide.Value = 10;
             opacitySlide.Value = 255;
 
         }
@@ -47,6 +49,5 @@ namespace PaintUI
         {
             return opacitySlide.Value;
         }
-
     }
 }

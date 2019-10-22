@@ -20,7 +20,6 @@ namespace PaintUI
         public MenuPanel()
         {
             InitializeComponent();
-           
         }
         
 
@@ -62,6 +61,5 @@ namespace PaintUI
                 this.SaveAsButtonClick(this, e);
             this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
         }
-       
     }
 }

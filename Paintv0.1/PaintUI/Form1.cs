@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,14 +15,15 @@ namespace PaintUI
     public partial class Form1 : Form
     {
         //Khai bao bien
-        enum Tools {BRUSH, SHAPE, FILLBUCKET};
+        enum Tools {BRUSH, SHAPE, FILLBUCKET, ERASER };
 
         Tools curTool;
         Pen pen;
         Bitmap bm;
         Graphics gra;
         Point old, cur;
-        Point startPoint;
+        SolidBrush eraser;
+
         bool isDown;
         int wid, hei;
         int penSize;
@@ -29,7 +31,7 @@ namespace PaintUI
         public Form1()
         {
             InitializeComponent();
-            
+
             HideAllPanel();
             brushesPanel.Show();
 
@@ -53,18 +55,20 @@ namespace PaintUI
                 this.SetStyle(ControlStyles.UserPaint, true);
                 this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
                 this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+
                 gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 gra.Clear(Color.White);
             }
-            this.SetStyle(ControlStyles.ResizeRedraw, true);
+
             menuPanel.NewButtonClick += MenuPanel_NewButtonClick;
             menuPanel.OpenButtonClick += MenuPanel_OpenButtonClick;
             menuPanel.SaveButtonClick += MenuPanel_SaveButtonClick;
             menuPanel.SaveAsButtonClick += MenuPanel_SaveAsButtonClick;
             
-        }
 
+        }
         
+
 
         //Xu li cac xu kien cua menuPanel
 
@@ -141,18 +145,7 @@ namespace PaintUI
 
 
         //Hien thi cac Panels khi click va hover va leave
-        private void MenuButton_MouseLeave(object sender, EventArgs e)
-        {
-            BunifuTileButton button = sender as BunifuTileButton;
-            button.ImageZoom = (int)(button.ImageZoom / 1.5);
-        }
-
-
-        private void MenuButton_MouseHover(object sender, EventArgs e)
-        {
-            BunifuTileButton button = sender as BunifuTileButton;
-            button.ImageZoom = (int)(button.ImageZoom * 1.5);
-        }
+       
 
         private void MenuButton_Click(object sender, EventArgs e)
         {
@@ -176,7 +169,6 @@ namespace PaintUI
                 shapesPanel.Show();
             }
             curTool = Tools.SHAPE;
-            shapesPanel.thicknessSlide_SetValue(brushesPanel.getThickness());
         }
         private void CanvasButton_Click(object sender, EventArgs e)
         {
@@ -196,6 +188,8 @@ namespace PaintUI
                 brushesPanel.Show();
             }
             curTool = Tools.BRUSH;
+
+            gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
         }
         private void EffectsButton_Click(object sender, EventArgs e)
         {
@@ -206,10 +200,7 @@ namespace PaintUI
             }
                 
         }
-        private void FillButton_Click(object sender, EventArgs e)
-        {
-            curTool = Tools.FILLBUCKET;
-        }
+
         //Cac su kien voi mouse
         private void SketchBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -232,14 +223,38 @@ namespace PaintUI
             wid = hei = 0;
         }
 
-       
+        Color AdjustBrightness(Color c1, float factor)
+        {
+
+            float r = ((c1.R * factor) > 255) ? 255 : (c1.R * factor);
+            float g = ((c1.G * factor) > 255) ? 255 : (c1.G * factor);
+            float b = ((c1.B * factor) > 255) ? 255 : (c1.B * factor);
+
+            Color c = Color.FromArgb((int)r, (int)g, (int)b);
+            return c;
+
+        }
+
+        private void FillButton_Click(object sender, EventArgs e)
+        {
+            curTool = Tools.FILLBUCKET;
+        }
+
+        private void EraserButton_Click(object sender, EventArgs e)
+        {
+            curTool = Tools.ERASER;
+        }
+
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
             isDown = true;
-            pen = new Pen(Color.FromArgb(brushesPanel.getOpacity(), colorPanel.getColor()), brushesPanel.getThickness());
+            //Color c2 = Color.FromArgb((int)(colorPanel.getColor().A*0.5),(int)(colorPanel.getColor().R), (int)(colorPanel.getColor().G), (int)(colorPanel.getColor().B ));
+
+            pen = new Pen(colorPanel.getColor1(), brushesPanel.getThickness());
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
+            eraser = new SolidBrush(colorPanel.getColor2());
             old = new Point(e.Location.X, e.Location.Y);
-            if(curTool==Tools.FILLBUCKET)
+            if (curTool == Tools.FILLBUCKET)
             {
                 FillBucket bucket = new FillBucket();
                 bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), pen.Color);
@@ -256,46 +271,28 @@ namespace PaintUI
                     case Tools.BRUSH:
                         gra.DrawLine(pen, old, cur);
                         old = cur;
-                        
                         SketchBox.BackgroundImage = (Bitmap)bm.Clone();
                         break;
                     case Tools.SHAPE:
                         shapesPanel.DrawShapes(SketchBox, bm, e.Graphics, old, cur, new Size(wid, hei), pen, false);
                         break;
+                    case Tools.ERASER:
+                        gra.FillRectangle(eraser, cur.X - brushesPanel.getThickness(), cur.Y - brushesPanel.getThickness(), brushesPanel.getThickness(), brushesPanel.getThickness());
+                        Pen temp = new Pen(eraser.Color, brushesPanel.getThickness() * 2);
+                        temp.SetLineCap(System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.DashCap.Round);
+                        gra.DrawLine(temp, old, cur);
+                        old = cur;
+                        SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+                        break;
                     default:
                         break;
                 }
-
             }
         }
 
 
         //---------------
-        private void bunifuGradientPanel1_MouseDown(object sender, MouseEventArgs e)
-        {
-            isDown = true;
-            startPoint = e.Location;
-
-        }
-
-      
-
-        private void bunifuGradientPanel1_MouseMove(object sender, MouseEventArgs e)
-        {
-            
-            if(isDown)
-            {
-                Point point = PointToScreen(e.Location);
-               // old = e.Location;
-              // Location = new Point(point.X - startPoint.X, point.Y - startPoint.Y);
-            }
-        }
-
-        private void bunifuGradientPanel1_MouseUp(object sender, MouseEventArgs e)
-        {
-            isDown = false;
-        }
-
+        //Resize winform
         protected override void WndProc(ref Message m)
         {
             const int RESIZE_HANDLE_SIZE = 10;
@@ -322,9 +319,8 @@ namespace PaintUI
                     {
                         if (clientPoint.X <= RESIZE_HANDLE_SIZE)
                             m.Result = (IntPtr)10/*HTLEFT*/ ;
-                        else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
-                            m.Result = (IntPtr)2/*HTCAPTION*/ ;
-                        else
+                        else if (clientPoint.X >= (Size.Width - RESIZE_HANDLE_SIZE))
+                
                             m.Result = (IntPtr)11/*HTRIGHT*/ ;
                     }
                     else
@@ -337,9 +333,12 @@ namespace PaintUI
                             m.Result = (IntPtr)17/*HTBOTTOMRIGHT*/ ;
                     }
                 }
-                return;
+
             }
+            return ;
         }
        
+
+
     }
 }

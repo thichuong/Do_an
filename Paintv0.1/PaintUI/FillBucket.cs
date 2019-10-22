@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
-
 namespace PaintUI
 {
     class FillBucket
     {
-       
-
         public FillBucket()
         {
 
@@ -92,9 +89,9 @@ namespace PaintUI
 
             Marshal.Copy(bits, 0, data.Scan0, bits.Length);
             bmp.UnlockBits(data);
-           
+
 
         }
-       
+
     }
 }
