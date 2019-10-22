@@ -15,13 +15,14 @@ namespace PaintUI
     public partial class Form1 : Form
     {
         //Khai bao bien
-        enum Tools {BRUSH, SHAPE, FILLBUCKET};
+        enum Tools {BRUSH, SHAPE, FILLBUCKET, ERASER };
 
         Tools curTool;
         Pen pen;
         Bitmap bm;
         Graphics gra;
         Point old, cur;
+        SolidBrush eraser;
 
         bool isDown;
         int wid, hei;
@@ -64,7 +65,7 @@ namespace PaintUI
             menuPanel.SaveButtonClick += MenuPanel_SaveButtonClick;
             menuPanel.SaveAsButtonClick += MenuPanel_SaveAsButtonClick;
             
-            
+
         }
         
 
@@ -234,15 +235,31 @@ namespace PaintUI
 
         }
 
+        private void FillButton_Click(object sender, EventArgs e)
+        {
+            curTool = Tools.FILLBUCKET;
+        }
+
+        private void EraserButton_Click(object sender, EventArgs e)
+        {
+            curTool = Tools.ERASER;
+        }
+
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
             isDown = true;
-            Color c2 = Color.FromArgb((int)(colorPanel.getColor().A*0.5),(int)(colorPanel.getColor().R), (int)(colorPanel.getColor().G), (int)(colorPanel.getColor().B ));
+            //Color c2 = Color.FromArgb((int)(colorPanel.getColor().A*0.5),(int)(colorPanel.getColor().R), (int)(colorPanel.getColor().G), (int)(colorPanel.getColor().B ));
 
-            pen = new Pen(c2, brushesPanel.getThickness());
+            pen = new Pen(colorPanel.getColor1(), brushesPanel.getThickness());
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
-
+            eraser = new SolidBrush(colorPanel.getColor2());
             old = new Point(e.Location.X, e.Location.Y);
+            if (curTool == Tools.FILLBUCKET)
+            {
+                FillBucket bucket = new FillBucket();
+                bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), pen.Color);
+                SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+            }
         }
 
         private void SketchBox_Paint(object sender, PaintEventArgs e)
@@ -259,14 +276,69 @@ namespace PaintUI
                     case Tools.SHAPE:
                         shapesPanel.DrawShapes(SketchBox, bm, e.Graphics, old, cur, new Size(wid, hei), pen, false);
                         break;
+                    case Tools.ERASER:
+                        gra.FillRectangle(eraser, cur.X - brushesPanel.getThickness(), cur.Y - brushesPanel.getThickness(), brushesPanel.getThickness(), brushesPanel.getThickness());
+                        Pen temp = new Pen(eraser.Color, brushesPanel.getThickness() * 2);
+                        temp.SetLineCap(System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.DashCap.Round);
+                        gra.DrawLine(temp, old, cur);
+                        old = cur;
+                        SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+                        break;
                     default:
                         break;
                 }
             }
         }
-        
+
 
         //---------------
+        //Resize winform
+        protected override void WndProc(ref Message m)
+        {
+            const int RESIZE_HANDLE_SIZE = 10;
+
+            base.WndProc(ref m);
+
+            if (m.Msg == 0x84) /*NCHITTEST*/
+            {
+
+                if ((int)m.Result == 0x01/*HTCLIENT*/)
+                {
+                    Point screenPoint = new Point(m.LParam.ToInt32());
+                    Point clientPoint = this.PointToClient(screenPoint);
+                    if (clientPoint.Y <= RESIZE_HANDLE_SIZE)
+                    {
+                        if (clientPoint.X <= RESIZE_HANDLE_SIZE)
+                            m.Result = (IntPtr)13/*HTTOPLEFT*/ ;
+                        else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
+                            m.Result = (IntPtr)12/*HTTOP*/ ;
+                        else
+                            m.Result = (IntPtr)14/*HTTOPRIGHT*/ ;
+                    }
+                    else if (clientPoint.Y <= (Size.Height - RESIZE_HANDLE_SIZE))
+                    {
+                        if (clientPoint.X <= RESIZE_HANDLE_SIZE)
+                            m.Result = (IntPtr)10/*HTLEFT*/ ;
+                        else if (clientPoint.X >= (Size.Width - RESIZE_HANDLE_SIZE))
+                
+                            m.Result = (IntPtr)11/*HTRIGHT*/ ;
+                    }
+                    else
+                    {
+                        if (clientPoint.X <= RESIZE_HANDLE_SIZE)
+                            m.Result = (IntPtr)16/*HTBOTTOMLEFT*/ ;
+                        else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
+                            m.Result = (IntPtr)15/*HTBOTTOM*/ ;
+                        else
+                            m.Result = (IntPtr)17/*HTBOTTOMRIGHT*/ ;
+                    }
+                }
+
+            }
+            return ;
+        }
+       
+
 
     }
 }

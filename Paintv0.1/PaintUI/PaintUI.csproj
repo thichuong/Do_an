@@ -77,6 +77,7 @@
     <Compile Include="EffectsPanel.Designer.cs">
       <DependentUpon>EffectsPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="FillBucket.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
