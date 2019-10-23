@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
@@ -21,8 +22,9 @@ namespace PaintUI
         Pen pen;
         Bitmap bm;
         Graphics gra;
+        Bitmap temp;
         Point old, cur;
-        SolidBrush eraser;
+        SolidBrush eraser,fillColor;
 
         bool isDown;
         int wid, hei;
@@ -31,7 +33,7 @@ namespace PaintUI
         public Form1()
         {
             InitializeComponent();
-
+          
             HideAllPanel();
             brushesPanel.Show();
 
@@ -64,10 +66,15 @@ namespace PaintUI
             menuPanel.OpenButtonClick += MenuPanel_OpenButtonClick;
             menuPanel.SaveButtonClick += MenuPanel_SaveButtonClick;
             menuPanel.SaveAsButtonClick += MenuPanel_SaveAsButtonClick;
-            
 
+            LeftTopPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y - 22);
+            RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
+            RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y-22);
+            LeftBottomPanel.Location = new Point(SketchBox.Location.X-22, SketchBox.Location.Y + SketchBox.Height);
+
+            
         }
-        
+
 
 
         //Xu li cac xu kien cua menuPanel
@@ -123,6 +130,10 @@ namespace PaintUI
             brushesPanel.Visible = false;
             effectsPanel.Visible = false;
             menuPanel.Visible = false;
+            LeftTopPanel.Visible = false;
+            LeftBottomPanel.Visible = false;
+            RightTopPanel.Visible = false;
+            RightBottomPanel.Visible = false;
         }
         
         
@@ -176,6 +187,10 @@ namespace PaintUI
             {
                 HideAllPanel();
                 canvasPanel.Show();
+                LeftTopPanel.Visible = true;
+                LeftBottomPanel.Visible = true;
+                RightTopPanel.Visible = true;
+                RightBottomPanel.Visible = true;
             }
           
         }
@@ -218,7 +233,8 @@ namespace PaintUI
             isDown = false;
             if(curTool == Tools.SHAPE)
             {
-                shapesPanel.DrawShapes(SketchBox, bm, gra, old, cur, new Size(wid, hei), pen, true);
+
+                shapesPanel.DrawShapes(SketchBox, bm, gra, old, cur, new Size(wid, hei), pen, fillColor, true);
             }
             wid = hei = 0;
         }
@@ -252,33 +268,38 @@ namespace PaintUI
 
             pen = new Pen(colorPanel.getColor1(), brushesPanel.getThickness());
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
-            eraser = new SolidBrush(colorPanel.getColor2());
+            fillColor=eraser = new SolidBrush(colorPanel.getColor2());
             old = new Point(e.Location.X, e.Location.Y);
-            if (curTool == Tools.FILLBUCKET)
+            cur = old;     
+           
+            if(curTool==Tools.FILLBUCKET)
             {
                 FillBucket bucket = new FillBucket();
                 bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), pen.Color);
                 SketchBox.BackgroundImage = (Bitmap)bm.Clone();
             }
+           
         }
 
         private void SketchBox_Paint(object sender, PaintEventArgs e)
         {
+            
             if (isDown)
             {
                 switch (curTool)
                 {
                     case Tools.BRUSH:
+                        gra.FillEllipse(pen.Brush, cur.X - brushesPanel.getThickness() / 2, cur.Y - brushesPanel.getThickness() / 2, brushesPanel.getThickness(), brushesPanel.getThickness());
                         gra.DrawLine(pen, old, cur);
                         old = cur;
                         SketchBox.BackgroundImage = (Bitmap)bm.Clone();
                         break;
                     case Tools.SHAPE:
-                        shapesPanel.DrawShapes(SketchBox, bm, e.Graphics, old, cur, new Size(wid, hei), pen, false);
+                        shapesPanel.DrawShapes(SketchBox, bm, e.Graphics, old, cur, new Size(wid, hei), pen, fillColor, false);
                         break;
                     case Tools.ERASER:
-                        gra.FillRectangle(eraser, cur.X - brushesPanel.getThickness(), cur.Y - brushesPanel.getThickness(), brushesPanel.getThickness(), brushesPanel.getThickness());
-                        Pen temp = new Pen(eraser.Color, brushesPanel.getThickness() * 2);
+                        gra.FillRectangle(eraser, cur.X - brushesPanel.getThickness() / 2, cur.Y - brushesPanel.getThickness() / 2, brushesPanel.getThickness(), brushesPanel.getThickness());
+                        Pen temp = new Pen(eraser.Color, brushesPanel.getThickness());
                         temp.SetLineCap(System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.DashCap.Round);
                         gra.DrawLine(temp, old, cur);
                         old = cur;
@@ -290,55 +311,159 @@ namespace PaintUI
             }
         }
 
-
-        //---------------
-        //Resize winform
-        protected override void WndProc(ref Message m)
+        private void SketchBox_SizeChanged(object sender, EventArgs e)
         {
-            const int RESIZE_HANDLE_SIZE = 10;
+            LeftTopPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y - 22);
+            RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
+            RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y-22);
+            LeftBottomPanel.Location = new Point(SketchBox.Location.X-22, SketchBox.Location.Y + SketchBox.Height);
+        }
+        private void SketchBox_LocationChanged(object sender, EventArgs e)
+        {
+            LeftTopPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y -22);
+            RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
+            RightTopPanel.Location=new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y-22);
+            LeftBottomPanel.Location = new Point(SketchBox.Location.X-22, SketchBox.Location.Y + SketchBox.Height);
+        }
+        //---------------
+        //Resize SketchBox
+        Point pOld, startPoint,oldLocation;
+        bool isDragged = false; 
+       
+        private void LeftTopPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            startPoint = e.Location;
+            temp = (Bitmap)bm;
+            isDragged = true;
+        }
 
-            base.WndProc(ref m);
-
-            if (m.Msg == 0x84) /*NCHITTEST*/
+        private void LeftTopPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragged)
             {
 
-                if ((int)m.Result == 0x01/*HTCLIENT*/)
-                {
-                    Point screenPoint = new Point(m.LParam.ToInt32());
-                    Point clientPoint = this.PointToClient(screenPoint);
-                    if (clientPoint.Y <= RESIZE_HANDLE_SIZE)
-                    {
-                        if (clientPoint.X <= RESIZE_HANDLE_SIZE)
-                            m.Result = (IntPtr)13/*HTTOPLEFT*/ ;
-                        else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
-                            m.Result = (IntPtr)12/*HTTOP*/ ;
-                        else
-                            m.Result = (IntPtr)14/*HTTOPRIGHT*/ ;
-                    }
-                    else if (clientPoint.Y <= (Size.Height - RESIZE_HANDLE_SIZE))
-                    {
-                        if (clientPoint.X <= RESIZE_HANDLE_SIZE)
-                            m.Result = (IntPtr)10/*HTLEFT*/ ;
-                        else if (clientPoint.X >= (Size.Width - RESIZE_HANDLE_SIZE))
-                
-                            m.Result = (IntPtr)11/*HTRIGHT*/ ;
-                    }
-                    else
-                    {
-                        if (clientPoint.X <= RESIZE_HANDLE_SIZE)
-                            m.Result = (IntPtr)16/*HTBOTTOMLEFT*/ ;
-                        else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
-                            m.Result = (IntPtr)15/*HTBOTTOM*/ ;
-                        else
-                            m.Result = (IntPtr)17/*HTBOTTOMRIGHT*/ ;
-                    }
+                pOld = e.Location;
+                oldLocation = SketchBox.Location;
+                if (LeftTopPanel.Location.X - startPoint.X + pOld.X < panelCavas.Width / 2 - 50
+                    && LeftTopPanel.Location.Y - startPoint.Y + pOld.Y < panelCavas.Height / 2 - 50)
+                {    
+                    LeftTopPanel.Location = new Point(LeftTopPanel.Location.X - startPoint.X + pOld.X, LeftTopPanel.Location.Y - startPoint.Y + pOld.Y);
+                    SketchBox.Location = new Point(oldLocation.X - startPoint.X + pOld.X, oldLocation.Y - startPoint.Y + pOld.Y);
+                    SketchBox.Size = new Size(SketchBox.Width + startPoint.X - pOld.X, SketchBox.Height + startPoint.Y - pOld.Y);
                 }
-
+                bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+                gra = Graphics.FromImage(bm);
+                gra.Clear(Color.White);
+                gra.DrawImage(temp, 0, 0, temp.Width, temp.Height);
+                SketchBox.BackgroundImage = (Bitmap)bm.Clone();
             }
-            return ;
         }
-       
 
+        private void LeftTopPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDragged = false;
+        }
+
+        private void LeftBottomPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            startPoint = e.Location;
+            temp = (Bitmap)bm;
+            isDragged = true;
+        }
+ 
+        private void LeftBottomPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragged)
+            {
+
+                pOld = e.Location;
+                oldLocation = SketchBox.Location;
+                if (LeftBottomPanel.Location.X - startPoint.X + pOld.X < panelCavas.Width/2 - 50
+                  && LeftBottomPanel.Location.Y - startPoint.Y + pOld.Y > panelCavas.Height/2 + 50)
+                {  
+                    LeftBottomPanel.Location = new Point(LeftBottomPanel.Location.X - startPoint.X + pOld.X, LeftBottomPanel.Location.Y - startPoint.Y + pOld.Y);
+                    SketchBox.Location = new Point(oldLocation.X - startPoint.X + pOld.X, oldLocation.Y);
+                    SketchBox.Size = new Size(SketchBox.Width + startPoint.X - pOld.X,SketchBox.Height - startPoint.Y + pOld.Y);
+                }
+                bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+                gra = Graphics.FromImage(bm);
+                gra.Clear(Color.White);
+                gra.DrawImage(temp, 0, 0, temp.Width, temp.Height);
+                SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+            }
+        }
+      
+        private void LeftBottomPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+                isDragged = false;
+           
+        }
+
+        private void RightTopPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            startPoint = e.Location;
+            temp = (Bitmap)bm;
+            isDragged = true;
+        }
+
+        private void RightTopPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragged)
+            {
+                pOld = e.Location;
+                oldLocation = SketchBox.Location;
+                if (RightTopPanel.Location.X - startPoint.X + pOld.X > panelCavas.Width / 2 + 50
+                   && RightTopPanel.Location.Y - startPoint.Y + pOld.Y < panelCavas.Height/2 - 50)
+                {
+                    RightTopPanel.Location = new Point(RightTopPanel.Location.X - startPoint.X + pOld.X, RightTopPanel.Location.Y - startPoint.Y + pOld.Y);
+                    SketchBox.Location = new Point(oldLocation.X, oldLocation.Y - startPoint.Y + pOld.Y);
+                    SketchBox.Size = new Size(SketchBox.Width - startPoint.X + pOld.X, SketchBox.Height + startPoint.Y - pOld.Y);
+                }
+                
+                bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+                gra = Graphics.FromImage(bm);
+                gra.Clear(Color.White);
+                gra.DrawImage(temp, 0, 0, temp.Width, temp.Height);
+                SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+            }
+        }
+
+        private void RightTopPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDragged = false;
+        }
+
+        private void RightBottomPanel_1_MouseDown(object sender, MouseEventArgs e)
+        {
+            startPoint = e.Location;
+            temp = (Bitmap)bm;
+            isDragged = true;
+        }
+
+        private void RightBottomPanel_1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragged)
+            {
+                pOld = e.Location;
+                if (RightBottomPanel.Location.X - startPoint.X + pOld.X > panelCavas.Width / 2 + 50
+                    && RightBottomPanel.Location.Y - startPoint.Y + pOld.Y > panelCavas.Height / 2 + 50)
+                {
+                    RightBottomPanel.Location = new Point(RightBottomPanel.Location.X - startPoint.X + pOld.X, RightBottomPanel.Location.Y - startPoint.Y + pOld.Y);
+                    SketchBox.Size = new Size(SketchBox.Width - startPoint.X + pOld.X, SketchBox.Height - startPoint.Y + pOld.Y);
+                }    
+                
+                bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+                gra = Graphics.FromImage(bm);
+                gra.Clear(Color.White);
+                gra.DrawImage(temp, 0, 0, temp.Width, temp.Height);
+                SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+            }
+        }
+
+        private void RightBottomPanel_1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDragged = false;
+        }
 
     }
 }

@@ -65,7 +65,7 @@
             // mainColor1
             // 
             this.mainColor1.BackColor = System.Drawing.Color.Black;
-            this.mainColor1.Location = new System.Drawing.Point(49, 45);
+            this.mainColor1.Location = new System.Drawing.Point(39, 45);
             this.mainColor1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mainColor1.Name = "mainColor1";
             this.mainColor1.Size = new System.Drawing.Size(143, 62);
