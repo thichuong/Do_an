@@ -147,3 +147,4 @@ C:\Users\Thi Chuong\Downloads\Compressed\Paint-master\Paintv0.1\PaintUI\obj\Debu
 C:\Users\Thi Chuong\Downloads\Compressed\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.CopyComplete
 C:\Users\Thi Chuong\Downloads\Compressed\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
 C:\Users\Thi Chuong\Downloads\Compressed\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
+C:\Users\Thi Chuong\Downloads\Compressed\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.DoubleBufferPanel.resources
