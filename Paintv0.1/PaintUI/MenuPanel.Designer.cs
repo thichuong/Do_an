@@ -63,7 +63,7 @@
             this.bunifuGradientPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuGradientPanel1.Name = "bunifuGradientPanel1";
             this.bunifuGradientPanel1.Quality = 10;
-            this.bunifuGradientPanel1.Size = new System.Drawing.Size(395, 597);
+            this.bunifuGradientPanel1.Size = new System.Drawing.Size(351, 478);
             this.bunifuGradientPanel1.TabIndex = 0;
             // 
             // exitButton
@@ -88,14 +88,14 @@
             this.exitButton.IconVisible = true;
             this.exitButton.IconZoom = 90D;
             this.exitButton.IsTab = false;
-            this.exitButton.Location = new System.Drawing.Point(1, 445);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.exitButton.Location = new System.Drawing.Point(1, 356);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.exitButton.Name = "exitButton";
             this.exitButton.Normalcolor = System.Drawing.Color.Transparent;
             this.exitButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.exitButton.OnHoverTextColor = System.Drawing.Color.White;
             this.exitButton.selected = false;
-            this.exitButton.Size = new System.Drawing.Size(394, 90);
+            this.exitButton.Size = new System.Drawing.Size(350, 72);
             this.exitButton.TabIndex = 0;
             this.exitButton.Text = "Exit";
             this.exitButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -125,14 +125,14 @@
             this.saveAsButton.IconVisible = true;
             this.saveAsButton.IconZoom = 90D;
             this.saveAsButton.IsTab = false;
-            this.saveAsButton.Location = new System.Drawing.Point(0, 356);
-            this.saveAsButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.saveAsButton.Location = new System.Drawing.Point(0, 285);
+            this.saveAsButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.saveAsButton.Name = "saveAsButton";
             this.saveAsButton.Normalcolor = System.Drawing.Color.Transparent;
             this.saveAsButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.saveAsButton.OnHoverTextColor = System.Drawing.Color.White;
             this.saveAsButton.selected = false;
-            this.saveAsButton.Size = new System.Drawing.Size(394, 90);
+            this.saveAsButton.Size = new System.Drawing.Size(350, 72);
             this.saveAsButton.TabIndex = 0;
             this.saveAsButton.Text = "Save As";
             this.saveAsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -162,14 +162,14 @@
             this.saveButton.IconVisible = true;
             this.saveButton.IconZoom = 90D;
             this.saveButton.IsTab = false;
-            this.saveButton.Location = new System.Drawing.Point(0, 267);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.saveButton.Location = new System.Drawing.Point(0, 214);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Normalcolor = System.Drawing.Color.Transparent;
             this.saveButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.saveButton.OnHoverTextColor = System.Drawing.Color.White;
             this.saveButton.selected = false;
-            this.saveButton.Size = new System.Drawing.Size(394, 90);
+            this.saveButton.Size = new System.Drawing.Size(350, 72);
             this.saveButton.TabIndex = 0;
             this.saveButton.Text = "Save";
             this.saveButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -199,14 +199,14 @@
             this.openButton.IconVisible = true;
             this.openButton.IconZoom = 90D;
             this.openButton.IsTab = false;
-            this.openButton.Location = new System.Drawing.Point(-1, 178);
-            this.openButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.openButton.Location = new System.Drawing.Point(-1, 142);
+            this.openButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.openButton.Name = "openButton";
             this.openButton.Normalcolor = System.Drawing.Color.Transparent;
             this.openButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.openButton.OnHoverTextColor = System.Drawing.Color.White;
             this.openButton.selected = false;
-            this.openButton.Size = new System.Drawing.Size(394, 90);
+            this.openButton.Size = new System.Drawing.Size(350, 72);
             this.openButton.TabIndex = 0;
             this.openButton.Text = "Open";
             this.openButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -236,14 +236,14 @@
             this.newButton.IconVisible = true;
             this.newButton.IconZoom = 90D;
             this.newButton.IsTab = false;
-            this.newButton.Location = new System.Drawing.Point(0, 89);
-            this.newButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.newButton.Location = new System.Drawing.Point(0, 71);
+            this.newButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.newButton.Name = "newButton";
             this.newButton.Normalcolor = System.Drawing.Color.Transparent;
             this.newButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.newButton.OnHoverTextColor = System.Drawing.Color.White;
             this.newButton.selected = false;
-            this.newButton.Size = new System.Drawing.Size(394, 90);
+            this.newButton.Size = new System.Drawing.Size(350, 72);
             this.newButton.TabIndex = 0;
             this.newButton.Text = "New";
             this.newButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -274,13 +274,13 @@
             this.backButton.IconZoom = 90D;
             this.backButton.IsTab = false;
             this.backButton.Location = new System.Drawing.Point(-1, 0);
-            this.backButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.backButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.backButton.Name = "backButton";
             this.backButton.Normalcolor = System.Drawing.Color.Transparent;
             this.backButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.backButton.OnHoverTextColor = System.Drawing.Color.White;
             this.backButton.selected = false;
-            this.backButton.Size = new System.Drawing.Size(394, 90);
+            this.backButton.Size = new System.Drawing.Size(350, 72);
             this.backButton.TabIndex = 0;
             this.backButton.Text = "Back";
             this.backButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -308,10 +308,11 @@
             animation1.TimeCoeff = 0F;
             animation1.TransparencyCoeff = 0F;
             this.bunifuTransition2.DefaultAnimation = animation1;
+            this.bunifuTransition2.TimeStep = 1F;
             // 
             // MenuPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -319,7 +320,7 @@
             this.bunifuTransition2.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MenuPanel";
-            this.Size = new System.Drawing.Size(392, 599);
+            this.Size = new System.Drawing.Size(348, 479);
             this.bunifuGradientPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

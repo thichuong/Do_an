@@ -69,10 +69,10 @@ namespace PaintUI
             menuPanel.SaveButtonClick += MenuPanel_SaveButtonClick;
             menuPanel.SaveAsButtonClick += MenuPanel_SaveAsButtonClick;
 
-            LeftTopPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y - 22);
+            LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
             RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
-            RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 22);
-            LeftBottomPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y + SketchBox.Height);
+            RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
+            LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
 
           
         }
@@ -266,27 +266,33 @@ namespace PaintUI
 
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
-            isDown = true;
-            //Color c2 = Color.FromArgb((int)(colorPanel.getColor().A*0.5),(int)(colorPanel.getColor().R), (int)(colorPanel.getColor().G), (int)(colorPanel.getColor().B ));
+            
+            Color c2 = Color.FromArgb((int)(colorPanel.getColor1().A),(int)(colorPanel.getColor1().R), (int)(colorPanel.getColor1().G), (int)(colorPanel.getColor1().B ));
            
-            pen = new Pen(colorPanel.getColor1(), brushesPanel.getThickness());
-            pen.Alignment = PenAlignment.Center;
-            pen.SetLineCap(System.Drawing.Drawing2D.LineCap.NoAnchor, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
+            pen = new Pen(c2, brushesPanel.getThickness());
+            //pen.DashStyle = DashStyle.Solid;
+
+            pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
             fillColor = eraser = new SolidBrush(colorPanel.getColor2());
             old = new Point(e.Location.X, e.Location.Y);
             cur = old;
-
+            gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            gra.CompositingQuality = CompositingQuality.GammaCorrected;
             if (curTool == Tools.FILLBUCKET)
             {
                 FillBucket bucket = new FillBucket();
                 bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), pen.Color);
-                SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+                SketchBox.Refresh();
+                //SketchBox.BackgroundImage = (Bitmap)bm.Clone();
             }
-            if(curTool==Tools.BRUSH)
+            if(curTool==Tools.BRUSH && isDown ==false)
             {
                 gra.FillEllipse(pen.Brush, cur.X - brushesPanel.getThickness() / 2, cur.Y - brushesPanel.getThickness() / 2, brushesPanel.getThickness(), brushesPanel.getThickness());
-                SketchBox.BackgroundImage = (Bitmap)bm.Clone();
+                SketchBox.Refresh();
+                //SketchBox.BackgroundImage = (Bitmap)bm.Clone();
             }
+
+            isDown = true;
         }
 
         private void SketchBox_Paint(object sender, PaintEventArgs e)
@@ -321,18 +327,19 @@ namespace PaintUI
 
         private void SketchBox_SizeChanged(object sender, EventArgs e)
         {
-            LeftTopPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y - 22);
-            RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
-            RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 22);
-            LeftBottomPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y + SketchBox.Height);
+           
             SketchBox.Location = new Point(panelCavas.Width / 2 - SketchBox.Width / 2, panelCavas.Height / 2 - SketchBox.Height / 2);
+            LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
+            RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
+            RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
+            LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
         }
         private void SketchBox_LocationChanged(object sender, EventArgs e)
         {
-            LeftTopPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y - 22);
+            LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
             RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
-            RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 22);
-            LeftBottomPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y + SketchBox.Height);
+            RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
+            LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
         }
         //---------------
         //Resize SketchBox
@@ -364,7 +371,7 @@ namespace PaintUI
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height);
                 gra = Graphics.FromImage(bm);
                 gra.Clear(Color.White);
-                gra.DrawImage(temp, 0, 0, temp.Width, temp.Height);
+                gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
                 SketchBox.BackgroundImage = (Bitmap)bm.Clone();
                 panelCavas.Refresh();
             }
@@ -399,7 +406,7 @@ namespace PaintUI
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height);
                 gra = Graphics.FromImage(bm);
                 gra.Clear(Color.White);
-                gra.DrawImage(temp, 0, 0, temp.Width, temp.Height);
+                gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
                 SketchBox.BackgroundImage = (Bitmap)bm.Clone();
                 panelCavas.Refresh();
             }
@@ -435,7 +442,7 @@ namespace PaintUI
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height);
                 gra = Graphics.FromImage(bm);
                 gra.Clear(Color.White);
-                gra.DrawImage(temp, 0, 0, temp.Width, temp.Height);
+                gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
                 SketchBox.BackgroundImage = (Bitmap)bm.Clone();
                 panelCavas.Refresh();
             }
@@ -468,7 +475,7 @@ namespace PaintUI
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height);
                 gra = Graphics.FromImage(bm);
                 gra.Clear(Color.White);
-                gra.DrawImage(temp, 0, 0, temp.Width, temp.Height);
+                gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
                 SketchBox.BackgroundImage = (Bitmap)bm.Clone();
                 panelCavas.Refresh();
             }

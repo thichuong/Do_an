@@ -59,6 +59,12 @@
     <Compile Include="BrushesPanel.Designer.cs">
       <DependentUpon>BrushesPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Canvas.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Canvas.Designer.cs">
+      <DependentUpon>Canvas.cs</DependentUpon>
+    </Compile>
     <Compile Include="CanvasPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

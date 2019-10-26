@@ -148,3 +148,21 @@ C:\Users\Thi Chuong\Downloads\Compressed\Paint-master\Paintv0.1\PaintUI\obj\Debu
 C:\Users\Thi Chuong\Downloads\Compressed\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
 C:\Users\Thi Chuong\Downloads\Compressed\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
 C:\Users\Thi Chuong\Downloads\Compressed\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.DoubleBufferPanel.resources
+E:\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe.config
+E:\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe
+E:\Paintv0.1\PaintUI\bin\Debug\PaintUI.pdb
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.csprojAssemblyReference.cache
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesPanel.resources
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.CanvasPanel.resources
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.ColorPanel.resources
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.DoubleBufferPanel.resources
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.EffectsPanel.resources
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.Form1.resources
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.MenuPanel.resources
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.Properties.Resources.resources
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.ShapesPanel.resources
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.TextPanel.resources
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.GenerateResource.cache
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.CopyComplete
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
+E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
