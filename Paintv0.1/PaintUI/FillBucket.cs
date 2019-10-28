@@ -14,6 +14,7 @@ namespace PaintUI
         {
 
         }
+
         public void Fill(Bitmap bmp, Point pt, Color pointColor, Color replaceColor)
         {
             BitmapData data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
@@ -66,7 +67,6 @@ namespace PaintUI
                         if (bits[next.X + next.Y * data.Stride / 4] == From)
                         {
                             check.Push(next);
-
                         }
                         bits[next.X + next.Y * data.Stride / 4] = To;
                     }

@@ -166,3 +166,6 @@ E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.GenerateResource.cache
 E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.CopyComplete
 E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
 E:\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
+C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.ColorPanel.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.DoubleBufferPanel.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.MenuPanel.resources
