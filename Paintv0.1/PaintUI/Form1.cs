@@ -10,10 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bunifu.Framework.UI;
+using MaterialSkin;
+using MaterialSkin.Controls;
+using MaterialSkin.Animations;
 
 namespace PaintUI
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MaterialForm
     {
         //Khai bao bien
         enum Tools { BRUSH, SHAPE, FILLBUCKET, ERASER };
@@ -39,7 +42,14 @@ namespace PaintUI
         public Form1()
         {
             InitializeComponent();
+            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            
 
+            // Configure color schema
+            materialSkinManager.ColorScheme = new ColorScheme(0, Primary.Blue100, 0, 0, 0);
             HideAllPanel();
             brushesPanel.Show();
 
@@ -86,10 +96,7 @@ namespace PaintUI
                 menuPanel.SaveButtonClick += MenuPanel_SaveButtonClick;
                 menuPanel.SaveAsButtonClick += MenuPanel_SaveAsButtonClick;
 
-                LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
-                RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
-                RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
-                LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
+                
             }
         }
 
@@ -217,6 +224,10 @@ namespace PaintUI
             {
                 HideAllPanel();
                 canvasPanel.Show();
+                LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
+                RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
+                RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
+                LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
                 LeftTopPanel.Visible = true;
                 LeftBottomPanel.Visible = true;
                 RightTopPanel.Visible = true;
@@ -315,7 +326,7 @@ namespace PaintUI
             
             Color c2 = Color.FromArgb((int)(colorPanel.getColor1().A),(int)(colorPanel.getColor1().R), (int)(colorPanel.getColor1().G), (int)(colorPanel.getColor1().B ));
             pen = new Pen(c2, brushesPanel.getThickness());
-            
+
             pen.DashStyle = DashStyle.Solid;
 
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
@@ -360,7 +371,7 @@ namespace PaintUI
                     case Tools.ERASER:
                         gra.FillRectangle(eraser, cur.X - brushesPanel.getThickness() / 2, cur.Y - brushesPanel.getThickness() / 2, brushesPanel.getThickness(), brushesPanel.getThickness());
                         Pen temp = new Pen(eraser.Color, brushesPanel.getThickness());
-                        temp.SetLineCap(System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.LineCap.Square, System.Drawing.Drawing2D.DashCap.Round);
+                        temp.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
                         gra.DrawLine(temp, old, cur);
                         old = cur;
                         SketchBox.BackgroundImage = (Bitmap)bm.Clone();
