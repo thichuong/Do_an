@@ -16,7 +16,7 @@ using MaterialSkin.Animations;
 
 namespace PaintUI
 {
-    public partial class Form1 : MaterialForm
+    public partial class Form1 : Form
     {
         //Khai bao bien
         enum Tools { BRUSH, SHAPE, FILLBUCKET, ERASER };
@@ -35,28 +35,20 @@ namespace PaintUI
         
         Point pOld, startPoint, oldLocation;
         bool isDragged = false;
-
+        
         Stack<Bitmap> UNDO;
         Stack<Bitmap> REDO;
 
         public Form1()
         {
             InitializeComponent();
-            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            
-            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-            
-
-            // Configure color schema
-            materialSkinManager.ColorScheme = new ColorScheme(0, Primary.Blue100, 0, 0, 0);
+           
             HideAllPanel();
             brushesPanel.Show();
 
             //Khoi tao bien
             {
-                this.Size = new Size(1000, 800);
-
+  
                 penSize = 10;
                 pen = new Pen(Color.Black, penSize);
                 pen.DashStyle = DashStyle.Dash;
@@ -99,7 +91,27 @@ namespace PaintUI
                 
             }
         }
+        //Code cac chuc nang cho cac WindowState Butttons
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+        private void MaximizeButton_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState != FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Maximized;
 
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
 
         //Xu li cac xu kien cua menuPanel
@@ -171,23 +183,7 @@ namespace PaintUI
 
 
 
-        //Code cac chuc nang cho cac WindowState Butttons
-        private void MinimizeButton_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void MaximizeButton_Click(object sender, EventArgs e)
-        {
-            if (this.WindowState != FormWindowState.Maximized)
-                this.WindowState = FormWindowState.Maximized;
-            else this.WindowState = FormWindowState.Normal;
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+       
 
 
         //Hien thi cac Panels khi click va hover va leave
@@ -195,7 +191,10 @@ namespace PaintUI
 
         private void MenuButton_Click(object sender, EventArgs e)
         {
-            bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            if (!menuPanel.Visible)
+                bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            else
+                bunifuTransition1.HideSync(menuPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
         }
 
         private void TextButton_Click(object sender, EventArgs e)
@@ -509,14 +508,14 @@ namespace PaintUI
             isDragged = false;
         }
 
-        private void RightBottomPanel_1_MouseDown(object sender, MouseEventArgs e)
+        private void RightBottomPanel_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = e.Location;
             temp = (Bitmap)bm;
             isDragged = true;
         }
 
-        private void RightBottomPanel_1_MouseMove(object sender, MouseEventArgs e)
+        private void RightBottomPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (isDragged)
             {
@@ -538,7 +537,7 @@ namespace PaintUI
           
         }
 
-        private void RightBottomPanel_1_MouseUp(object sender, MouseEventArgs e)
+        private void RightBottomPanel_MouseUp(object sender, MouseEventArgs e)
         {
             isDragged = false;
         }
@@ -551,5 +550,315 @@ namespace PaintUI
             RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 22);
             LeftBottomPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y + SketchBox.Height);
         }
+        //Code resize winform
+        
+        bool isLeftPanelDragged = false;
+        bool isRightPanelDragged = false;
+        bool isBottomPanelDragged = false;
+        bool isTopPanelDragged = false;
+
+        bool isRightBottomPanelDragged = false;
+        bool isLeftBottomPanelDragged = false;
+        bool isRightTopPanelDragged = false;
+        bool isLeftTopPanelDragged = false;
+        private void TopPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (this.Location.Y <= 0 || e.Y < 0)
+            {
+                isTopPanelDragged = false;
+                this.Location = new Point(this.Location.X,10);
+            }
+            else
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    isTopPanelDragged = true;
+                }
+                else
+                {
+                    isTopPanelDragged = false;
+                }
+            }
+
+        }
+
+        private void TopPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Y < this.Location.Y)
+            {
+                if (isTopPanelDragged)
+                {
+                    if (this.Height < 50)
+                    {
+                        this.Height = 50;
+                        isTopPanelDragged = false;
+                    }
+                    else
+                    {
+                        this.Location = new Point(this.Location.X, this.Location.Y + e.Y);
+                        this.Height = this.Height - e.Y;
+                    }
+                    this.Refresh();
+                }
+            }
+        }
+
+
+        private void TopPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            isTopPanelDragged = false;
+        }
+
+
+
+        private void LeftPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (this.Location.X <= 0 || e.X < 0)
+            {
+                isLeftPanelDragged = false;
+                this.Location = new Point(10, this.Location.Y);
+            }
+            else
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    isLeftPanelDragged = true;
+                }
+                else
+                {
+                    isLeftPanelDragged = false;
+                }
+            }
+        }
+
+        private void LeftPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.X < this.Location.X)
+            {
+                if (isLeftPanelDragged)
+                {
+                    if (this.Width < 100)
+                    {
+                        this.Width = 100;
+                        isLeftPanelDragged = false;
+                    }
+                    else
+                    {
+                        this.Location = new Point(this.Location.X + e.X, this.Location.Y);
+                        this.Width = this.Width - e.X;
+                    }
+                    this.Refresh();
+                }
+            }
+        }
+
+        private void LeftPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            isLeftPanelDragged = false;
+        }
+
+
+
+        private void RightPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isRightPanelDragged = true;
+            }
+            else
+            {
+                isRightPanelDragged = false;
+            }
+        }
+
+        private void RightPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isRightPanelDragged)
+            {
+                if (this.Width < 100)
+                {
+                    this.Width = 100;
+                    isRightPanelDragged = false;
+                }
+                else
+                {
+                    this.Width = this.Width + e.X;
+                }
+                this.Refresh();
+            }
+        }
+
+        private void RightPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            isRightPanelDragged = false;
+        }
+
+
+
+        private void BottomPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isBottomPanelDragged = true;
+            }
+            else
+            {
+                isBottomPanelDragged = false;
+            }
+        }
+
+        private void BottomPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isBottomPanelDragged)
+            {
+                if (this.Height < 50)
+                {
+                    this.Height = 50;
+                    isBottomPanelDragged = false;
+                }
+                else
+                {
+                    this.Height = this.Height + e.Y;
+                }
+                this.Refresh();
+            }
+        }
+
+        private void BottomPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            isBottomPanelDragged = false;
+        }
+
+
+        private void RightBottomPanel_1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isRightBottomPanelDragged = true;
+        }
+
+        private void RightBottomPanel_1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isRightBottomPanelDragged)
+            {
+                if (this.Width < 100 || this.Height < 50)
+                {
+                    this.Width = 100;
+                    this.Height = 50;
+                    isRightBottomPanelDragged = false;
+                }
+                else
+                {
+                    this.Width = this.Width + e.X;
+                    this.Height = this.Height + e.Y;
+                }
+                this.Refresh();
+            }
+        }
+
+        private void RightBottomPanel_1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isRightBottomPanelDragged = false;
+        }
+
+        private void LeftBottomPanel_1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isLeftBottomPanelDragged = true;
+        }
+
+        private void LeftBottomPanel_1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.X < this.Location.X)
+            {
+                if (isLeftBottomPanelDragged || this.Height < 50)
+                {
+                    if (this.Width < 100)
+                    {
+                        this.Width = 100;
+                        this.Height = 50;
+                        isLeftBottomPanelDragged = false;
+                    }
+                    else
+                    {
+                        this.Location = new Point(this.Location.X + e.X, this.Location.Y);
+                        this.Width = this.Width - e.X;
+                        this.Height = this.Height + e.Y;
+                    }
+                    this.Refresh();
+                }
+            }
+        }
+
+        private void LeftBottomPanel_1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isLeftBottomPanelDragged = false;
+        }
+
+        private void RightTopPanel_1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isRightTopPanelDragged = true;
+        }
+
+        private void RightTopPanel_1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Y < this.Location.Y || e.X < this.Location.X)
+            {
+                if (isRightTopPanelDragged)
+                {
+                    if (this.Height < 50 || this.Width < 100)
+                    {
+                        this.Height = 50;
+                        this.Width = 100;
+                        isRightTopPanelDragged = false;
+                    }
+                    else
+                    {
+                        this.Location = new Point(this.Location.X, this.Location.Y + e.Y);
+                        this.Height = this.Height - e.Y;
+                        this.Width = this.Width + e.X;
+                    }
+                    this.Refresh();
+                }
+            }
+        }
+
+        private void RightTopPanel_1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isRightTopPanelDragged = false;
+        }
+
+        private void LeftTopPanel_1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isLeftTopPanelDragged = true;
+        }
+
+        private void LeftTopPanel_1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.X < this.Location.X || e.Y < this.Location.Y)
+            {
+                if (isLeftTopPanelDragged)
+                {
+                    if (this.Width < 100 || this.Height < 50)
+                    {
+                        this.Width = 100;
+                        this.Height = 100;
+                        isLeftTopPanelDragged = false;
+                    }
+                    else
+                    {
+                        this.Location = new Point(this.Location.X + e.X, this.Location.Y);
+                        this.Width = this.Width - e.X;
+                        this.Location = new Point(this.Location.X, this.Location.Y + e.Y);
+                        this.Height = this.Height - e.Y;
+                    }
+                    this.Refresh();
+                }
+            }
+
+        }
+
+        private void LeftTopPanel_1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isLeftTopPanelDragged = false;
+        }
+
     }
 }
