@@ -16,6 +16,7 @@ namespace PaintUI
         public event EventHandler OpenButtonClick;
         public event EventHandler SaveButtonClick;
         public event EventHandler SaveAsButtonClick;
+        public event EventHandler ExitButtonClick;
 
         public MenuPanel()
         {
@@ -26,40 +27,42 @@ namespace PaintUI
         private void backButton_Click(object sender, EventArgs e)
         {
             this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
-
+            
         }
 
         private void newButton_Click(object sender, EventArgs e)
         {
+            this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
             if (this.NewButtonClick != null)
                 this.NewButtonClick(this, e);
-            this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
         }
 
         private void openButton_Click(object sender, EventArgs e)
         {
+            this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
             if (this.OpenButtonClick != null)
                 this.OpenButtonClick(this, e);
-            this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
             if (this.SaveButtonClick != null)
                 this.SaveButtonClick(this, e);
-            this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
         }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
+            if (this.ExitButtonClick != null)
+                this.ExitButtonClick(this, e);
         }
 
         private void saveAsButton_Click(object sender, EventArgs e)
         {
+            this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
             if (this.SaveAsButtonClick != null)
                 this.SaveAsButtonClick(this, e);
-            this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
         }
     }
 }

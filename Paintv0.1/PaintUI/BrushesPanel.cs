@@ -20,7 +20,6 @@ namespace PaintUI
             InitializeComponent();
             thicknessSlide.Value = 10;
             opacitySlide.Value = 255;
-
         }
 
         private void thicknessSlide_ValueChanged(object sender, EventArgs e)
@@ -46,6 +45,5 @@ namespace PaintUI
         {
             return opacitySlide.Value;
         }
-
     }
 }

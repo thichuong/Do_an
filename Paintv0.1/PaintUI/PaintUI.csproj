@@ -59,6 +59,12 @@
     <Compile Include="BrushesPanel.Designer.cs">
       <DependentUpon>BrushesPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Canvas.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Canvas.Designer.cs">
+      <DependentUpon>Canvas.cs</DependentUpon>
+    </Compile>
     <Compile Include="CanvasPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -71,12 +77,19 @@
     <Compile Include="ColorPanel.Designer.cs">
       <DependentUpon>ColorPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="DoubleBufferPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DoubleBufferPanel.Designer.cs">
+      <DependentUpon>DoubleBufferPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="EffectsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="EffectsPanel.Designer.cs">
       <DependentUpon>EffectsPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="FillBucket.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ColorPanel.resx">
       <DependentUpon>ColorPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoubleBufferPanel.resx">
+      <DependentUpon>DoubleBufferPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EffectsPanel.resx">
       <DependentUpon>EffectsPanel.cs</DependentUpon>

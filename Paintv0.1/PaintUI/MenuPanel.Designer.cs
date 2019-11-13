@@ -63,7 +63,7 @@
             this.bunifuGradientPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuGradientPanel1.Name = "bunifuGradientPanel1";
             this.bunifuGradientPanel1.Quality = 10;
-            this.bunifuGradientPanel1.Size = new System.Drawing.Size(395, 597);
+            this.bunifuGradientPanel1.Size = new System.Drawing.Size(395, 598);
             this.bunifuGradientPanel1.TabIndex = 0;
             // 
             // exitButton
@@ -96,7 +96,7 @@
             this.exitButton.OnHoverTextColor = System.Drawing.Color.White;
             this.exitButton.selected = false;
             this.exitButton.Size = new System.Drawing.Size(394, 90);
-            this.exitButton.TabIndex = 0;
+            this.exitButton.TabIndex = 1;
             this.exitButton.Text = "Exit";
             this.exitButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.exitButton.Textcolor = System.Drawing.Color.White;
@@ -133,7 +133,7 @@
             this.saveAsButton.OnHoverTextColor = System.Drawing.Color.White;
             this.saveAsButton.selected = false;
             this.saveAsButton.Size = new System.Drawing.Size(394, 90);
-            this.saveAsButton.TabIndex = 0;
+            this.saveAsButton.TabIndex = 1;
             this.saveAsButton.Text = "Save As";
             this.saveAsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.saveAsButton.Textcolor = System.Drawing.Color.White;
@@ -162,7 +162,7 @@
             this.saveButton.IconVisible = true;
             this.saveButton.IconZoom = 90D;
             this.saveButton.IsTab = false;
-            this.saveButton.Location = new System.Drawing.Point(0, 267);
+            this.saveButton.Location = new System.Drawing.Point(0, 268);
             this.saveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.saveButton.Name = "saveButton";
             this.saveButton.Normalcolor = System.Drawing.Color.Transparent;
@@ -170,7 +170,7 @@
             this.saveButton.OnHoverTextColor = System.Drawing.Color.White;
             this.saveButton.selected = false;
             this.saveButton.Size = new System.Drawing.Size(394, 90);
-            this.saveButton.TabIndex = 0;
+            this.saveButton.TabIndex = 1;
             this.saveButton.Text = "Save";
             this.saveButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.saveButton.Textcolor = System.Drawing.Color.White;
@@ -207,7 +207,7 @@
             this.openButton.OnHoverTextColor = System.Drawing.Color.White;
             this.openButton.selected = false;
             this.openButton.Size = new System.Drawing.Size(394, 90);
-            this.openButton.TabIndex = 0;
+            this.openButton.TabIndex = 1;
             this.openButton.Text = "Open";
             this.openButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openButton.Textcolor = System.Drawing.Color.White;
@@ -244,7 +244,7 @@
             this.newButton.OnHoverTextColor = System.Drawing.Color.White;
             this.newButton.selected = false;
             this.newButton.Size = new System.Drawing.Size(394, 90);
-            this.newButton.TabIndex = 0;
+            this.newButton.TabIndex = 1;
             this.newButton.Text = "New";
             this.newButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.newButton.Textcolor = System.Drawing.Color.White;
@@ -308,6 +308,7 @@
             animation1.TimeCoeff = 0F;
             animation1.TransparencyCoeff = 0F;
             this.bunifuTransition2.DefaultAnimation = animation1;
+            this.bunifuTransition2.TimeStep = 1F;
             // 
             // MenuPanel
             // 
