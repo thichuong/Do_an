@@ -1,4 +1,3 @@
-
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +20,6 @@ namespace PaintUI
             InitializeComponent();
             thicknessSlide.Value = 10;
             opacitySlide.Value = 255;
-            thicknessSlide.MaximumValue = 30;
         }
 
         private void thicknessSlide_ValueChanged(object sender, EventArgs e)
@@ -49,4 +47,3 @@ namespace PaintUI
         }
     }
 }
-

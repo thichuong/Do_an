@@ -132,10 +132,10 @@ namespace PaintUI
             switch (curShape)
             {
                 case Shapes.RECTANGLE:
-                    g.FillRectangle(fillColor, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
+                    g.FillRectangle(fillColor, Math.Min(old.X, cur.X), Math.Min(old.Y, cur.Y), Math.Abs(size.Width), Math.Abs(size.Height));
                     break;
                 case Shapes.ELLIPSE:
-                    g.FillEllipse(fillColor, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
+                    g.FillEllipse(fillColor, Math.Min(old.X, cur.X), Math.Min(old.Y, cur.Y), Math.Abs(size.Width), Math.Abs(size.Height));
                     break;
                 case Shapes.HEXAGON:
                     g.FillPolygon(fillColor, hexagonVertices(old, cur, size));
@@ -165,10 +165,10 @@ namespace PaintUI
             switch (curShape)
             {
                 case Shapes.RECTANGLE:
-                    g.DrawRectangle(pen, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
+                    g.DrawRectangle(pen, Math.Min(old.X, cur.X), Math.Min(old.Y, cur.Y), Math.Abs(size.Width), Math.Abs(size.Height));
                     break;
                 case Shapes.ELLIPSE:
-                    g.DrawEllipse(pen, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
+                    g.DrawEllipse(pen, Math.Min(old.X, cur.X), Math.Min(old.Y, cur.Y), Math.Abs(size.Width), Math.Abs(size.Height));
                     break;
                 case Shapes.LINE:
                     g.DrawLine(pen, old, cur);
@@ -229,9 +229,7 @@ namespace PaintUI
                 FillShapes(p, bm, g, old, cur, size, pen, fillColor);
             }
             if(outline)
-            {
                 DrawOutline(p, bm, g, old, cur, size, pen);
-            }
         }
 
 
@@ -239,13 +237,9 @@ namespace PaintUI
         private void Shapes_FillCheckBox_OnChange(object sender, EventArgs e)
         {
             if(fill)
-            {
                 fill = false;
-            }
             else
-            {
                 fill = true;
-            }
         }
 
         private void Shapes_OutlineCheckBox_OnChange(object sender, EventArgs e)
