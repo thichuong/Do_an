@@ -59,6 +59,8 @@ namespace PaintUI
                 pen.Alignment = PenAlignment.Center;
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
                 gra = Graphics.FromImage(bm);
+                gra.Clear(Color.White);
+              
 
                 isDown = false;
                 curTool = Tools.BRUSH;
@@ -426,6 +428,8 @@ namespace PaintUI
             if (curTool == Tools.FILLBUCKET)
             {
                 FillBucket bucket = new FillBucket();
+                bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), pen.Color);
+
                 bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), pen.Color);
                 SketchBox.BackgroundImage = (Bitmap)bm.Clone();
             }

@@ -55,10 +55,10 @@
             this.bunifuGradientPanel1.Controls.Add(this.newButton);
             this.bunifuGradientPanel1.Controls.Add(this.backButton);
             this.bunifuTransition2.SetDecoration(this.bunifuGradientPanel1, BunifuAnimatorNS.DecorationType.None);
-            this.bunifuGradientPanel1.GradientBottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(177)))), ((int)(((byte)(231)))));
-            this.bunifuGradientPanel1.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(31)))), ((int)(((byte)(141)))));
-            this.bunifuGradientPanel1.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(65)))), ((int)(((byte)(154)))));
-            this.bunifuGradientPanel1.GradientTopRight = System.Drawing.Color.Black;
+            this.bunifuGradientPanel1.GradientBottomLeft = System.Drawing.Color.Cyan;
+            this.bunifuGradientPanel1.GradientBottomRight = System.Drawing.Color.Cyan;
+            this.bunifuGradientPanel1.GradientTopLeft = System.Drawing.Color.Cyan;
+            this.bunifuGradientPanel1.GradientTopRight = System.Drawing.Color.Cyan;
             this.bunifuGradientPanel1.Location = new System.Drawing.Point(0, 0);
             this.bunifuGradientPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuGradientPanel1.Name = "bunifuGradientPanel1";
@@ -68,7 +68,7 @@
             // 
             // exitButton
             // 
-            this.exitButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.exitButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.exitButton.BackColor = System.Drawing.Color.Transparent;
             this.exitButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.exitButton.BorderRadius = 0;
@@ -76,6 +76,7 @@
             this.exitButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuTransition2.SetDecoration(this.exitButton, BunifuAnimatorNS.DecorationType.None);
             this.exitButton.DisabledColor = System.Drawing.Color.Gray;
+            this.exitButton.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.exitButton.Iconcolor = System.Drawing.Color.Transparent;
             this.exitButton.Iconimage = ((System.Drawing.Image)(resources.GetObject("exitButton.Iconimage")));
             this.exitButton.Iconimage_right = null;
@@ -87,25 +88,25 @@
             this.exitButton.IconRightZoom = 0D;
             this.exitButton.IconVisible = true;
             this.exitButton.IconZoom = 90D;
-            this.exitButton.IsTab = false;
+            this.exitButton.IsTab = true;
             this.exitButton.Location = new System.Drawing.Point(1, 445);
             this.exitButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.exitButton.Name = "exitButton";
             this.exitButton.Normalcolor = System.Drawing.Color.Transparent;
-            this.exitButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.exitButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.exitButton.OnHoverTextColor = System.Drawing.Color.White;
             this.exitButton.selected = false;
             this.exitButton.Size = new System.Drawing.Size(394, 90);
             this.exitButton.TabIndex = 1;
             this.exitButton.Text = "Exit";
             this.exitButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.exitButton.Textcolor = System.Drawing.Color.White;
+            this.exitButton.Textcolor = System.Drawing.SystemColors.ActiveCaptionText;
             this.exitButton.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // saveAsButton
             // 
-            this.saveAsButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.saveAsButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.saveAsButton.BackColor = System.Drawing.Color.Transparent;
             this.saveAsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.saveAsButton.BorderRadius = 0;
@@ -113,6 +114,7 @@
             this.saveAsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuTransition2.SetDecoration(this.saveAsButton, BunifuAnimatorNS.DecorationType.None);
             this.saveAsButton.DisabledColor = System.Drawing.Color.Gray;
+            this.saveAsButton.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.saveAsButton.Iconcolor = System.Drawing.Color.Transparent;
             this.saveAsButton.Iconimage = ((System.Drawing.Image)(resources.GetObject("saveAsButton.Iconimage")));
             this.saveAsButton.Iconimage_right = null;
@@ -124,25 +126,25 @@
             this.saveAsButton.IconRightZoom = 0D;
             this.saveAsButton.IconVisible = true;
             this.saveAsButton.IconZoom = 90D;
-            this.saveAsButton.IsTab = false;
+            this.saveAsButton.IsTab = true;
             this.saveAsButton.Location = new System.Drawing.Point(0, 356);
             this.saveAsButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.saveAsButton.Name = "saveAsButton";
             this.saveAsButton.Normalcolor = System.Drawing.Color.Transparent;
-            this.saveAsButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.saveAsButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.saveAsButton.OnHoverTextColor = System.Drawing.Color.White;
             this.saveAsButton.selected = false;
             this.saveAsButton.Size = new System.Drawing.Size(394, 90);
             this.saveAsButton.TabIndex = 1;
             this.saveAsButton.Text = "Save As";
             this.saveAsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.saveAsButton.Textcolor = System.Drawing.Color.White;
+            this.saveAsButton.Textcolor = System.Drawing.SystemColors.ActiveCaptionText;
             this.saveAsButton.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveAsButton.Click += new System.EventHandler(this.saveAsButton_Click);
             // 
             // saveButton
             // 
-            this.saveButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.saveButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.saveButton.BackColor = System.Drawing.Color.Transparent;
             this.saveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.saveButton.BorderRadius = 0;
@@ -150,6 +152,7 @@
             this.saveButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuTransition2.SetDecoration(this.saveButton, BunifuAnimatorNS.DecorationType.None);
             this.saveButton.DisabledColor = System.Drawing.Color.Gray;
+            this.saveButton.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.saveButton.Iconcolor = System.Drawing.Color.Transparent;
             this.saveButton.Iconimage = ((System.Drawing.Image)(resources.GetObject("saveButton.Iconimage")));
             this.saveButton.Iconimage_right = null;
@@ -161,25 +164,25 @@
             this.saveButton.IconRightZoom = 0D;
             this.saveButton.IconVisible = true;
             this.saveButton.IconZoom = 90D;
-            this.saveButton.IsTab = false;
+            this.saveButton.IsTab = true;
             this.saveButton.Location = new System.Drawing.Point(0, 268);
             this.saveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.saveButton.Name = "saveButton";
             this.saveButton.Normalcolor = System.Drawing.Color.Transparent;
-            this.saveButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.saveButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.saveButton.OnHoverTextColor = System.Drawing.Color.White;
             this.saveButton.selected = false;
             this.saveButton.Size = new System.Drawing.Size(394, 90);
             this.saveButton.TabIndex = 1;
             this.saveButton.Text = "Save";
             this.saveButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.saveButton.Textcolor = System.Drawing.Color.White;
+            this.saveButton.Textcolor = System.Drawing.SystemColors.ActiveCaptionText;
             this.saveButton.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // openButton
             // 
-            this.openButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.openButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.openButton.BackColor = System.Drawing.Color.Transparent;
             this.openButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.openButton.BorderRadius = 0;
@@ -187,6 +190,7 @@
             this.openButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuTransition2.SetDecoration(this.openButton, BunifuAnimatorNS.DecorationType.None);
             this.openButton.DisabledColor = System.Drawing.Color.Gray;
+            this.openButton.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.openButton.Iconcolor = System.Drawing.Color.Transparent;
             this.openButton.Iconimage = ((System.Drawing.Image)(resources.GetObject("openButton.Iconimage")));
             this.openButton.Iconimage_right = null;
@@ -198,25 +202,25 @@
             this.openButton.IconRightZoom = 0D;
             this.openButton.IconVisible = true;
             this.openButton.IconZoom = 90D;
-            this.openButton.IsTab = false;
+            this.openButton.IsTab = true;
             this.openButton.Location = new System.Drawing.Point(-1, 178);
             this.openButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.openButton.Name = "openButton";
             this.openButton.Normalcolor = System.Drawing.Color.Transparent;
-            this.openButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.openButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.openButton.OnHoverTextColor = System.Drawing.Color.White;
             this.openButton.selected = false;
             this.openButton.Size = new System.Drawing.Size(394, 90);
             this.openButton.TabIndex = 1;
             this.openButton.Text = "Open";
             this.openButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.openButton.Textcolor = System.Drawing.Color.White;
+            this.openButton.Textcolor = System.Drawing.SystemColors.ActiveCaptionText;
             this.openButton.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openButton.Click += new System.EventHandler(this.openButton_Click);
             // 
             // newButton
             // 
-            this.newButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.newButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.newButton.BackColor = System.Drawing.Color.Transparent;
             this.newButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.newButton.BorderRadius = 0;
@@ -224,6 +228,7 @@
             this.newButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuTransition2.SetDecoration(this.newButton, BunifuAnimatorNS.DecorationType.None);
             this.newButton.DisabledColor = System.Drawing.Color.Gray;
+            this.newButton.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.newButton.Iconcolor = System.Drawing.Color.Transparent;
             this.newButton.Iconimage = ((System.Drawing.Image)(resources.GetObject("newButton.Iconimage")));
             this.newButton.Iconimage_right = null;
@@ -235,25 +240,25 @@
             this.newButton.IconRightZoom = 0D;
             this.newButton.IconVisible = true;
             this.newButton.IconZoom = 90D;
-            this.newButton.IsTab = false;
+            this.newButton.IsTab = true;
             this.newButton.Location = new System.Drawing.Point(0, 89);
             this.newButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.newButton.Name = "newButton";
             this.newButton.Normalcolor = System.Drawing.Color.Transparent;
-            this.newButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.newButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.newButton.OnHoverTextColor = System.Drawing.Color.White;
             this.newButton.selected = false;
             this.newButton.Size = new System.Drawing.Size(394, 90);
             this.newButton.TabIndex = 1;
             this.newButton.Text = "New";
             this.newButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.newButton.Textcolor = System.Drawing.Color.White;
+            this.newButton.Textcolor = System.Drawing.SystemColors.ActiveCaptionText;
             this.newButton.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // backButton
             // 
-            this.backButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.backButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.backButton.BackColor = System.Drawing.Color.Transparent;
             this.backButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.backButton.BorderRadius = 0;
@@ -261,6 +266,7 @@
             this.backButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuTransition2.SetDecoration(this.backButton, BunifuAnimatorNS.DecorationType.None);
             this.backButton.DisabledColor = System.Drawing.Color.Gray;
+            this.backButton.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.backButton.Iconcolor = System.Drawing.Color.Transparent;
             this.backButton.Iconimage = ((System.Drawing.Image)(resources.GetObject("backButton.Iconimage")));
             this.backButton.Iconimage_right = null;
@@ -272,19 +278,19 @@
             this.backButton.IconRightZoom = 0D;
             this.backButton.IconVisible = true;
             this.backButton.IconZoom = 90D;
-            this.backButton.IsTab = false;
+            this.backButton.IsTab = true;
             this.backButton.Location = new System.Drawing.Point(-1, 0);
             this.backButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.backButton.Name = "backButton";
             this.backButton.Normalcolor = System.Drawing.Color.Transparent;
-            this.backButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.backButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.backButton.OnHoverTextColor = System.Drawing.Color.White;
             this.backButton.selected = false;
             this.backButton.Size = new System.Drawing.Size(394, 90);
             this.backButton.TabIndex = 0;
             this.backButton.Text = "Back";
             this.backButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Textcolor = System.Drawing.Color.White;
+            this.backButton.Textcolor = System.Drawing.SystemColors.ActiveCaptionText;
             this.backButton.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 

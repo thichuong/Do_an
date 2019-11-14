@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            BunifuAnimatorNS.Animation animation2 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.EditPanel = new System.Windows.Forms.Panel();
@@ -355,22 +355,22 @@
             // 
             this.bunifuTransition1.AnimationType = BunifuAnimatorNS.AnimationType.HorizSlide;
             this.bunifuTransition1.Cursor = null;
-            animation2.AnimateOnlyDifferences = true;
-            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
-            animation2.LeafCoeff = 0F;
-            animation2.MaxTime = 1F;
-            animation2.MinTime = 0F;
-            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
-            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
-            animation2.MosaicSize = 0;
-            animation2.Padding = new System.Windows.Forms.Padding(0);
-            animation2.RotateCoeff = 0F;
-            animation2.RotateLimit = 0F;
-            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
-            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
-            animation2.TimeCoeff = 0F;
-            animation2.TransparencyCoeff = 0F;
-            this.bunifuTransition1.DefaultAnimation = animation2;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
+            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicSize = 0;
+            animation1.Padding = new System.Windows.Forms.Padding(0);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
+            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            this.bunifuTransition1.DefaultAnimation = animation1;
             this.bunifuTransition1.TimeStep = 0.1F;
             // 
             // colorPanel
@@ -447,10 +447,10 @@
             this.ToolsPanel.Controls.Add(this.MenuButton);
             this.bunifuTransition1.SetDecoration(this.ToolsPanel, BunifuAnimatorNS.DecorationType.None);
             this.ToolsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ToolsPanel.GradientBottomLeft = System.Drawing.Color.Magenta;
-            this.ToolsPanel.GradientBottomRight = System.Drawing.Color.DimGray;
-            this.ToolsPanel.GradientTopLeft = System.Drawing.Color.DarkRed;
-            this.ToolsPanel.GradientTopRight = System.Drawing.Color.Red;
+            this.ToolsPanel.GradientBottomLeft = System.Drawing.Color.SteelBlue;
+            this.ToolsPanel.GradientBottomRight = System.Drawing.Color.SteelBlue;
+            this.ToolsPanel.GradientTopLeft = System.Drawing.Color.Aqua;
+            this.ToolsPanel.GradientTopRight = System.Drawing.Color.Aqua;
             this.ToolsPanel.Location = new System.Drawing.Point(0, 0);
             this.ToolsPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ToolsPanel.Name = "ToolsPanel";
@@ -720,10 +720,10 @@
             this.menuPanel.BackColor = System.Drawing.Color.Aquamarine;
             this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bunifuTransition1.SetDecoration(this.menuPanel, BunifuAnimatorNS.DecorationType.None);
-            this.menuPanel.Location = new System.Drawing.Point(0, 0);
+            this.menuPanel.Location = new System.Drawing.Point(0, 119);
             this.menuPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.menuPanel.Name = "menuPanel";
-            this.menuPanel.Size = new System.Drawing.Size(337, 600);
+            this.menuPanel.Size = new System.Drawing.Size(398, 708);
             this.menuPanel.TabIndex = 19;
             // 
             // bunifuGradientPanel2
@@ -738,10 +738,10 @@
             this.bunifuGradientPanel2.Controls.Add(this.shapesPanel);
             this.bunifuTransition1.SetDecoration(this.bunifuGradientPanel2, BunifuAnimatorNS.DecorationType.None);
             this.bunifuGradientPanel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.bunifuGradientPanel2.GradientBottomLeft = System.Drawing.Color.LightCoral;
-            this.bunifuGradientPanel2.GradientBottomRight = System.Drawing.Color.MistyRose;
-            this.bunifuGradientPanel2.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.bunifuGradientPanel2.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.bunifuGradientPanel2.GradientBottomLeft = System.Drawing.SystemColors.ButtonFace;
+            this.bunifuGradientPanel2.GradientBottomRight = System.Drawing.SystemColors.ButtonFace;
+            this.bunifuGradientPanel2.GradientTopLeft = System.Drawing.SystemColors.ButtonFace;
+            this.bunifuGradientPanel2.GradientTopRight = System.Drawing.SystemColors.ButtonFace;
             this.bunifuGradientPanel2.Location = new System.Drawing.Point(1240, 195);
             this.bunifuGradientPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuGradientPanel2.Name = "bunifuGradientPanel2";
@@ -759,8 +759,8 @@
             this.Controls.Add(this.panelCavas);
             this.Controls.Add(this.bunifuGradientPanel2);
             this.Controls.Add(this.EditPanel);
-            this.Controls.Add(this.ToolsPanel);
             this.Controls.Add(this.menuPanel);
+            this.Controls.Add(this.ToolsPanel);
             this.bunifuTransition1.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
