@@ -192,9 +192,9 @@ namespace PaintUI
         private void MenuButton_Click(object sender, EventArgs e)
         {
             if (!menuPanel.Visible)
-                bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.VertSlide);
             else
-                bunifuTransition1.HideSync(menuPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+                bunifuTransition1.HideSync(menuPanel, false, BunifuAnimatorNS.Animation.VertSlide);
         }
 
         private void TextButton_Click(object sender, EventArgs e)
@@ -644,6 +644,7 @@ namespace PaintUI
                     }
                     else
                     {
+                        
                         this.Location = new Point(this.Location.X + e.X, this.Location.Y);
                         this.Width = this.Width - e.X;
                     }
