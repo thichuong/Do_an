@@ -78,7 +78,7 @@ namespace PaintUI
                 this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
                 gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                gra.Clear(Color.White);
+                
             }
 
             //Bat su kien cho cac panel
@@ -87,9 +87,11 @@ namespace PaintUI
                 menuPanel.OpenButtonClick += MenuPanel_OpenButtonClick;
                 menuPanel.SaveButtonClick += MenuPanel_SaveButtonClick;
                 menuPanel.SaveAsButtonClick += MenuPanel_SaveAsButtonClick;
-
-                
             }
+            LeftTopPanel.Visible = false;
+            LeftBottomPanel.Visible = false;
+            RightTopPanel.Visible = false;
+            RightBottomPanel.Visible = false;
         }
         //Code cac chuc nang cho cac WindowState Butttons
         private void MinimizeButton_Click(object sender, EventArgs e)
@@ -124,6 +126,12 @@ namespace PaintUI
 
         private void MenuPanel_SaveButtonClick(object sender, EventArgs e)
         {
+            temp = bm;
+            bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+            gra = Graphics.FromImage(bm);
+
+            gra.Clear(SketchBox.BackColor);
+            gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Bmp (*.bmp)|*.bmp|Jpg (*.jpg)|*.jpg|Jpeg (*.jpeg)|*.jpeg|Png (*.png)|*.png";
 
@@ -175,10 +183,7 @@ namespace PaintUI
             brushesPanel.Visible = false;
             effectsPanel.Visible = false;
             menuPanel.Visible = false;
-            LeftTopPanel.Visible = false;
-            LeftBottomPanel.Visible = false;
-            RightTopPanel.Visible = false;
-            RightBottomPanel.Visible = false;
+            
         }
 
 
@@ -227,10 +232,7 @@ namespace PaintUI
                 RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
                 RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
                 LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
-                LeftTopPanel.Visible = true;
-                LeftBottomPanel.Visible = true;
-                RightTopPanel.Visible = true;
-                RightBottomPanel.Visible = true;
+                
             }
 
         }
@@ -332,6 +334,7 @@ namespace PaintUI
             fillColor = eraser = new SolidBrush(colorPanel.getColor2());
             old = new Point(e.Location.X, e.Location.Y);
             cur = old;
+            gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
             gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             gra.CompositingQuality = CompositingQuality.GammaCorrected;
             if (curTool == Tools.FILLBUCKET)
@@ -368,9 +371,10 @@ namespace PaintUI
                         shapesPanel.DrawShapes(SketchBox, bm, e.Graphics, old, cur, new Size(wid, hei), pen, fillColor);
                         break;
                     case Tools.ERASER:
-                        gra.FillRectangle(eraser, cur.X - brushesPanel.getThickness() / 2, cur.Y - brushesPanel.getThickness() / 2, brushesPanel.getThickness(), brushesPanel.getThickness());
-                        Pen temp = new Pen(eraser.Color, brushesPanel.getThickness());
+                        //gra.FillRectangle(eraser, cur.X - brushesPanel.getThickness() / 2, cur.Y - brushesPanel.getThickness() / 2, brushesPanel.getThickness(), brushesPanel.getThickness());
+                        Pen temp = new Pen(Color.Transparent, brushesPanel.getThickness());
                         temp.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
+                        gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
                         gra.DrawLine(temp, old, cur);
                         old = cur;
                         SketchBox.BackgroundImage = (Bitmap)bm.Clone();
@@ -380,10 +384,37 @@ namespace PaintUI
                 }
             }
         }
-
+        public void SketchBox_ShowResizepanel()
+        {
+            if (LeftTopPanel.Visible)
+            {
+                LeftTopPanel.Visible = false;
+                LeftBottomPanel.Visible = false;
+                RightTopPanel.Visible = false;
+                RightBottomPanel.Visible = false;
+            }
+            else
+            {
+                LeftTopPanel.Visible = true;
+                LeftBottomPanel.Visible = true;
+                RightTopPanel.Visible = true;
+                RightBottomPanel.Visible = true;
+            }
+        }
+        public void SketchBox_Transparent()
+        {
+            if(SketchBox.BackColor==Color.Transparent)
+            {
+                SketchBox.BackColor = Color.White;
+            }
+            else
+            {
+                SketchBox.BackColor = Color.Transparent;
+            }
+        }
         private void SketchBox_SizeChanged(object sender, EventArgs e)
         {
-           
+            canvasPanel.setCanvasText(SketchBox);
             SketchBox.Location = new Point(panelCavas.Width / 2 - SketchBox.Width / 2, panelCavas.Height / 2 - SketchBox.Height / 2);
             LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
             RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
@@ -399,9 +430,20 @@ namespace PaintUI
             LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
         }
       
+
         //---------------
         //Resize SketchBox
+        public void resizeSketchBox()
+        {
+            temp = (Bitmap)bm;
+            SketchBox.Width = canvasPanel.getCanvasTextWidth();
+            SketchBox.Height = canvasPanel.getCanvasTextHeight();
+            bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+            gra = Graphics.FromImage(bm);
+            gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
+            SketchBox.BackgroundImage = (Bitmap)bm.Clone();
 
+        }
         private void LeftTopPanel_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = e.Location;
@@ -425,7 +467,7 @@ namespace PaintUI
                 }
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height);
                 gra = Graphics.FromImage(bm);
-                gra.Clear(Color.White);
+               
                 gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
                 SketchBox.BackgroundImage = (Bitmap)bm.Clone();
                 panelCavas.Refresh();
@@ -460,7 +502,7 @@ namespace PaintUI
                 }
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height);
                 gra = Graphics.FromImage(bm);
-                gra.Clear(Color.White);
+                
                 gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
                 SketchBox.BackgroundImage = (Bitmap)bm.Clone();
                 panelCavas.Refresh();
@@ -496,7 +538,7 @@ namespace PaintUI
 
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height);
                 gra = Graphics.FromImage(bm);
-                gra.Clear(Color.White);
+               
                 gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
                 SketchBox.BackgroundImage = (Bitmap)bm.Clone();
                 panelCavas.Refresh();
@@ -529,7 +571,7 @@ namespace PaintUI
 
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height);
                 gra = Graphics.FromImage(bm);
-                gra.Clear(Color.White);
+            
                 gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
                 SketchBox.BackgroundImage = (Bitmap)bm.Clone();
                 panelCavas.Refresh();
@@ -545,10 +587,10 @@ namespace PaintUI
         private void panelCavas_SizeChanged(object sender, EventArgs e)
         {
             SketchBox.Location = new Point(panelCavas.Width / 2 - SketchBox.Width / 2, panelCavas.Height / 2 - SketchBox.Height / 2);
-            LeftTopPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y - 22);
+            LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
             RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
-            RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 22);
-            LeftBottomPanel.Location = new Point(SketchBox.Location.X - 22, SketchBox.Location.Y + SketchBox.Height);
+            RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
+            LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
         }
         //Code resize winform
         
