@@ -85,6 +85,63 @@ namespace PaintUI
                     }
 
                 }
+                while (check.Count > 0)
+                {
+                    Point cur = check.Pop();
+
+                    Point next = new Point(cur.X, cur.Y - 1);
+                    if (next.X >= 0 && next.Y >= 0 &&
+                        next.X < data.Width &&
+                        next.Y < data.Height)
+                    {
+
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        {
+                            check.Push(next);
+
+                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
+                    next = new Point(cur.X, cur.Y + 1);
+                    if (next.X >= 0 && next.Y >= 0 &&
+                        next.X < data.Width &&
+                        next.Y < data.Height)
+                    {
+
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        {
+                            check.Push(next);
+
+                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
+                    next = new Point(cur.X - 1, cur.Y);
+                    if (next.X >= 0 && next.Y >= 0 &&
+                        next.X < data.Width &&
+                        next.Y < data.Height)
+                    {
+
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        {
+                            check.Push(next);
+                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
+                    next = new Point(cur.X + 1, cur.Y);
+                    if (next.X >= 0 && next.Y >= 0 &&
+                        next.X < data.Width &&
+                        next.Y < data.Height)
+                    {
+
+                        if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        {
+                            check.Push(next);
+
+                        }
+                        bits[next.X + next.Y * data.Stride / 4] = To;
+                    }
+
+                }
             }
 
             Marshal.Copy(bits, 0, data.Scan0, bits.Length);

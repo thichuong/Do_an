@@ -24,12 +24,6 @@ namespace PaintUI
         }
         
 
-        private void backButton_Click(object sender, EventArgs e)
-        {
-            this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
-            
-        }
-
         private void newButton_Click(object sender, EventArgs e)
         {
             this.bunifuTransition2.HideSync(this, false, BunifuAnimatorNS.Animation.HorizSlide);
