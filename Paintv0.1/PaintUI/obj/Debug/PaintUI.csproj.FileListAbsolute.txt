@@ -1,8 +1,6 @@
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe.config
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\bin\Debug\PaintUI.pdb
-C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\bin\Debug\Bunifu_UI_v1.5.3.dll
-C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\bin\Debug\MaterialSkin.dll
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.csprojAssemblyReference.cache
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesPanel.resources
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.CanvasPanel.resources
