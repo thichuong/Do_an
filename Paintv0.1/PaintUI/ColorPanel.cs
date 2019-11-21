@@ -47,7 +47,6 @@ namespace PaintUI
                 {
                     mainColor2.BackColor = cld.Color;
                 }
-                
             }
         }
 
@@ -55,6 +54,7 @@ namespace PaintUI
         {
             return mainColor1.BackColor;
         }
+
         public Color getColor2()
         {
             return mainColor2.BackColor;

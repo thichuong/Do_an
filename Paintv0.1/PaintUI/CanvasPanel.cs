@@ -62,14 +62,14 @@ namespace PaintUI
         {
             
                 Form1 parent = (Form1)this.ParentForm;
-                parent.SketchBox_Transparent();
+                parent.SketchBoxTransparent();
             
         }
 
         private void Canvas_ShowCheckBox_OnChange(object sender, EventArgs e)
         {
             Form1 parent = (Form1)this.ParentForm;
-            parent.SketchBox_ShowResizepanel();
+            parent.SketchBoxShowResizepanel();
         }
     }
 }

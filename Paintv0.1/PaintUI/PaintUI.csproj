@@ -36,7 +36,7 @@
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Bunifu_UI_v1.5.3.dll</HintPath>
+      <HintPath>..\..\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.Net4.1.0.0\lib\net40\MaterialSkin.dll</HintPath>
@@ -61,6 +61,12 @@
     </Compile>
     <Compile Include="BrushesPanel.Designer.cs">
       <DependentUpon>BrushesPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BrushesSelection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BrushesSelection.Designer.cs">
+      <DependentUpon>BrushesSelection.cs</DependentUpon>
     </Compile>
     <Compile Include="Canvas.cs">
       <SubType>Component</SubType>
@@ -107,6 +113,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShapeSelections.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ShapeSelections.Designer.cs">
+      <DependentUpon>ShapeSelections.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShapesPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -121,6 +133,9 @@
     </Compile>
     <EmbeddedResource Include="BrushesPanel.resx">
       <DependentUpon>BrushesPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BrushesSelection.resx">
+      <DependentUpon>BrushesSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CanvasPanel.resx">
       <DependentUpon>CanvasPanel.cs</DependentUpon>
@@ -140,6 +155,16 @@
     <EmbeddedResource Include="MenuPanel.resx">
       <DependentUpon>MenuPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\PaintUI.BrushesPanel.resources" />
+    <EmbeddedResource Include="obj\Debug\PaintUI.CanvasPanel.resources" />
+    <EmbeddedResource Include="obj\Debug\PaintUI.ColorPanel.resources" />
+    <EmbeddedResource Include="obj\Debug\PaintUI.DoubleBufferPanel.resources" />
+    <EmbeddedResource Include="obj\Debug\PaintUI.EffectsPanel.resources" />
+    <EmbeddedResource Include="obj\Debug\PaintUI.Form1.resources" />
+    <EmbeddedResource Include="obj\Debug\PaintUI.MenuPanel.resources" />
+    <EmbeddedResource Include="obj\Debug\PaintUI.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Debug\PaintUI.ShapesPanel.resources" />
+    <EmbeddedResource Include="obj\Debug\PaintUI.TextPanel.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -150,12 +175,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ShapeSelections.resx">
+      <DependentUpon>ShapeSelections.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShapesPanel.resx">
       <DependentUpon>ShapesPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TextPanel.resx">
       <DependentUpon>TextPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="bin\Debug\PaintUI.exe.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\PaintUI.csproj.CopyComplete" />
+    <None Include="obj\Debug\PaintUI.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\PaintUI.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\PaintUI.csprojAssemblyReference.cache" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -250,6 +285,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\create.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Bunifu_UI_v1.5.3.dll" />
+    <Content Include="bin\Debug\MaterialSkin.dll" />
+    <Content Include="bin\Debug\PaintUI.exe" />
+    <Content Include="bin\Debug\PaintUI.pdb" />
+    <Content Include="obj\Debug\PaintUI.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\PaintUI.exe" />
+    <Content Include="obj\Debug\PaintUI.pdb" />
+    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="Resources\arrow.bmp" />
+    <None Include="Resources\Trianglae.png" />
+    <None Include="Resources\Arrow.png" />
+    <Content Include="Resources\ArrowShape.png" />
+    <None Include="Resources\Artboard 1BaoKq.png" />
+    <Content Include="Resources\ellip.bmp" />
+    <None Include="Resources\Ellipse.png" />
+    <Content Include="Resources\hexa.bmp" />
+    <None Include="Resources\Hexagon.png" />
+    <Content Include="Resources\iso.bmp" />
+    <None Include="Resources\IsoTriangle.png" />
+    <Content Include="Resources\lig.bmp" />
+    <None Include="Resources\Lightning.png" />
+    <Content Include="Resources\line.bmp" />
+    <None Include="Resources\Line.png" />
+    <None Include="Resources\Marker.png" />
+    <None Include="Resources\pencil.png" />
+    <Content Include="Resources\re.bmp" />
+    <None Include="Resources\Rectangle.png" />
+    <None Include="Resources\Rectangle1.png" />
+    <Content Include="Resources\star.bmp" />
+    <None Include="Resources\Star.png" />
+    <Content Include="Resources\triange.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

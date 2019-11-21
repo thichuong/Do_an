@@ -7,71 +7,69 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
+using Bunifu.Framework.UI;
 
 namespace PaintUI
 {
     public partial class ShapesPanel : UserControl
     {
-        enum Shapes { RECTANGLE, ELLIPSE, LINE, HEXAGON, STAR, ISO_TRIANGLE, TRIANGLE, ARROW, LIGHTNING};
-        Shapes curShape;
-        bool fill = false;
-        bool outline = true;
+        Pen pen;
+        Brush brush;
+
+        ShapeSelections selShape;
+
+        bool fill;
+        bool outline;
+
+        bool isShown;
+
+
         public ShapesPanel()
         {
             InitializeComponent();
-            curShape = Shapes.RECTANGLE;
+            pen = new Pen(colorPanel.getColor1(), 5);
+            brush = new SolidBrush(colorPanel.getColor2());
+
+            fill = false;
+            outline = true;
+            isShown = false;
+
             Shapes_FillCheckBox.Checked = false;
             Shapes_OutlineCheckBox.Checked = true;
+            
+            selShape = new ShapeSelections();
+            selShape.Location = new Point(0, curShapeBtn.Location.Y+curShapeBtn.Size.Height + 10);
+            selShape.Size = new Size(Width+20, Width);
+            Controls.Add(selShape);
+            selShape.BringToFront();
+            selShape.Hide();
+
+            selShape.ShapeSelected += SelShape_ShapeSelected;
+        }
+
+        private void SelShape_ShapeSelected(object sender, EventArgs e)
+        {
+            curShapeBtn.BackgroundImage = selShape.getImage();
         }
 
 
         //Button Click
-        private void rectangleButton_Click(object sender, EventArgs e)
+
+        private void curShapeBtn_Click(object sender, EventArgs e)
         {
-            curShape = Shapes.RECTANGLE;
+            if (isShown)
+            {
+                bunifuTransition1.HideSync(selShape, false, BunifuAnimatorNS.Animation.VertSlide);
+            }
+            else
+            {
+                bunifuTransition1.ShowSync(selShape, false, BunifuAnimatorNS.Animation.VertSlide);
+            }
+            isShown = !isShown;
         }
 
-        private void ellipseButton_Click(object sender, EventArgs e)
-        {
-            curShape = Shapes.ELLIPSE;
-        }
-
-        private void lineButton_Click(object sender, EventArgs e)
-        {
-            curShape = Shapes.LINE;
-        }
-
-        private void arrowButton_Click(object sender, EventArgs e)
-        {
-            curShape = Shapes.ARROW;
-        }
-
-        private void starButton_Click(object sender, EventArgs e)
-        {
-            curShape = Shapes.STAR;
-        }
-
-        private void triangleButton_Click(object sender, EventArgs e)
-        {
-            curShape = Shapes.TRIANGLE;
-        }
-
-        private void lightningButton_Click(object sender, EventArgs e)
-        {
-            curShape = Shapes.LIGHTNING;
-        }
-
-        private void iso_triangleButton_Click(object sender, EventArgs e)
-        {
-            curShape = Shapes.ISO_TRIANGLE;
-        }
-
-        private void hexagonButton_Click(object sender, EventArgs e)
-        {
-            curShape = Shapes.HEXAGON;
-        }
-
-        
 
         //Tao cac dinh cua shape
         private PointF[] hexagonVertices(Point old, Point cur, Size size)
@@ -127,115 +125,95 @@ namespace PaintUI
 
 
         //draw outline and fill color
-        public void FillShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size, Pen pen, Brush fillColor)
+        public void FillShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size, Brush fillColor)
         {
-            switch (curShape)
+            switch (selShape.getShape())
             {
-                case Shapes.RECTANGLE:
+                case 0: //rec
                     g.FillRectangle(fillColor, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
                     break;
-                case Shapes.ELLIPSE:
+                case 1: //elp
                     g.FillEllipse(fillColor, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
                     break;
-                case Shapes.HEXAGON:
-                    g.FillPolygon(fillColor, hexagonVertices(old, cur, size));
+                case 2: //line
                     break;
-                case Shapes.STAR:
-                    g.FillPolygon(fillColor, starVertices(old, cur, size));
-                    break;
-                case Shapes.ISO_TRIANGLE:
-                    g.FillPolygon(fillColor, isoTriangleVertices(old, cur, size));
-                    break;
-                case Shapes.ARROW:
+                case 3: //arr
                     g.FillPolygon(fillColor, arrowVertices(old, cur, size));
                     break;
-                case Shapes.TRIANGLE:
+                case 4: //star
+                    g.FillPolygon(fillColor, starVertices(old, cur, size));
+                    break;
+                case 5: //tri
                     g.FillPolygon(fillColor, triangleVertices(old, cur, size));
                     break;
-                case Shapes.LIGHTNING:
+                case 6: //lgt
                     g.FillPolygon(fillColor, lightningVertices(old, cur, size));
                     break;
+                case 7: //iso
+                    g.FillPolygon(fillColor, isoTriangleVertices(old, cur, size));
+                    break; 
+                case 8: //iso
+                    g.FillPolygon(fillColor, hexagonVertices(old, cur, size));
+                    break;
                 default:
                     break;
             }
         }
 
-        public void DrawOutline(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size, Pen pen)
+        public void DrawOutline(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
-            switch (curShape)
+            switch (selShape.getShape())
             {
-                case Shapes.RECTANGLE:
+                case 0: // rec
                     g.DrawRectangle(pen, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
                     break;
-                case Shapes.ELLIPSE:
+                case 1: //elp
                     g.DrawEllipse(pen, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
                     break;
-                case Shapes.LINE:
+                case 2: //line
                     g.DrawLine(pen, old, cur);
                     break;
-                case Shapes.HEXAGON:
-                    {
-                        Point[] vertices1 = { new Point(old.X, old.Y + size.Height / 4), new Point(old.X, old.Y + size.Height / 4 * 3),
-                            new Point(old.X + size.Width / 2, old.Y + size.Height), new Point(old.X + size.Width, old.Y + size.Height / 4 * 3),
-                            new Point(old.X + size.Width, old.Y + size.Height / 4), new Point(old.X + size.Width / 2, old.Y) };
-                        g.DrawPolygon(pen, vertices1);
-                        break;
-                    }
-                case Shapes.STAR:
+                case 3: //arr
+                    g.DrawPolygon(pen, arrowVertices(old, cur, size));
+                    break;
+                case 4: //star
                     g.DrawPolygon(pen, starVertices(old, cur, size));
                     break;
-                case Shapes.ISO_TRIANGLE:
-                    {
-                        Point[] vertices2 = { new Point(old.X, old.Y), new Point(old.X + size.Width, old.Y + size.Height),
-                            new Point(old.X, old.Y + size.Height) };
-                        g.DrawPolygon(pen, vertices2);
-                        break;
-                    }
-                case Shapes.ARROW:
-                    {
-                        Point[] vertices = { new Point(old.X, old.Y + size.Height / 4), new Point(old.X + size.Width / 2, old.Y + size.Height / 4),
-                            new Point(old.X + size.Width/2, old.Y), new Point(old.X + size.Width, old.Y + size.Height/2),
-                            new Point(old.X + size.Width/2, old.Y + size.Height), new Point(old.X + size.Width/2, old.Y + size.Height/4*3),
-                            new Point(old.X, old.Y + size.Height/4*3)};
-                        g.DrawPolygon(pen, vertices);    
-                        break;
-                    }
-                case Shapes.TRIANGLE:
-                    {
-                        Point[] vertices = { new Point(old.X, old.Y + size.Height), new Point(old.X + size.Width / 2, old.Y),
-                            new Point(old.X + size.Width, old.Y + size.Height)};
-                        g.DrawPolygon(pen, vertices);
-                        break;
-                    }
-                case Shapes.LIGHTNING:
-                    {
-                        Point[] vertices = { new Point(old.X + size.Width / 4, old.Y), new Point(old.X, old.Y + size.Height / 2),
-                            new Point(old.X + size.Width / 5 * 2, old.Y + size.Height / 2), new Point(old.X+size.Width / 5, old.Y + size.Height),
-                            new Point(old.X + size.Width, old.Y + size.Height / 4), new Point(old.X + size.Width / 5 * 3, old.Y + size.Height / 4),
-                            new Point(old.X + size.Width / 4 * 3, old.Y), new Point(old.X + size.Width / 4 * 3, old.Y),
-                            new Point(old.X + size.Width / 4, old.Y)};
-                        g.DrawPolygon(pen, vertices);
-                        break;
-                    }
+                case 5: //tri
+                    g.DrawPolygon(pen, triangleVertices(old, cur, size));
+                    break;
+                case 6: //lgt
+                    g.DrawPolygon(pen, lightningVertices(old, cur, size));
+                    break;
+                case 7: //iso
+                    g.DrawPolygon(pen, isoTriangleVertices(old, cur, size));
+                    break; 
+                case 8: //iso
+                    g.DrawPolygon(pen, hexagonVertices(old, cur, size));
+                    break;
                 default:
                     break;
             }
         }
 
-        public void DrawShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size, Pen pen,Brush fillColor)
+        public void DrawShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
             if(fill)
             {
-                FillShapes(p, bm, g, old, cur, size, pen, fillColor);
+                brush.Dispose();
+                brush = new SolidBrush(colorPanel.getColor2());
+
+                FillShapes(p, bm, g, old, cur, size, brush);
             }
             if(outline)
             {
-                DrawOutline(p, bm, g, old, cur, size, pen);
+                pen.Dispose();
+                pen = new Pen(colorPanel.getColor1(), thicknessSlide.Value);
+                
+                DrawOutline(p, bm, g, old, cur, size);
             }
         }
-
-
-
+        
         private void Shapes_FillCheckBox_OnChange(object sender, EventArgs e)
         {
             if(fill)
@@ -255,6 +233,10 @@ namespace PaintUI
             else
                 outline = true;
         }
+
         
+
+        //pen.DashStyle = DashStyle.Solid;
+        //pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
     }
 }

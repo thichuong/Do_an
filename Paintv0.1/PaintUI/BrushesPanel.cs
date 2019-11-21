@@ -13,8 +13,12 @@ namespace PaintUI
 {
     public partial class BrushesPanel : UserControl
     {
-        public event EventHandler ThicknessChange;
-        public event EventHandler OpacityChange;
+        enum Brushes { MARKER, PENCIL, ERASER, FILL};
+        Brushes curBrush;
+
+        bool isShown;
+        
+        BrushesSelection selBrush;
 
         public BrushesPanel()
         {
@@ -22,21 +26,40 @@ namespace PaintUI
             thicknessSlide.Value = 10;
             opacitySlide.Value = 255;
             thicknessSlide.MaximumValue = 30;
+
+            curBrush = Brushes.MARKER;
+
+            isShown = false;
+
+            selBrush = new BrushesSelection();
+            selBrush.Location = new Point(0, curBrushBtn.Location.Y + curBrushBtn.Size.Height + 10);
+            selBrush.Size = new Size(Width + 40, Width);
+            Controls.Add(selBrush);
+            selBrush.BringToFront();
+            selBrush.Hide();
+
+            selBrush.BrushSelected += SelBrush_BrushSelected;
         }
 
-        private void thicknessSlide_ValueChanged(object sender, EventArgs e)
+        private void SelBrush_BrushSelected(object sender, EventArgs e)
         {
-            if (this.ThicknessChange != null)
-                this.ThicknessChange(this, e);
+            throw new NotImplementedException();
         }
 
-        
-        private void opacitySlide_ValueChanged(object sender, EventArgs e)
+        private void curBrushBtn_Click(object sender, EventArgs e)
         {
-            if (this.OpacityChange != null)
-                this.OpacityChange(this, e);
+            if (isShown)
+            {
+                selBrush.Hide();
+                //bunifuTransition1.HideSync(selBrush, false, BunifuAnimatorNS.Animation.VertSlide);
+            }
+            else
+            {
+                selBrush.Show();
+                //bunifuTransition1.ShowSync(selBrush, false, BunifuAnimatorNS.Animation.VertSlide);
+            }
+            isShown = !isShown;
         }
-
 
         public int getThickness()
         {
@@ -47,6 +70,8 @@ namespace PaintUI
         {
             return opacitySlide.Value;
         }
+
+        
     }
 }
 
