@@ -459,8 +459,9 @@ namespace PaintUI
             if(e.Button == MouseButtons.Left)
             {
                 old = new Point(e.Location.X, e.Location.Y);
-                cur = old;   
-                brushesPanel.ProcessMouseDown(bm, gra, old, cur);
+                cur = old;
+                if(curTool==Tools.BRUSH)
+                    brushesPanel.ProcessMouseDown(bm, gra, old, cur);
                 SketchBoxVisionImage();
                 isDown = true;
                 isChanged = true;
