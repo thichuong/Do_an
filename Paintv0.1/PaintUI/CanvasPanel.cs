@@ -13,11 +13,13 @@ namespace PaintUI
     public partial class CanvasPanel : UserControl
     {
         int trackkeypoint = 0;
+        public bool ShowCheckBox;
         public CanvasPanel()
         {
             InitializeComponent();
             Canvas_TransparentCheckBox.Checked = false;
-            Canvas_ShowCheckBox.Checked = false;
+            Canvas_ShowCheckBox.Checked = true;
+            ShowCheckBox = Canvas_ShowCheckBox.Checked;
         }
         public void setCanvasText(Canvas SketchBox)
         {
@@ -37,12 +39,15 @@ namespace PaintUI
         {
             int keycode;
             keycode = e.KeyChar;
-            if (keycode >= 48 && keycode <= 57 || keycode == 8 || keycode == 32 || keycode == 46)
-            {   //key dot allowed only one time 
-                if (keycode == 46) ++trackkeypoint;
-                if (trackkeypoint > 1) { e.Handled = true; --trackkeypoint; }
+            if (keycode >= 48 && keycode <= 57 || keycode == 8 )
+            {    
             }
             else e.Handled = true;
+            if(keycode==13)
+            {
+                Form1 parent = (Form1)this.ParentForm;
+                parent.resizeSketchBox();
+            }
         }     
 
         private void CanvasPanel_MouseDown(object sender, MouseEventArgs e)
@@ -68,6 +73,7 @@ namespace PaintUI
 
         private void Canvas_ShowCheckBox_OnChange(object sender, EventArgs e)
         {
+            ShowCheckBox = Canvas_ShowCheckBox.Checked;
             Form1 parent = (Form1)this.ParentForm;
             parent.SketchBoxShowResizepanel();
         }

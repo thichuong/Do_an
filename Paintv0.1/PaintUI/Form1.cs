@@ -20,7 +20,7 @@ namespace PaintUI
     public partial class Form1 : Form
     {
         //Khai bao bien
-        enum Tools { BRUSH, SHAPE, FILLBUCKET, ERASER };
+        enum Tools { BRUSH, SHAPE};
         Tools curTool;
         
         Pen pen;
@@ -307,7 +307,10 @@ namespace PaintUI
             brushesPanel.Visible = false;
             effectsPanel.Visible = false;
             menuPanel.Visible = false;
-            
+            LeftTopPanel.Visible = false;
+            LeftBottomPanel.Visible = false;
+            RightTopPanel.Visible = false;
+            RightBottomPanel.Visible = false;
         }
 
         
@@ -353,7 +356,20 @@ namespace PaintUI
                 RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
                 RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
                 LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
-                
+                if (!canvasPanel.ShowCheckBox)
+                {
+                    LeftTopPanel.Visible = false;
+                    LeftBottomPanel.Visible = false;
+                    RightTopPanel.Visible = false;
+                    RightBottomPanel.Visible = false;
+                }
+                else
+                {
+                    LeftTopPanel.Visible = true;
+                    LeftBottomPanel.Visible = true;
+                    RightTopPanel.Visible = true;
+                    RightBottomPanel.Visible = true;
+                }
             }
 
         }
@@ -408,15 +424,6 @@ namespace PaintUI
         
         //Cac su kien voi mouse
 
-        private void FillButton_Click(object sender, EventArgs e)
-        {
-            curTool = Tools.FILLBUCKET;
-        }
-
-        private void EraserButton_Click(object sender, EventArgs e)
-        {
-            curTool = Tools.ERASER;
-        }
 
         private void SketchBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -452,11 +459,9 @@ namespace PaintUI
             if(e.Button == MouseButtons.Left)
             {
                 old = new Point(e.Location.X, e.Location.Y);
-                cur = old;
-                
+                cur = old;   
                 brushesPanel.ProcessMouseDown(bm, gra, old, cur);
                 SketchBoxVisionImage();
-
                 isDown = true;
                 isChanged = true;
             }
@@ -475,14 +480,6 @@ namespace PaintUI
                         break;
                     case Tools.SHAPE:
                         shapesPanel.DrawShapes(SketchBox, bm, e.Graphics, old, cur, new Size(wid, hei));
-                        break;
-                    case Tools.ERASER:
-                        Pen temp = new Pen(Color.Transparent, brushesPanel.getThickness());
-                        temp.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
-                        gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
-                        gra.DrawLine(temp, old, cur);
-                        old = cur;
-                        SketchBoxVisionImage();
                         break;
                     default:
                         break;
@@ -504,7 +501,7 @@ namespace PaintUI
 
         public void SketchBoxShowResizepanel()
         {
-            if (LeftTopPanel.Visible)
+            if (!canvasPanel.ShowCheckBox)
             {
                 LeftTopPanel.Visible = false;
                 LeftBottomPanel.Visible = false;

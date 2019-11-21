@@ -184,6 +184,5 @@ namespace PaintUI
             color = Color.FromArgb(80, color);
             parent.Effect_change(color, Color.FromArgb(255, color));
         }
-     
     }
 }
