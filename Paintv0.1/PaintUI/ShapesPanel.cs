@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
+<<<<<<< HEAD
 using Bunifu.Framework.UI;
+=======
+>>>>>>> 0072b7517241fa79201c2e0c4a0bc09a13a62c28
 
 namespace PaintUI
 {
