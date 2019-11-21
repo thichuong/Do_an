@@ -31,7 +31,6 @@ namespace PaintUI
         {
             curBrush = 0;
             curImage = marBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.BrushSelected != null)
                 this.BrushSelected(this, e);
         }
@@ -40,7 +39,6 @@ namespace PaintUI
         {
             curBrush = 1;
             curImage = eraBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.BrushSelected != null)
                 this.BrushSelected(this, e);
         }
@@ -49,7 +47,6 @@ namespace PaintUI
         {
             curBrush = 2;
             curImage = fillBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.BrushSelected != null)
                 this.BrushSelected(this, e);
         }
@@ -58,7 +55,6 @@ namespace PaintUI
         {
             curBrush = 3;
             curImage = peciBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.BrushSelected != null)
                 this.BrushSelected(this, e);
         }
@@ -68,7 +64,7 @@ namespace PaintUI
             return curBrush;
         }
 
-        public Image GetImage()
+        public Image getImage()
         {
             return curImage;
         }

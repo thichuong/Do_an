@@ -624,7 +624,7 @@
             this.effectsPanel.Location = new System.Drawing.Point(0, 0);
             this.effectsPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.effectsPanel.Name = "effectsPanel";
-            this.effectsPanel.Size = new System.Drawing.Size(365, 562);
+            this.effectsPanel.Size = new System.Drawing.Size(365, 969);
             this.effectsPanel.TabIndex = 33;
             // 
             // textPanel
@@ -634,7 +634,7 @@
             this.textPanel.Location = new System.Drawing.Point(0, 0);
             this.textPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textPanel.Name = "textPanel";
-            this.textPanel.Size = new System.Drawing.Size(363, 546);
+            this.textPanel.Size = new System.Drawing.Size(363, 969);
             this.textPanel.TabIndex = 35;
             // 
             // canvasPanel
@@ -644,18 +644,18 @@
             this.canvasPanel.Location = new System.Drawing.Point(0, 0);
             this.canvasPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.canvasPanel.Name = "canvasPanel";
-            this.canvasPanel.Size = new System.Drawing.Size(365, 562);
+            this.canvasPanel.Size = new System.Drawing.Size(365, 969);
             this.canvasPanel.TabIndex = 32;
             // 
             // shapesPanel
             // 
-            this.shapesPanel.BackColor = System.Drawing.Color.DimGray;
+            this.shapesPanel.BackColor = System.Drawing.Color.Gainsboro;
             this.bunifuTransition1.SetDecoration(this.shapesPanel, BunifuAnimatorNS.DecorationType.None);
             this.shapesPanel.Location = new System.Drawing.Point(0, 0);
             this.shapesPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.shapesPanel.Name = "shapesPanel";
-            this.shapesPanel.Size = new System.Drawing.Size(365, 969);
-            this.shapesPanel.TabIndex = 36;
+            this.shapesPanel.Size = new System.Drawing.Size(365, 965);
+            this.shapesPanel.TabIndex = 38;
             // 
             // doubleBufferPanel1
             // 
@@ -931,11 +931,12 @@
             // 
             // brushesPanel
             // 
+            this.brushesPanel.BackColor = System.Drawing.Color.Gainsboro;
             this.bunifuTransition1.SetDecoration(this.brushesPanel, BunifuAnimatorNS.DecorationType.None);
-            this.brushesPanel.Location = new System.Drawing.Point(0, -2);
+            this.brushesPanel.Location = new System.Drawing.Point(0, 1);
             this.brushesPanel.Name = "brushesPanel";
-            this.brushesPanel.Size = new System.Drawing.Size(363, 969);
-            this.brushesPanel.TabIndex = 37;
+            this.brushesPanel.Size = new System.Drawing.Size(363, 968);
+            this.brushesPanel.TabIndex = 39;
             // 
             // Form1
             // 

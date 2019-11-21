@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrushesSelection));
             this.bunifuCards1 = new Bunifu.Framework.UI.BunifuCards();
             this.bunifuFlatButton5 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.fillBtn = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -38,7 +35,6 @@
             this.peciBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.eraBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.marBtn = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.bunifuTransition1 = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.bunifuCards1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,18 +50,19 @@
             this.bunifuCards1.Controls.Add(this.peciBtn);
             this.bunifuCards1.Controls.Add(this.eraBtn);
             this.bunifuCards1.Controls.Add(this.marBtn);
+            this.bunifuCards1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuCards1.LeftSahddow = false;
-            this.bunifuCards1.Location = new System.Drawing.Point(3, 3);
+            this.bunifuCards1.Location = new System.Drawing.Point(0, 0);
             this.bunifuCards1.Name = "bunifuCards1";
             this.bunifuCards1.RightSahddow = true;
             this.bunifuCards1.ShadowDepth = 20;
-            this.bunifuCards1.Size = new System.Drawing.Size(339, 301);
+            this.bunifuCards1.Size = new System.Drawing.Size(342, 306);
             this.bunifuCards1.TabIndex = 0;
             // 
             // bunifuFlatButton5
             // 
             this.bunifuFlatButton5.Activecolor = System.Drawing.Color.Aqua;
-            this.bunifuFlatButton5.BackColor = System.Drawing.Color.DarkGray;
+            this.bunifuFlatButton5.BackColor = System.Drawing.Color.Transparent;
             this.bunifuFlatButton5.BackgroundImage = global::PaintUI.Properties.Resources.Artboard_1BaoKq;
             this.bunifuFlatButton5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bunifuFlatButton5.BorderRadius = 0;
@@ -87,7 +84,7 @@
             this.bunifuFlatButton5.Location = new System.Drawing.Point(233, 161);
             this.bunifuFlatButton5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bunifuFlatButton5.Name = "bunifuFlatButton5";
-            this.bunifuFlatButton5.Normalcolor = System.Drawing.Color.DarkGray;
+            this.bunifuFlatButton5.Normalcolor = System.Drawing.Color.Transparent;
             this.bunifuFlatButton5.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.bunifuFlatButton5.OnHoverTextColor = System.Drawing.Color.White;
             this.bunifuFlatButton5.selected = false;
@@ -100,7 +97,7 @@
             // fillBtn
             // 
             this.fillBtn.Activecolor = System.Drawing.Color.Aqua;
-            this.fillBtn.BackColor = System.Drawing.Color.DarkGray;
+            this.fillBtn.BackColor = System.Drawing.Color.Transparent;
             this.fillBtn.BackgroundImage = global::PaintUI.Properties.Resources.FillIcon;
             this.fillBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fillBtn.BorderRadius = 0;
@@ -122,7 +119,7 @@
             this.fillBtn.Location = new System.Drawing.Point(233, 47);
             this.fillBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fillBtn.Name = "fillBtn";
-            this.fillBtn.Normalcolor = System.Drawing.Color.DarkGray;
+            this.fillBtn.Normalcolor = System.Drawing.Color.Transparent;
             this.fillBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.fillBtn.OnHoverTextColor = System.Drawing.Color.White;
             this.fillBtn.selected = false;
@@ -136,7 +133,7 @@
             // bunifuFlatButton4
             // 
             this.bunifuFlatButton4.Activecolor = System.Drawing.Color.Aqua;
-            this.bunifuFlatButton4.BackColor = System.Drawing.Color.DarkGray;
+            this.bunifuFlatButton4.BackColor = System.Drawing.Color.Transparent;
             this.bunifuFlatButton4.BackgroundImage = global::PaintUI.Properties.Resources.Artboard_1BaoKq;
             this.bunifuFlatButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bunifuFlatButton4.BorderRadius = 0;
@@ -158,7 +155,7 @@
             this.bunifuFlatButton4.Location = new System.Drawing.Point(128, 161);
             this.bunifuFlatButton4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bunifuFlatButton4.Name = "bunifuFlatButton4";
-            this.bunifuFlatButton4.Normalcolor = System.Drawing.Color.DarkGray;
+            this.bunifuFlatButton4.Normalcolor = System.Drawing.Color.Transparent;
             this.bunifuFlatButton4.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.bunifuFlatButton4.OnHoverTextColor = System.Drawing.Color.White;
             this.bunifuFlatButton4.selected = false;
@@ -171,7 +168,7 @@
             // peciBtn
             // 
             this.peciBtn.Activecolor = System.Drawing.Color.Aqua;
-            this.peciBtn.BackColor = System.Drawing.Color.DarkGray;
+            this.peciBtn.BackColor = System.Drawing.Color.Transparent;
             this.peciBtn.BackgroundImage = global::PaintUI.Properties.Resources.pencil;
             this.peciBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.peciBtn.BorderRadius = 0;
@@ -193,7 +190,7 @@
             this.peciBtn.Location = new System.Drawing.Point(23, 161);
             this.peciBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.peciBtn.Name = "peciBtn";
-            this.peciBtn.Normalcolor = System.Drawing.Color.DarkGray;
+            this.peciBtn.Normalcolor = System.Drawing.Color.Transparent;
             this.peciBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.peciBtn.OnHoverTextColor = System.Drawing.Color.White;
             this.peciBtn.selected = false;
@@ -207,7 +204,7 @@
             // eraBtn
             // 
             this.eraBtn.Activecolor = System.Drawing.Color.Aqua;
-            this.eraBtn.BackColor = System.Drawing.Color.DarkGray;
+            this.eraBtn.BackColor = System.Drawing.Color.Transparent;
             this.eraBtn.BackgroundImage = global::PaintUI.Properties.Resources._123;
             this.eraBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.eraBtn.BorderRadius = 0;
@@ -229,7 +226,7 @@
             this.eraBtn.Location = new System.Drawing.Point(128, 47);
             this.eraBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eraBtn.Name = "eraBtn";
-            this.eraBtn.Normalcolor = System.Drawing.Color.DarkGray;
+            this.eraBtn.Normalcolor = System.Drawing.Color.Transparent;
             this.eraBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.eraBtn.OnHoverTextColor = System.Drawing.Color.White;
             this.eraBtn.selected = false;
@@ -243,7 +240,7 @@
             // marBtn
             // 
             this.marBtn.Activecolor = System.Drawing.Color.Aqua;
-            this.marBtn.BackColor = System.Drawing.Color.DarkGray;
+            this.marBtn.BackColor = System.Drawing.Color.Transparent;
             this.marBtn.BackgroundImage = global::PaintUI.Properties.Resources.Artboard_1BaoKq;
             this.marBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.marBtn.BorderRadius = 0;
@@ -265,7 +262,7 @@
             this.marBtn.Location = new System.Drawing.Point(23, 47);
             this.marBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.marBtn.Name = "marBtn";
-            this.marBtn.Normalcolor = System.Drawing.Color.DarkGray;
+            this.marBtn.Normalcolor = System.Drawing.Color.Transparent;
             this.marBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.marBtn.OnHoverTextColor = System.Drawing.Color.White;
             this.marBtn.selected = false;
@@ -275,27 +272,6 @@
             this.marBtn.Textcolor = System.Drawing.Color.White;
             this.marBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.marBtn.Click += new System.EventHandler(this.marBtn_Click);
-            // 
-            // bunifuTransition1
-            // 
-            this.bunifuTransition1.AnimationType = BunifuAnimatorNS.AnimationType.VertSlide;
-            this.bunifuTransition1.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
-            animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            this.bunifuTransition1.DefaultAnimation = animation1;
             // 
             // BrushesSelection
             // 
@@ -318,6 +294,5 @@
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton5;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton4;
         private Bunifu.Framework.UI.BunifuFlatButton peciBtn;
-        private BunifuAnimatorNS.BunifuTransition bunifuTransition1;
     }
 }

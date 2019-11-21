@@ -451,32 +451,11 @@ namespace PaintUI
         {
             if(e.Button == MouseButtons.Left)
             {
-                pen = new Pen(Color.Black, brushesPanel.getThickness());
-                pen.DashStyle = DashStyle.Solid;
-                pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
-                
-
                 old = new Point(e.Location.X, e.Location.Y);
                 cur = old;
-
-                gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                gra.CompositingQuality = CompositingQuality.GammaCorrected;
-
-
-                if (curTool == Tools.FILLBUCKET)
-                {
-                    FillBucket bucket = new FillBucket();
-                    bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), pen.Color);
-                    SketchBoxVisionImage();
-                }
-
-                if (curTool == Tools.BRUSH && isDown == false)
-                {
-                    gra.FillEllipse(pen.Brush, cur.X - brushesPanel.getThickness() / 2, cur.Y - brushesPanel.getThickness() / 2, brushesPanel.getThickness(), brushesPanel.getThickness());
-
-                    SketchBoxVisionImage();
-                }
+                
+                brushesPanel.ProcessMouseDown(bm, gra, old, cur);
+                SketchBoxVisionImage();
 
                 isDown = true;
                 isChanged = true;
@@ -490,7 +469,7 @@ namespace PaintUI
                 switch (curTool)
                 {
                     case Tools.BRUSH:
-                        gra.DrawLine(pen, old, cur);
+                        brushesPanel.ProcessPaint(gra, old, cur);
                         old = cur;
                         SketchBoxVisionImage();
                         break;

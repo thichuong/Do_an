@@ -23,8 +23,6 @@ namespace PaintUI
         bool fill;
         bool outline;
 
-        bool isShown;
-
 
         public ShapesPanel()
         {
@@ -34,43 +32,41 @@ namespace PaintUI
 
             fill = false;
             outline = true;
-            isShown = false;
 
             Shapes_FillCheckBox.Checked = false;
             Shapes_OutlineCheckBox.Checked = true;
             
             selShape = new ShapeSelections();
             selShape.Location = new Point(0, curShapeBtn.Location.Y+curShapeBtn.Size.Height + 10);
-            selShape.Size = new Size(Width+20, Width);
+            selShape.Size = new Size(Width+20, 0);
             Controls.Add(selShape);
+            selShape.Show();
             selShape.BringToFront();
-            selShape.Hide();
 
             selShape.ShapeSelected += SelShape_ShapeSelected;
         }
-
+        
         private void SelShape_ShapeSelected(object sender, EventArgs e)
         {
             curShapeBtn.BackgroundImage = selShape.getImage();
+            
+            Slider slider = new Slider(selShape);
         }
 
+        private void curShapeBtn_Leave(object sender, EventArgs e)
+        {
+            curShapeBtn.BackgroundImage = selShape.getImage();
+
+            Slider slider = new Slider(selShape);
+        }
 
         //Button Click
-
         private void curShapeBtn_Click(object sender, EventArgs e)
         {
-            if (isShown)
-            {
-                bunifuTransition1.HideSync(selShape, false, BunifuAnimatorNS.Animation.VertSlide);
-            }
-            else
-            {
-                bunifuTransition1.ShowSync(selShape, false, BunifuAnimatorNS.Animation.VertSlide);
-            }
-            isShown = !isShown;
+            Slider slider = new Slider(selShape);
         }
 
-
+        
         //Tao cac dinh cua shape
         private PointF[] hexagonVertices(Point old, Point cur, Size size)
         {
@@ -235,6 +231,8 @@ namespace PaintUI
         }
 
         
+
+
 
         //pen.DashStyle = DashStyle.Solid;
         //pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);

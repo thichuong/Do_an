@@ -59,3 +59,24 @@ C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.ex
 C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
 C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.ShapeSelections.resources
 C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesSelection.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe.config
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\bin\Debug\PaintUI.pdb
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.csprojAssemblyReference.cache
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesPanel.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesSelection.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.CanvasPanel.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.ColorPanel.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.DoubleBufferPanel.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.EffectsPanel.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.Form1.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.MenuPanel.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.Properties.Resources.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.ShapeSelections.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.ShapesPanel.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.TextPanel.resources
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.GenerateResource.cache
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.CoreCompileInputs.cache
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.CopyComplete
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
+C:\Users\KC\OneDrive\Desktop\Paint-master -origin\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb

@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            BunifuAnimatorNS.Animation animation4 = new BunifuAnimatorNS.Animation();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShapesPanel));
             this.bunifuCards1 = new Bunifu.Framework.UI.BunifuCards();
             this.thicknessSlide = new Bunifu.Framework.UI.BunifuSlider();
             this.curShapeBtn = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -40,13 +37,12 @@
             this.Shapes_Label3 = new System.Windows.Forms.Label();
             this.Shapes_Label1 = new System.Windows.Forms.Label();
             this.colorPanel = new PaintUI.ColorPanel();
-            this.bunifuTransition1 = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.bunifuCards1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuCards1
             // 
-            this.bunifuCards1.BackColor = System.Drawing.Color.LightGray;
+            this.bunifuCards1.BackColor = System.Drawing.Color.Transparent;
             this.bunifuCards1.BorderRadius = 5;
             this.bunifuCards1.BottomSahddow = true;
             this.bunifuCards1.color = System.Drawing.Color.Tomato;
@@ -58,7 +54,6 @@
             this.bunifuCards1.Controls.Add(this.Shapes_Label3);
             this.bunifuCards1.Controls.Add(this.Shapes_Label1);
             this.bunifuCards1.Controls.Add(this.colorPanel);
-            this.bunifuTransition1.SetDecoration(this.bunifuCards1, BunifuAnimatorNS.DecorationType.None);
             this.bunifuCards1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuCards1.LeftSahddow = false;
             this.bunifuCards1.Location = new System.Drawing.Point(0, 0);
@@ -73,7 +68,6 @@
             this.thicknessSlide.BackColor = System.Drawing.Color.Transparent;
             this.thicknessSlide.BackgroudColor = System.Drawing.Color.DarkGray;
             this.thicknessSlide.BorderRadius = 0;
-            this.bunifuTransition1.SetDecoration(this.thicknessSlide, BunifuAnimatorNS.DecorationType.None);
             this.thicknessSlide.IndicatorColor = System.Drawing.Color.DarkCyan;
             this.thicknessSlide.Location = new System.Drawing.Point(55, 244);
             this.thicknessSlide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -92,7 +86,6 @@
             this.curShapeBtn.BorderRadius = 0;
             this.curShapeBtn.ButtonText = "";
             this.curShapeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTransition1.SetDecoration(this.curShapeBtn, BunifuAnimatorNS.DecorationType.None);
             this.curShapeBtn.DisabledColor = System.Drawing.Color.Gray;
             this.curShapeBtn.Iconcolor = System.Drawing.Color.Transparent;
             this.curShapeBtn.Iconimage = null;
@@ -119,6 +112,7 @@
             this.curShapeBtn.Textcolor = System.Drawing.Color.White;
             this.curShapeBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.curShapeBtn.Click += new System.EventHandler(this.curShapeBtn_Click);
+            this.curShapeBtn.Leave += new System.EventHandler(this.curShapeBtn_Leave);
             // 
             // Shapes_OutlineCheckBox
             // 
@@ -126,7 +120,6 @@
             this.Shapes_OutlineCheckBox.ChechedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(135)))), ((int)(((byte)(140)))));
             this.Shapes_OutlineCheckBox.Checked = true;
             this.Shapes_OutlineCheckBox.CheckedOnColor = System.Drawing.Color.DarkCyan;
-            this.bunifuTransition1.SetDecoration(this.Shapes_OutlineCheckBox, BunifuAnimatorNS.DecorationType.None);
             this.Shapes_OutlineCheckBox.ForeColor = System.Drawing.Color.White;
             this.Shapes_OutlineCheckBox.Location = new System.Drawing.Point(232, 189);
             this.Shapes_OutlineCheckBox.Margin = new System.Windows.Forms.Padding(9, 14, 9, 14);
@@ -139,7 +132,6 @@
             // 
             this.Shapes_Label4.AutoSize = true;
             this.Shapes_Label4.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuTransition1.SetDecoration(this.Shapes_Label4, BunifuAnimatorNS.DecorationType.None);
             this.Shapes_Label4.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Shapes_Label4.Location = new System.Drawing.Point(76, 172);
             this.Shapes_Label4.Name = "Shapes_Label4";
@@ -153,7 +145,6 @@
             this.Shapes_FillCheckBox.ChechedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(135)))), ((int)(((byte)(140)))));
             this.Shapes_FillCheckBox.Checked = true;
             this.Shapes_FillCheckBox.CheckedOnColor = System.Drawing.Color.DarkCyan;
-            this.bunifuTransition1.SetDecoration(this.Shapes_FillCheckBox, BunifuAnimatorNS.DecorationType.None);
             this.Shapes_FillCheckBox.ForeColor = System.Drawing.Color.White;
             this.Shapes_FillCheckBox.Location = new System.Drawing.Point(232, 326);
             this.Shapes_FillCheckBox.Margin = new System.Windows.Forms.Padding(9, 14, 9, 14);
@@ -166,7 +157,6 @@
             // 
             this.Shapes_Label3.AutoSize = true;
             this.Shapes_Label3.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuTransition1.SetDecoration(this.Shapes_Label3, BunifuAnimatorNS.DecorationType.None);
             this.Shapes_Label3.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Shapes_Label3.Location = new System.Drawing.Point(88, 313);
             this.Shapes_Label3.Name = "Shapes_Label3";
@@ -178,7 +168,6 @@
             // 
             this.Shapes_Label1.AutoSize = true;
             this.Shapes_Label1.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuTransition1.SetDecoration(this.Shapes_Label1, BunifuAnimatorNS.DecorationType.None);
             this.Shapes_Label1.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Shapes_Label1.Location = new System.Drawing.Point(113, 19);
             this.Shapes_Label1.Name = "Shapes_Label1";
@@ -192,33 +181,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.colorPanel.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuTransition1.SetDecoration(this.colorPanel, BunifuAnimatorNS.DecorationType.None);
             this.colorPanel.Location = new System.Drawing.Point(0, 400);
             this.colorPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.colorPanel.Name = "colorPanel";
             this.colorPanel.Size = new System.Drawing.Size(338, 346);
             this.colorPanel.TabIndex = 1;
-            // 
-            // bunifuTransition1
-            // 
-            this.bunifuTransition1.AnimationType = BunifuAnimatorNS.AnimationType.VertSlide;
-            this.bunifuTransition1.Cursor = null;
-            animation4.AnimateOnlyDifferences = true;
-            animation4.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.BlindCoeff")));
-            animation4.LeafCoeff = 0F;
-            animation4.MaxTime = 1F;
-            animation4.MinTime = 0F;
-            animation4.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicCoeff")));
-            animation4.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicShift")));
-            animation4.MosaicSize = 0;
-            animation4.Padding = new System.Windows.Forms.Padding(0);
-            animation4.RotateCoeff = 0F;
-            animation4.RotateLimit = 0F;
-            animation4.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.ScaleCoeff")));
-            animation4.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.SlideCoeff")));
-            animation4.TimeCoeff = 0F;
-            animation4.TransparencyCoeff = 0F;
-            this.bunifuTransition1.DefaultAnimation = animation4;
             // 
             // ShapesPanel
             // 
@@ -226,7 +193,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.Controls.Add(this.bunifuCards1);
-            this.bunifuTransition1.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ShapesPanel";
             this.Size = new System.Drawing.Size(338, 746);
@@ -246,7 +212,6 @@
         private System.Windows.Forms.Label Shapes_Label1;
         private ColorPanel colorPanel;
         private Bunifu.Framework.UI.BunifuFlatButton curShapeBtn;
-        private BunifuAnimatorNS.BunifuTransition bunifuTransition1;
         private Bunifu.Framework.UI.BunifuSlider thicknessSlide;
     }
 }

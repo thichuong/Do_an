@@ -28,7 +28,6 @@ namespace PaintUI
         {
             curShape = 0;
             curImg = recBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.ShapeSelected != null)
                 this.ShapeSelected(this, e);
         }
@@ -37,7 +36,6 @@ namespace PaintUI
         {
             curShape = 1;
             curImg = elpBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.ShapeSelected != null)
                 this.ShapeSelected(this, e);
         }
@@ -46,7 +44,6 @@ namespace PaintUI
         {
             curShape = 2;
             curImg = lineBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.ShapeSelected != null)
                 this.ShapeSelected(this, e);
         }
@@ -55,7 +52,6 @@ namespace PaintUI
         {
             curShape = 3;
             curImg = arwButton.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.ShapeSelected != null)
                 this.ShapeSelected(this, e);
         }
@@ -64,7 +60,6 @@ namespace PaintUI
         {
             curShape = 4;
             curImg = starBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.ShapeSelected != null)
                 this.ShapeSelected(this, e);
         }
@@ -73,7 +68,6 @@ namespace PaintUI
         {
             curShape = 5;
             curImg = triBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.ShapeSelected != null)
                 this.ShapeSelected(this, e);
         }
@@ -82,7 +76,6 @@ namespace PaintUI
         {
             curShape = 6;
             curImg = lgtBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.ShapeSelected != null)
                 this.ShapeSelected(this, e);
         }
@@ -91,7 +84,6 @@ namespace PaintUI
         {
             curShape = 7;
             curImg = isoBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.ShapeSelected != null)
                 this.ShapeSelected(this, e);
         }
@@ -100,7 +92,6 @@ namespace PaintUI
         {
             curShape = 8;
             curImg = hexBtn.BackgroundImage;
-            this.bunifuTransition1.HideSync(this, false, BunifuAnimatorNS.Animation.VertSlide);
             if (this.ShapeSelected != null)
                 this.ShapeSelected(this, e);
         }
