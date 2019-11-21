@@ -37,16 +37,12 @@ namespace PaintUI
         {
             int keycode;
             keycode = e.KeyChar;
-            if (keycode >= 48 && keycode <= 57 || keycode == 8  )
-            {   
+            if (keycode >= 48 && keycode <= 57 || keycode == 8 || keycode == 32 || keycode == 46)
+            {   //key dot allowed only one time 
+                if (keycode == 46) ++trackkeypoint;
+                if (trackkeypoint > 1) { e.Handled = true; --trackkeypoint; }
             }
             else e.Handled = true;
-            if (keycode==13)
-            {
-                Form1 parent = (Form1)this.ParentForm;
-                parent.resizeSketchBox();
-            }
-            
         }     
 
         private void CanvasPanel_MouseDown(object sender, MouseEventArgs e)

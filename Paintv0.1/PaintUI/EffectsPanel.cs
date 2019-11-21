@@ -79,14 +79,9 @@ namespace PaintUI
         {
             Effect_ValueSlider.Value = 0;
             PictureBox p = sender as PictureBox;
-<<<<<<< HEAD
             Form1 parent = (Form1)this.ParentForm;
             color = Color.Transparent;
             color = Color.FromArgb(80, color);
-=======
-            color = Color.Transparent;
-            Form1 parent = (Form1)this.ParentForm;
->>>>>>> 0072b7517241fa79201c2e0c4a0bc09a13a62c28
             parent.Effect_change(color, Color.Gainsboro);
         }
 

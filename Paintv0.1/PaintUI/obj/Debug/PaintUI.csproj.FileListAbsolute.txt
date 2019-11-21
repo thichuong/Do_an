@@ -1,11 +1,8 @@
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe.config
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\bin\Debug\PaintUI.pdb
-<<<<<<< HEAD
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\bin\Debug\Bunifu_UI_v1.5.3.dll
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\bin\Debug\MaterialSkin.dll
-=======
->>>>>>> 0072b7517241fa79201c2e0c4a0bc09a13a62c28
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.csprojAssemblyReference.cache
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesPanel.resources
 C:\Users\Thi Chuong\Desktop\Paint\Paintv0.1\PaintUI\obj\Debug\PaintUI.CanvasPanel.resources
@@ -41,7 +38,6 @@ C:\Users\Thi Chuong\Desktop\Paint - Copy\Paintv0.1\PaintUI\obj\Debug\PaintUI.csp
 C:\Users\Thi Chuong\Desktop\Paint - Copy\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.CopyComplete
 C:\Users\Thi Chuong\Desktop\Paint - Copy\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
 C:\Users\Thi Chuong\Desktop\Paint - Copy\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
-<<<<<<< HEAD
 C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe.config
 C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe
 C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\bin\Debug\PaintUI.pdb
@@ -63,5 +59,3 @@ C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.ex
 C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
 C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.ShapeSelections.resources
 C:\Users\KC\OneDrive\Desktop\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesSelection.resources
-=======
->>>>>>> 0072b7517241fa79201c2e0c4a0bc09a13a62c28

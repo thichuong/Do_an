@@ -113,19 +113,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
     <Compile Include="ShapeSelections.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ShapeSelections.Designer.cs">
       <DependentUpon>ShapeSelections.cs</DependentUpon>
-=======
-    <Compile Include="SelectedPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SelectedPanel.Designer.cs">
-      <DependentUpon>SelectedPanel.cs</DependentUpon>
->>>>>>> 0072b7517241fa79201c2e0c4a0bc09a13a62c28
     </Compile>
     <Compile Include="ShapesPanel.cs">
       <SubType>UserControl</SubType>
@@ -171,10 +163,6 @@
     <EmbeddedResource Include="obj\Debug\PaintUI.Form1.resources" />
     <EmbeddedResource Include="obj\Debug\PaintUI.MenuPanel.resources" />
     <EmbeddedResource Include="obj\Debug\PaintUI.Properties.Resources.resources" />
-<<<<<<< HEAD
-=======
-    <EmbeddedResource Include="obj\Debug\PaintUI.SelectedPanel.resources" />
->>>>>>> 0072b7517241fa79201c2e0c4a0bc09a13a62c28
     <EmbeddedResource Include="obj\Debug\PaintUI.ShapesPanel.resources" />
     <EmbeddedResource Include="obj\Debug\PaintUI.TextPanel.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -187,13 +175,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-<<<<<<< HEAD
     <EmbeddedResource Include="ShapeSelections.resx">
       <DependentUpon>ShapeSelections.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="SelectedPanel.resx">
-      <DependentUpon>SelectedPanel.cs</DependentUpon>
->>>>>>> 0072b7517241fa79201c2e0c4a0bc09a13a62c28
     </EmbeddedResource>
     <EmbeddedResource Include="ShapesPanel.resx">
       <DependentUpon>ShapesPanel.cs</DependentUpon>
@@ -313,7 +296,6 @@
     <Content Include="obj\Debug\PaintUI.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="Resources\arrow.bmp" />
-<<<<<<< HEAD
     <None Include="Resources\Trianglae.png" />
     <None Include="Resources\Arrow.png" />
     <Content Include="Resources\ArrowShape.png" />
@@ -335,16 +317,6 @@
     <None Include="Resources\Rectangle1.png" />
     <Content Include="Resources\star.bmp" />
     <None Include="Resources\Star.png" />
-=======
-    <Content Include="Resources\ArrowShape.png" />
-    <Content Include="Resources\ellip.bmp" />
-    <Content Include="Resources\hexa.bmp" />
-    <Content Include="Resources\iso.bmp" />
-    <Content Include="Resources\lig.bmp" />
-    <Content Include="Resources\line.bmp" />
-    <Content Include="Resources\re.bmp" />
-    <Content Include="Resources\star.bmp" />
->>>>>>> 0072b7517241fa79201c2e0c4a0bc09a13a62c28
     <Content Include="Resources\triange.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
