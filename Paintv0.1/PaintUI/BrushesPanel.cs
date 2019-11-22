@@ -54,7 +54,7 @@ namespace PaintUI
         //Cac thao tac voi trang ve
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
         {
-            pen = new Pen(Color.Black, thicknessSlide.Value);
+            pen = new Pen(colorPanel.getColor1(), thicknessSlide.Value);
             pen.DashStyle = DashStyle.Solid;
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
             
@@ -72,7 +72,7 @@ namespace PaintUI
                     break;
                 case 2: //fill
                     FillBucket bucket = new FillBucket();
-                    bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), pen.Color);
+                    bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), colorPanel.getColor2());
                     break;
                 case 3:
                     break;
