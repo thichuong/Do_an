@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 namespace PaintUI
@@ -23,131 +24,51 @@ namespace PaintUI
             int x = pt.X, y = pt.Y;
             Stack<Point> check = new Stack<Point>();
             int To = replaceColor.ToArgb();
-            int From = bits[x + y * data.Stride / 4];
+            int From = bits[x + y * data.Stride /4];
             bits[x + y * data.Stride / 4] = To;
-            if (From != To)
+            if (pointColor !=replaceColor)
             {
-                check.Push(new Point(x, y));
+                Bitmap tempbmp = new Bitmap(bmp.Width,bmp.Height);
+                BitmapData tempdata= tempbmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+                int[] tempbits = new int[tempdata.Stride / 4 * tempdata.Height];
+                Marshal.Copy(data.Scan0, tempbits, 0, tempbits.Length);
+                check.Push(new Point(x, y));  
                 while (check.Count > 0)
                 {
                     Point cur = check.Pop();
-
                     Point next = new Point(cur.X, cur.Y - 1);
-                    if (next.X >= 0 && next.Y >= 0 &&
-                        next.X < data.Width &&
-                        next.Y < data.Height)
+                    foreach (Point off in new Point[] {
+                new Point(0, -1), new Point(0, 1),
+                new Point(-1, 0), new Point(1, 0)})
                     {
-
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
+                        next = new Point(cur.X + off.X, cur.Y + off.Y);
+                        if (next.X >= 0 && next.Y >= 0 &&
+                            next.X < data.Width &&
+                            next.Y < data.Height)
                         {
-                            check.Push(next);
-
+                            if (bits[next.X + next.Y * data.Stride / 4] == From)
+                            {
+                                check.Push(next);
+                               
+                            }
+                            bits[next.X + next.Y * data.Stride / 4] = To;
+                            tempbits[next.X + next.Y * data.Stride / 4] = To;
                         }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
                     }
-                    next = new Point(cur.X, cur.Y + 1);
-                    if (next.X >= 0 && next.Y >= 0 &&
-                        next.X < data.Width &&
-                        next.Y < data.Height)
-                    {
-
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
-                        {
-                            check.Push(next);
-
-                        }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
-                    }
-                    next = new Point(cur.X - 1, cur.Y);
-                    if (next.X >= 0 && next.Y >= 0 &&
-                        next.X < data.Width &&
-                        next.Y < data.Height)
-                    {
-
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
-                        {
-                            check.Push(next);
-                        }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
-                    }
-                    next = new Point(cur.X + 1, cur.Y);
-                    if (next.X >= 0 && next.Y >= 0 &&
-                        next.X < data.Width &&
-                        next.Y < data.Height)
-                    {
-
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
-                        {
-                            check.Push(next);
-
-                        }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
-                    }
-
                 }
-                while (check.Count > 0)
-                {
-                    Point cur = check.Pop();
-
-                    Point next = new Point(cur.X, cur.Y - 1);
-                    if (next.X >= 0 && next.Y >= 0 &&
-                        next.X < data.Width &&
-                        next.Y < data.Height)
-                    {
-
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
-                        {
-                            check.Push(next);
-
-                        }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
-                    }
-                    next = new Point(cur.X, cur.Y + 1);
-                    if (next.X >= 0 && next.Y >= 0 &&
-                        next.X < data.Width &&
-                        next.Y < data.Height)
-                    {
-
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
-                        {
-                            check.Push(next);
-
-                        }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
-                    }
-                    next = new Point(cur.X - 1, cur.Y);
-                    if (next.X >= 0 && next.Y >= 0 &&
-                        next.X < data.Width &&
-                        next.Y < data.Height)
-                    {
-
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
-                        {
-                            check.Push(next);
-                        }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
-                    }
-                    next = new Point(cur.X + 1, cur.Y);
-                    if (next.X >= 0 && next.Y >= 0 &&
-                        next.X < data.Width &&
-                        next.Y < data.Height)
-                    {
-
-                        if (bits[next.X + next.Y * data.Stride / 4] == From)
-                        {
-                            check.Push(next);
-
-                        }
-                        bits[next.X + next.Y * data.Stride / 4] = To;
-                    }
-
-                }
+                Marshal.Copy(tempbits, 0, tempdata.Scan0, tempbits.Length);
+                bmp.UnlockBits(data);
+                tempbmp.UnlockBits(tempdata);
+                Graphics gra = Graphics.FromImage(bmp);
+                gra.SmoothingMode = SmoothingMode.AntiAlias;
+                gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                gra.DrawImage(tempbmp, 0, 0, bmp.Width, bmp.Height);
             }
-
-            Marshal.Copy(bits, 0, data.Scan0, bits.Length);
-            bmp.UnlockBits(data);
-
+            else
+            {
+                bmp.UnlockBits(data);
+            }
         }
-
     }
 }

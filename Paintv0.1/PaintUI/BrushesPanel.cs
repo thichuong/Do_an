@@ -78,8 +78,9 @@ namespace PaintUI
                     break;
                 case 2: //fill
                     FillBucket bucket = new FillBucket();
+                    Color pointColor = Color.FromArgb(255, bm.GetPixel(old.X, old.Y));
                     color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor2());
-                    bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), colorPanel.getColor2());
+                    bucket.Fill(bm, old, pointColor, color);
                     break;
                 case 3:
                     break;
