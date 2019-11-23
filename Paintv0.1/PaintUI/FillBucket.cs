@@ -147,7 +147,6 @@ namespace PaintUI
             Marshal.Copy(bits, 0, data.Scan0, bits.Length);
             bmp.UnlockBits(data);
 
-
         }
 
     }

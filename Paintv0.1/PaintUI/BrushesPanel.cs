@@ -15,9 +15,9 @@ namespace PaintUI
     public partial class BrushesPanel : UserControl
     {
         BrushesSelection selBrush;
-
+        List<Point> _pts = null;
         Pen pen;
-        
+       
         public BrushesPanel()
         {
             InitializeComponent();
@@ -54,7 +54,8 @@ namespace PaintUI
         //Cac thao tac voi trang ve
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
         {
-            pen = new Pen(colorPanel.getColor1(), thicknessSlide.Value);
+            Color color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor1());
+            pen = new Pen(color, thicknessSlide.Value);
             pen.DashStyle = DashStyle.Solid;
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
             
@@ -66,12 +67,18 @@ namespace PaintUI
             switch (selBrush.getBrush())
             {
                 case 0: //marker
-                    gra.FillEllipse(pen.Brush, cur.X - thicknessSlide.Value / 2, cur.Y - thicknessSlide.Value / 2, thicknessSlide.Value, thicknessSlide.Value);
+                    
+                    _pts = new List<Point>();
+                    _pts.Add(cur);
+                 
                     break;
                 case 1: //eraser
+                    _pts = new List<Point>();
+                    _pts.Add(cur);
                     break;
                 case 2: //fill
                     FillBucket bucket = new FillBucket();
+                    color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor2());
                     bucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), colorPanel.getColor2());
                     break;
                 case 3:
@@ -82,16 +89,27 @@ namespace PaintUI
 
         public void ProcessPaint(Graphics gra, Point old, Point cur)
         {
+            GraphicsPath gPath = new GraphicsPath();
             switch (selBrush.getBrush())
             {
+               
                 case 0: //marker
-                    gra.DrawLine(pen, old, cur);
+                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                    gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    _pts.Add(cur);
+                    gPath.AddLines(_pts.ToArray());
+                    pen.LineJoin = LineJoin.Round;
+                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                    gra.DrawPath(pen, gPath);
                     break;
                 case 1: //eraser
-                    Pen temp = new Pen(Color.Transparent, thicknessSlide.Value);
-                    temp.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
                     gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
-                    gra.DrawLine(temp, old, cur);
+                    gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+                    _pts.Add(cur);
+                    gPath.AddLines(_pts.ToArray());
+                    pen.LineJoin = LineJoin.Round;
+                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                    gra.DrawPath(pen, gPath);
                     break;
                 default:
                     break;

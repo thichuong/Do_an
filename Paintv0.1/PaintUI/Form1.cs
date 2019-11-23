@@ -444,6 +444,12 @@ namespace PaintUI
                 shapesPanel.DrawShapes(SketchBox, bm, gra, old, cur, new Size(wid, hei));
                 SketchBoxVisionImage();
             }
+            if(curTool==Tools.BRUSH)
+            {
+                
+                brushesPanel.ProcessPaint(gra, old, cur);
+                SketchBoxVisionImage();
+            }
             wid = hei = 0;
 
             //Them vao stack UNDO khi het net ve
@@ -461,8 +467,11 @@ namespace PaintUI
                 old = new Point(e.Location.X, e.Location.Y);
                 cur = old;
                 if(curTool==Tools.BRUSH)
+                {
                     brushesPanel.ProcessMouseDown(bm, gra, old, cur);
-                SketchBoxVisionImage();
+                    SketchBoxVisionImage();
+                }
+                
                 isDown = true;
                 isChanged = true;
             }
@@ -475,9 +484,9 @@ namespace PaintUI
                 switch (curTool)
                 {
                     case Tools.BRUSH:
-                        brushesPanel.ProcessPaint(gra, old, cur);
+                        e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                        brushesPanel.ProcessPaint(e.Graphics, old, cur);
                         old = cur;
-                        SketchBoxVisionImage();
                         break;
                     case Tools.SHAPE:
                         shapesPanel.DrawShapes(SketchBox, bm, e.Graphics, old, cur, new Size(wid, hei));
