@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Bunifu.Framework.UI;
+using System.Drawing.Drawing2D;
 
 namespace PaintUI
 {
@@ -119,37 +120,72 @@ namespace PaintUI
             return vertices;
         }
 
+        private GraphicsPath rHeartPath(Point old, Point cur, Size size)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.AddBezier(old.X + size.Width / 2, old.Y + size.Height / 3,
+                            old.X + size.Width * 0.9f, old.Y,
+                            old.X + size.Width, old.Y + size.Height * 0.75f,
+                            old.X + size.Width / 2, old.Y + size.Height);
+            return path;
+        }
+        
+        private GraphicsPath lHeartPath(Point old, Point cur, Size size)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.AddBezier(old.X + size.Width / 2, old.Y + size.Height / 3,
+                            old.X + size.Width * 0.1f, old.Y,
+                            old.X, old.Y + size.Height * 0.75f,
+                            old.X + size.Width / 2, old.Y + size.Height);
+            return path;
+        }
 
+        private GraphicsPath wHeartPath(Point old, Point cur, Size size)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.AddBezier(old.X + size.Width / 2, old.Y + size.Height / 3,
+                            old.X + size.Width * 0.9f, old.Y,
+                            old.X + size.Width, old.Y + size.Height * 0.75f,
+                            old.X + size.Width / 2, old.Y + size.Height);
+            path.AddBezier(old.X + size.Width / 2, old.Y + size.Height / 3,
+                            old.X + size.Width * 0.1f, old.Y,
+                            old.X, old.Y + size.Height * 0.75f,
+                            old.X + size.Width / 2, old.Y + size.Height);
+            return path;
+        }
         //draw outline and fill color
-        public void FillShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size, Brush fillColor)
+        public void FillShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
             switch (selShape.getShape())
             {
                 case 0: //rec
-                    g.FillRectangle(fillColor, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
+                    g.FillRectangle(brush, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
                     break;
                 case 1: //elp
-                    g.FillEllipse(fillColor, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
+                    g.FillEllipse(brush, size.Width > 0 ? old.X : cur.X, size.Height > 0 ? old.Y : cur.Y, Math.Abs(size.Width), Math.Abs(size.Height));
                     break;
                 case 2: //line
                     break;
                 case 3: //arr
-                    g.FillPolygon(fillColor, arrowVertices(old, cur, size));
+                    g.FillPolygon(brush, arrowVertices(old, cur, size));
                     break;
                 case 4: //star
-                    g.FillPolygon(fillColor, starVertices(old, cur, size));
+                    g.FillPolygon(brush, starVertices(old, cur, size));
                     break;
                 case 5: //tri
-                    g.FillPolygon(fillColor, triangleVertices(old, cur, size));
+                    g.FillPolygon(brush, triangleVertices(old, cur, size));
                     break;
                 case 6: //lgt
-                    g.FillPolygon(fillColor, lightningVertices(old, cur, size));
+                    g.FillPolygon(brush, lightningVertices(old, cur, size));
                     break;
                 case 7: //iso
-                    g.FillPolygon(fillColor, isoTriangleVertices(old, cur, size));
+                    g.FillPolygon(brush, isoTriangleVertices(old, cur, size));
                     break; 
                 case 8: //iso
-                    g.FillPolygon(fillColor, hexagonVertices(old, cur, size));
+                    g.FillPolygon(brush, hexagonVertices(old, cur, size));
+                    break;
+                case 9:
+                    g.FillPath(brush, wHeartPath(old, cur, size));
                     break;
                 default:
                     break;
@@ -187,6 +223,18 @@ namespace PaintUI
                 case 8: //iso
                     g.DrawPolygon(pen, hexagonVertices(old, cur, size));
                     break;
+                case 9:
+                    try
+                    {
+                        pen.SetLineCap(LineCap.Round, LineCap.Round, DashCap.Round);
+                        g.DrawPath(pen, rHeartPath(old, cur, size));
+                        g.DrawPath(pen, lHeartPath(old, cur, size));
+                    }
+                    catch(Exception)
+                    {
+
+                    }
+                    break;
                 default:
                     break;
             }
@@ -199,7 +247,7 @@ namespace PaintUI
                 brush.Dispose();
                 brush = new SolidBrush(colorPanel.getColor2());
 
-                FillShapes(p, bm, g, old, cur, size, brush);
+                FillShapes(p, bm, g, old, cur, size);
             }
             if(outline)
             {

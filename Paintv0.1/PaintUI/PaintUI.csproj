@@ -303,6 +303,9 @@
     <None Include="Resources\Artboard 1BaoKq.png" />
     <Content Include="Resources\ellip.bmp" />
     <None Include="Resources\Ellipse.png" />
+    <None Include="Resources\heart.png" />
+    <None Include="Resources\heart1.png" />
+    <None Include="Resources\heart2.png" />
     <Content Include="Resources\hexa.bmp" />
     <None Include="Resources\Hexagon.png" />
     <Content Include="Resources\iso.bmp" />

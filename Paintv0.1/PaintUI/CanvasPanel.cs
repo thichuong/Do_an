@@ -12,7 +12,7 @@ namespace PaintUI
 {
     public partial class CanvasPanel : UserControl
     {
-        int trackkeypoint = 0;
+        //int trackkeypoint = 0;
         public bool ShowCheckBox;
         public CanvasPanel()
         {

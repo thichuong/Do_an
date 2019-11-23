@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace PaintUI
 {
@@ -22,6 +23,7 @@ namespace PaintUI
             InitializeComponent();
             curShape = 0;
             curImg = recBtn.BackgroundImage;
+            
         }
 
         private void recBtn_Click(object sender, EventArgs e)
@@ -95,7 +97,14 @@ namespace PaintUI
             if (this.ShapeSelected != null)
                 this.ShapeSelected(this, e);
         }
-
+        
+        private void hrtBtn_Click(object sender, EventArgs e)
+        {
+            curShape = 9;
+            curImg = hrtBtn.BackgroundImage;
+            if (this.ShapeSelected != null)
+                this.ShapeSelected(this, e);
+        }
 
         public int getShape()
         {
@@ -106,6 +115,6 @@ namespace PaintUI
         {
             return curImg;
         }
-        
+
     }
 }

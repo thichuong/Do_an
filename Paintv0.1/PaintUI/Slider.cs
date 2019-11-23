@@ -45,7 +45,7 @@ namespace PaintUI
 
         public Slider(BrushesSelection tar)
         {
-            maxHeight = 250;
+            maxHeight = 200;
             type = 1;
             brushTar = tar;
 

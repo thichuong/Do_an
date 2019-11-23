@@ -70,6 +70,7 @@ namespace PaintUI
         {
             mainColor2.BringToFront();
             select = 2;
+            
         }
     }
 }

@@ -165,7 +165,7 @@
             this.Brushes_Label1.AutoSize = true;
             this.Brushes_Label1.BackColor = System.Drawing.Color.Transparent;
             this.Brushes_Label1.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Brushes_Label1.Location = new System.Drawing.Point(109, 18);
+            this.Brushes_Label1.Location = new System.Drawing.Point(100, 30);
             this.Brushes_Label1.Name = "Brushes_Label1";
             this.Brushes_Label1.Size = new System.Drawing.Size(139, 52);
             this.Brushes_Label1.TabIndex = 21;

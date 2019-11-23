@@ -41,6 +41,7 @@ namespace PaintUI
 
         Stack<Bitmap> UNDO;
         Stack<Bitmap> REDO;
+        
 
         public Form1()
         {
@@ -105,7 +106,21 @@ namespace PaintUI
             }
         }
 
-        
+
+        //Giau Panels
+        private void HideAllPanel()
+        {
+            shapesPanel.Visible = false;
+            textPanel.Visible = false;
+            canvasPanel.Visible = false;
+            brushesPanel.Visible = false;
+            effectsPanel.Visible = false;
+            menuPanel.Visible = false;
+            LeftTopPanel.Visible = false;
+            LeftBottomPanel.Visible = false;
+            RightTopPanel.Visible = false;
+            RightBottomPanel.Visible = false;
+        }
 
         //Code cac chuc nang cho cac WindowState Butttons
         private void MinimizeButton_Click(object sender, EventArgs e)
@@ -142,6 +157,7 @@ namespace PaintUI
             }
             else Application.Exit();
         }
+
 
 
         //Xu li cac xu kien cua menuPanel
@@ -298,20 +314,6 @@ namespace PaintUI
       
 
 
-        //Giau Panels
-        private void HideAllPanel()
-        {
-            shapesPanel.Visible = false;
-            textPanel.Visible = false;
-            canvasPanel.Visible = false;
-            brushesPanel.Visible = false;
-            effectsPanel.Visible = false;
-            menuPanel.Visible = false;
-            LeftTopPanel.Visible = false;
-            LeftBottomPanel.Visible = false;
-            RightTopPanel.Visible = false;
-            RightBottomPanel.Visible = false;
-        }
 
         
 
@@ -324,6 +326,8 @@ namespace PaintUI
                 bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.VertSlide);
             else
                 bunifuTransition1.HideSync(menuPanel, false, BunifuAnimatorNS.Animation.VertSlide);
+
+            
         }
 
         private void TextButton_Click(object sender, EventArgs e)
@@ -333,7 +337,6 @@ namespace PaintUI
                 HideAllPanel();
                 textPanel.Show();
             }
-
         }
 
         private void ShapesButton_Click(object sender, EventArgs e)

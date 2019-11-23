@@ -24,6 +24,8 @@ namespace PaintUI
             
             pen = new Pen(colorPanel.getColor1(), thicknessSlide.Value);
 
+            curBrushBtn.BackgroundImage = ResizeImg(curBrushBtn.BackgroundImage, 50, 50);
+
             thicknessSlide.Value = 10;
             opacitySlide.Value = 255;
             thicknessSlide.MaximumValue = 30;
@@ -36,6 +38,36 @@ namespace PaintUI
             selBrush.BringToFront();
 
             selBrush.BrushSelected += SelBrush_BrushSelected;
+        }
+
+        public static Image ResizeImg(Image originalImage, int w, int h)
+        {
+            //Original Image attributes
+            int originalWidth = originalImage.Width;
+            int originalHeight = originalImage.Height;
+
+            // Figure out the ratio
+            double ratioX = (double)w / (double)originalWidth;
+            double ratioY = (double)h / (double)originalHeight;
+            // use whichever multiplier is smaller
+            double ratio = ratioX < ratioY ? ratioX : ratioY;
+
+            // now we can get the new height and width
+            int newHeight = Convert.ToInt32(originalHeight * ratio);
+            int newWidth = Convert.ToInt32(originalWidth * ratio);
+
+            Image thumbnail = new Bitmap(newWidth, newHeight);
+            Graphics graphic = Graphics.FromImage(thumbnail);
+
+            graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            graphic.SmoothingMode = SmoothingMode.HighQuality;
+            graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            graphic.CompositingQuality = CompositingQuality.HighQuality;
+
+            graphic.Clear(Color.Transparent);
+            graphic.DrawImage(originalImage, 0, 0, newWidth, newHeight);
+
+            return thumbnail;
         }
 
         private void SelBrush_BrushSelected(object sender, EventArgs e)

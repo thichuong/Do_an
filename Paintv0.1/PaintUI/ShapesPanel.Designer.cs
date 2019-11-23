@@ -99,7 +99,7 @@
             this.curShapeBtn.IconVisible = true;
             this.curShapeBtn.IconZoom = 90D;
             this.curShapeBtn.IsTab = false;
-            this.curShapeBtn.Location = new System.Drawing.Point(133, 76);
+            this.curShapeBtn.Location = new System.Drawing.Point(119, 87);
             this.curShapeBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.curShapeBtn.Name = "curShapeBtn";
             this.curShapeBtn.Normalcolor = System.Drawing.Color.Transparent;
@@ -169,7 +169,7 @@
             this.Shapes_Label1.AutoSize = true;
             this.Shapes_Label1.BackColor = System.Drawing.Color.Transparent;
             this.Shapes_Label1.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Shapes_Label1.Location = new System.Drawing.Point(113, 19);
+            this.Shapes_Label1.Location = new System.Drawing.Point(100, 30);
             this.Shapes_Label1.Name = "Shapes_Label1";
             this.Shapes_Label1.Size = new System.Drawing.Size(127, 52);
             this.Shapes_Label1.TabIndex = 26;

@@ -111,7 +111,7 @@
             this.Text_CreateTextBoxButton.IconVisible = true;
             this.Text_CreateTextBoxButton.IconZoom = 70D;
             this.Text_CreateTextBoxButton.IsTab = false;
-            this.Text_CreateTextBoxButton.Location = new System.Drawing.Point(41, 76);
+            this.Text_CreateTextBoxButton.Location = new System.Drawing.Point(42, 87);
             this.Text_CreateTextBoxButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Text_CreateTextBoxButton.Name = "Text_CreateTextBoxButton";
             this.Text_CreateTextBoxButton.Normalcolor = System.Drawing.Color.Gainsboro;
@@ -130,7 +130,7 @@
             this.Text_Label3.AutoSize = true;
             this.Text_Label3.BackColor = System.Drawing.Color.Transparent;
             this.Text_Label3.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Text_Label3.Location = new System.Drawing.Point(109, 19);
+            this.Text_Label3.Location = new System.Drawing.Point(100, 30);
             this.Text_Label3.Name = "Text_Label3";
             this.Text_Label3.Size = new System.Drawing.Size(101, 52);
             this.Text_Label3.TabIndex = 10;
