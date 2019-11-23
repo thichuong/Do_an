@@ -81,7 +81,6 @@ namespace PaintUI
             PictureBox p = sender as PictureBox;
             Form1 parent = (Form1)this.ParentForm;
             color = Color.Transparent;
-            color = Color.FromArgb(80, color);
             parent.Effect_change(color, Color.Gainsboro);
         }
 

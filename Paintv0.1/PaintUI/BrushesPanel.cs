@@ -72,7 +72,7 @@ namespace PaintUI
                     _pts.Add(cur);
                  
                     break;
-                case 1: //eraser
+                case 1: //eraser 
                     _pts = new List<Point>();
                     _pts.Add(cur);
                     break;
@@ -108,8 +108,9 @@ namespace PaintUI
                     gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                     _pts.Add(cur);
                     gPath.AddLines(_pts.ToArray());
+                    pen = new Pen(Color.Transparent, thicknessSlide.Value);
                     pen.LineJoin = LineJoin.Round;
-                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
                     gra.DrawPath(pen, gPath);
                     break;
                 default:
