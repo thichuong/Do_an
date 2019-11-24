@@ -137,7 +137,7 @@ namespace PaintUI
 
         public void ProcessMouseUp()
         {
-            if (selBrush.getBrush() == 0)
+            if (selBrush.getBrush() == 0 || selBrush.getBrush() == 1)
             {
                 _pts = new List<Point>();
             }
@@ -145,12 +145,11 @@ namespace PaintUI
 
         public void ProcessPaint(Graphics gra, Point old, Point cur)
         {
-            if (!pickerActive)
+            if (!pickerActive && _pts!=null)
             {
                 GraphicsPath gPath = new GraphicsPath();
                 switch (selBrush.getBrush())
                 {
-
                     case 0: //marker
                         gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                         gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
@@ -190,10 +189,6 @@ namespace PaintUI
             return opacitySlide.Value;
         }
 
-        private void curBrushBtn_Leave(object sender, EventArgs e)
-        {
-            MessageBox.Show("Hello");
-        }
     }
 }
 

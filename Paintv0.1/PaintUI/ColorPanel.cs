@@ -69,7 +69,7 @@ namespace PaintUI
         {
             PictureBox color = sender as PictureBox;
             color.BorderStyle = BorderStyle.Fixed3D;
-            mainColor2.BorderStyle = BorderStyle.None;
+            mainColor2.BorderStyle = BorderStyle.FixedSingle;
             select = 1;
         }
 
@@ -77,7 +77,7 @@ namespace PaintUI
         {
             PictureBox color = sender as PictureBox;
             color.BorderStyle = BorderStyle.Fixed3D;
-            mainColor1.BorderStyle = BorderStyle.None;
+            mainColor1.BorderStyle = BorderStyle.FixedSingle;
             select = 2;
         }
 
