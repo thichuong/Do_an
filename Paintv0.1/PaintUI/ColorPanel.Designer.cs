@@ -30,9 +30,6 @@
         {
             this.Canvas_Label1 = new System.Windows.Forms.Label();
             this.colorBox = new System.Windows.Forms.Panel();
-            this.colorPicker = new System.Windows.Forms.PictureBox();
-            this.mainColor1 = new System.Windows.Forms.PictureBox();
-            this.mainColor2 = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
@@ -45,11 +42,11 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.colorPicker = new System.Windows.Forms.PictureBox();
+            this.mainColor1 = new System.Windows.Forms.PictureBox();
+            this.mainColor2 = new System.Windows.Forms.PictureBox();
             this.addColorButton = new Bunifu.Framework.UI.BunifuFlatButton();
             this.colorBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPicker)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainColor1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainColor2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
@@ -62,6 +59,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPicker)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainColor1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainColor2)).BeginInit();
             this.SuspendLayout();
             // 
             // Canvas_Label1
@@ -94,45 +94,6 @@
             this.colorBox.Name = "colorBox";
             this.colorBox.Size = new System.Drawing.Size(308, 96);
             this.colorBox.TabIndex = 25;
-            // 
-            // colorPicker
-            // 
-            this.colorPicker.BackColor = System.Drawing.Color.Transparent;
-            this.colorPicker.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.colorPicker.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.colorPicker.Image = global::PaintUI.Properties.Resources.kisspng_color_picker_computer_icons_colors_5ac68bcd901598_8659675215229613575902;
-            this.colorPicker.Location = new System.Drawing.Point(238, 54);
-            this.colorPicker.Name = "colorPicker";
-            this.colorPicker.Size = new System.Drawing.Size(82, 78);
-            this.colorPicker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.colorPicker.TabIndex = 27;
-            this.colorPicker.TabStop = false;
-            this.colorPicker.Click += new System.EventHandler(this.colorPicker_Click);
-            // 
-            // mainColor1
-            // 
-            this.mainColor1.BackColor = System.Drawing.Color.Black;
-            this.mainColor1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.mainColor1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mainColor1.Location = new System.Drawing.Point(43, 54);
-            this.mainColor1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.mainColor1.Name = "mainColor1";
-            this.mainColor1.Size = new System.Drawing.Size(86, 78);
-            this.mainColor1.TabIndex = 23;
-            this.mainColor1.TabStop = false;
-            this.mainColor1.Click += new System.EventHandler(this.mainColor1_Click);
-            // 
-            // mainColor2
-            // 
-            this.mainColor2.BackColor = System.Drawing.Color.White;
-            this.mainColor2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mainColor2.Location = new System.Drawing.Point(141, 54);
-            this.mainColor2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.mainColor2.Name = "mainColor2";
-            this.mainColor2.Size = new System.Drawing.Size(83, 79);
-            this.mainColor2.TabIndex = 26;
-            this.mainColor2.TabStop = false;
-            this.mainColor2.Click += new System.EventHandler(this.mainColor2_Click);
             // 
             // pictureBox12
             // 
@@ -278,6 +239,46 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
+            // colorPicker
+            // 
+            this.colorPicker.BackColor = System.Drawing.Color.Transparent;
+            this.colorPicker.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorPicker.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.colorPicker.Image = global::PaintUI.Properties.Resources.kisspng_color_picker_computer_icons_colors_5ac68bcd901598_8659675215229613575902;
+            this.colorPicker.Location = new System.Drawing.Point(238, 54);
+            this.colorPicker.Name = "colorPicker";
+            this.colorPicker.Size = new System.Drawing.Size(82, 78);
+            this.colorPicker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.colorPicker.TabIndex = 27;
+            this.colorPicker.TabStop = false;
+            this.colorPicker.Click += new System.EventHandler(this.colorPicker_Click);
+            // 
+            // mainColor1
+            // 
+            this.mainColor1.BackColor = System.Drawing.Color.Black;
+            this.mainColor1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.mainColor1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.mainColor1.Location = new System.Drawing.Point(43, 54);
+            this.mainColor1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.mainColor1.Name = "mainColor1";
+            this.mainColor1.Size = new System.Drawing.Size(86, 78);
+            this.mainColor1.TabIndex = 23;
+            this.mainColor1.TabStop = false;
+            this.mainColor1.Click += new System.EventHandler(this.mainColor1_Click);
+            // 
+            // mainColor2
+            // 
+            this.mainColor2.BackColor = System.Drawing.Color.White;
+            this.mainColor2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mainColor2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.mainColor2.Location = new System.Drawing.Point(141, 54);
+            this.mainColor2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.mainColor2.Name = "mainColor2";
+            this.mainColor2.Size = new System.Drawing.Size(83, 79);
+            this.mainColor2.TabIndex = 26;
+            this.mainColor2.TabStop = false;
+            this.mainColor2.Click += new System.EventHandler(this.mainColor2_Click);
+            // 
             // addColorButton
             // 
             this.addColorButton.Activecolor = System.Drawing.Color.Silver;
@@ -329,9 +330,6 @@
             this.Name = "ColorPanel";
             this.Size = new System.Drawing.Size(338, 351);
             this.colorBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.colorPicker)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainColor1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainColor2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
@@ -344,6 +342,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPicker)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainColor1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainColor2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
