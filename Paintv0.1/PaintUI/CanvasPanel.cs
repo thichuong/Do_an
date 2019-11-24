@@ -14,17 +14,29 @@ namespace PaintUI
     {
         //int trackkeypoint = 0;
         public bool ShowCheckBox;
+        int wid, hei;
         public CanvasPanel()
         {
             InitializeComponent();
             Canvas_TransparentCheckBox.Checked = false;
             Canvas_ShowCheckBox.Checked = true;
             ShowCheckBox = Canvas_ShowCheckBox.Checked;
+            wid = 0;
+            hei = 0;
         }
         public void setCanvasText(Canvas SketchBox)
         {
-            Canvas_Width.Text = SketchBox.Width.ToString();
-            Canvas_Height.Text = SketchBox.Height.ToString();
+            if(wid != SketchBox.Width)
+            {
+                Canvas_Width.Text = SketchBox.Width.ToString();
+                wid = SketchBox.Width;
+            }
+            if (hei != SketchBox.Height)
+            {
+                Canvas_Height.Text = SketchBox.Height.ToString();
+                hei = SketchBox.Height;
+            }
+            
         }
         public int getCanvasTextWidth()
         {

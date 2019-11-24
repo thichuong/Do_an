@@ -489,7 +489,7 @@
             this.LeftTopPanel.BackColor = System.Drawing.SystemColors.Control;
             this.LeftTopPanel.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.bunifuTransition1.SetDecoration(this.LeftTopPanel, BunifuAnimatorNS.DecorationType.None);
-            this.LeftTopPanel.Location = new System.Drawing.Point(120, 119);
+            this.LeftTopPanel.Location = new System.Drawing.Point(144, 119);
             this.LeftTopPanel.Name = "LeftTopPanel";
             this.LeftTopPanel.Size = new System.Drawing.Size(10, 10);
             this.LeftTopPanel.TabIndex = 29;
