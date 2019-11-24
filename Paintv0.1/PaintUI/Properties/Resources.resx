@@ -130,8 +130,8 @@
   <data name="Trianglae" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Trianglae.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="heart1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\heart1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="heart2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\heart2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MoveIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MoveIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,8 +148,8 @@
   <data name="create" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\create.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RedoIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RedoIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="heart1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\heart1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pan-symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pan-symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,6 +205,9 @@
   <data name="selecticon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\selecticon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="heart4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\heart4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Rectangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rectangle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -238,13 +241,16 @@
   <data name="Artboard 1BaoKq" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Artboard 1BaoKq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RedoIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RedoIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="IsoTriangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\IsoTriangle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BrushesIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BrushesIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="heart2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\heart2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="heart5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\heart5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
