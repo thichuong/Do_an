@@ -13,11 +13,16 @@ namespace PaintUI
     public partial class ColorPanel : UserControl
     {
         int select;
+        bool pickerActive;
+        public event EventHandler StateChanged;
+
         public ColorPanel()
         {
             InitializeComponent();
+
             mainColor1.BringToFront();
             select = 1;
+            pickerActive = false;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -62,15 +67,59 @@ namespace PaintUI
 
         private void mainColor1_Click(object sender, EventArgs e)
         {
-            mainColor1.BringToFront();
+            PictureBox color = sender as PictureBox;
+            color.BorderStyle = BorderStyle.Fixed3D;
+            mainColor2.BorderStyle = BorderStyle.None;
             select = 1;
         }
 
         private void mainColor2_Click(object sender, EventArgs e)
         {
-            mainColor2.BringToFront();
+            PictureBox color = sender as PictureBox;
+            color.BorderStyle = BorderStyle.Fixed3D;
+            mainColor1.BorderStyle = BorderStyle.None;
             select = 2;
-            
+        }
+
+        private void colorPicker_Click(object sender, EventArgs e)
+        {
+            PictureBox p = sender as PictureBox;
+            pickerActive = !pickerActive;
+            if (pickerActive)
+            {
+                p.BackColor = Color.Cyan;
+                p.BorderStyle = BorderStyle.Fixed3D;
+            }
+            else
+            {
+                p.BackColor = Color.Transparent;
+                p.BorderStyle = BorderStyle.FixedSingle;
+            }
+
+            if (this.StateChanged != null)
+                this.StateChanged(this, e);
+        }
+
+        public void getPixelColor(Bitmap bm, Point cur)
+        {
+            Color c = bm.GetPixel(cur.X, cur.Y);
+            if(select == 1)
+            {
+                mainColor1.BackColor = c;
+            }
+            else
+            {
+                mainColor2.BackColor = c;
+            }
+            pickerActive = !pickerActive;
+            if (pickerActive)
+            {
+                colorPicker.BackColor = Color.Cyan;
+            }
+            else
+            {
+                colorPicker.BackColor = Color.Transparent;
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace PaintUI
         Pen pen;
         int curBrush; //0.marker 1.eraser 2.fill 3.pencil
         Image curImage;
+        bool pickColor;
 
         int unit;
 
@@ -27,9 +28,11 @@ namespace PaintUI
             pen = new Pen(Color.Black, 5);
             curBrush = 0;
             curImage = marBtn.BackgroundImage;
+            pickColor = false;
 
             unit = 50;
             SetRevolution();
+
 
         }
 
@@ -114,5 +117,6 @@ namespace PaintUI
         {
             return curImage;
         }
+
     }
 }

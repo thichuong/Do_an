@@ -63,8 +63,7 @@ namespace PaintUI
                 isSaved = false;
                 isChanged = false;
                 isDragged = false;
-
-                curTool = Tools.BRUSH;
+                
 
                 menuPanel.BringToFront();
                 SketchBox.Cursor = Cursors.Cross;
@@ -449,8 +448,8 @@ namespace PaintUI
             }
             if(curTool==Tools.BRUSH)
             {
-                
                 brushesPanel.ProcessPaint(gra, old, cur);
+                brushesPanel.ProcessMouseUp();
                 SketchBoxVisionImage();
             }
             wid = hei = 0;

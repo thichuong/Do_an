@@ -313,6 +313,16 @@ namespace PaintUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap kisspng_color_picker_computer_icons_colors_5ac68bcd901598_8659675215229613575902 {
+            get {
+                object obj = ResourceManager.GetObject("kisspng-color-picker-computer-icons-colors-5ac68bcd901598.8659675215229613575902", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Lightning {
             get {
                 object obj = ResourceManager.GetObject("Lightning", resourceCulture);
