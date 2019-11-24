@@ -14,6 +14,8 @@ namespace PaintUI
     {
         //int trackkeypoint = 0;
         public bool ShowCheckBox;
+        public int width;
+        public int height;
         public CanvasPanel()
         {
             InitializeComponent();
@@ -23,8 +25,17 @@ namespace PaintUI
         }
         public void setCanvasText(Canvas SketchBox)
         {
-            Canvas_Width.Text = SketchBox.Width.ToString();
-            Canvas_Height.Text = SketchBox.Height.ToString();
+            if (width != SketchBox.Width)
+           {
+                Canvas_Width.Text = SketchBox.Width.ToString();
+                width = SketchBox.Width;
+           }
+           if(height!= SketchBox.Height)
+           {
+                Canvas_Height.Text = SketchBox.Height.ToString();
+                height = SketchBox.Height;
+           }
+          
         }
         public int getCanvasTextWidth()
         {
@@ -43,8 +54,9 @@ namespace PaintUI
             {    
             }
             else e.Handled = true;
-            if(keycode==13)
+            if (keycode==13 || keycode==9)
             {
+                
                 Form1 parent = (Form1)this.ParentForm;
                 parent.resizeSketchBox();
             }
