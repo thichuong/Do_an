@@ -312,6 +312,7 @@
     <None Include="Resources\Hexagon.png" />
     <Content Include="Resources\iso.bmp" />
     <None Include="Resources\IsoTriangle.png" />
+    <None Include="Resources\kisspng-color-picker-computer-icons-colors-5ac68bcd901598.8659675215229613575902.png" />
     <Content Include="Resources\lig.bmp" />
     <None Include="Resources\Lightning.png" />
     <Content Include="Resources\line.bmp" />

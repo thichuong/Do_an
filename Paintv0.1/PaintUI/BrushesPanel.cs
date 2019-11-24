@@ -17,11 +17,15 @@ namespace PaintUI
         BrushesSelection selBrush;
         List<Point> _pts = null;
         Pen pen;
+
+        bool pickerActive;
        
         public BrushesPanel()
         {
             InitializeComponent();
-            
+
+            pickerActive = false;
+
             pen = new Pen(colorPanel.getColor1(), thicknessSlide.Value);
 
             curBrushBtn.BackgroundImage = ResizeImg(curBrushBtn.BackgroundImage, 50, 50);
@@ -38,6 +42,12 @@ namespace PaintUI
             selBrush.BringToFront();
 
             selBrush.BrushSelected += SelBrush_BrushSelected;
+            colorPanel.StateChanged += ColorPanel_StateChanged;
+        }
+
+        private void ColorPanel_StateChanged(object sender, EventArgs e)
+        {
+            pickerActive = !pickerActive;
         }
 
         public static Image ResizeImg(Image originalImage, int w, int h)
@@ -86,67 +96,85 @@ namespace PaintUI
         //Cac thao tac voi trang ve
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
         {
-            Color color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor1());
-            pen = new Pen(color, thicknessSlide.Value);
-            pen.DashStyle = DashStyle.Solid;
-            pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
-            
-            gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-            gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            gra.CompositingQuality = CompositingQuality.GammaCorrected;
-
-
-            switch (selBrush.getBrush())
+            if (pickerActive)
             {
-                case 0: //marker
-                    
-                    _pts = new List<Point>();
-                    _pts.Add(cur);
-                 
-                    break;
-                case 1: //eraser 
-                    _pts = new List<Point>();
-                    _pts.Add(cur);
-                    break;
-                case 2: //fill
-                    FillBucket bucket = new FillBucket();
-                    Color pointColor = Color.FromArgb(255, bm.GetPixel(old.X, old.Y));
-                    color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor2());
-                    bucket.Fill(bm, old, pointColor, color);
-                    break;
-                case 3:
-                    break;
+                colorPanel.getPixelColor(bm, cur);
+                pickerActive = false;
+            }else
+            {
+                Color color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor1());
+                pen = new Pen(color, thicknessSlide.Value);
+                pen.DashStyle = DashStyle.Solid;
+                pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
+                gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                gra.CompositingQuality = CompositingQuality.GammaCorrected;
+
+
+                switch (selBrush.getBrush())
+                {
+                    case 0: //marker
+                        _pts = new List<Point>();
+                        _pts.Add(cur);
+                        break;
+                    case 1: //eraser 
+                        _pts = new List<Point>();
+                        _pts.Add(cur);
+                        break;
+                    case 2: //fill
+                        FillBucket bucket = new FillBucket();
+                        Color pointColor = Color.FromArgb(255, bm.GetPixel(old.X, old.Y));
+                        color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor2());
+                        bucket.Fill(bm, old, pointColor, color);
+                        break;
+                    case 3:
+                        break;
+
+                }
+            }
+        }
+
+        public void ProcessMouseUp()
+        {
+            if (selBrush.getBrush() == 0)
+            {
+                _pts = new List<Point>();
             }
         }
 
         public void ProcessPaint(Graphics gra, Point old, Point cur)
         {
-            GraphicsPath gPath = new GraphicsPath();
-            switch (selBrush.getBrush())
+            if (!pickerActive)
             {
-               
-                case 0: //marker
-                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                    gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                    _pts.Add(cur);
-                    gPath.AddLines(_pts.ToArray());
-                    pen.LineJoin = LineJoin.Round;
-                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                    gra.DrawPath(pen, gPath);
-                    break;
-                case 1: //eraser
-                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
-                    gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-                    _pts.Add(cur);
-                    gPath.AddLines(_pts.ToArray());
-                    pen = new Pen(Color.Transparent, thicknessSlide.Value);
-                    pen.LineJoin = LineJoin.Round;
-                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
-                    gra.DrawPath(pen, gPath);
-                    break;
-                default:
-                    break;
+                GraphicsPath gPath = new GraphicsPath();
+                switch (selBrush.getBrush())
+                {
+
+                    case 0: //marker
+                        gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                        gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                        _pts.Add(cur);
+                        gPath.AddLines(_pts.ToArray());
+                        pen.LineJoin = LineJoin.Round;
+                        gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                        gra.DrawPath(pen, gPath);
+                        break;
+                    case 1: //eraser
+                        gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+                        gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+                        _pts.Add(cur);
+                        gPath.AddLines(_pts.ToArray());
+                        pen = new Pen(Color.Transparent, thicknessSlide.Value);
+                        pen.LineJoin = LineJoin.Round;
+                        gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+                        gra.DrawPath(pen, gPath);
+                        break;
+                    case 3:
+
+                    default:
+                        break;
+                }
             }
         }
 

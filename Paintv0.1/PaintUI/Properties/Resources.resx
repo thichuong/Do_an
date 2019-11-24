@@ -160,6 +160,9 @@
   <data name="colorPaler" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\colorPaler.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="heart5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\heart5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="brush4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\brush4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -250,7 +253,7 @@
   <data name="BrushesIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BrushesIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="heart5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\heart5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="kisspng-color-picker-computer-icons-colors-5ac68bcd901598.8659675215229613575902" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kisspng-color-picker-computer-icons-colors-5ac68bcd901598.8659675215229613575902.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
