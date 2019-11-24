@@ -472,6 +472,8 @@ namespace PaintUI
                 if(curTool==Tools.BRUSH)
                 {
                     brushesPanel.ProcessMouseDown(bm, gra, old, cur);
+                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                    gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                     SketchBoxVisionImage();
                 }
                 
@@ -487,9 +489,13 @@ namespace PaintUI
                 switch (curTool)
                 {
                     case Tools.BRUSH:
-                        e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                        brushesPanel.ProcessPaint(e.Graphics, old, cur);
+                        temp=new Bitmap(SketchBox.Width, SketchBox.Height);
+                        Graphics graphics = Graphics.FromImage(temp);
+                        graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                        graphics.DrawImage(bm, 0, 0, SketchBox.Width, SketchBox.Height);
+                        brushesPanel.ProcessPaint(graphics, old, cur);
                         old = cur;
+                        SketchBox.BackgroundImage = (Bitmap)temp.Clone();
                         break;
                     case Tools.SHAPE:
                         shapesPanel.DrawShapes(SketchBox, bm, e.Graphics, old, cur, new Size(wid, hei));
