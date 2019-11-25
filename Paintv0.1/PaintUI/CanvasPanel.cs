@@ -43,12 +43,18 @@ namespace PaintUI
         }
         public int getCanvasTextWidth()
         {
-            return Int32.Parse(Canvas_Width.Text);
+            if (Canvas_Width.Text != "")
+                return Int32.Parse(Canvas_Width.Text);
+            else
+                return 0;
         }
           
        public int getCanvasTextHeight()
         {
-            return Int32.Parse(Canvas_Height.Text);
+            if (Canvas_Height.Text != "")
+                return Int32.Parse(Canvas_Height.Text);
+            else
+                return 0;
         }
         private void Canvas_textBoxKeypress(object sender, KeyPressEventArgs e)
         {
