@@ -26,17 +26,20 @@ namespace PaintUI
         }
         public void setCanvasText(Canvas SketchBox)
         {
-            if(wid != SketchBox.Width)
+            if (wid != SketchBox.Width)
             {
                 Canvas_Width.Text = SketchBox.Width.ToString();
                 wid = SketchBox.Width;
             }
+            else
+                Canvas_Width.Text = wid.ToString();
             if (hei != SketchBox.Height)
             {
                 Canvas_Height.Text = SketchBox.Height.ToString();
                 hei = SketchBox.Height;
             }
-            
+            else
+                Canvas_Height.Text = hei.ToString();
         }
         public int getCanvasTextWidth()
         {

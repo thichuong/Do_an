@@ -110,8 +110,6 @@ namespace PaintUI
                 gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                 gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 gra.CompositingQuality = CompositingQuality.GammaCorrected;
-
-
                 switch (selBrush.getBrush())
                 {
                     case 0: //marker
