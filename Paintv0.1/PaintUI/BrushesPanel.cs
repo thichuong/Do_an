@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -95,49 +94,49 @@ namespace PaintUI
 
         //Cac thao tac voi trang ve
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
-        {
-            if (pickerActive)
-            {
-                colorPanel.getPixelColor(bm, cur);
-                pickerActive = false;
-            }else
-            {
-                Color color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor1());
-                pen = new Pen(color, thicknessSlide.Value);
-                pen.DashStyle = DashStyle.Solid;
-                pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
+        {   
+            Color color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor1());
+            pen = new Pen(color, thicknessSlide.Value);
+            pen.DashStyle = DashStyle.Solid;
+            pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
 
-                gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                gra.CompositingQuality = CompositingQuality.GammaCorrected;
-                switch (selBrush.getBrush())
-                {
-                    case 0: //marker
-                        _pts = new List<Point>();
-                        _pts.Add(cur);
-                        break;
-                    case 1: //eraser 
-                        _pts = new List<Point>();
-                        _pts.Add(cur);
-                        break;
-                    case 2: //fill
-                        FillBucket bucket = new FillBucket();
-                        Color pointColor = Color.FromArgb(255, bm.GetPixel(old.X, old.Y));
-                        color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor2());
-                        bucket.Fill(bm, old, pointColor, color);
-                        break;
-                    case 3:
-                        break;
+            gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+            gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            gra.CompositingQuality = CompositingQuality.GammaCorrected;
+            switch (selBrush.getBrush())
+            {
+                case 0: //marker
+                    _pts = new List<Point>();
+                    _pts.Add(cur);
+                    break;
+                case 1: //eraser 
+                    _pts = new List<Point>();
+                    _pts.Add(cur);
+                    break;
+                case 2: //fill
+                    FillBucket bucket = new FillBucket();
+                    Color pointColor = Color.FromArgb(255, bm.GetPixel(old.X, old.Y));
+                    color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor2());
+                    bucket.Fill(bm, old, pointColor, color);
+                    break;
+                case 3:
+                    break;
 
-                }
+                
             }
         }
 
-        public void ProcessMouseUp()
+        public void ProcessMouseUp(Bitmap bm, Point cur)
         {
             if (selBrush.getBrush() == 0 || selBrush.getBrush() == 1)
             {
                 _pts = new List<Point>();
+            }
+            
+            if (pickerActive)
+            {
+                colorPanel.getPixelColor(bm, cur);
+                pickerActive = false;
             }
         }
 

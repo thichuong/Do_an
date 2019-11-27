@@ -13,9 +13,8 @@ namespace PaintUI
     public partial class ColorPanel : UserControl
     {
         int select;
-        bool pickerActive;
+        private bool pickerActive;
         public event EventHandler StateChanged;
-
         public ColorPanel()
         {
             InitializeComponent();
@@ -23,6 +22,7 @@ namespace PaintUI
             mainColor1.BringToFront();
             select = 1;
             pickerActive = false;
+            
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -36,7 +36,6 @@ namespace PaintUI
             {
                 mainColor2.BackColor = colorCell.BackColor;
             }
-            
         }
 
         private void addColorButton_Click(object sender, EventArgs e)
@@ -88,12 +87,10 @@ namespace PaintUI
             if (pickerActive)
             {
                 p.BackColor = Color.Cyan;
-                p.BorderStyle = BorderStyle.Fixed3D;
             }
             else
             {
                 p.BackColor = Color.Transparent;
-                p.BorderStyle = BorderStyle.FixedSingle;
             }
 
             if (this.StateChanged != null)
@@ -121,5 +118,6 @@ namespace PaintUI
                 colorPicker.BackColor = Color.Transparent;
             }
         }
+        
     }
 }
