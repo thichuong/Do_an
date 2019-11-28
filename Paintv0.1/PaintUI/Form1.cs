@@ -75,8 +75,7 @@ namespace PaintUI
 
             //Modify stroke
             pen.SetLineCap(System.Drawing.Drawing2D.LineCap.RoundAnchor, System.Drawing.Drawing2D.LineCap.RoundAnchor, System.Drawing.Drawing2D.DashCap.Round);
-
-
+            
             //Smoothing
             {
                 this.SetStyle(ControlStyles.UserPaint, true);
@@ -448,9 +447,12 @@ namespace PaintUI
             }
             if(curTool==Tools.BRUSH)
             {
-                gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                brushesPanel.ProcessPaint(gra, old, cur);
+                temp = new Bitmap(SketchBox.Width, SketchBox.Height);
+                Graphics graphics = Graphics.FromImage(temp);
+                graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                graphics.DrawImage(bm, 0, 0, SketchBox.Width, SketchBox.Height);
+                brushesPanel.ProcessPaint(graphics, old, cur);
+                bm = temp;
                 brushesPanel.ProcessMouseUp();
                 SketchBoxVisionImage(bm);
             }
