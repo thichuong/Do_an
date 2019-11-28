@@ -453,7 +453,7 @@ namespace PaintUI
                 graphics.DrawImage(bm, 0, 0, SketchBox.Width, SketchBox.Height);
                 brushesPanel.ProcessPaint(graphics, old, cur);
                 bm = temp;
-                brushesPanel.ProcessMouseUp();
+                brushesPanel.ProcessMouseUp(bm, cur);
                 SketchBoxVisionImage(bm);
             }
             wid = hei = 0;
