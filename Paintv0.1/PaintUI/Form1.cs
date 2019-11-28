@@ -448,12 +448,9 @@ namespace PaintUI
             }
             if(curTool==Tools.BRUSH)
             {
-                temp = new Bitmap(SketchBox.Width, SketchBox.Height);
-                Graphics graphics = Graphics.FromImage(temp);
-                graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                graphics.DrawImage(bm, 0, 0, SketchBox.Width, SketchBox.Height);
-                brushesPanel.ProcessPaint(graphics, old, cur);
-                bm = temp;
+                gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                brushesPanel.ProcessPaint(gra, old, cur);
                 brushesPanel.ProcessMouseUp();
                 SketchBoxVisionImage(bm);
             }
