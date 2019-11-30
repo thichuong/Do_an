@@ -16,23 +16,27 @@ namespace PaintUI
         BrushesSelection selBrush;
         List<Point> _pts = null;
         Pen pen;
+        Random ran;
 
         bool pickerActive;
+        bool spraying;
        
         public BrushesPanel()
         {
             InitializeComponent();
 
-            pickerActive = false;
-
             pen = new Pen(colorPanel.getColor1(), thicknessSlide.Value);
+            pickerActive = false;
+            spraying = false;
 
-            curBrushBtn.BackgroundImage = ResizeImg(curBrushBtn.BackgroundImage, 50, 50);
+            ran = new Random();
 
             thicknessSlide.Value = 10;
             opacitySlide.Value = 255;
             thicknessSlide.MaximumValue = 30;
-            
+
+            ResizeHelper.SetRevolution(curBrushBtn);
+
             selBrush = new BrushesSelection();
             selBrush.Location = new Point(0, curBrushBtn.Location.Y + curBrushBtn.Size.Height + 10);
             selBrush.Size = new Size(Width + 20, 0);
@@ -48,61 +52,46 @@ namespace PaintUI
         {
             pickerActive = !pickerActive;
         }
-
-        public static Image ResizeImg(Image originalImage, int w, int h)
-        {
-            //Original Image attributes
-            int originalWidth = originalImage.Width;
-            int originalHeight = originalImage.Height;
-
-            // Figure out the ratio
-            double ratioX = (double)w / (double)originalWidth;
-            double ratioY = (double)h / (double)originalHeight;
-            // use whichever multiplier is smaller
-            double ratio = ratioX < ratioY ? ratioX : ratioY;
-
-            // now we can get the new height and width
-            int newHeight = Convert.ToInt32(originalHeight * ratio);
-            int newWidth = Convert.ToInt32(originalWidth * ratio);
-
-            Image thumbnail = new Bitmap(newWidth, newHeight);
-            Graphics graphic = Graphics.FromImage(thumbnail);
-
-            graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            graphic.SmoothingMode = SmoothingMode.HighQuality;
-            graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
-            graphic.CompositingQuality = CompositingQuality.HighQuality;
-
-            graphic.Clear(Color.Transparent);
-            graphic.DrawImage(originalImage, 0, 0, newWidth, newHeight);
-
-            return thumbnail;
-        }
-
+        
         private void SelBrush_BrushSelected(object sender, EventArgs e)
         {
             curBrushBtn.BackgroundImage = selBrush.getImage();
-            
-            Slider slider = new Slider(selBrush);
+            Slider slider = new Slider();
+            slider.Sliding(selBrush);
         }
 
         private void curBrushBtn_Click(object sender, EventArgs e)
         {
-            Slider slider = new Slider(selBrush);
+            Slider slider = new Slider();
+            slider.Sliding(selBrush);
         }
-        
+
 
         //Cac thao tac voi trang ve
+
+        Color color;
+        public void ProcessMouseMove(Graphics gra, Point cur)
+        {
+            if (selBrush.getBrush() == 4)
+            {
+                if (spraying)
+                {
+                    Sprayer.Spray(gra, (int)pen.Width, cur, color);
+                }
+            }
+        }
+
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
         {   
-            Color color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor1());
+            color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor1());
             pen = new Pen(color, thicknessSlide.Value);
             pen.DashStyle = DashStyle.Solid;
-            pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
+            pen.SetLineCap(LineCap.Round, LineCap.Round, DashCap.Round);
 
-            gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-            gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            gra.CompositingMode = CompositingMode.SourceOver;
+            gra.SmoothingMode = SmoothingMode.AntiAlias;
             gra.CompositingQuality = CompositingQuality.GammaCorrected;
+
             switch (selBrush.getBrush())
             {
                 case 0: //marker
@@ -114,15 +103,16 @@ namespace PaintUI
                     _pts.Add(cur);
                     break;
                 case 2: //fill
-                    FillBucket bucket = new FillBucket();
                     Color pointColor = Color.FromArgb(255, bm.GetPixel(old.X, old.Y));
                     color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor2());
-                    bucket.Fill(bm, old, pointColor, color);
+                    FillBucket.Fill(bm, old, pointColor, color);
                     break;
                 case 3:
                     break;
-
-                
+                case 4:
+                    spraying = true;
+                    Sprayer.Spray(gra, (int)pen.Width, cur, color);
+                    break;
             }
         }
 
@@ -132,48 +122,62 @@ namespace PaintUI
             {
                 _pts = new List<Point>();
             }
-            
             if (pickerActive)
             {
                 colorPanel.getPixelColor(bm, cur);
                 pickerActive = false;
             }
+            if(selBrush.getBrush() == 4)
+            {
+                spraying = false;
+            }
         }
 
         public void ProcessPaint(Graphics gra, Point old, Point cur)
         {
-            if (!pickerActive && _pts!=null)
+            if (!pickerActive )
             {
                 GraphicsPath gPath = new GraphicsPath();
                 switch (selBrush.getBrush())
                 {
                     case 0: //marker
-                        gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                        gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                        _pts.Add(cur);
-                        gPath.AddLines(_pts.ToArray());
-                        pen.LineJoin = LineJoin.Round;
-                        gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                        gra.DrawPath(pen, gPath);
+                        if (_pts!=null)
+                        {
+                            gra.CompositingMode = CompositingMode.SourceOver;
+                            gra.SmoothingMode = SmoothingMode.AntiAlias;
+                            _pts.Add(cur);
+                            gPath.AddLines(_pts.ToArray());
+                            pen.LineJoin = LineJoin.Round;
+                            gra.CompositingMode = CompositingMode.SourceOver;
+                            gra.DrawPath(pen, gPath);
+                        }
                         break;
                     case 1: //eraser
-                        gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
-                        gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-                        _pts.Add(cur);
-                        gPath.AddLines(_pts.ToArray());
-                        pen = new Pen(Color.Transparent, thicknessSlide.Value);
-                        pen.LineJoin = LineJoin.Round;
-                        gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
-                        gra.DrawPath(pen, gPath);
+                        if (_pts!=null)
+                        {
+                            gra.CompositingMode = CompositingMode.SourceCopy;
+                            gra.SmoothingMode = SmoothingMode.None;
+                            _pts.Add(cur);
+                            gPath.AddLines(_pts.ToArray());
+
+                            pen = new Pen(Color.Transparent, thicknessSlide.Value);
+                            pen.LineJoin = LineJoin.Round;
+
+                            gra.CompositingMode = CompositingMode.SourceCopy;
+                            gra.DrawPath(pen, gPath);
+                        }
                         break;
                     case 3:
-
+                        MessageBox.Show("3");
+                        break;
+                    case 4:
+                        
+                        break;
                     default:
                         break;
                 }
             }
         }
-
 
         //get
         public int getThickness()

@@ -10,17 +10,11 @@ namespace PaintUI
     class Slider
     {
         Timer timer;
-
-        int type;
-
-        int unit;
-        int maxHeight;
-
+        int type, vel, unit=20, maxHeight;
         ShapeSelections shapeTar;
         BrushesSelection brushTar;
         
-
-        public Slider(ShapeSelections tar)
+        public void Sliding(ShapeSelections tar)
         {
             maxHeight = 250;
             type = 0;
@@ -28,12 +22,12 @@ namespace PaintUI
 
             if (shapeTar.Height >= maxHeight)
             {
-                unit = -10;
+                vel = -unit;
             }
 
             if (shapeTar.Height <= 0)
             {
-                unit = 10;
+                vel = unit;
             }
 
             timer = new Timer();
@@ -42,8 +36,8 @@ namespace PaintUI
 
             timer.Tick += Timer_Tick;
         }
-
-        public Slider(BrushesSelection tar)
+        
+        public void Sliding(BrushesSelection tar)
         {
             maxHeight = 200;
             type = 1;
@@ -51,12 +45,12 @@ namespace PaintUI
 
             if (brushTar.Height >= maxHeight)
             {
-                unit = -10;
+                vel = -unit;
             }
 
             if (brushTar.Height <= 0)
             {
-                unit = 10;
+                vel = unit;
             }
 
             timer = new Timer();
@@ -70,7 +64,7 @@ namespace PaintUI
         {
             if (type == 0)
             {
-                shapeTar.Height += unit;
+                shapeTar.Height += vel;
 
                 if (shapeTar.Height <= 0)
                 {
@@ -83,7 +77,7 @@ namespace PaintUI
             }
             else
             {
-                brushTar.Height += unit;
+                brushTar.Height += vel;
 
                 if (brushTar.Height <= 0)
                 {

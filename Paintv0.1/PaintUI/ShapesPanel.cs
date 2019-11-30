@@ -24,6 +24,7 @@ namespace PaintUI
         bool fill;
         bool outline;
 
+        bool pickerActive;
 
         public ShapesPanel()
         {
@@ -33,10 +34,13 @@ namespace PaintUI
 
             fill = false;
             outline = true;
+            pickerActive = false;
 
             Shapes_FillCheckBox.Checked = false;
             Shapes_OutlineCheckBox.Checked = true;
-            
+
+            ResizeHelper.SetRevolution(curShapeBtn);
+
             selShape = new ShapeSelections();
             selShape.Location = new Point(0, curShapeBtn.Location.Y+curShapeBtn.Size.Height + 10);
             selShape.Size = new Size(Width+20, 0);
@@ -45,114 +49,35 @@ namespace PaintUI
             selShape.BringToFront();
 
             selShape.ShapeSelected += SelShape_ShapeSelected;
+            colorPanel.StateChanged += ColorPanel_StateChanged;
         }
-        
+
+        private void ColorPanel_StateChanged(object sender, EventArgs e)
+        {
+            pickerActive = !pickerActive;
+        }
+
         private void SelShape_ShapeSelected(object sender, EventArgs e)
         {
             curShapeBtn.BackgroundImage = selShape.getImage();
-            
-            Slider slider = new Slider(selShape);
+            Slider slider = new Slider();
+            slider.Sliding(selShape);
         }
 
         private void curShapeBtn_Leave(object sender, EventArgs e)
         {
             curShapeBtn.BackgroundImage = selShape.getImage();
-
-            Slider slider = new Slider(selShape);
+            Slider slider = new Slider();
+            slider.Sliding(selShape);
         }
 
         //Button Click
         private void curShapeBtn_Click(object sender, EventArgs e)
         {
-            Slider slider = new Slider(selShape);
-        }
-
-        
-        //Tao cac dinh cua shape
-        private PointF[] hexagonVertices(Point old, Point cur, Size size)
-        {
-            PointF[] vertices = { new PointF(old.X, (float)(old.Y + size.Height / 4)), new PointF(old.X, (float)(old.Y + size.Height / 4 * 3)),
-                            new PointF((float)(old.X + size.Width / 2), (float)(old.Y + size.Height)), new PointF((float)(old.X + size.Width), (float)(old.Y + size.Height / 4 * 3)),
-                            new PointF((float)(old.X + size.Width), (float)(old.Y + size.Height / 4)), new PointF((float)(old.X + size.Width / 2), old.Y) };
-            return vertices;
-        }
-
-        private PointF[] isoTriangleVertices(Point old, Point cur, Size size)
-        {
-            PointF[] vertices = { new PointF(old.X, old.Y), new PointF((float)(old.X + size.Width), (float)(old.Y + size.Height)),
-                            new PointF(old.X, (float)(old.Y + size.Height)) };
-            return vertices;
-        }
-
-        private PointF[] arrowVertices(Point old, Point cur, Size size)
-        {
-            PointF[] vertices = { new PointF(old.X, (float)(old.Y + size.Height / 4)), new PointF((float)(old.X + size.Width / 2), (float)(old.Y + size.Height / 4)),
-                            new PointF((float)(old.X + size.Width/2), old.Y), new PointF((float)(old.X + size.Width), (float)(old.Y + size.Height/2)),
-                            new PointF((float)(old.X + size.Width/2), (float)(old.Y + size.Height)), new PointF((float)(old.X + size.Width/2), (float)(old.Y + size.Height/4*3)),
-                            new PointF(old.X, (float)(old.Y + size.Height/4*3))};
-            return vertices;
-        }
-
-        private PointF[] starVertices(Point old, Point cur, Size size)
-        {
-            PointF[] vertices = {new PointF(old.X + (float)size.Width/2, old.Y), new PointF(old.X + (float)size.Width/5*2, old.Y + (float)size.Height/5*2),
-                                new PointF(old.X, old.Y + (float)size.Height/5*2), new PointF(old.X + (float)size.Width/10*3, old.Y + (float)size.Height/5*3),
-                                new PointF(old.X + (float)size.Width/5, old.Y + (float)size.Height),  new PointF(old.X + (float)size.Width/2, old.Y + (float)size.Height/4*3),
-                                new PointF(old.X + (float)size.Width/5*4, old.Y + (float)size.Height), new PointF(old.X + (float)size.Width/10*7, old.Y + (float)size.Height/5*3),
-                                new PointF(old.X + (float)size.Width, old.Y + (float)size.Height/5*2), new PointF(old.X + (float)size.Width/5*3, old.Y + (float)size.Height/5*2) };
-            return vertices;
-        }
-
-        private PointF[] triangleVertices(Point old, Point cur, Size size)
-        {
-            PointF[] vertices = { new PointF(old.X, (float)(old.Y + size.Height)), new PointF((float)(old.X + size.Width / 2), old.Y),
-                        new PointF((float)(old.X + size.Width), (float)(old.Y + size.Height))};
-            return vertices;
-        }
-
-        private PointF[] lightningVertices(Point old, Point cur, Size size)
-        {
-            PointF[] vertices = { new PointF(old.X + (float)(size.Width / 4), old.Y), new PointF(old.X, (float)(old.Y + size.Height / 2)),
-                        new PointF((float)(old.X + size.Width / 5 * 2), (float)(old.Y + size.Height / 2)), new PointF((float)(old.X+size.Width / 5), (float)(old.Y + size.Height)),
-                        new PointF((float)(old.X + size.Width), (float)(old.Y + size.Height / 4)), new PointF((float)(old.X + size.Width / 5 * 3), (float)(old.Y + size.Height / 4)),
-                        new PointF((float)(old.X + size.Width / 4 * 3), old.Y), new PointF((float)(old.X + size.Width / 4 * 3), old.Y),
-                        new PointF((float)(old.X + size.Width / 4), old.Y)};
-            return vertices;
-        }
-
-        private GraphicsPath rHeartPath(Point old, Point cur, Size size)
-        {
-            GraphicsPath path = new GraphicsPath();
-            path.AddBezier(old.X + size.Width / 2, old.Y + size.Height / 3,
-                            old.X + size.Width * 0.9f, old.Y,
-                            old.X + size.Width, old.Y + size.Height * 0.75f,
-                            old.X + size.Width / 2, old.Y + size.Height);
-            return path;
+            Slider slider = new Slider();
+            slider.Sliding(selShape);
         }
         
-        private GraphicsPath lHeartPath(Point old, Point cur, Size size)
-        {
-            GraphicsPath path = new GraphicsPath();
-            path.AddBezier(old.X + size.Width / 2, old.Y + size.Height / 3,
-                            old.X + size.Width * 0.1f, old.Y,
-                            old.X, old.Y + size.Height * 0.75f,
-                            old.X + size.Width / 2, old.Y + size.Height);
-            return path;
-        }
-
-        private GraphicsPath wHeartPath(Point old, Point cur, Size size)
-        {
-            GraphicsPath path = new GraphicsPath();
-            path.AddBezier(old.X + size.Width / 2, old.Y + size.Height / 3,
-                            old.X + size.Width * 0.9f, old.Y,
-                            old.X + size.Width, old.Y + size.Height * 0.75f,
-                            old.X + size.Width / 2, old.Y + size.Height);
-            path.AddBezier(old.X + size.Width / 2, old.Y + size.Height / 3,
-                            old.X + size.Width * 0.1f, old.Y,
-                            old.X, old.Y + size.Height * 0.75f,
-                            old.X + size.Width / 2, old.Y + size.Height);
-            return path;
-        }
         //draw outline and fill color
         public void FillShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
@@ -167,25 +92,25 @@ namespace PaintUI
                 case 2: //line
                     break;
                 case 3: //arr
-                    g.FillPolygon(brush, arrowVertices(old, cur, size));
+                    g.FillPolygon(brush, Shape.FormArrow(old, cur, size));
                     break;
                 case 4: //star
-                    g.FillPolygon(brush, starVertices(old, cur, size));
+                    g.FillPolygon(brush, Shape.FormStar(old, cur, size));
                     break;
                 case 5: //tri
-                    g.FillPolygon(brush, triangleVertices(old, cur, size));
+                    g.FillPolygon(brush, Shape.FormTriangle(old, cur, size));
                     break;
                 case 6: //lgt
-                    g.FillPolygon(brush, lightningVertices(old, cur, size));
+                    g.FillPolygon(brush, Shape.FormLightning(old, cur, size));
                     break;
                 case 7: //iso
-                    g.FillPolygon(brush, isoTriangleVertices(old, cur, size));
+                    g.FillPolygon(brush, Shape.FormIsoTriangle(old, cur, size));
                     break; 
-                case 8: //iso
-                    g.FillPolygon(brush, hexagonVertices(old, cur, size));
+                case 8: //hex
+                    g.FillPolygon(brush, Shape.FormHexagon(old, cur, size));
                     break;
-                case 9:
-                    g.FillPath(brush, wHeartPath(old, cur, size));
+                case 9: //hrt
+                    g.FillPath(brush, Shape.FormWHeart(old, cur, size));
                     break;
                 default:
                     break;
@@ -206,31 +131,31 @@ namespace PaintUI
                     g.DrawLine(pen, old, cur);
                     break;
                 case 3: //arr
-                    g.DrawPolygon(pen, arrowVertices(old, cur, size));
+                    g.DrawPolygon(pen, Shape.FormArrow(old, cur, size));
                     break;
                 case 4: //star
-                    g.DrawPolygon(pen, starVertices(old, cur, size));
+                    g.DrawPolygon(pen, Shape.FormStar(old, cur, size));
                     break;
                 case 5: //tri
-                    g.DrawPolygon(pen, triangleVertices(old, cur, size));
+                    g.DrawPolygon(pen, Shape.FormTriangle(old, cur, size));
                     break;
                 case 6: //lgt
-                    g.DrawPolygon(pen, lightningVertices(old, cur, size));
+                    g.DrawPolygon(pen, Shape.FormLightning(old, cur, size));
                     break;
                 case 7: //iso
-                    g.DrawPolygon(pen, isoTriangleVertices(old, cur, size));
+                    g.DrawPolygon(pen, Shape.FormIsoTriangle(old, cur, size));
                     break; 
-                case 8: //iso
-                    g.DrawPolygon(pen, hexagonVertices(old, cur, size));
+                case 8: //hex
+                    g.DrawPolygon(pen, Shape.FormHexagon(old, cur, size));
                     break;
-                case 9:
+                case 9: //heart
                     try
                     {
                         pen.SetLineCap(LineCap.Round, LineCap.Round, DashCap.Round);
-                        g.DrawPath(pen, rHeartPath(old, cur, size));
-                        g.DrawPath(pen, lHeartPath(old, cur, size));
+                        g.DrawPath(pen, Shape.FormLHeart(old, cur, size));
+                        g.DrawPath(pen, Shape.FormRHeart(old, cur, size));
                     }
-                    catch(Exception)
+                    catch (Exception)
                     {
 
                     }
@@ -244,14 +169,12 @@ namespace PaintUI
         {
             if(fill)
             {
-                brush.Dispose();
                 brush = new SolidBrush(colorPanel.getColor2());
 
                 FillShapes(p, bm, g, old, cur, size);
             }
             if(outline)
             {
-                pen.Dispose();
                 pen = new Pen(colorPanel.getColor1(), thicknessSlide.Value);
                 
                 DrawOutline(p, bm, g, old, cur, size);
@@ -261,13 +184,9 @@ namespace PaintUI
         private void Shapes_FillCheckBox_OnChange(object sender, EventArgs e)
         {
             if(fill)
-            {
                 fill = false;
-            }
             else
-            {
                 fill = true;
-            }
         }
 
         private void Shapes_OutlineCheckBox_OnChange(object sender, EventArgs e)
@@ -277,12 +196,5 @@ namespace PaintUI
             else
                 outline = true;
         }
-
-        
-
-
-
-        //pen.DashStyle = DashStyle.Solid;
-        //pen.SetLineCap(System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.LineCap.Round, System.Drawing.Drawing2D.DashCap.Round);
-    }
+}
 }

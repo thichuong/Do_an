@@ -22,6 +22,7 @@ namespace PaintUI
             mainColor1.BringToFront();
             select = 1;
             pickerActive = false;
+            ResizeHelper.SetRevolution(colorPicker);
             
         }
 
@@ -97,10 +98,10 @@ namespace PaintUI
                 this.StateChanged(this, e);
         }
 
-        public void getPixelColor(Bitmap bm, Point cur)
+        public Color getPixelColor(Bitmap bm, Point cur)
         {
             Color c = bm.GetPixel(cur.X, cur.Y);
-            if(select == 1)
+            if (select == 1)
             {
                 mainColor1.BackColor = c;
             }
@@ -117,6 +118,7 @@ namespace PaintUI
             {
                 colorPicker.BackColor = Color.Transparent;
             }
+            return c;
         }
         
     }

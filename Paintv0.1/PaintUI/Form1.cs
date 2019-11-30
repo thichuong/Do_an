@@ -19,28 +19,19 @@ namespace PaintUI
 {
     public partial class Form1 : Form
     {
-        //Khai bao bien
         enum Tools { BRUSH, SHAPE};
         Tools curTool;
         
-        Pen pen;
         Bitmap bm, temp, visionBM;
         Graphics gra;
-       
         Point old, cur;
-
-        bool isDown;
-        int wid, hei;
-        int penSize;
-        
         Point pOld, startPoint, oldLocation;
 
-        bool isDragged;
-        bool isSaved;
-        bool isChanged;
+        int wid, hei;
+        
+        bool isDown, isDragged, isSaved, isChanged;
 
-        Stack<Bitmap> UNDO;
-        Stack<Bitmap> REDO;
+        Stack<Bitmap> UNDO, REDO;
         
 
         public Form1()
@@ -49,34 +40,22 @@ namespace PaintUI
            
             HideAllPanel();
             brushesPanel.Show();
-            //Khoi tao bien
+
             {
-  
-                penSize = 10;
-                pen = new Pen(Color.Black, penSize);
-                pen.DashStyle = DashStyle.Dash;
-                pen.Alignment = PenAlignment.Center;
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
                 gra = Graphics.FromImage(bm);
 
-                isDown = false;
-                isSaved = false;
-                isChanged = false;
-                isDragged = false;
+                isDown = isSaved = isChanged = isDragged = false;
                 
-
                 menuPanel.BringToFront();
                 SketchBox.Cursor = Cursors.Cross;
 
                 UNDO = new Stack<Bitmap>();
-                REDO = new Stack<Bitmap>();
                 UNDO.Push((Bitmap)bm.Clone());
+                REDO = new Stack<Bitmap>();
             }
-
-            //Modify stroke
-            pen.SetLineCap(System.Drawing.Drawing2D.LineCap.RoundAnchor, System.Drawing.Drawing2D.LineCap.RoundAnchor, System.Drawing.Drawing2D.DashCap.Round);
             
-            //Smoothing
+
             {
                 this.SetStyle(ControlStyles.UserPaint, true);
                 this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -86,8 +65,6 @@ namespace PaintUI
                 
             }
             
-
-            //Bat su kien cho cac panel
             {
                 menuPanel.NewButtonClick += MenuPanel_NewButtonClick;
                 menuPanel.OpenButtonClick += MenuPanel_OpenButtonClick;
@@ -324,7 +301,6 @@ namespace PaintUI
                 bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.VertSlide);
             else
                 bunifuTransition1.HideSync(menuPanel, false, BunifuAnimatorNS.Animation.VertSlide);
-
             
         }
 
@@ -383,8 +359,6 @@ namespace PaintUI
                 brushesPanel.Show();
             }
             curTool = Tools.BRUSH;
-
-            gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
         }
 
         private void EffectsButton_Click(object sender, EventArgs e)
@@ -424,8 +398,6 @@ namespace PaintUI
 
         
         //Cac su kien voi mouse
-
-
         private void SketchBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (isDown)
@@ -433,6 +405,7 @@ namespace PaintUI
                 cur = new Point(e.Location.X, e.Location.Y);
                 wid = cur.X - old.X;
                 hei = cur.Y - old.Y;
+                brushesPanel.ProcessMouseMove(gra, cur);
                 SketchBox.Refresh();
             }
         }
