@@ -132,6 +132,8 @@ namespace PaintUI
             Console.WriteLine("currently on bm");
             CurrentLayerBitmap = bm;
             gra = Graphics.FromImage(CurrentLayerBitmap);
+            LayerDrawer();
+            SketchBoxVisionImage(temp);
         }
 
         private void LayerPanel_AddLayerClicked(object sender, EventArgs e)
@@ -153,7 +155,8 @@ namespace PaintUI
                 CurrentLayerBitmap = LayerList[LayerIndex];
                 gra = Graphics.FromImage(CurrentLayerBitmap);
                 Console.WriteLine("currently on: " + LayerIndex);
-                
+                LayerDrawer();
+                SketchBoxVisionImage(temp);
             }
             
         }
@@ -478,10 +481,12 @@ namespace PaintUI
             temp = new Bitmap(SketchBox.Width, SketchBox.Height);
             graphics = Graphics.FromImage(temp);
             graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            graphics.DrawImage(CurrentLayerBitmap, 0, 0, SketchBox.Width, SketchBox.Height);
-            if (CurrentLayerBitmap != bm) graphics.DrawImage(bm, 0, 0);
-            for (int i = 0; i < NewList().Count; i++)
-                if (CurrentLayerBitmap != NewList()[i]) graphics.DrawImage(NewList()[i], 0, 0);
+            //if (CurrentLayerBitmap != bm) 
+               // graphics.DrawImage(bm, 0, 0);
+            //for (int i = 0; i < NewList().Count; i++)
+                //if (CurrentLayerBitmap != NewList()[i]) 
+                //    graphics.DrawImage(NewList()[i], 0, 0);
+            //graphics.DrawImage(CurrentLayerBitmap, 0, 0, SketchBox.Width, SketchBox.Height);
         }
         //Cac su kien voi mouse
         private void SketchBox_MouseMove(object sender, MouseEventArgs e)
@@ -522,11 +527,12 @@ namespace PaintUI
                 }
                 if (curTool == Tools.BRUSH)
                 {
+                    LayerDrawer();
                     gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                     gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                    brushesPanel.ProcessPaint(gra, old, cur);
+                    brushesPanel.ProcessPaint(graphics, old, cur);
                     brushesPanel.ProcessMouseUp(CurrentLayerBitmap, cur);
-                    SketchBoxVisionImage(CurrentLayerBitmap);
+                    SketchBoxVisionImage(temp);
                 }   
                 if (isSelecting)
                 {
@@ -552,6 +558,7 @@ namespace PaintUI
                 }
 
             gra.DrawRectangle(Pens.Red, GetRec());
+            gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
         }
 
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
@@ -613,21 +620,22 @@ namespace PaintUI
             {               
                 if (SelectionRec!=null)
                 {
-                    e.Graphics.DrawRectangle(Pens.Red, GetRec());
-                    
-                   
+                    e.Graphics.DrawRectangle(Pens.Red, GetRec());   
                 }
             }
         }
         
         public void SketchBoxVisionImage(Bitmap bmp)
-        {
+        {  
             Bitmap effectBM = new Bitmap(SketchBox.Width, SketchBox.Height);
             Graphics graphics = Graphics.FromImage(effectBM);
             graphics.Clear(effectsPanel.color);
+            graphics = Graphics.FromImage(CurrentLayerBitmap);
+            graphics.DrawImage(bmp,0,0);
             visionBM = new Bitmap(SketchBox.Width, SketchBox.Height);
             graphics = Graphics.FromImage(visionBM);
-            graphics.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
+            for (int i = 0; i < NewList().Count; i++)
+                 graphics.DrawImage(NewList()[i], 0, 0);
             graphics.DrawImage(effectBM, 0, 0, SketchBox.Width, SketchBox.Height);
             SketchBox.BackgroundImage = (Bitmap)visionBM.Clone();
         }
@@ -705,7 +713,7 @@ namespace PaintUI
         private void LeftTopPanel_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = e.Location;
-            temp = (Bitmap)bm;
+            LayerDrawer();
             isDragged = true;
         }
 
@@ -740,7 +748,7 @@ namespace PaintUI
         private void LeftBottomPanel_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = e.Location;
-            temp = (Bitmap)bm;
+            LayerDrawer();
             isDragged = true;
         }
 
@@ -776,7 +784,7 @@ namespace PaintUI
         private void RightTopPanel_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = e.Location;
-            temp = (Bitmap)bm;
+            LayerDrawer();
             isDragged = true;
         }
 
@@ -811,7 +819,7 @@ namespace PaintUI
         private void RightBottomPanel_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = e.Location;
-            temp = (Bitmap)bm;
+            LayerDrawer();
             isDragged = true;
         }
 
