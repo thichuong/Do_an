@@ -14,6 +14,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using MaterialSkin.Animations;
 using System.IO;
+using PaintUI.Code.Class;
 
 namespace PaintUI
 {
@@ -183,7 +184,7 @@ namespace PaintUI
             bm = new Bitmap(SketchBox.Width, SketchBox.Height);
             gra = Graphics.FromImage(bm);
             SketchBox.Refresh();
-            SketchBoxVisionImage(bm);
+            SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
             while (UNDO.Count() > 1)
             {
                 UNDO.Pop();
@@ -283,7 +284,7 @@ namespace PaintUI
         //Xu li cac xu kien cua effectPanel
         public void Effect_change(Color color,Color colorpanelCavas)
         {
-            SketchBoxVisionImage(bm);
+            SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
             panelCavas.BackColor = colorpanelCavas;
         }
       
@@ -377,7 +378,7 @@ namespace PaintUI
             {
                 REDO.Push((Bitmap)UNDO.Pop().Clone());
                 bm = (Bitmap)UNDO.Peek().Clone();
-                SketchBoxVisionImage(bm);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                 gra = Graphics.FromImage(bm);
                 isChanged = true;
             }
@@ -389,7 +390,7 @@ namespace PaintUI
             {
                 UNDO.Push((Bitmap)REDO.Pop().Clone());
                 bm = (Bitmap)UNDO.Peek().Clone();
-                SketchBoxVisionImage(bm);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                 gra = Graphics.FromImage(bm);
                 isChanged = true;
             }
@@ -405,7 +406,10 @@ namespace PaintUI
                 cur = new Point(e.Location.X, e.Location.Y);
                 wid = cur.X - old.X;
                 hei = cur.Y - old.Y;
-                brushesPanel.ProcessMouseMove(gra, cur);
+                if (curTool == Tools.BRUSH)
+                {
+                    brushesPanel.ProcessMouseMove(cur);
+                }
                 SketchBox.Refresh();
             }
         }
@@ -416,15 +420,13 @@ namespace PaintUI
             if (curTool == Tools.SHAPE)
             {
                 shapesPanel.DrawShapes(SketchBox, bm, gra, old, cur, new Size(wid, hei));
-                SketchBoxVisionImage(bm);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
             }
             if(curTool==Tools.BRUSH)
             {
-                gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 brushesPanel.ProcessPaint(gra, old, cur);
                 brushesPanel.ProcessMouseUp(bm, cur);
-                SketchBoxVisionImage(bm);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
             }
             wid = hei = 0;
 
@@ -440,19 +442,20 @@ namespace PaintUI
         {
             if(e.Button == MouseButtons.Left)
             {
-                old = new Point(e.Location.X, e.Location.Y);
-                cur = old;
-                if(curTool==Tools.BRUSH)
+                if (!isDown)
                 {
-                    brushesPanel.ProcessMouseDown(bm, gra, old, cur);
-                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                    gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                    SketchBoxVisionImage(bm);
-                    
+                    old = new Point(e.Location.X, e.Location.Y);
+                    cur = old;
+                    if (curTool == Tools.BRUSH)
+                    {
+                        brushesPanel.ProcessMouseDown(bm, gra, old, cur);
+                        SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
+
+                    }
+
+                    isDown = true;
+                    isChanged = true;
                 }
-                
-                isDown = true;
-                isChanged = true;
             }
         }
 
@@ -469,11 +472,11 @@ namespace PaintUI
                     case Tools.BRUSH:
                         brushesPanel.ProcessPaint(graphics, old, cur);
                         old = cur;
-                        SketchBoxVisionImage(temp);
+                        SketchBoxEffect.SketchBoxVisionImage(temp, SketchBox, effectsPanel, visionBM);
                         break;
                     case Tools.SHAPE:
                         shapesPanel.DrawShapes(SketchBox, bm, graphics, old, cur, new Size(wid, hei));
-                        SketchBoxVisionImage(temp);
+                        SketchBoxEffect.SketchBoxVisionImage(temp, SketchBox, effectsPanel, visionBM);
                         break;
                     default:
                         break;
@@ -481,17 +484,7 @@ namespace PaintUI
             }
         }
         
-        public void SketchBoxVisionImage(Bitmap bmp)
-        {
-            Bitmap effectBM = new Bitmap(SketchBox.Width, SketchBox.Height);
-            Graphics graphics = Graphics.FromImage(effectBM);
-            graphics.Clear(effectsPanel.color);
-            visionBM = new Bitmap(SketchBox.Width, SketchBox.Height);
-            graphics = Graphics.FromImage(visionBM);
-            graphics.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
-            graphics.DrawImage(effectBM, 0, 0, SketchBox.Width, SketchBox.Height);
-            SketchBox.BackgroundImage = (Bitmap)visionBM.Clone();
-        }
+        
 
         public void SketchBoxShowResizepanel()
         {
@@ -554,7 +547,7 @@ namespace PaintUI
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height);
                 gra = Graphics.FromImage(bm);
                 gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
-                SketchBoxVisionImage(bm);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
             }
             else
             {
@@ -588,7 +581,7 @@ namespace PaintUI
                 gra = Graphics.FromImage(bm);
                
                 gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
-                SketchBoxVisionImage(bm);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                 panelCavas.Refresh();
             }
         }
@@ -623,7 +616,7 @@ namespace PaintUI
                 gra = Graphics.FromImage(bm);
                 
                 gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
-                SketchBoxVisionImage(bm);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                 panelCavas.Refresh();
             }
         }
@@ -659,7 +652,7 @@ namespace PaintUI
                 gra = Graphics.FromImage(bm);
                
                 gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
-                SketchBoxVisionImage(bm);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                 panelCavas.Refresh();
             }
         }
@@ -692,7 +685,7 @@ namespace PaintUI
                 gra = Graphics.FromImage(bm);
             
                 gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
-                SketchBoxVisionImage(bm);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                 panelCavas.Refresh();
             }
           

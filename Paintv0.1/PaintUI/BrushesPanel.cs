@@ -13,13 +13,14 @@ namespace PaintUI
 {
     public partial class BrushesPanel : UserControl
     {
+        public bool spraying;
+
         BrushesSelection selBrush;
         List<Point> _pts = null;
         Pen pen;
         Random ran;
 
         bool pickerActive;
-        bool spraying;
        
         public BrushesPanel()
         {
@@ -70,35 +71,29 @@ namespace PaintUI
         //Cac thao tac voi trang ve
 
         Color color;
-        public void ProcessMouseMove(Graphics gra, Point cur)
-        {
-            if (selBrush.getBrush() == 4)
-            {
-                if (spraying)
-                {
-                    Sprayer.Spray(gra, (int)pen.Width, cur, color);
-                }
-            }
-        }
-
+        Sprayer sprayer;
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
         {   
             color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor1());
             pen = new Pen(color, thicknessSlide.Value);
             pen.DashStyle = DashStyle.Solid;
             pen.SetLineCap(LineCap.Round, LineCap.Round, DashCap.Round);
-
-            gra.CompositingMode = CompositingMode.SourceOver;
-            gra.SmoothingMode = SmoothingMode.AntiAlias;
-            gra.CompositingQuality = CompositingQuality.GammaCorrected;
+            
+                
 
             switch (selBrush.getBrush())
             {
                 case 0: //marker
+                    gra.CompositingMode = CompositingMode.SourceOver;
+                    gra.SmoothingMode = SmoothingMode.AntiAlias;
+                    gra.CompositingQuality = CompositingQuality.GammaCorrected;
                     _pts = new List<Point>();
                     _pts.Add(cur);
                     break;
                 case 1: //eraser 
+                    gra.CompositingMode = CompositingMode.SourceOver;
+                    gra.SmoothingMode = SmoothingMode.AntiAlias;
+                    gra.CompositingQuality = CompositingQuality.GammaCorrected;
                     _pts = new List<Point>();
                     _pts.Add(cur);
                     break;
@@ -110,11 +105,12 @@ namespace PaintUI
                 case 3:
                     break;
                 case 4:
-                    spraying = true;
-                    Sprayer.Spray(gra, (int)pen.Width, cur, color);
+                    sprayer = new Sprayer();
+                    sprayer.StartSpraying(gra, (int)pen.Width, cur, color);
                     break;
             }
         }
+        
 
         public void ProcessMouseUp(Bitmap bm, Point cur)
         {
@@ -129,8 +125,14 @@ namespace PaintUI
             }
             if(selBrush.getBrush() == 4)
             {
-                spraying = false;
+                sprayer.StopSpraying();
             }
+        }
+
+        public void ProcessMouseMove(Point cur)
+        {
+            if (selBrush.getBrush() == 4)
+                sprayer.getLocation(cur);
         }
 
         public void ProcessPaint(Graphics gra, Point old, Point cur)
@@ -168,7 +170,6 @@ namespace PaintUI
                         }
                         break;
                     case 3:
-                        MessageBox.Show("3");
                         break;
                     case 4:
                         

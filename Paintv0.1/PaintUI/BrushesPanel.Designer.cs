@@ -30,13 +30,14 @@
         private void InitializeComponent()
         {
             this.bunifuCards1 = new Bunifu.Framework.UI.BunifuCards();
+            this.curBrushBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.colorPanel = new PaintUI.ColorPanel();
             this.thicknessSlide = new Bunifu.Framework.UI.BunifuSlider();
             this.Brushes_Label3 = new System.Windows.Forms.Label();
             this.opacitySlide = new Bunifu.Framework.UI.BunifuSlider();
             this.Brushes_Label2 = new System.Windows.Forms.Label();
             this.Brushes_Label1 = new System.Windows.Forms.Label();
-            this.curBrushBtn = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.bunifuCards1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +47,7 @@
             this.bunifuCards1.BorderRadius = 5;
             this.bunifuCards1.BottomSahddow = true;
             this.bunifuCards1.color = System.Drawing.Color.Tomato;
+            this.bunifuCards1.Controls.Add(this.label1);
             this.bunifuCards1.Controls.Add(this.curBrushBtn);
             this.bunifuCards1.Controls.Add(this.colorPanel);
             this.bunifuCards1.Controls.Add(this.thicknessSlide);
@@ -61,6 +63,42 @@
             this.bunifuCards1.ShadowDepth = 20;
             this.bunifuCards1.Size = new System.Drawing.Size(338, 746);
             this.bunifuCards1.TabIndex = 1;
+            // 
+            // curBrushBtn
+            // 
+            this.curBrushBtn.Activecolor = System.Drawing.Color.Aqua;
+            this.curBrushBtn.BackColor = System.Drawing.Color.Transparent;
+            this.curBrushBtn.BackgroundImage = global::PaintUI.Properties.Resources.Artboard_1BaoKq;
+            this.curBrushBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.curBrushBtn.BorderRadius = 0;
+            this.curBrushBtn.ButtonText = "";
+            this.curBrushBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.curBrushBtn.DisabledColor = System.Drawing.Color.Gray;
+            this.curBrushBtn.Iconcolor = System.Drawing.Color.Transparent;
+            this.curBrushBtn.Iconimage = null;
+            this.curBrushBtn.Iconimage_right = null;
+            this.curBrushBtn.Iconimage_right_Selected = null;
+            this.curBrushBtn.Iconimage_Selected = null;
+            this.curBrushBtn.IconMarginLeft = 0;
+            this.curBrushBtn.IconMarginRight = 0;
+            this.curBrushBtn.IconRightVisible = true;
+            this.curBrushBtn.IconRightZoom = 0D;
+            this.curBrushBtn.IconVisible = true;
+            this.curBrushBtn.IconZoom = 90D;
+            this.curBrushBtn.IsTab = false;
+            this.curBrushBtn.Location = new System.Drawing.Point(128, 88);
+            this.curBrushBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.curBrushBtn.Name = "curBrushBtn";
+            this.curBrushBtn.Normalcolor = System.Drawing.Color.Transparent;
+            this.curBrushBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.curBrushBtn.OnHoverTextColor = System.Drawing.Color.White;
+            this.curBrushBtn.selected = false;
+            this.curBrushBtn.Size = new System.Drawing.Size(83, 85);
+            this.curBrushBtn.TabIndex = 27;
+            this.curBrushBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.curBrushBtn.Textcolor = System.Drawing.Color.White;
+            this.curBrushBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.curBrushBtn.Click += new System.EventHandler(this.curBrushBtn_Click);
             // 
             // colorPanel
             // 
@@ -135,41 +173,14 @@
             this.Brushes_Label1.TabIndex = 21;
             this.Brushes_Label1.Text = "Brushes";
             // 
-            // curBrushBtn
+            // label1
             // 
-            this.curBrushBtn.Activecolor = System.Drawing.Color.Aqua;
-            this.curBrushBtn.BackColor = System.Drawing.Color.Transparent;
-            this.curBrushBtn.BackgroundImage = global::PaintUI.Properties.Resources.Artboard_1BaoKq;
-            this.curBrushBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.curBrushBtn.BorderRadius = 0;
-            this.curBrushBtn.ButtonText = "";
-            this.curBrushBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.curBrushBtn.DisabledColor = System.Drawing.Color.Gray;
-            this.curBrushBtn.Iconcolor = System.Drawing.Color.Transparent;
-            this.curBrushBtn.Iconimage = null;
-            this.curBrushBtn.Iconimage_right = null;
-            this.curBrushBtn.Iconimage_right_Selected = null;
-            this.curBrushBtn.Iconimage_Selected = null;
-            this.curBrushBtn.IconMarginLeft = 0;
-            this.curBrushBtn.IconMarginRight = 0;
-            this.curBrushBtn.IconRightVisible = true;
-            this.curBrushBtn.IconRightZoom = 0D;
-            this.curBrushBtn.IconVisible = true;
-            this.curBrushBtn.IconZoom = 90D;
-            this.curBrushBtn.IsTab = false;
-            this.curBrushBtn.Location = new System.Drawing.Point(128, 88);
-            this.curBrushBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.curBrushBtn.Name = "curBrushBtn";
-            this.curBrushBtn.Normalcolor = System.Drawing.Color.Transparent;
-            this.curBrushBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.curBrushBtn.OnHoverTextColor = System.Drawing.Color.White;
-            this.curBrushBtn.selected = false;
-            this.curBrushBtn.Size = new System.Drawing.Size(83, 85);
-            this.curBrushBtn.TabIndex = 27;
-            this.curBrushBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.curBrushBtn.Textcolor = System.Drawing.Color.White;
-            this.curBrushBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.curBrushBtn.Click += new System.EventHandler(this.curBrushBtn_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(218, 101);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "label1";
             // 
             // BrushesPanel
             // 
@@ -195,6 +206,7 @@
         private Bunifu.Framework.UI.BunifuSlider opacitySlide;
         private System.Windows.Forms.Label Brushes_Label2;
         private System.Windows.Forms.Label Brushes_Label1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
