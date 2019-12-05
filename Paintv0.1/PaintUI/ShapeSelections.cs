@@ -30,6 +30,7 @@ namespace PaintUI
 
         private void SetRevolution()
         {
+            /*
             ResizeHelper.SetRevolution(recBtn);
             ResizeHelper.SetRevolution(elpBtn);
             ResizeHelper.SetRevolution(lineBtn);
@@ -42,7 +43,7 @@ namespace PaintUI
             ResizeHelper.SetRevolution(hrtBtn);
             ResizeHelper.SetRevolution(bunifuFlatButton2);
             ResizeHelper.SetRevolution(bunifuFlatButton3);
-
+            */
         }
 
         private void recBtn_Click(object sender, EventArgs e)

@@ -22,7 +22,7 @@ namespace PaintUI
             mainColor1.BringToFront();
             select = 1;
             pickerActive = false;
-            ResizeHelper.SetRevolution(colorPicker);
+           // ResizeHelper.SetRevolution(colorPicker);
             
         }
 

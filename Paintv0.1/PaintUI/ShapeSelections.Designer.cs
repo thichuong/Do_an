@@ -147,7 +147,7 @@
             // 
             this.hrtBtn.Activecolor = System.Drawing.Color.Aqua;
             this.hrtBtn.BackColor = System.Drawing.Color.Transparent;
-            this.hrtBtn.BackgroundImage = global::PaintUI.Properties.Resources.heart_outline2;
+            this.hrtBtn.BackgroundImage = global::PaintUI.Properties.Resources.heart5;
             this.hrtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.hrtBtn.BorderRadius = 0;
             this.hrtBtn.ButtonText = "";

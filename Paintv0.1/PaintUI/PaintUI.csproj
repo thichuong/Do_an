@@ -112,6 +112,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LayerPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LayerPanel.Designer.cs">
+      <DependentUpon>LayerPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerPanel.resx">
+      <DependentUpon>LayerPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPanel.resx">
       <DependentUpon>MenuPanel.cs</DependentUpon>
@@ -333,9 +342,6 @@
     <None Include="Resources\heart2.png" />
     <None Include="Resources\heart4.png" />
     <None Include="Resources\heart5.png" />
-    <None Include="Resources\heart-outline.png" />
-    <None Include="Resources\heart-outline1.png" />
-    <None Include="Resources\heart-outline2.png" />
     <Content Include="Resources\hexa.bmp" />
     <None Include="Resources\Hexagon.png" />
     <Content Include="Resources\iso.bmp" />

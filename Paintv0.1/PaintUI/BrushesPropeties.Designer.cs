@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.thicknessSlide = new Bunifu.Framework.UI.BunifuSlider();
-            this.opacityLb = new System.Windows.Forms.Label();
+            this.Brushes_Label3 = new System.Windows.Forms.Label();
             this.opacitySlide = new Bunifu.Framework.UI.BunifuSlider();
-            this.thicknessLb = new System.Windows.Forms.Label();
+            this.Brushes_Label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // thicknessSlide
@@ -48,16 +48,16 @@
             this.thicknessSlide.TabIndex = 29;
             this.thicknessSlide.Value = 5;
             // 
-            // opacityLb
+            // Brushes_Label3
             // 
-            this.opacityLb.AutoSize = true;
-            this.opacityLb.BackColor = System.Drawing.Color.Transparent;
-            this.opacityLb.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.opacityLb.Location = new System.Drawing.Point(40, 119);
-            this.opacityLb.Name = "opacityLb";
-            this.opacityLb.Size = new System.Drawing.Size(140, 52);
-            this.opacityLb.TabIndex = 28;
-            this.opacityLb.Text = "Opacity";
+            this.Brushes_Label3.AutoSize = true;
+            this.Brushes_Label3.BackColor = System.Drawing.Color.Transparent;
+            this.Brushes_Label3.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Brushes_Label3.Location = new System.Drawing.Point(40, 119);
+            this.Brushes_Label3.Name = "Brushes_Label3";
+            this.Brushes_Label3.Size = new System.Drawing.Size(140, 52);
+            this.Brushes_Label3.TabIndex = 28;
+            this.Brushes_Label3.Text = "Opacity";
             // 
             // opacitySlide
             // 
@@ -73,25 +73,25 @@
             this.opacitySlide.TabIndex = 27;
             this.opacitySlide.Value = 0;
             // 
-            // thicknessLb
+            // Brushes_Label2
             // 
-            this.thicknessLb.AutoSize = true;
-            this.thicknessLb.BackColor = System.Drawing.Color.Transparent;
-            this.thicknessLb.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thicknessLb.Location = new System.Drawing.Point(39, 10);
-            this.thicknessLb.Name = "thicknessLb";
-            this.thicknessLb.Size = new System.Drawing.Size(166, 52);
-            this.thicknessLb.TabIndex = 26;
-            this.thicknessLb.Text = "Thickness";
+            this.Brushes_Label2.AutoSize = true;
+            this.Brushes_Label2.BackColor = System.Drawing.Color.Transparent;
+            this.Brushes_Label2.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Brushes_Label2.Location = new System.Drawing.Point(39, 10);
+            this.Brushes_Label2.Name = "Brushes_Label2";
+            this.Brushes_Label2.Size = new System.Drawing.Size(166, 52);
+            this.Brushes_Label2.TabIndex = 26;
+            this.Brushes_Label2.Text = "Thickness";
             // 
             // BrushesPropeties
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.thicknessSlide);
-            this.Controls.Add(this.opacityLb);
+            this.Controls.Add(this.Brushes_Label3);
             this.Controls.Add(this.opacitySlide);
-            this.Controls.Add(this.thicknessLb);
+            this.Controls.Add(this.Brushes_Label2);
             this.Name = "BrushesPropeties";
             this.Size = new System.Drawing.Size(331, 215);
             this.ResumeLayout(false);
@@ -102,8 +102,8 @@
         #endregion
 
         private Bunifu.Framework.UI.BunifuSlider thicknessSlide;
-        private System.Windows.Forms.Label opacityLb;
+        private System.Windows.Forms.Label Brushes_Label3;
         private Bunifu.Framework.UI.BunifuSlider opacitySlide;
-        private System.Windows.Forms.Label thicknessLb;
+        private System.Windows.Forms.Label Brushes_Label2;
     }
 }

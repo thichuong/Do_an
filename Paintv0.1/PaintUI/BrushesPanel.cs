@@ -15,9 +15,6 @@ namespace PaintUI
     {
         static BrushesSelection selBrush;
         static List<Point> _pts = null;
-
-        static Pen marker, eraser, pencil, spray, calligraphy; 
-
         static Pen pen;
         static Random ran;
         static int distance;
@@ -28,6 +25,8 @@ namespace PaintUI
         public BrushesPanel()
         {
             InitializeComponent();
+
+
             ran = new Random();
 
             thicknessSlide.Value = 10;
@@ -36,10 +35,10 @@ namespace PaintUI
 
             penSize = standarSize = thicknessSlide.Value;
 
-            //pen = new Pen(colorPanel.getColor1(), (float)penSize);
+            pen = new Pen(colorPanel.getColor1(), (float)penSize);
             pickerActive = false;
 
-            ResizeHelper.SetRevolution(curBrushBtn);
+           // ResizeHelper.SetRevolution(curBrushBtn);
 
             selBrush = new BrushesSelection();
             selBrush.Location = new Point(0, curBrushBtn.Location.Y + curBrushBtn.Size.Height + 10);
@@ -60,7 +59,6 @@ namespace PaintUI
         private void SelBrush_BrushSelected(object sender, EventArgs e)
         {
             curBrushBtn.BackgroundImage = selBrush.getImage();
-
             if (selBrush.Visible)
                 selBrush.Hide();
             else
@@ -73,7 +71,7 @@ namespace PaintUI
                 selBrush.Hide();
             else
                 selBrush.Show();
-            
+
         }
 
 
@@ -86,31 +84,26 @@ namespace PaintUI
         {
             color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor1());
             pen = new Pen(color, thicknessSlide.Value);
-            pen.DashStyle = DashStyle.Solid;        
+            pen.DashStyle = DashStyle.Solid;
             pen.SetLineCap(LineCap.Round, LineCap.Round, DashCap.Round);
 
             switch (selBrush.getBrush())
             {
                 case 0: //marker
-                    //gra.CompositingMode = CompositingMode.SourceOver;
-                    //gra.SmoothingMode = SmoothingMode.AntiAlias;
                     ModifyGra(gra);
                     gra.CompositingQuality = CompositingQuality.GammaCorrected;
                     _pts = new List<Point>();
                     _pts.Add(cur);
                     break;
                 case 1: //eraser 
-                    //gra.CompositingMode = CompositingMode.SourceOver;
-                    //gra.SmoothingMode = SmoothingMode.AntiAlias;
                     ModifyGra(gra);
                     gra.CompositingQuality = CompositingQuality.GammaCorrected;
                     _pts = new List<Point>();
                     _pts.Add(cur);
                     break;
                 case 2: //fill
-                    Color pointColor = Color.FromArgb(255, bm.GetPixel(old.X, old.Y));
                     color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor2());
-                    FillBucket.Fill(bm, old, pointColor, color);
+                    FillBucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), color);
                     break;
                 case 3:
                     break;
@@ -159,6 +152,7 @@ namespace PaintUI
 
                 pickerActive = false;
             }
+            
         }
 
         public void ProcessMouseMove(Point cur, Point old, Graphics gra)
@@ -184,6 +178,8 @@ namespace PaintUI
                     pen.SetLineCap(LineCap.Round, LineCap.Round, DashCap.Round);
                     gra.DrawLine(pen, old, cur);
                 }
+                if(selBrush.getBrush()==0 || selBrush.getBrush()==1)
+                    _pts.Add(cur);
             }
         }
 
@@ -200,7 +196,7 @@ namespace PaintUI
                             //gra.CompositingMode = CompositingMode.SourceOver;
                             //gra.SmoothingMode = SmoothingMode.AntiAlias;
                             ModifyGra(gra);
-                            _pts.Add(cur);
+                            
                             gPath.AddLines(_pts.ToArray());
                             pen.LineJoin = LineJoin.Round;
                             gra.CompositingMode = CompositingMode.SourceOver;
@@ -212,7 +208,7 @@ namespace PaintUI
                         {
                             gra.CompositingMode = CompositingMode.SourceCopy;
                             gra.SmoothingMode = SmoothingMode.None;
-                            _pts.Add(cur);
+                            
                             gPath.AddLines(_pts.ToArray());
 
                             pen = new Pen(Color.Transparent, thicknessSlide.Value);
@@ -238,7 +234,6 @@ namespace PaintUI
             gra.SmoothingMode = SmoothingMode.AntiAlias;
         }
 
-        
+
     }
 }
-

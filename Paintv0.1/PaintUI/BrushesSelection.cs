@@ -34,12 +34,12 @@ namespace PaintUI
 
         private void SetRevolution()
         {
-            ResizeHelper.SetRevolution(marBtn);
-            ResizeHelper.SetRevolution(eraBtn);
-            ResizeHelper.SetRevolution(fillBtn);
-            ResizeHelper.SetRevolution(peciBtn);
-            ResizeHelper.SetRevolution(sprBtn);
-            ResizeHelper.SetRevolution(calliBtn);
+          //  ResizeHelper.SetRevolution(marBtn);
+            //ResizeHelper.SetRevolution(eraBtn);
+           // ResizeHelper.SetRevolution(fillBtn);
+           // ResizeHelper.SetRevolution(peciBtn);
+          //  ResizeHelper.SetRevolution(sprBtn);
+          //  ResizeHelper.SetRevolution(calliBtn);
         }
 
         private void marBtn_Click(object sender, EventArgs e)

@@ -12,25 +12,9 @@ namespace PaintUI
 {
     public partial class BrushesPropeties : UserControl
     {
-        public BrushesPropeties(int type = 0)
+        public BrushesPropeties()
         {
             InitializeComponent();
-
-            Size = new Size(200, 200);
-
-            if(type == 3)
-            {
-                opacityLb.Location = thicknessLb.Location;
-                opacitySlide.Location = thicknessSlide.Location;
-                Controls.Remove(thicknessLb);
-                Controls.Remove(thicknessSlide);
-            }
-
-            if(type == 5)
-            {
-                Controls.Remove(opacityLb);
-                Controls.Remove(opacitySlide);
-            }
         }
 
         public int getThickness()
