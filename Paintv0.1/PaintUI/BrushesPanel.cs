@@ -78,7 +78,10 @@ namespace PaintUI
                 {
                     Sprayer.Spray(gra, (int)pen.Width, cur, color);
                 }
+               
             }
+            else
+                _pts.Add(cur);
         }
 
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
@@ -145,7 +148,7 @@ namespace PaintUI
                         {
                             gra.CompositingMode = CompositingMode.SourceOver;
                             gra.SmoothingMode = SmoothingMode.AntiAlias;
-                            _pts.Add(cur);
+                           // _pts.Add(cur);
                             gPath.AddLines(_pts.ToArray());
                             pen.LineJoin = LineJoin.Round;
                             gra.CompositingMode = CompositingMode.SourceOver;
