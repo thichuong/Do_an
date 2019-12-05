@@ -12,7 +12,7 @@ namespace PaintUI
 {
     class ResizeHelper
     {
-        static private Image ResizeImg(Image originalImage, int w, int h)
+       /* static private Image ResizeImg(Image originalImage, int w, int h)
         {
             //Original Image attributes
             int originalWidth = originalImage.Width;
@@ -54,5 +54,6 @@ namespace PaintUI
             int unit = 50;
             tar.Image = ResizeImg(tar.Image, unit, unit);
         }
+        */
     }
 }

@@ -38,7 +38,7 @@ namespace PaintUI
             pen = new Pen(colorPanel.getColor1(), (float)penSize);
             pickerActive = false;
 
-            ResizeHelper.SetRevolution(curBrushBtn);
+           // ResizeHelper.SetRevolution(curBrushBtn);
 
             selBrush = new BrushesSelection();
             selBrush.Location = new Point(0, curBrushBtn.Location.Y + curBrushBtn.Size.Height + 10);
@@ -71,27 +71,14 @@ namespace PaintUI
                 selBrush.Hide();
             else
                 selBrush.Show();
-            
+
         }
 
 
         //Cac thao tac voi trang ve
 
-
-        Color color;
-        public void ProcessMouseMove(Graphics gra, Point cur)
-        {
-            if (selBrush.getBrush() == 4)
-            {
-                if (spraying)
-                {
-                    Sprayer.Spray(gra, (int)pen.Width, cur, color);
-                }
-               
-            }
-            else
-                _pts.Add(cur);
-        }
+        static Color color;
+        static Sprayer sprayer;
 
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
         {
@@ -170,6 +157,7 @@ namespace PaintUI
 
                 pickerActive = false;
             }
+            
         }
 
         public void ProcessMouseMove(Point cur, Point old, Graphics gra)
@@ -195,6 +183,8 @@ namespace PaintUI
                     pen.SetLineCap(LineCap.Round, LineCap.Round, DashCap.Round);
                     gra.DrawLine(pen, old, cur);
                 }
+                if(selBrush.getBrush()==0 || selBrush.getBrush()==1)
+                    _pts.Add(cur);
             }
         }
 
@@ -208,11 +198,10 @@ namespace PaintUI
                     case 0: //marker
                         if (_pts != null)
                         {
-
-                            gra.CompositingMode = CompositingMode.SourceOver;
-                            gra.SmoothingMode = SmoothingMode.AntiAlias;
-                           // _pts.Add(cur);
-
+                            //gra.CompositingMode = CompositingMode.SourceOver;
+                            //gra.SmoothingMode = SmoothingMode.AntiAlias;
+                            ModifyGra(gra);
+                            
                             gPath.AddLines(_pts.ToArray());
                             pen.LineJoin = LineJoin.Round;
                             gra.CompositingMode = CompositingMode.SourceOver;
@@ -224,7 +213,7 @@ namespace PaintUI
                         {
                             gra.CompositingMode = CompositingMode.SourceCopy;
                             gra.SmoothingMode = SmoothingMode.None;
-                            _pts.Add(cur);
+                            
                             gPath.AddLines(_pts.ToArray());
 
                             pen = new Pen(Color.Transparent, thicknessSlide.Value);
@@ -250,7 +239,6 @@ namespace PaintUI
             gra.SmoothingMode = SmoothingMode.AntiAlias;
         }
 
-        
+
     }
 }
-

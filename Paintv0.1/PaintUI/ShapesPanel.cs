@@ -39,7 +39,7 @@ namespace PaintUI
             Shapes_FillCheckBox.Checked = false;
             Shapes_OutlineCheckBox.Checked = true;
 
-            ResizeHelper.SetRevolution(curShapeBtn);
+            //ResizeHelper.SetRevolution(curShapeBtn);
 
             selShape = new ShapeSelections();
             selShape.Location = new Point(0, curShapeBtn.Location.Y+curShapeBtn.Size.Height + 10);
@@ -162,7 +162,7 @@ namespace PaintUI
             }
         }
 
-        private void DrawShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
+        public void DrawShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
             if(fill)
             {
