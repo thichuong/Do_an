@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.bunifuCards1 = new Bunifu.Framework.UI.BunifuCards();
-            this.bunifuFlatButton5 = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.calliBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.fillBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.sprBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.peciBtn = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -44,7 +44,7 @@
             this.bunifuCards1.BorderRadius = 5;
             this.bunifuCards1.BottomSahddow = true;
             this.bunifuCards1.color = System.Drawing.Color.Tomato;
-            this.bunifuCards1.Controls.Add(this.bunifuFlatButton5);
+            this.bunifuCards1.Controls.Add(this.calliBtn);
             this.bunifuCards1.Controls.Add(this.fillBtn);
             this.bunifuCards1.Controls.Add(this.sprBtn);
             this.bunifuCards1.Controls.Add(this.peciBtn);
@@ -59,40 +59,41 @@
             this.bunifuCards1.Size = new System.Drawing.Size(342, 306);
             this.bunifuCards1.TabIndex = 0;
             // 
-            // bunifuFlatButton5
+            // calliBtn
             // 
-            this.bunifuFlatButton5.Activecolor = System.Drawing.Color.Aqua;
-            this.bunifuFlatButton5.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuFlatButton5.BackgroundImage = global::PaintUI.Properties.Resources.Artboard_1BaoKq;
-            this.bunifuFlatButton5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuFlatButton5.BorderRadius = 0;
-            this.bunifuFlatButton5.ButtonText = "";
-            this.bunifuFlatButton5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuFlatButton5.DisabledColor = System.Drawing.Color.Gray;
-            this.bunifuFlatButton5.Iconcolor = System.Drawing.Color.Transparent;
-            this.bunifuFlatButton5.Iconimage = null;
-            this.bunifuFlatButton5.Iconimage_right = null;
-            this.bunifuFlatButton5.Iconimage_right_Selected = null;
-            this.bunifuFlatButton5.Iconimage_Selected = null;
-            this.bunifuFlatButton5.IconMarginLeft = 0;
-            this.bunifuFlatButton5.IconMarginRight = 0;
-            this.bunifuFlatButton5.IconRightVisible = true;
-            this.bunifuFlatButton5.IconRightZoom = 0D;
-            this.bunifuFlatButton5.IconVisible = true;
-            this.bunifuFlatButton5.IconZoom = 90D;
-            this.bunifuFlatButton5.IsTab = false;
-            this.bunifuFlatButton5.Location = new System.Drawing.Point(233, 161);
-            this.bunifuFlatButton5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.bunifuFlatButton5.Name = "bunifuFlatButton5";
-            this.bunifuFlatButton5.Normalcolor = System.Drawing.Color.Transparent;
-            this.bunifuFlatButton5.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.bunifuFlatButton5.OnHoverTextColor = System.Drawing.Color.White;
-            this.bunifuFlatButton5.selected = false;
-            this.bunifuFlatButton5.Size = new System.Drawing.Size(83, 85);
-            this.bunifuFlatButton5.TabIndex = 1;
-            this.bunifuFlatButton5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bunifuFlatButton5.Textcolor = System.Drawing.Color.White;
-            this.bunifuFlatButton5.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.calliBtn.Activecolor = System.Drawing.Color.Aqua;
+            this.calliBtn.BackColor = System.Drawing.Color.Transparent;
+            this.calliBtn.BackgroundImage = global::PaintUI.Properties.Resources.Artboard_1Pencil2;
+            this.calliBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.calliBtn.BorderRadius = 0;
+            this.calliBtn.ButtonText = "";
+            this.calliBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.calliBtn.DisabledColor = System.Drawing.Color.Gray;
+            this.calliBtn.Iconcolor = System.Drawing.Color.Transparent;
+            this.calliBtn.Iconimage = null;
+            this.calliBtn.Iconimage_right = null;
+            this.calliBtn.Iconimage_right_Selected = null;
+            this.calliBtn.Iconimage_Selected = null;
+            this.calliBtn.IconMarginLeft = 0;
+            this.calliBtn.IconMarginRight = 0;
+            this.calliBtn.IconRightVisible = true;
+            this.calliBtn.IconRightZoom = 0D;
+            this.calliBtn.IconVisible = true;
+            this.calliBtn.IconZoom = 90D;
+            this.calliBtn.IsTab = false;
+            this.calliBtn.Location = new System.Drawing.Point(233, 161);
+            this.calliBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.calliBtn.Name = "calliBtn";
+            this.calliBtn.Normalcolor = System.Drawing.Color.Transparent;
+            this.calliBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.calliBtn.OnHoverTextColor = System.Drawing.Color.White;
+            this.calliBtn.selected = false;
+            this.calliBtn.Size = new System.Drawing.Size(83, 85);
+            this.calliBtn.TabIndex = 1;
+            this.calliBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.calliBtn.Textcolor = System.Drawing.Color.White;
+            this.calliBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.calliBtn.Click += new System.EventHandler(this.calliBtn_Click);
             // 
             // fillBtn
             // 
@@ -292,7 +293,7 @@
         private Bunifu.Framework.UI.BunifuFlatButton marBtn;
         private Bunifu.Framework.UI.BunifuFlatButton fillBtn;
         private Bunifu.Framework.UI.BunifuFlatButton eraBtn;
-        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton5;
+        private Bunifu.Framework.UI.BunifuFlatButton calliBtn;
         private Bunifu.Framework.UI.BunifuFlatButton sprBtn;
         private Bunifu.Framework.UI.BunifuFlatButton peciBtn;
     }

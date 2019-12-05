@@ -13,51 +13,59 @@ namespace PaintUI
         int type, vel, unit=20, maxHeight;
         ShapeSelections shapeTar;
         BrushesSelection brushTar;
+
         
-        public void Sliding(ShapeSelections tar)
+        public void Sliding(object tar)
         {
-            maxHeight = 250;
-            type = 0;
-            shapeTar = tar;
-
-            if (shapeTar.Height >= maxHeight)
-            {
-                vel = -unit;
-            }
-
-            if (shapeTar.Height <= 0)
-            {
-                vel = unit;
-            }
-
-            timer = new Timer();
-            timer.Interval = 5;
-            timer.Start();
-
-            timer.Tick += Timer_Tick;
+            ProcessSliding(tar);
         }
         
-        public void Sliding(BrushesSelection tar)
+        private void ProcessSliding(object tar)
         {
-            maxHeight = 200;
-            type = 1;
-            brushTar = tar;
-
-            if (brushTar.Height >= maxHeight)
+            if (tar is ShapeSelections)
             {
-                vel = -unit;
-            }
+                maxHeight = 210;
+                type = 0;
+                shapeTar = (ShapeSelections)tar;
 
-            if (brushTar.Height <= 0)
+                if (shapeTar.Height >= maxHeight)
+                {
+                    vel = -unit;
+                }
+
+                if (shapeTar.Height <= 0)
+                {
+                    vel = unit;
+                }
+
+                timer = new Timer();
+                timer.Interval = 5;
+                timer.Start();
+
+                timer.Tick += Timer_Tick;
+            }
+            else if (tar is BrushesSelection)
             {
-                vel = unit;
+                maxHeight = 200;
+                type = 1;
+                brushTar = (BrushesSelection)tar;
+
+                if (brushTar.Height >= maxHeight)
+                {
+                    vel = -unit;
+                }
+
+                if (brushTar.Height <= 0)
+                {
+                    vel = unit;
+                }
+
+                timer = new Timer();
+                timer.Interval = 10;
+                timer.Start();
+
+                timer.Tick += Timer_Tick;
             }
-
-            timer = new Timer();
-            timer.Interval = 10;
-            timer.Start();
-
-            timer.Tick += Timer_Tick;
         }
 
         private void Timer_Tick(object sender, EventArgs e)

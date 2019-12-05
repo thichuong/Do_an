@@ -395,8 +395,6 @@ namespace PaintUI
                 isChanged = true;
             }
         }
-
-
         
         //Cac su kien voi mouse
         private void SketchBox_MouseMove(object sender, MouseEventArgs e)
@@ -406,9 +404,10 @@ namespace PaintUI
                 cur = new Point(e.Location.X, e.Location.Y);
                 wid = cur.X - old.X;
                 hei = cur.Y - old.Y;
+
                 if (curTool == Tools.BRUSH)
                 {
-                    brushesPanel.ProcessMouseMove(cur);
+                    brushesPanel.ProcessMouseMove(cur, old, gra);
                 }
                 SketchBox.Refresh();
             }
@@ -425,13 +424,11 @@ namespace PaintUI
             if(curTool==Tools.BRUSH)
             {
                 brushesPanel.ProcessPaint(gra, old, cur);
-                brushesPanel.ProcessMouseUp(bm, cur);
+                brushesPanel.ProcessMouseUp(bm, cur, UNDO);
                 SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
             }
             wid = hei = 0;
-
-            //Them vao stack UNDO khi het net ve
-            UNDO.Push((Bitmap)bm.Clone());
+            
             while(REDO.Count>0)
             {
                 REDO.Pop();
@@ -450,7 +447,6 @@ namespace PaintUI
                     {
                         brushesPanel.ProcessMouseDown(bm, gra, old, cur);
                         SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
-
                     }
 
                     isDown = true;

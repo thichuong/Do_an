@@ -39,7 +39,7 @@ namespace PaintUI
             ResizeHelper.SetRevolution(fillBtn);
             ResizeHelper.SetRevolution(peciBtn);
             ResizeHelper.SetRevolution(sprBtn);
-            ResizeHelper.SetRevolution(bunifuFlatButton5);
+            ResizeHelper.SetRevolution(calliBtn);
         }
 
         private void marBtn_Click(object sender, EventArgs e)
@@ -78,6 +78,14 @@ namespace PaintUI
         {
             curBrush = 4;
             curImage = sprBtn.BackgroundImage;
+            if (this.BrushSelected != null)
+                this.BrushSelected(this, e);
+        }
+
+        private void calliBtn_Click(object sender, EventArgs e)
+        {
+            curBrush = 5;
+            curImage = calliBtn.BackgroundImage;
             if (this.BrushSelected != null)
                 this.BrushSelected(this, e);
         }

@@ -13,22 +13,19 @@ namespace PaintUI
 {
     public partial class BrushesPanel : UserControl
     {
-        public bool spraying;
+        static BrushesSelection selBrush;
+        static List<Point> _pts = null;
+        static Pen pen;
+        static Random ran;
+        static int distance;
+        static double standarSize, penSize;
 
-        BrushesSelection selBrush;
-        List<Point> _pts = null;
-        Pen pen;
-        Random ran;
+        static bool pickerActive;
 
-        bool pickerActive;
-       
         public BrushesPanel()
         {
             InitializeComponent();
 
-            pen = new Pen(colorPanel.getColor1(), thicknessSlide.Value);
-            pickerActive = false;
-            spraying = false;
 
             ran = new Random();
 
@@ -36,13 +33,18 @@ namespace PaintUI
             opacitySlide.Value = 255;
             thicknessSlide.MaximumValue = 30;
 
+            penSize = standarSize = thicknessSlide.Value;
+
+            pen = new Pen(colorPanel.getColor1(), (float)penSize);
+            pickerActive = false;
+
             ResizeHelper.SetRevolution(curBrushBtn);
 
             selBrush = new BrushesSelection();
             selBrush.Location = new Point(0, curBrushBtn.Location.Y + curBrushBtn.Size.Height + 10);
-            selBrush.Size = new Size(Width + 20, 0);
+            selBrush.Size = new Size(Width + 20, 210);
             Controls.Add(selBrush);
-            selBrush.Show();
+            selBrush.Hide();
             selBrush.BringToFront();
 
             selBrush.BrushSelected += SelBrush_BrushSelected;
@@ -53,46 +55,52 @@ namespace PaintUI
         {
             pickerActive = !pickerActive;
         }
-        
+
         private void SelBrush_BrushSelected(object sender, EventArgs e)
         {
             curBrushBtn.BackgroundImage = selBrush.getImage();
-            Slider slider = new Slider();
-            slider.Sliding(selBrush);
+            if (selBrush.Visible)
+                selBrush.Hide();
+            else
+                selBrush.Show();
         }
 
         private void curBrushBtn_Click(object sender, EventArgs e)
         {
-            Slider slider = new Slider();
-            slider.Sliding(selBrush);
+            if (selBrush.Visible)
+                selBrush.Hide();
+            else
+                selBrush.Show();
+            
         }
 
 
         //Cac thao tac voi trang ve
 
-        Color color;
-        Sprayer sprayer;
+        static Color color;
+        static Sprayer sprayer;
+
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
-        {   
+        {
             color = Color.FromArgb(opacitySlide.Value, colorPanel.getColor1());
             pen = new Pen(color, thicknessSlide.Value);
             pen.DashStyle = DashStyle.Solid;
             pen.SetLineCap(LineCap.Round, LineCap.Round, DashCap.Round);
-            
-                
 
             switch (selBrush.getBrush())
             {
                 case 0: //marker
-                    gra.CompositingMode = CompositingMode.SourceOver;
-                    gra.SmoothingMode = SmoothingMode.AntiAlias;
+                    //gra.CompositingMode = CompositingMode.SourceOver;
+                    //gra.SmoothingMode = SmoothingMode.AntiAlias;
+                    ModifyGra(gra);
                     gra.CompositingQuality = CompositingQuality.GammaCorrected;
                     _pts = new List<Point>();
                     _pts.Add(cur);
                     break;
                 case 1: //eraser 
-                    gra.CompositingMode = CompositingMode.SourceOver;
-                    gra.SmoothingMode = SmoothingMode.AntiAlias;
+                    //gra.CompositingMode = CompositingMode.SourceOver;
+                    //gra.SmoothingMode = SmoothingMode.AntiAlias;
+                    ModifyGra(gra);
                     gra.CompositingQuality = CompositingQuality.GammaCorrected;
                     _pts = new List<Point>();
                     _pts.Add(cur);
@@ -105,48 +113,92 @@ namespace PaintUI
                 case 3:
                     break;
                 case 4:
-                    sprayer = new Sprayer();
-                    sprayer.StartSpraying(gra, (int)pen.Width, cur, color);
+                    if (!pickerActive)
+                    {
+                        sprayer = new Sprayer();
+                        sprayer.StartSpraying(gra, (int)pen.Width, cur, color);
+                    }
+                    break;
+                case 5:
+                    //gra.CompositingMode = CompositingMode.SourceOver;
+                    //gra.SmoothingMode = SmoothingMode.AntiAlias;
+                    ModifyGra(gra);
+                    penSize = standarSize = thicknessSlide.Value;
                     break;
             }
         }
-        
 
-        public void ProcessMouseUp(Bitmap bm, Point cur)
+
+        public void ProcessMouseUp(Bitmap bm, Point cur, Stack<Bitmap> UNDO)
         {
             if (selBrush.getBrush() == 0 || selBrush.getBrush() == 1)
             {
                 _pts = new List<Point>();
             }
-            if (pickerActive)
-            {
-                colorPanel.getPixelColor(bm, cur);
-                pickerActive = false;
-            }
-            if(selBrush.getBrush() == 4)
+
+            if (selBrush.getBrush() == 4)
             {
                 sprayer.StopSpraying();
             }
+
+            if (selBrush.getBrush() == 5)
+            {
+                penSize = standarSize;
+            }
+
+            if (!pickerActive)
+            {
+                UNDO.Push((Bitmap)bm.Clone());
+            }
+
+            if (pickerActive)
+            {
+                colorPanel.getPixelColor(bm, cur);
+
+                pickerActive = false;
+            }
+
         }
 
-        public void ProcessMouseMove(Point cur)
+        public void ProcessMouseMove(Point cur, Point old, Graphics gra)
         {
-            if (selBrush.getBrush() == 4)
-                sprayer.getLocation(cur);
+            if (!pickerActive)
+            {
+                if (selBrush.getBrush() == 4)
+                    sprayer.getLocation(cur);
+                if (selBrush.getBrush() == 5)
+                {
+                    distance = Convert.ToInt32((cur.X - old.X) * (cur.X - old.X) + (cur.Y - old.Y) * (cur.Y - old.Y)) / 10;
+
+                    if (distance > 0)
+                    {
+                        if (distance < 15 && penSize <= standarSize)
+                            penSize += standarSize / 20;
+                        else if (distance >= 2 && penSize > 1)
+                            penSize -= standarSize / 20;
+                    }
+                    gra.SmoothingMode = SmoothingMode.AntiAlias;
+                    pen = new Pen(color, (float)penSize);
+                    pen.DashStyle = DashStyle.Solid;
+                    pen.SetLineCap(LineCap.Round, LineCap.Round, DashCap.Round);
+                    gra.DrawLine(pen, old, cur);
+                }
+            }
         }
 
         public void ProcessPaint(Graphics gra, Point old, Point cur)
         {
-            if (!pickerActive )
+            if (!pickerActive)
             {
                 GraphicsPath gPath = new GraphicsPath();
                 switch (selBrush.getBrush())
                 {
                     case 0: //marker
-                        if (_pts!=null)
+                        if (_pts != null)
                         {
-                            gra.CompositingMode = CompositingMode.SourceOver;
-                            gra.SmoothingMode = SmoothingMode.AntiAlias;
+                            //gra.CompositingMode = CompositingMode.SourceOver;
+                            //gra.SmoothingMode = SmoothingMode.AntiAlias;
+                            ModifyGra(gra);
                             _pts.Add(cur);
                             gPath.AddLines(_pts.ToArray());
                             pen.LineJoin = LineJoin.Round;
@@ -155,7 +207,7 @@ namespace PaintUI
                         }
                         break;
                     case 1: //eraser
-                        if (_pts!=null)
+                        if (_pts != null)
                         {
                             gra.CompositingMode = CompositingMode.SourceCopy;
                             gra.SmoothingMode = SmoothingMode.None;
@@ -172,7 +224,6 @@ namespace PaintUI
                     case 3:
                         break;
                     case 4:
-                        
                         break;
                     default:
                         break;
@@ -180,17 +231,13 @@ namespace PaintUI
             }
         }
 
-        //get
-        public int getThickness()
+        private void ModifyGra(Graphics gra)
         {
-            return thicknessSlide.Value;
+            gra.CompositingMode = CompositingMode.SourceOver;
+            gra.SmoothingMode = SmoothingMode.AntiAlias;
         }
 
-        public int getOpacity()
-        {
-            return opacitySlide.Value;
-        }
-
+        
     }
 }
 

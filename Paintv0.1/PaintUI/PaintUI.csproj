@@ -62,6 +62,12 @@
     <Compile Include="BrushesPanel.Designer.cs">
       <DependentUpon>BrushesPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="BrushesPropeties.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BrushesPropeties.Designer.cs">
+      <DependentUpon>BrushesPropeties.cs</DependentUpon>
+    </Compile>
     <Compile Include="BrushesSelection.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -134,7 +140,6 @@
     <Compile Include="ShapesPanel.Designer.cs">
       <DependentUpon>ShapesPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Code\Class\Slider.cs" />
     <Compile Include="Code\Class\Sprayer.cs" />
     <Compile Include="TextPanel.cs">
       <SubType>UserControl</SubType>
@@ -144,6 +149,9 @@
     </Compile>
     <EmbeddedResource Include="BrushesPanel.resx">
       <DependentUpon>BrushesPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BrushesPropeties.resx">
+      <DependentUpon>BrushesPropeties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BrushesSelection.resx">
       <DependentUpon>BrushesSelection.cs</DependentUpon>
@@ -314,6 +322,10 @@
     <None Include="Resources\Arrow.png" />
     <Content Include="Resources\ArrowShape.png" />
     <None Include="Resources\Artboard 1BaoKq.png" />
+    <None Include="Resources\Artboard 1Pencil.png" />
+    <None Include="Resources\CalligraphyPen.png" />
+    <None Include="Resources\Artboard 1Pencil1.png" />
+    <None Include="Resources\Artboard 1Pencil2.png" />
     <Content Include="Resources\ellip.bmp" />
     <None Include="Resources\Ellipse.png" />
     <None Include="Resources\heart.png" />
