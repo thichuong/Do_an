@@ -21,10 +21,10 @@ namespace PaintUI
 
         ShapeSelections selShape;
 
-        bool fill;
-        bool outline;
+        static bool fill;
+        static bool outline;
 
-        bool pickerActive;
+        static bool pickerActive;
 
         public ShapesPanel()
         {
@@ -43,9 +43,9 @@ namespace PaintUI
 
             selShape = new ShapeSelections();
             selShape.Location = new Point(0, curShapeBtn.Location.Y+curShapeBtn.Size.Height + 10);
-            selShape.Size = new Size(Width+20, 0);
+            selShape.Size = new Size(Width+20, 210);
             Controls.Add(selShape);
-            selShape.Show();
+            selShape.Hide();
             selShape.BringToFront();
 
             selShape.ShapeSelected += SelShape_ShapeSelected;
@@ -60,26 +60,23 @@ namespace PaintUI
         private void SelShape_ShapeSelected(object sender, EventArgs e)
         {
             curShapeBtn.BackgroundImage = selShape.getImage();
-            Slider slider = new Slider();
-            slider.Sliding(selShape);
-        }
-
-        private void curShapeBtn_Leave(object sender, EventArgs e)
-        {
-            curShapeBtn.BackgroundImage = selShape.getImage();
-            Slider slider = new Slider();
-            slider.Sliding(selShape);
+            if (selShape.Visible)
+                selShape.Hide();
+            else
+                selShape.Show();
         }
 
         //Button Click
         private void curShapeBtn_Click(object sender, EventArgs e)
         {
-            Slider slider = new Slider();
-            slider.Sliding(selShape);
+            if (selShape.Visible)
+                selShape.Hide();
+            else
+                selShape.Show();
         }
         
         //draw outline and fill color
-        public void FillShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
+        private void FillShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
             switch (selShape.getShape())
             {
@@ -117,7 +114,7 @@ namespace PaintUI
             }
         }
 
-        public void DrawOutline(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
+        private void DrawOutline(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
             switch (selShape.getShape())
             {
@@ -165,7 +162,7 @@ namespace PaintUI
             }
         }
 
-        public void DrawShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
+        private void DrawShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
             if(fill)
             {
@@ -196,5 +193,39 @@ namespace PaintUI
             else
                 outline = true;
         }
-}
+
+        public void ProcessMouseDown()
+        {
+
+        }
+
+        public void ProcessMouseUp(PictureBox SketchBox, Bitmap bm, Graphics gra, Point old, Point cur, Size size, Stack<Bitmap> UNDO)
+        {
+            if (!pickerActive)
+            {
+                DrawShapes(SketchBox, bm, gra, old, cur, size);
+                UNDO.Push((Bitmap)bm.Clone());
+            }
+
+            if (pickerActive)
+            {
+                colorPanel.getPixelColor(bm, cur);
+                pickerActive = false;
+            }
+        }
+
+        public void ProcessPaint(PictureBox SketchBox, Bitmap bm, Graphics gra, Point old, Point cur, Size size)
+        {
+            if (!pickerActive)
+            {
+                DrawShapes(SketchBox, bm, gra, old, cur, size); 
+            
+            }
+        }
+
+        public void ProcessMouseMove()
+        {
+
+        }
+    }
 }

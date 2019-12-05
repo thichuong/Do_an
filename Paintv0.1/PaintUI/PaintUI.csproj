@@ -62,6 +62,12 @@
     <Compile Include="BrushesPanel.Designer.cs">
       <DependentUpon>BrushesPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="BrushesPropeties.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BrushesPropeties.Designer.cs">
+      <DependentUpon>BrushesPropeties.cs</DependentUpon>
+    </Compile>
     <Compile Include="BrushesSelection.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -80,6 +86,7 @@
     <Compile Include="CanvasPanel.Designer.cs">
       <DependentUpon>CanvasPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Code\Class\SketchBoxEffect.cs" />
     <Compile Include="ColorPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,7 +105,7 @@
     <Compile Include="EffectsPanel.Designer.cs">
       <DependentUpon>EffectsPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="FillBucket.cs" />
+    <Compile Include="Code\Class\FillBucket.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,14 +126,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResizeHelper.cs" />
+    <Compile Include="Code\Class\ResizeHelper.cs" />
     <Compile Include="Ribbon.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Ribbon.Designer.cs">
       <DependentUpon>Ribbon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Shape.cs" />
+    <Compile Include="Code\Class\Shape.cs" />
     <Compile Include="ShapeSelections.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -139,8 +146,7 @@
     <Compile Include="ShapesPanel.Designer.cs">
       <DependentUpon>ShapesPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Slider.cs" />
-    <Compile Include="Sprayer.cs" />
+    <Compile Include="Code\Class\Sprayer.cs" />
     <Compile Include="TextPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -149,6 +155,9 @@
     </Compile>
     <EmbeddedResource Include="BrushesPanel.resx">
       <DependentUpon>BrushesPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BrushesPropeties.resx">
+      <DependentUpon>BrushesPropeties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BrushesSelection.resx">
       <DependentUpon>BrushesSelection.cs</DependentUpon>
@@ -322,6 +331,10 @@
     <None Include="Resources\Arrow.png" />
     <Content Include="Resources\ArrowShape.png" />
     <None Include="Resources\Artboard 1BaoKq.png" />
+    <None Include="Resources\Artboard 1Pencil.png" />
+    <None Include="Resources\CalligraphyPen.png" />
+    <None Include="Resources\Artboard 1Pencil1.png" />
+    <None Include="Resources\Artboard 1Pencil2.png" />
     <Content Include="Resources\ellip.bmp" />
     <None Include="Resources\Ellipse.png" />
     <None Include="Resources\heart.png" />
@@ -347,6 +360,9 @@
     <Content Include="Resources\star.bmp" />
     <None Include="Resources\Star.png" />
     <Content Include="Resources\triange.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Code\Panel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,13 +30,13 @@
         private void InitializeComponent()
         {
             this.bunifuCards1 = new Bunifu.Framework.UI.BunifuCards();
-            this.colorPanel = new PaintUI.ColorPanel();
+            this.curBrushBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.thicknessSlide = new Bunifu.Framework.UI.BunifuSlider();
             this.Brushes_Label3 = new System.Windows.Forms.Label();
             this.opacitySlide = new Bunifu.Framework.UI.BunifuSlider();
             this.Brushes_Label2 = new System.Windows.Forms.Label();
             this.Brushes_Label1 = new System.Windows.Forms.Label();
-            this.curBrushBtn = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.colorPanel = new PaintUI.ColorPanel();
             this.bunifuCards1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,79 +61,6 @@
             this.bunifuCards1.ShadowDepth = 20;
             this.bunifuCards1.Size = new System.Drawing.Size(338, 746);
             this.bunifuCards1.TabIndex = 1;
-            // 
-            // colorPanel
-            // 
-            this.colorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.colorPanel.BackColor = System.Drawing.Color.Transparent;
-            this.colorPanel.Location = new System.Drawing.Point(0, 393);
-            this.colorPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.colorPanel.Name = "colorPanel";
-            this.colorPanel.Size = new System.Drawing.Size(338, 347);
-            this.colorPanel.TabIndex = 26;
-            // 
-            // thicknessSlide
-            // 
-            this.thicknessSlide.BackColor = System.Drawing.Color.Transparent;
-            this.thicknessSlide.BackgroudColor = System.Drawing.Color.DarkGray;
-            this.thicknessSlide.BorderRadius = 0;
-            this.thicknessSlide.IndicatorColor = System.Drawing.Color.DarkCyan;
-            this.thicknessSlide.Location = new System.Drawing.Point(45, 249);
-            this.thicknessSlide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.thicknessSlide.MaximumValue = 30;
-            this.thicknessSlide.Name = "thicknessSlide";
-            this.thicknessSlide.Size = new System.Drawing.Size(259, 41);
-            this.thicknessSlide.TabIndex = 25;
-            this.thicknessSlide.Value = 5;
-            // 
-            // Brushes_Label3
-            // 
-            this.Brushes_Label3.AutoSize = true;
-            this.Brushes_Label3.BackColor = System.Drawing.Color.Transparent;
-            this.Brushes_Label3.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Brushes_Label3.Location = new System.Drawing.Point(45, 298);
-            this.Brushes_Label3.Name = "Brushes_Label3";
-            this.Brushes_Label3.Size = new System.Drawing.Size(140, 52);
-            this.Brushes_Label3.TabIndex = 24;
-            this.Brushes_Label3.Text = "Opacity";
-            // 
-            // opacitySlide
-            // 
-            this.opacitySlide.BackColor = System.Drawing.Color.Transparent;
-            this.opacitySlide.BackgroudColor = System.Drawing.Color.DarkGray;
-            this.opacitySlide.BorderRadius = 0;
-            this.opacitySlide.IndicatorColor = System.Drawing.Color.DarkCyan;
-            this.opacitySlide.Location = new System.Drawing.Point(45, 355);
-            this.opacitySlide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.opacitySlide.MaximumValue = 255;
-            this.opacitySlide.Name = "opacitySlide";
-            this.opacitySlide.Size = new System.Drawing.Size(259, 41);
-            this.opacitySlide.TabIndex = 23;
-            this.opacitySlide.Value = 0;
-            // 
-            // Brushes_Label2
-            // 
-            this.Brushes_Label2.AutoSize = true;
-            this.Brushes_Label2.BackColor = System.Drawing.Color.Transparent;
-            this.Brushes_Label2.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Brushes_Label2.Location = new System.Drawing.Point(45, 187);
-            this.Brushes_Label2.Name = "Brushes_Label2";
-            this.Brushes_Label2.Size = new System.Drawing.Size(166, 52);
-            this.Brushes_Label2.TabIndex = 22;
-            this.Brushes_Label2.Text = "Thickness";
-            // 
-            // Brushes_Label1
-            // 
-            this.Brushes_Label1.AutoSize = true;
-            this.Brushes_Label1.BackColor = System.Drawing.Color.Transparent;
-            this.Brushes_Label1.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Brushes_Label1.Location = new System.Drawing.Point(100, 30);
-            this.Brushes_Label1.Name = "Brushes_Label1";
-            this.Brushes_Label1.Size = new System.Drawing.Size(139, 52);
-            this.Brushes_Label1.TabIndex = 21;
-            this.Brushes_Label1.Text = "Brushes";
             // 
             // curBrushBtn
             // 
@@ -170,6 +97,79 @@
             this.curBrushBtn.Textcolor = System.Drawing.Color.White;
             this.curBrushBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.curBrushBtn.Click += new System.EventHandler(this.curBrushBtn_Click);
+            // 
+            // thicknessSlide
+            // 
+            this.thicknessSlide.BackColor = System.Drawing.Color.Transparent;
+            this.thicknessSlide.BackgroudColor = System.Drawing.Color.DarkGray;
+            this.thicknessSlide.BorderRadius = 0;
+            this.thicknessSlide.IndicatorColor = System.Drawing.Color.DarkCyan;
+            this.thicknessSlide.Location = new System.Drawing.Point(45, 253);
+            this.thicknessSlide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.thicknessSlide.MaximumValue = 30;
+            this.thicknessSlide.Name = "thicknessSlide";
+            this.thicknessSlide.Size = new System.Drawing.Size(259, 41);
+            this.thicknessSlide.TabIndex = 25;
+            this.thicknessSlide.Value = 5;
+            // 
+            // Brushes_Label3
+            // 
+            this.Brushes_Label3.AutoSize = true;
+            this.Brushes_Label3.BackColor = System.Drawing.Color.Transparent;
+            this.Brushes_Label3.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Brushes_Label3.Location = new System.Drawing.Point(46, 300);
+            this.Brushes_Label3.Name = "Brushes_Label3";
+            this.Brushes_Label3.Size = new System.Drawing.Size(140, 52);
+            this.Brushes_Label3.TabIndex = 24;
+            this.Brushes_Label3.Text = "Opacity";
+            // 
+            // opacitySlide
+            // 
+            this.opacitySlide.BackColor = System.Drawing.Color.Transparent;
+            this.opacitySlide.BackgroudColor = System.Drawing.Color.DarkGray;
+            this.opacitySlide.BorderRadius = 0;
+            this.opacitySlide.IndicatorColor = System.Drawing.Color.DarkCyan;
+            this.opacitySlide.Location = new System.Drawing.Point(46, 357);
+            this.opacitySlide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.opacitySlide.MaximumValue = 255;
+            this.opacitySlide.Name = "opacitySlide";
+            this.opacitySlide.Size = new System.Drawing.Size(259, 41);
+            this.opacitySlide.TabIndex = 23;
+            this.opacitySlide.Value = 0;
+            // 
+            // Brushes_Label2
+            // 
+            this.Brushes_Label2.AutoSize = true;
+            this.Brushes_Label2.BackColor = System.Drawing.Color.Transparent;
+            this.Brushes_Label2.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Brushes_Label2.Location = new System.Drawing.Point(45, 191);
+            this.Brushes_Label2.Name = "Brushes_Label2";
+            this.Brushes_Label2.Size = new System.Drawing.Size(166, 52);
+            this.Brushes_Label2.TabIndex = 22;
+            this.Brushes_Label2.Text = "Thickness";
+            // 
+            // Brushes_Label1
+            // 
+            this.Brushes_Label1.AutoSize = true;
+            this.Brushes_Label1.BackColor = System.Drawing.Color.Transparent;
+            this.Brushes_Label1.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Brushes_Label1.Location = new System.Drawing.Point(100, 30);
+            this.Brushes_Label1.Name = "Brushes_Label1";
+            this.Brushes_Label1.Size = new System.Drawing.Size(139, 52);
+            this.Brushes_Label1.TabIndex = 21;
+            this.Brushes_Label1.Text = "Brushes";
+            // 
+            // colorPanel
+            // 
+            this.colorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.colorPanel.BackColor = System.Drawing.Color.Transparent;
+            this.colorPanel.Location = new System.Drawing.Point(0, 393);
+            this.colorPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.colorPanel.Name = "colorPanel";
+            this.colorPanel.Size = new System.Drawing.Size(338, 347);
+            this.colorPanel.TabIndex = 26;
             // 
             // BrushesPanel
             // 

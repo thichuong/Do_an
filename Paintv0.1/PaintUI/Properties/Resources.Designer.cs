@@ -103,6 +103,36 @@ namespace PaintUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Artboard_1Pencil {
+            get {
+                object obj = ResourceManager.GetObject("Artboard 1Pencil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Artboard_1Pencil1 {
+            get {
+                object obj = ResourceManager.GetObject("Artboard 1Pencil1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Artboard_1Pencil2 {
+            get {
+                object obj = ResourceManager.GetObject("Artboard 1Pencil2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap brush3 {
             get {
                 object obj = ResourceManager.GetObject("brush3", resourceCulture);
@@ -126,6 +156,16 @@ namespace PaintUI.Properties {
         internal static System.Drawing.Bitmap BrushesIcon {
             get {
                 object obj = ResourceManager.GetObject("BrushesIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CalligraphyPen {
+            get {
+                object obj = ResourceManager.GetObject("CalligraphyPen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
