@@ -157,7 +157,6 @@ namespace PaintUI
 
                 pickerActive = false;
             }
-
         }
 
         public void ProcessMouseMove(Point cur, Point old, Graphics gra)

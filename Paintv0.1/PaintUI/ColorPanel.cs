@@ -100,7 +100,21 @@ namespace PaintUI
 
         public Color getPixelColor(Bitmap bm, Point cur)
         {
-            Color c = bm.GetPixel(cur.X, cur.Y);
+            Color c;
+            if(select == 1)
+            {
+                c = mainColor1.BackColor;
+            }
+            else
+            {
+                c = mainColor2.BackColor;
+            }
+
+
+            if (cur.X>=0 && cur.Y>=0 & cur.X<=bm.Width && cur.Y<=bm.Height)
+            {
+                c = bm.GetPixel(cur.X, cur.Y);
+            }
             if (select == 1)
             {
                 mainColor1.BackColor = c;

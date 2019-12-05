@@ -418,7 +418,7 @@ namespace PaintUI
             isDown = false;
             if (curTool == Tools.SHAPE)
             {
-                shapesPanel.DrawShapes(SketchBox, bm, gra, old, cur, new Size(wid, hei));
+                shapesPanel.ProcessMouseUp(SketchBox, bm, gra, old, cur, new Size(wid, hei), UNDO);
                 SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
             }
             if(curTool==Tools.BRUSH)
@@ -471,7 +471,7 @@ namespace PaintUI
                         SketchBoxEffect.SketchBoxVisionImage(temp, SketchBox, effectsPanel, visionBM);
                         break;
                     case Tools.SHAPE:
-                        shapesPanel.DrawShapes(SketchBox, bm, graphics, old, cur, new Size(wid, hei));
+                        shapesPanel.ProcessPaint(SketchBox, bm, graphics, old, cur, new Size(wid, hei));
                         SketchBoxEffect.SketchBoxVisionImage(temp, SketchBox, effectsPanel, visionBM);
                         break;
                     default:
