@@ -1,0 +1,44 @@
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe.config
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\bin\Debug\PaintUI.pdb
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.csprojAssemblyReference.cache
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesPanel.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesSelection.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.CanvasPanel.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.ColorPanel.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.DoubleBufferPanel.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.EffectsPanel.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.Form1.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.MenuPanel.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.Properties.Resources.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.Ribbon.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.ShapeSelections.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.ShapesPanel.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.TextPanel.resources
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.GenerateResource.cache
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.CopyComplete
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb
+E:\DATA\Paint-master\Paint-master\Paintv0.1\PaintUI\obj\Debug\PaintUI.LayerPanel.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe.config
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\bin\Debug\PaintUI.exe
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\bin\Debug\PaintUI.pdb
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.csprojAssemblyReference.cache
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesPanel.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.BrushesSelection.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.CanvasPanel.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.ColorPanel.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.DoubleBufferPanel.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.EffectsPanel.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.Form1.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.LayerPanel.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.MenuPanel.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.Properties.Resources.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.Ribbon.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.ShapeSelections.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.ShapesPanel.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.TextPanel.resources
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.GenerateResource.cache
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.csproj.CopyComplete
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.exe
+C:\Users\Thi Chuong\Desktop\paint master\Paintv0.1\PaintUI\obj\Debug\PaintUI.pdb

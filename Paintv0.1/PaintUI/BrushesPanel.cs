@@ -77,8 +77,21 @@ namespace PaintUI
 
         //Cac thao tac voi trang ve
 
-        static Color color;
-        static Sprayer sprayer;
+
+        Color color;
+        public void ProcessMouseMove(Graphics gra, Point cur)
+        {
+            if (selBrush.getBrush() == 4)
+            {
+                if (spraying)
+                {
+                    Sprayer.Spray(gra, (int)pen.Width, cur, color);
+                }
+               
+            }
+            else
+                _pts.Add(cur);
+        }
 
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
         {
@@ -195,10 +208,11 @@ namespace PaintUI
                     case 0: //marker
                         if (_pts != null)
                         {
-                            //gra.CompositingMode = CompositingMode.SourceOver;
-                            //gra.SmoothingMode = SmoothingMode.AntiAlias;
-                            ModifyGra(gra);
-                            _pts.Add(cur);
+
+                            gra.CompositingMode = CompositingMode.SourceOver;
+                            gra.SmoothingMode = SmoothingMode.AntiAlias;
+                           // _pts.Add(cur);
+
                             gPath.AddLines(_pts.ToArray());
                             pen.LineJoin = LineJoin.Round;
                             gra.CompositingMode = CompositingMode.SourceOver;
