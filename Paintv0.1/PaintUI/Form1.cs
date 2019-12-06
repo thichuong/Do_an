@@ -26,12 +26,13 @@ namespace PaintUI
         Point pOld, startPoint, oldLocation,RecStartPoint,
             RecEndPoint,RecVeryLast;
         int numberofLayerRemoved = -1;
+        int curLayer = -1;
         int wid, hei;
         List<Bitmap> RemovedLayer = new List<Bitmap>();
         List<Bitmap> templistBM = new List<Bitmap>();
         bool isDown, isDragged, isSaved, isChanged,PanClicked,isPanning,SelectClicked,isSelecting;
         bool RegionSelected = false;
-        StackListBitmap UNDO, REDO;
+        ListStackBitmap UNDO, REDO;
         Rectangle SelectionRec;
         Bitmap SelectionBitmap;
         Graphics SelectionGraphics;
@@ -52,9 +53,9 @@ namespace PaintUI
                 menuPanel.BringToFront();
                 SketchBox.Cursor = Cursors.Cross;
 
-                UNDO = new StackListBitmap();
-                UNDO.Push(LayerList, bm);
-                REDO = new StackListBitmap();
+                UNDO = new ListStackBitmap();
+                UNDO.Push(bm,-1);
+                REDO = new ListStackBitmap();
             }
             
 
@@ -120,7 +121,7 @@ namespace PaintUI
             numberofLayerRemoved++;            
             RemovedLayer.Add(LayerList[layerPanel.removedLayerIndex]);
             gra = Graphics.FromImage(bm);
-            LayerList[layerPanel.removedLayerIndex] = bm;
+            LayerList[layerPanel.removedLayerIndex] = new Bitmap(SketchBox.Width,SketchBox.Height);
             currentLayerBitmap = bm;
             Console.WriteLine("new list" + NewList().Count);
             Console.WriteLine("Currently on bm");
@@ -130,15 +131,20 @@ namespace PaintUI
         {                  
             Console.WriteLine("currently on bm");
             currentLayerBitmap = bm;
+            curLayer = -1;
             gra = Graphics.FromImage(currentLayerBitmap);
             LayerDrawer();
-            SketchBoxVisionImage(temp);
+            SketchBoxVisionImage(currentLayerBitmap);
         }
 
         private void LayerPanel_AddLayerClicked(object sender, EventArgs e)
         {            
             bitmap1 = new Bitmap(SketchBox.Width, SketchBox.Height);           
             LayerList.Add(bitmap1);
+            Stack<Bitmap> bitmaps = new Stack<Bitmap>();
+            bitmaps.Push((Bitmap)bitmap1.Clone());
+            UNDO.addStack(bitmaps);
+            REDO.addStack(new Stack<Bitmap>());
         }
 
         private void PanButton_Click(object sender, EventArgs e)
@@ -152,10 +158,11 @@ namespace PaintUI
                 Button bn = sender as Button;
                 int LayerIndex = Convert.ToInt32(bn.Name);
                 currentLayerBitmap = LayerList[LayerIndex];
+                curLayer = LayerIndex;
                 gra = Graphics.FromImage(currentLayerBitmap);
                 Console.WriteLine("currently on: " + LayerIndex);
                 LayerDrawer();
-                SketchBoxVisionImage(temp);
+                SketchBoxVisionImage(currentLayerBitmap);
             }
             
         }
@@ -223,7 +230,7 @@ namespace PaintUI
 
         string path = "";
         
-        private void SaveAs()
+        private void SaveAs() 
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Bmp (*.bmp)|*.bmp|Jpg (*.jpg)|*.jpg|Jpeg (*.jpeg)|*.jpeg|Png (*.png)|*.png";
@@ -268,13 +275,13 @@ namespace PaintUI
             gra = Graphics.FromImage(bm);
             SketchBox.Refresh();
             SketchBoxVisionImage(bm);
-            while (UNDO.Count() > 1)
+            while (UNDO.Count(curLayer) > 1)
             {
-                UNDO.Pop();
+                UNDO.Pop(curLayer);
             }
-            while (REDO.Count() > 0)
+            while (REDO.Count(curLayer) > 0)
             {
-                REDO.Pop();
+                REDO.Pop(curLayer);
             }
             titleLb.Text = "Untitled - Skuitch";
             path = "";
@@ -452,12 +459,18 @@ namespace PaintUI
 
         private void UndoButton_Click(object sender, EventArgs e)
         {
-            if(UNDO.Count()>1)
+            if(UNDO.Count(curLayer) >1)
             {
-                REDO.Push(UNDO.Pop(), bm);
-                bm = UNDO.PeekBitmap();
-                currentLayerBitmap = bm;
-                LayerList = UNDO.Peek();
+                REDO.Push(UNDO.Pop(curLayer), curLayer);
+                temp = new Bitmap(SketchBox.Width, SketchBox.Width);
+                Graphics graphics = Graphics.FromImage(temp);
+                graphics.CompositingQuality = CompositingQuality.GammaCorrected;
+                graphics.DrawImage(UNDO.Peek(curLayer), 0, 0, SketchBox.Width, SketchBox.Width);
+                if(curLayer==-1)
+                    bm= temp;
+                else
+                    LayerList[curLayer] = temp;
+                currentLayerBitmap= temp;
                 SketchBoxVisionImage(currentLayerBitmap);
                 gra = Graphics.FromImage(currentLayerBitmap);
                 isChanged = true;
@@ -466,12 +479,18 @@ namespace PaintUI
 
         private void RedoButton_Click(object sender, EventArgs e)
         {
-            if (REDO.Count() > 0)
+            if (REDO.Count(curLayer) > 0)
             {
-                bm = (Bitmap)REDO.PeekBitmap().Clone();
-                LayerList = REDO.Peek();
-                UNDO.Push(REDO.Pop(),bm);
-                currentLayerBitmap = bm;
+                UNDO.Push(REDO.Pop(curLayer), curLayer);
+                temp = new Bitmap(SketchBox.Width, SketchBox.Width);
+                Graphics graphics = Graphics.FromImage(temp);
+                graphics.CompositingQuality = CompositingQuality.GammaCorrected;
+                graphics.DrawImage(UNDO.Peek(curLayer), 0, 0, temp.Width, temp.Height);
+                if (curLayer == -1)
+                    bm = temp;
+                else
+                    LayerList[curLayer] = temp;
+                currentLayerBitmap = temp;
                 SketchBoxVisionImage(currentLayerBitmap);
                 gra = Graphics.FromImage(currentLayerBitmap);
                 isChanged = true;
@@ -484,7 +503,8 @@ namespace PaintUI
             temp = new Bitmap(SketchBox.Width, SketchBox.Height);
             graphics = Graphics.FromImage(temp);
             graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            graphics.DrawImage(currentLayerBitmap, 0, 0);
+            
+            graphics.DrawImage(currentLayerBitmap, 0, 0, SketchBox.Width, SketchBox.Height);
         }
 
         //Cac su kien voi mouse
@@ -557,10 +577,10 @@ namespace PaintUI
                 wid = hei = 0;    
             
             //Them vao stack UNDO khi het net ve
-            UNDO.Push(LayerList,bm);
-            while (REDO.Count() > 0)
+            UNDO.Push(currentLayerBitmap,curLayer);
+            while (REDO.Count(curLayer) > 0)
             {
-                REDO.Pop();
+                REDO.Pop(curLayer);
             }
         }
 
@@ -574,8 +594,8 @@ namespace PaintUI
                     cur = old;
                     gra = Graphics.FromImage(currentLayerBitmap);
                     brushesPanel.ProcessMouseDown(currentLayerBitmap, gra, old, cur);
-                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                    gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    gra.CompositingMode = CompositingMode.SourceOver;
+                    gra.SmoothingMode = SmoothingMode.AntiAlias;
                     SketchBoxVisionImage(currentLayerBitmap);
                 }
                
@@ -640,14 +660,14 @@ namespace PaintUI
             visionBM = new Bitmap(SketchBox.Width, SketchBox.Height);
              vGra = Graphics.FromImage(visionBM);
             if (bm!= currentLayerBitmap)
-                 vGra.DrawImage(bm, 0, 0);
+                 vGra.DrawImage(bm, 0, 0, SketchBox.Width, SketchBox.Height);
             else
                  vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
-            for (int i = 0; i < NewList().Count; i++)
-                if(NewList()[i]!=currentLayerBitmap)
-                     vGra.DrawImage(NewList()[i], 0, 0);
+            for (int i = 0; i < LayerList.Count; i++)
+                if(LayerList[i]!=currentLayerBitmap)
+                     vGra.DrawImage(LayerList[i], 0, 0, SketchBox.Width, SketchBox.Height);
                 else
-                     vGra.DrawImage(bmp, 0, 0);
+                     vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
              vGra.DrawImage(effectBM, 0, 0, SketchBox.Width, SketchBox.Height);
             SketchBox.BackgroundImage = (Bitmap)visionBM.Clone();
         }
@@ -727,9 +747,9 @@ namespace PaintUI
             temp =(Bitmap) bm.Clone();
             Graphics tempGra;
             List<Bitmap> bitmaps = new List<Bitmap>();
-            for (int i = 0; i < NewList().Count; i++)
+            for (int i = 0; i < LayerList.Count; i++)
             {
-                Bitmap bitmap = (Bitmap)NewList()[i].Clone();
+                Bitmap bitmap = (Bitmap)LayerList[i].Clone();
                 bitmaps.Add(bitmap);
             }
             return bitmaps;
@@ -743,15 +763,15 @@ namespace PaintUI
             gra.CompositingQuality = CompositingQuality.GammaCorrected;
             gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
             
-            for (int i = 0; i < NewList().Count; i++)
+            for (int i = 0; i < LayerList.Count(); i++)
             {
-                bitmap = new Bitmap(SketchBox.Width, SketchBox.Height); ;
-                tempGra = Graphics.FromImage(bitmap);
+                LayerList[i] = new Bitmap(SketchBox.Width, SketchBox.Height); ;
+                tempGra = Graphics.FromImage(LayerList[i]);
                 tempGra.CompositingQuality = CompositingQuality.GammaCorrected;
                 tempGra.DrawImage(templistBM[i], 0, 0,SketchBox.Width,SketchBox.Height);
-                LayerList[i]= (Bitmap)bitmap.Clone();
             }
             SketchBoxVisionImage(bm);
+            currentLayerBitmap = bm;
         }
         private void LeftTopPanel_MouseDown(object sender, MouseEventArgs e)
         {
