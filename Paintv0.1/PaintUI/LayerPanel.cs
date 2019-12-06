@@ -85,5 +85,9 @@ namespace PaintUI
                 this.BaseLayerClicked(sender, e);
             }
         }
+        public void set()
+        {
+
+        }
     }
 }

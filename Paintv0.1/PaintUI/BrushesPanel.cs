@@ -124,7 +124,7 @@ namespace PaintUI
         }
 
 
-        public void ProcessMouseUp(Bitmap bm, Point cur, Stack<Bitmap> UNDO)
+        public void ProcessMouseUp(Bitmap bm, Point cur)
         {
             if (selBrush.getBrush() == 0 || selBrush.getBrush() == 1)
             {
@@ -140,16 +140,9 @@ namespace PaintUI
             {
                 penSize = standarSize;
             }
-
-            if (!pickerActive)
-            {
-                UNDO.Push((Bitmap)bm.Clone());
-            }
-
             if (pickerActive)
             {
                 colorPanel.getPixelColor(bm, cur);
-
                 pickerActive = false;
             }
             

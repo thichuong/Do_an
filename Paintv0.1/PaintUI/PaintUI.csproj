@@ -87,6 +87,7 @@
       <DependentUpon>CanvasPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Code\Class\SketchBoxEffect.cs" />
+    <Compile Include="Code\Class\StackListBitmap.cs" />
     <Compile Include="ColorPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

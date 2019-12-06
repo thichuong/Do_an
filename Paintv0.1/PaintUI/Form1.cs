@@ -31,7 +31,7 @@ namespace PaintUI
         List<Bitmap> templistBM = new List<Bitmap>();
         bool isDown, isDragged, isSaved, isChanged,PanClicked,isPanning,SelectClicked,isSelecting;
         bool RegionSelected = false;
-        Stack<Bitmap> UNDO, REDO;
+        StackListBitmap UNDO, REDO;
         Rectangle SelectionRec;
         Bitmap SelectionBitmap;
         Graphics SelectionGraphics;
@@ -52,9 +52,9 @@ namespace PaintUI
                 menuPanel.BringToFront();
                 SketchBox.Cursor = Cursors.Cross;
 
-                UNDO = new Stack<Bitmap>();
-                UNDO.Push((Bitmap)bm.Clone());
-                REDO = new Stack<Bitmap>();
+                UNDO = new StackListBitmap();
+                UNDO.Push(LayerList, bm);
+                REDO = new StackListBitmap();
             }
             
 
@@ -452,25 +452,26 @@ namespace PaintUI
 
         private void UndoButton_Click(object sender, EventArgs e)
         {
-            if(UNDO.Count>1)
+            if(UNDO.Count()>1)
             {
-                REDO.Push((Bitmap)UNDO.Pop().Clone());
-
-                currentLayerBitmap = (Bitmap)UNDO.Peek().Clone();
+                REDO.Push(UNDO.Pop(), bm);
+                bm = UNDO.PeekBitmap();
+                currentLayerBitmap = bm;
+                LayerList = UNDO.Peek();
                 SketchBoxVisionImage(currentLayerBitmap);
                 gra = Graphics.FromImage(currentLayerBitmap);
-
                 isChanged = true;
             }
         }
 
         private void RedoButton_Click(object sender, EventArgs e)
         {
-            if (REDO.Count > 0)
+            if (REDO.Count() > 0)
             {
-                UNDO.Push((Bitmap)REDO.Pop().Clone());
-
-                currentLayerBitmap = (Bitmap)UNDO.Peek().Clone();
+                bm = (Bitmap)REDO.PeekBitmap().Clone();
+                LayerList = REDO.Peek();
+                UNDO.Push(REDO.Pop(),bm);
+                currentLayerBitmap = bm;
                 SketchBoxVisionImage(currentLayerBitmap);
                 gra = Graphics.FromImage(currentLayerBitmap);
                 isChanged = true;
@@ -537,7 +538,7 @@ namespace PaintUI
                     gra.CompositingMode = CompositingMode.SourceOver;
                     gra.SmoothingMode = SmoothingMode.AntiAlias;
                     brushesPanel.ProcessPaint(gra, old, cur);
-                    brushesPanel.ProcessMouseUp(currentLayerBitmap, cur,UNDO);
+                    brushesPanel.ProcessMouseUp(currentLayerBitmap, cur);
                     SketchBoxVisionImage(currentLayerBitmap);
                 }   
                 if (isSelecting)
@@ -556,9 +557,8 @@ namespace PaintUI
                 wid = hei = 0;    
             
             //Them vao stack UNDO khi het net ve
-            UNDO.Push((Bitmap)currentLayerBitmap.Clone());
-            while (REDO.Count > 0)
-
+            UNDO.Push(LayerList,bm);
+            while (REDO.Count() > 0)
             {
                 REDO.Pop();
             }
