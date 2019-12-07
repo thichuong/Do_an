@@ -23,6 +23,7 @@ namespace PaintUI
         Bitmap bm, temp, visionBM;
         Graphics gra;
         Point old, cur;
+<<<<<<< HEAD
         Point pOld, startPoint, oldLocation;
 
         int wid, hei;
@@ -32,6 +33,21 @@ namespace PaintUI
         Stack<Bitmap> UNDO, REDO;
         
 
+=======
+        Point pOld, startPoint, oldLocation,RecStartPoint,
+            RecEndPoint,RecVeryLast;
+        int numberofLayerRemoved = -1;
+        int wid, hei;
+        List<Bitmap> RemovedLayer = new List<Bitmap>();
+        List<Bitmap> templistBM = new List<Bitmap>();
+        bool isDown, isDragged, isSaved, isChanged,PanClicked,isPanning,SelectClicked,isSelecting;
+        bool RegionSelected = false;
+        StackListBitmap UNDO, REDO;
+        Rectangle SelectionRec;
+        Bitmap SelectionBitmap;
+        Graphics SelectionGraphics;
+        Graphics graphics;
+>>>>>>> parent of b0b5c2e... update UNDO and REDO
         public Form1()
         {
             InitializeComponent();
@@ -48,9 +64,15 @@ namespace PaintUI
                 menuPanel.BringToFront();
                 SketchBox.Cursor = Cursors.Cross;
 
+<<<<<<< HEAD
                 UNDO = new Stack<Bitmap>();
                 UNDO.Push((Bitmap)bm.Clone());
                 REDO = new Stack<Bitmap>();
+=======
+                UNDO = new StackListBitmap();
+                UNDO.Push(LayerList, bm);
+                REDO = new StackListBitmap();
+>>>>>>> parent of b0b5c2e... update UNDO and REDO
             }
             
 
@@ -79,6 +101,60 @@ namespace PaintUI
             }
         }
 
+<<<<<<< HEAD
+=======
+        //Layer Actions
+        private void LayerPanel_LayerRemoved(object sender, EventArgs e)
+        {         
+            numberofLayerRemoved++;            
+            RemovedLayer.Add(LayerList[layerPanel.removedLayerIndex]);
+            gra = Graphics.FromImage(bm);
+            LayerList[layerPanel.removedLayerIndex] = bm;
+            currentLayerBitmap = bm;
+            Console.WriteLine("new list" + NewList().Count);
+            Console.WriteLine("Currently on bm");
+        }
+
+        private void LayerPanel_BaseLayerClicked(object sender, EventArgs e)
+        {                  
+            Console.WriteLine("currently on bm");
+            currentLayerBitmap = bm;
+            gra = Graphics.FromImage(currentLayerBitmap);
+            LayerDrawer();
+            SketchBoxVisionImage(temp);
+        }
+
+        private void LayerPanel_AddLayerClicked(object sender, EventArgs e)
+        {            
+            bitmap1 = new Bitmap(SketchBox.Width, SketchBox.Height);           
+            LayerList.Add(bitmap1);
+        }
+
+        private void PanButton_Click(object sender, EventArgs e)
+        {
+            PanClicked = !PanClicked;
+        }
+        private void LayerPanel_LayerClicked(object sender, EventArgs e)
+        {
+            if (!layerPanel.rightclicked)
+            {               
+                Button bn = sender as Button;
+                int LayerIndex = Convert.ToInt32(bn.Name);
+                currentLayerBitmap = LayerList[LayerIndex];
+                gra = Graphics.FromImage(currentLayerBitmap);
+                Console.WriteLine("currently on: " + LayerIndex);
+                LayerDrawer();
+                SketchBoxVisionImage(temp);
+            }
+            
+        }
+        private List<Bitmap> NewList()
+        {
+            List<Bitmap> ListException = LayerList.Except(RemovedLayer).ToList();
+            return ListException;
+        }
+        //End of Layer Actions
+>>>>>>> parent of b0b5c2e... update UNDO and REDO
 
         //Giau Panels
         private void HideAllPanel()
@@ -181,7 +257,11 @@ namespace PaintUI
             bm = new Bitmap(SketchBox.Width, SketchBox.Height);
             gra = Graphics.FromImage(bm);
             SketchBox.Refresh();
+<<<<<<< HEAD
             SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
+=======
+            SketchBoxVisionImage(bm);
+>>>>>>> parent of b0b5c2e... update UNDO and REDO
             while (UNDO.Count() > 1)
             {
                 UNDO.Pop();
@@ -371,18 +451,30 @@ namespace PaintUI
 
         private void UndoButton_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             if(UNDO.Count>1)
             {
                 REDO.Push((Bitmap)UNDO.Pop().Clone());
                 bm = (Bitmap)UNDO.Peek().Clone();
                 SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                 gra = Graphics.FromImage(bm);
+=======
+            if(UNDO.Count()>1)
+            {
+                REDO.Push(UNDO.Pop(), bm);
+                bm = UNDO.PeekBitmap();
+                currentLayerBitmap = bm;
+                LayerList = UNDO.Peek();
+                SketchBoxVisionImage(currentLayerBitmap);
+                gra = Graphics.FromImage(currentLayerBitmap);
+>>>>>>> parent of b0b5c2e... update UNDO and REDO
                 isChanged = true;
             }
         }
 
         private void RedoButton_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             if(REDO.Count>0)
             {
                 UNDO.Push((Bitmap)REDO.Pop().Clone());
@@ -393,6 +485,29 @@ namespace PaintUI
             }
         }
         
+=======
+            if (REDO.Count() > 0)
+            {
+                bm = (Bitmap)REDO.PeekBitmap().Clone();
+                LayerList = REDO.Peek();
+                UNDO.Push(REDO.Pop(),bm);
+                currentLayerBitmap = bm;
+                SketchBoxVisionImage(currentLayerBitmap);
+                gra = Graphics.FromImage(currentLayerBitmap);
+                isChanged = true;
+            }
+        }
+
+
+        private void LayerDrawer()
+        {
+            temp = new Bitmap(SketchBox.Width, SketchBox.Height);
+            graphics = Graphics.FromImage(temp);
+            graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            graphics.DrawImage(currentLayerBitmap, 0, 0);
+        }
+
+>>>>>>> parent of b0b5c2e... update UNDO and REDO
         //Cac su kien voi mouse
         private void SketchBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -426,7 +541,13 @@ namespace PaintUI
             }
             wid = hei = 0;
             
+<<<<<<< HEAD
             while(REDO.Count>0)
+=======
+            //Them vao stack UNDO khi het net ve
+            UNDO.Push(LayerList,bm);
+            while (REDO.Count() > 0)
+>>>>>>> parent of b0b5c2e... update UNDO and REDO
             {
                 REDO.Pop();
             }
@@ -440,11 +561,30 @@ namespace PaintUI
                 {
                     old = new Point(e.Location.X, e.Location.Y);
                     cur = old;
+<<<<<<< HEAD
                     if (curTool == Tools.BRUSH)
                     {
                         brushesPanel.ProcessMouseDown(bm, gra, old, cur);
                         SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                     }
+=======
+                    gra = Graphics.FromImage(currentLayerBitmap);
+                    brushesPanel.ProcessMouseDown(currentLayerBitmap, gra, old, cur);
+                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                    gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    SketchBoxVisionImage(currentLayerBitmap);
+                }
+               
+                if (PanClicked) isPanning = true;
+                else if (SelectClicked&&!RegionSelected)
+                {
+                    isSelecting = true;
+                    RecStartPoint = e.Location;
+                }
+                else if (!RegionSelected) isDown = true;
+               
+                isChanged = true;
+>>>>>>> parent of b0b5c2e... update UNDO and REDO
 
                     isDown = true;
                     isChanged = true;
@@ -477,7 +617,31 @@ namespace PaintUI
             }
         }
         
+<<<<<<< HEAD
         
+=======
+
+        public void SketchBoxVisionImage(Bitmap bmp)
+        {  
+            Bitmap effectBM = new Bitmap(SketchBox.Width, SketchBox.Height);
+            Graphics  vGra = Graphics.FromImage(effectBM);
+             vGra.Clear(effectsPanel.color);
+            visionBM = new Bitmap(SketchBox.Width, SketchBox.Height);
+             vGra = Graphics.FromImage(visionBM);
+            if (bm!= currentLayerBitmap)
+                 vGra.DrawImage(bm, 0, 0);
+            else
+                 vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
+            for (int i = 0; i < NewList().Count; i++)
+                if(NewList()[i]!=currentLayerBitmap)
+                     vGra.DrawImage(NewList()[i], 0, 0);
+                else
+                     vGra.DrawImage(bmp, 0, 0);
+             vGra.DrawImage(effectBM, 0, 0, SketchBox.Width, SketchBox.Height);
+            SketchBox.BackgroundImage = (Bitmap)visionBM.Clone();
+        }
+
+>>>>>>> parent of b0b5c2e... update UNDO and REDO
 
         public void SketchBoxShowResizepanel()
         {
@@ -548,7 +712,41 @@ namespace PaintUI
             }
            
         }
+<<<<<<< HEAD
 
+=======
+        private List<Bitmap> tempBitmaps()
+        {
+            temp =(Bitmap) bm.Clone();
+            Graphics tempGra;
+            List<Bitmap> bitmaps = new List<Bitmap>();
+            for (int i = 0; i < NewList().Count; i++)
+            {
+                Bitmap bitmap = (Bitmap)NewList()[i].Clone();
+                bitmaps.Add(bitmap);
+            }
+            return bitmaps;
+        }
+        private void tempBitmapsRisize()
+        {
+            Graphics tempGra;
+            Bitmap bitmap = new Bitmap(SketchBox.Width, SketchBox.Height);
+            bm=new Bitmap(SketchBox.Width, SketchBox.Height);
+            gra = Graphics.FromImage(bm);
+            gra.CompositingQuality = CompositingQuality.GammaCorrected;
+            gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
+            
+            for (int i = 0; i < NewList().Count; i++)
+            {
+                bitmap = new Bitmap(SketchBox.Width, SketchBox.Height); ;
+                tempGra = Graphics.FromImage(bitmap);
+                tempGra.CompositingQuality = CompositingQuality.GammaCorrected;
+                tempGra.DrawImage(templistBM[i], 0, 0,SketchBox.Width,SketchBox.Height);
+                LayerList[i]= (Bitmap)bitmap.Clone();
+            }
+            SketchBoxVisionImage(bm);
+        }
+>>>>>>> parent of b0b5c2e... update UNDO and REDO
         private void LeftTopPanel_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = e.Location;

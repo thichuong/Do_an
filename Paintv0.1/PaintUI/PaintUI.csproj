@@ -92,6 +92,7 @@
     <Compile Include="Code\Panels\CanvasPanel.Designer.cs">
       <DependentUpon>CanvasPanel.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Code\Brushes\Brush.cs" />
     <Compile Include="Code\Brushes\CalligraphyPen.cs" />
     <Compile Include="Code\Brushes\Eraser.cs" />
@@ -100,6 +101,11 @@
     <Compile Include="Code\Classes\ModifyComponents.cs" />
     <Compile Include="Code\Classes\SketchBoxEffect.cs" />
     <Compile Include="Code\Panels\ColorPanel.cs">
+=======
+    <Compile Include="Code\Class\SketchBoxEffect.cs" />
+    <Compile Include="Code\Class\StackListBitmap.cs" />
+    <Compile Include="ColorPanel.cs">
+>>>>>>> parent of b0b5c2e... update UNDO and REDO
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Code\Panels\ColorPanel.Designer.cs">
