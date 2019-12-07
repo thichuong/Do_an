@@ -56,132 +56,143 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrushesPanel.cs">
+    <Compile Include="Code\Panels\BrushesPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BrushesPanel.Designer.cs">
+    <Compile Include="Code\Panels\BrushesPanel.Designer.cs">
       <DependentUpon>BrushesPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="BrushesPropeties.cs">
+    <Compile Include="Code\Selections\BrushesSelection.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BrushesPropeties.Designer.cs">
-      <DependentUpon>BrushesPropeties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BrushesSelection.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BrushesSelection.Designer.cs">
+    <Compile Include="Code\Selections\BrushesSelection.Designer.cs">
       <DependentUpon>BrushesSelection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Canvas.cs">
+    <Compile Include="Code\Properties\BrushProperties.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Code\Properties\BrushProperties.Designer.cs">
+      <DependentUpon>BrushProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Properties\CalligraphyProp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Code\Properties\CalligraphyProp.Designer.cs">
+      <DependentUpon>CalligraphyProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Classes\Canvas.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Canvas.Designer.cs">
+    <Compile Include="Code\Classes\Canvas.Designer.cs">
       <DependentUpon>Canvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="CanvasPanel.cs">
+    <Compile Include="Code\Panels\CanvasPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CanvasPanel.Designer.cs">
+    <Compile Include="Code\Panels\CanvasPanel.Designer.cs">
       <DependentUpon>CanvasPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Code\Class\SketchBoxEffect.cs" />
-    <Compile Include="Code\Class\ListStackBitmap.cs" />
-    <Compile Include="ColorPanel.cs">
+    <Compile Include="Code\Brushes\Brush.cs" />
+    <Compile Include="Code\Brushes\CalligraphyPen.cs" />
+    <Compile Include="Code\Brushes\Eraser.cs" />
+    <Compile Include="Code\Brushes\Marker.cs" />
+    <Compile Include="Code\Brushes\Pencil.cs" />
+    <Compile Include="Code\Classes\ModifyComponents.cs" />
+    <Compile Include="Code\Classes\SketchBoxEffect.cs" />
+    <Compile Include="Code\Panels\ColorPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ColorPanel.Designer.cs">
+    <Compile Include="Code\Panels\ColorPanel.Designer.cs">
       <DependentUpon>ColorPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="DoubleBufferPanel.cs">
+    <Compile Include="Code\Panels\DoubleBufferPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DoubleBufferPanel.Designer.cs">
+    <Compile Include="Code\Panels\DoubleBufferPanel.Designer.cs">
       <DependentUpon>DoubleBufferPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="EffectsPanel.cs">
+    <Compile Include="Code\Panels\EffectsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EffectsPanel.Designer.cs">
+    <Compile Include="Code\Panels\EffectsPanel.Designer.cs">
       <DependentUpon>EffectsPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Code\Class\FillBucket.cs" />
+    <Compile Include="Code\Brushes\FillBucket.cs" />
+    <Compile Include="Code\Properties\FillProp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Code\Properties\FillProp.Designer.cs">
+      <DependentUpon>FillProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="LayerPanel.cs">
+    <Compile Include="Code\Panels\MenuPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LayerPanel.Designer.cs">
-      <DependentUpon>LayerPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MenuPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MenuPanel.Designer.cs">
+    <Compile Include="Code\Panels\MenuPanel.Designer.cs">
       <DependentUpon>MenuPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Code\Class\ResizeHelper.cs" />
-    <Compile Include="Ribbon.cs">
+    <Compile Include="Code\Classes\ResizeHelper.cs" />
+    <Compile Include="Code\Panels\Ribbon.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ribbon.Designer.cs">
+    <Compile Include="Code\Panels\Ribbon.Designer.cs">
       <DependentUpon>Ribbon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Code\Class\Shape.cs" />
-    <Compile Include="ShapeSelections.cs">
+    <Compile Include="Code\Classes\Shape.cs" />
+    <Compile Include="Code\Selections\ShapeSelections.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ShapeSelections.Designer.cs">
+    <Compile Include="Code\Selections\ShapeSelections.Designer.cs">
       <DependentUpon>ShapeSelections.cs</DependentUpon>
     </Compile>
-    <Compile Include="ShapesPanel.cs">
+    <Compile Include="Code\Panels\ShapesPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ShapesPanel.Designer.cs">
+    <Compile Include="Code\Panels\ShapesPanel.Designer.cs">
       <DependentUpon>ShapesPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Code\Class\Sprayer.cs" />
-    <Compile Include="TextPanel.cs">
+    <Compile Include="Code\Brushes\Sprayer.cs" />
+    <Compile Include="Code\Panels\TextPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TextPanel.Designer.cs">
+    <Compile Include="Code\Panels\TextPanel.Designer.cs">
       <DependentUpon>TextPanel.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="BrushesPanel.resx">
+    <EmbeddedResource Include="Code\Panels\BrushesPanel.resx">
       <DependentUpon>BrushesPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BrushesPropeties.resx">
-      <DependentUpon>BrushesPropeties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BrushesSelection.resx">
+    <EmbeddedResource Include="Code\Selections\BrushesSelection.resx">
       <DependentUpon>BrushesSelection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CanvasPanel.resx">
+    <EmbeddedResource Include="Code\Properties\BrushProperties.resx">
+      <DependentUpon>BrushProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\Properties\CalligraphyProp.resx">
+      <DependentUpon>CalligraphyProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\Panels\CanvasPanel.resx">
       <DependentUpon>CanvasPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ColorPanel.resx">
+    <EmbeddedResource Include="Code\Panels\ColorPanel.resx">
       <DependentUpon>ColorPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DoubleBufferPanel.resx">
+    <EmbeddedResource Include="Code\Panels\DoubleBufferPanel.resx">
       <DependentUpon>DoubleBufferPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EffectsPanel.resx">
+    <EmbeddedResource Include="Code\Panels\EffectsPanel.resx">
       <DependentUpon>EffectsPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LayerPanel.resx">
-      <DependentUpon>LayerPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MenuPanel.resx">
+    <EmbeddedResource Include="Code\Panels\MenuPanel.resx">
       <DependentUpon>MenuPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\PaintUI.BrushesPanel.resources" />
@@ -204,16 +215,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Ribbon.resx">
+    <EmbeddedResource Include="Code\Panels\Ribbon.resx">
       <DependentUpon>Ribbon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShapeSelections.resx">
+    <EmbeddedResource Include="Code\Selections\ShapeSelections.resx">
       <DependentUpon>ShapeSelections.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShapesPanel.resx">
+    <EmbeddedResource Include="Code\Panels\ShapesPanel.resx">
       <DependentUpon>ShapesPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TextPanel.resx">
+    <EmbeddedResource Include="Code\Panels\TextPanel.resx">
       <DependentUpon>TextPanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\PaintUI.exe.config" />
@@ -343,6 +354,9 @@
     <None Include="Resources\heart2.png" />
     <None Include="Resources\heart4.png" />
     <None Include="Resources\heart5.png" />
+    <None Include="Resources\heart-outline.png" />
+    <None Include="Resources\heart-outline1.png" />
+    <None Include="Resources\heart-outline2.png" />
     <Content Include="Resources\hexa.bmp" />
     <None Include="Resources\Hexagon.png" />
     <Content Include="Resources\iso.bmp" />
@@ -362,8 +376,6 @@
     <None Include="Resources\Star.png" />
     <Content Include="Resources\triange.bmp" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Code\Panel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

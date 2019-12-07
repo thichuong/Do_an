@@ -19,24 +19,19 @@ namespace PaintUI
     {
         enum Tools { BRUSH, SHAPE};
         Tools curTool;
-        List<Bitmap> LayerList = new List<Bitmap>();
-        Bitmap bm, temp, visionBM,currentLayerBitmap,bitmap1;
+        
+        Bitmap bm, temp, visionBM;
         Graphics gra;
         Point old, cur;
-        Point pOld, startPoint, oldLocation,RecStartPoint,
-            RecEndPoint,RecVeryLast;
-        int numberofLayerRemoved = -1;
-        int curLayer = -1;
+        Point pOld, startPoint, oldLocation;
+
         int wid, hei;
-        List<Bitmap> RemovedLayer = new List<Bitmap>();
-        List<Bitmap> templistBM = new List<Bitmap>();
-        bool isDown, isDragged, isSaved, isChanged,PanClicked,isPanning,SelectClicked,isSelecting;
-        bool RegionSelected = false;
-        ListStackBitmap UNDO, REDO;
-        Rectangle SelectionRec;
-        Bitmap SelectionBitmap;
-        Graphics SelectionGraphics;
-        Graphics graphics;
+        
+        bool isDown, isDragged, isSaved, isChanged;
+
+        Stack<Bitmap> UNDO, REDO;
+        
+
         public Form1()
         {
             InitializeComponent();
@@ -48,14 +43,14 @@ namespace PaintUI
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
                 gra = Graphics.FromImage(bm);
 
-                isDown = isSaved = isChanged = isDragged = PanClicked = isPanning = false;
+                isDown = isSaved = isChanged = isDragged = false;
                 
                 menuPanel.BringToFront();
                 SketchBox.Cursor = Cursors.Cross;
 
-                UNDO = new ListStackBitmap();
-                UNDO.Push(bm,-1);
-                REDO = new ListStackBitmap();
+                UNDO = new Stack<Bitmap>();
+                UNDO.Push((Bitmap)bm.Clone());
+                REDO = new Stack<Bitmap>();
             }
             
 
@@ -82,96 +77,8 @@ namespace PaintUI
                 RightTopPanel.Visible = false;
                 RightBottomPanel.Visible = false;
             }
-            
-            //Layerings
-            {
-                layerPanel.LayerClicked += LayerPanel_LayerClicked;
-                layerPanel.AddLayerClicked += LayerPanel_AddLayerClicked;
-                layerPanel.BaseLayerClicked += LayerPanel_BaseLayerClicked;
-                layerPanel.LayerRemoved += LayerPanel_LayerRemoved;
-            }
-            currentLayerBitmap = bm;
-            SelectButton.Click += SelectButton_Click;
-            SelectClicked = false;
-            isSelecting = false;
-            RegionSelected = false;
-            PanClicked = false;
-           
         }
 
-        private void SelectButton_Click(object sender, EventArgs e)
-        {
-            if (!RegionSelected) SelectClicked = !SelectClicked;
-            if (SelectClicked) Console.WriteLine("selecting");
-        }
-            Rectangle GetRec()
-        {
-            SelectionRec = new Rectangle();
-            SelectionRec.X = Math.Min(RecStartPoint.X, RecEndPoint.X);
-            SelectionRec.Y = Math.Min(RecStartPoint.Y, RecEndPoint.Y);
-            SelectionRec.Width = Math.Abs(RecStartPoint.X - RecEndPoint.X);
-            SelectionRec.Height = Math.Abs(RecStartPoint.Y - RecEndPoint.Y);
-            return SelectionRec;
-        }
-       
-
-        //Layer Actions
-        private void LayerPanel_LayerRemoved(object sender, EventArgs e)
-        {         
-            numberofLayerRemoved++;            
-            RemovedLayer.Add(LayerList[layerPanel.removedLayerIndex]);
-            gra = Graphics.FromImage(bm);
-            LayerList[layerPanel.removedLayerIndex] = new Bitmap(SketchBox.Width,SketchBox.Height);
-            currentLayerBitmap = bm;
-            Console.WriteLine("new list" + NewList().Count);
-            Console.WriteLine("Currently on bm");
-        }
-
-        private void LayerPanel_BaseLayerClicked(object sender, EventArgs e)
-        {                  
-            Console.WriteLine("currently on bm");
-            currentLayerBitmap = bm;
-            curLayer = -1;
-            gra = Graphics.FromImage(currentLayerBitmap);
-            LayerDrawer();
-            SketchBoxVisionImage(currentLayerBitmap);
-        }
-
-        private void LayerPanel_AddLayerClicked(object sender, EventArgs e)
-        {            
-            bitmap1 = new Bitmap(SketchBox.Width, SketchBox.Height);           
-            LayerList.Add(bitmap1);
-            Stack<Bitmap> bitmaps = new Stack<Bitmap>();
-            bitmaps.Push((Bitmap)bitmap1.Clone());
-            UNDO.addStack(bitmaps);
-            REDO.addStack(new Stack<Bitmap>());
-        }
-
-        private void PanButton_Click(object sender, EventArgs e)
-        {
-            PanClicked = !PanClicked;
-        }
-        private void LayerPanel_LayerClicked(object sender, EventArgs e)
-        {
-            if (!layerPanel.rightclicked)
-            {               
-                Button bn = sender as Button;
-                int LayerIndex = Convert.ToInt32(bn.Name);
-                currentLayerBitmap = LayerList[LayerIndex];
-                curLayer = LayerIndex;
-                gra = Graphics.FromImage(currentLayerBitmap);
-                Console.WriteLine("currently on: " + LayerIndex);
-                LayerDrawer();
-                SketchBoxVisionImage(currentLayerBitmap);
-            }
-            
-        }
-        private List<Bitmap> NewList()
-        {
-            List<Bitmap> ListException = LayerList.Except(RemovedLayer).ToList();
-            return ListException;
-        }
-        //End of Layer Actions
 
         //Giau Panels
         private void HideAllPanel()
@@ -230,7 +137,7 @@ namespace PaintUI
 
         string path = "";
         
-        private void SaveAs() 
+        private void SaveAs()
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Bmp (*.bmp)|*.bmp|Jpg (*.jpg)|*.jpg|Jpeg (*.jpeg)|*.jpeg|Png (*.png)|*.png";
@@ -274,14 +181,14 @@ namespace PaintUI
             bm = new Bitmap(SketchBox.Width, SketchBox.Height);
             gra = Graphics.FromImage(bm);
             SketchBox.Refresh();
-            SketchBoxVisionImage(bm);
-            while (UNDO.Count(curLayer) > 1)
+            SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
+            while (UNDO.Count() > 1)
             {
-                UNDO.Pop(curLayer);
+                UNDO.Pop();
             }
-            while (REDO.Count(curLayer) > 0)
+            while (REDO.Count() > 0)
             {
-                REDO.Pop(curLayer);
+                REDO.Pop();
             }
             titleLb.Text = "Untitled - Skuitch";
             path = "";
@@ -374,12 +281,17 @@ namespace PaintUI
         //Xu li cac xu kien cua effectPanel
         public void Effect_change(Color color,Color colorpanelCavas)
         {
-            SketchBoxVisionImage(bm);
+            SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
             panelCavas.BackColor = colorpanelCavas;
         }
       
 
+
+
+        
+
         //Hien thi cac Panels khi click va hover va leave
+
 
         private void MenuButton_Click(object sender, EventArgs e)
         {
@@ -459,54 +371,28 @@ namespace PaintUI
 
         private void UndoButton_Click(object sender, EventArgs e)
         {
-            if(UNDO.Count(curLayer) >1)
+            if(UNDO.Count>1)
             {
-                REDO.Push(UNDO.Pop(curLayer), curLayer);
-                temp = new Bitmap(SketchBox.Width, SketchBox.Width);
-                Graphics graphics = Graphics.FromImage(temp);
-                graphics.CompositingQuality = CompositingQuality.GammaCorrected;
-                graphics.DrawImage(UNDO.Peek(curLayer), 0, 0, SketchBox.Width, SketchBox.Width);
-                if(curLayer==-1)
-                    bm= temp;
-                else
-                    LayerList[curLayer] = temp;
-                currentLayerBitmap= temp;
-                SketchBoxVisionImage(currentLayerBitmap);
-                gra = Graphics.FromImage(currentLayerBitmap);
+                REDO.Push((Bitmap)UNDO.Pop().Clone());
+                bm = (Bitmap)UNDO.Peek().Clone();
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
+                gra = Graphics.FromImage(bm);
                 isChanged = true;
             }
         }
 
         private void RedoButton_Click(object sender, EventArgs e)
         {
-            if (REDO.Count(curLayer) > 0)
+            if(REDO.Count>0)
             {
-                UNDO.Push(REDO.Pop(curLayer), curLayer);
-                temp = new Bitmap(SketchBox.Width, SketchBox.Width);
-                Graphics graphics = Graphics.FromImage(temp);
-                graphics.CompositingQuality = CompositingQuality.GammaCorrected;
-                graphics.DrawImage(UNDO.Peek(curLayer), 0, 0, temp.Width, temp.Height);
-                if (curLayer == -1)
-                    bm = temp;
-                else
-                    LayerList[curLayer] = temp;
-                currentLayerBitmap = temp;
-                SketchBoxVisionImage(currentLayerBitmap);
-                gra = Graphics.FromImage(currentLayerBitmap);
+                UNDO.Push((Bitmap)REDO.Pop().Clone());
+                bm = (Bitmap)UNDO.Peek().Clone();
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
+                gra = Graphics.FromImage(bm);
                 isChanged = true;
             }
         }
-
-
-        private void LayerDrawer()
-        {
-            temp = new Bitmap(SketchBox.Width, SketchBox.Height);
-            graphics = Graphics.FromImage(temp);
-            graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            
-            graphics.DrawImage(currentLayerBitmap, 0, 0, SketchBox.Width, SketchBox.Height);
-        }
-
+        
         //Cac su kien voi mouse
         private void SketchBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -522,65 +408,27 @@ namespace PaintUI
                 }
                 SketchBox.Refresh();
             }
-            else if (isPanning)
-            {
-                cur = new Point(e.Location.X, e.Location.Y);
-                SketchBox.Left = SketchBox.Location.X + (cur.X - old.X);
-                SketchBox.Top = SketchBox.Location.Y + (cur.Y - old.Y);
-            }
-            else if (isSelecting && !RegionSelected)
-            {
-                RecEndPoint = e.Location;
-                Refresh();
-            }
         }
 
         private void SketchBox_MouseUp(object sender, MouseEventArgs e)
         {
-            
             isDown = false;
-
-            isPanning = false;
-            SelectClicked = false;    
-            if (!PanClicked)
+            if (curTool == Tools.SHAPE)
             {
-                if (curTool == Tools.SHAPE)
-                {
-                   
-                    gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-                    gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                    shapesPanel.DrawShapes(SketchBox, currentLayerBitmap, gra, old, cur, new Size(wid, hei));
-                    SketchBoxVisionImage(currentLayerBitmap); 
-                }
-                if (curTool == Tools.BRUSH)
-                {
-                    gra = Graphics.FromImage(currentLayerBitmap);
-                    gra.CompositingMode = CompositingMode.SourceOver;
-                    gra.SmoothingMode = SmoothingMode.AntiAlias;
-                    brushesPanel.ProcessPaint(gra, old, cur);
-                    brushesPanel.ProcessMouseUp(currentLayerBitmap, cur);
-                    SketchBoxVisionImage(currentLayerBitmap);
-                }   
-                if (isSelecting)
-                {
-                    RecEndPoint = e.Location;                    
-                    isSelecting = false;
-                    RegionSelected = true;
-                    if (SelectionRec!=null)
-                    {
-                        SelectionBitmap = new Bitmap(SketchBox.Width, SketchBox.Height);
-                        SelectionGraphics = Graphics.FromImage(SelectionBitmap);
-                        SelectionGraphics.DrawImage(currentLayerBitmap, 0, 0,SelectionRec,GraphicsUnit.Pixel);
-                    }
-                }
+                shapesPanel.ProcessMouseUp(SketchBox, bm, gra, old, cur, new Size(wid, hei), UNDO);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
             }
-                wid = hei = 0;    
-            
-            //Them vao stack UNDO khi het net ve
-            UNDO.Push(currentLayerBitmap,curLayer);
-            while (REDO.Count(curLayer) > 0)
+            if(curTool==Tools.BRUSH)
             {
-                REDO.Pop(curLayer);
+                brushesPanel.ProcessPaint(gra, old, cur);
+                brushesPanel.ProcessMouseUp(bm, cur, UNDO);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
+            }
+            wid = hei = 0;
+            
+            while(REDO.Count>0)
+            {
+                REDO.Pop();
             }
         }
 
@@ -592,86 +440,44 @@ namespace PaintUI
                 {
                     old = new Point(e.Location.X, e.Location.Y);
                     cur = old;
-                    gra = Graphics.FromImage(currentLayerBitmap);
-                    brushesPanel.ProcessMouseDown(currentLayerBitmap, gra, old, cur);
-                    gra.CompositingMode = CompositingMode.SourceOver;
-                    gra.SmoothingMode = SmoothingMode.AntiAlias;
-                    SketchBoxVisionImage(currentLayerBitmap);
-                }
-               
-                if (PanClicked) isPanning = true;
-                else if (SelectClicked&&!RegionSelected)
-                {
-                    isSelecting = true;
-                    RecStartPoint = e.Location;
-                }
-                else if (!RegionSelected) isDown = true;
-               
-                isChanged = true;
+                    if (curTool == Tools.BRUSH)
+                    {
+                        brushesPanel.ProcessMouseDown(bm, gra, old, cur);
+                        SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
+                    }
 
+                    isDown = true;
+                    isChanged = true;
+                }
             }
-            if (e.Button == MouseButtons.Right)
-            {               
-                   
-                RegionSelected = false;
-                SelectClicked = false;
-                isSelecting = false;
-            }
-
         }
 
         private void SketchBox_Paint(object sender, PaintEventArgs e)
-        {            
+        {
             if (isDown)
             {
-                LayerDrawer();
+                temp = new Bitmap(SketchBox.Width, SketchBox.Height);
+                Graphics graphics = Graphics.FromImage(temp);
+                graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                graphics.DrawImage(bm, 0, 0, SketchBox.Width, SketchBox.Height);
                 switch (curTool)
                 {
                     case Tools.BRUSH:
                         brushesPanel.ProcessPaint(graphics, old, cur);
                         old = cur;
-                        SketchBoxVisionImage(temp);
+                        SketchBoxEffect.SketchBoxVisionImage(temp, SketchBox, effectsPanel, visionBM);
                         break;
                     case Tools.SHAPE:
-
-                        shapesPanel.DrawShapes(SketchBox, temp, graphics, old, cur, new Size(wid, hei));
-                        SketchBoxVisionImage(temp);
-
+                        shapesPanel.ProcessPaint(SketchBox, bm, graphics, old, cur, new Size(wid, hei));
+                        SketchBoxEffect.SketchBoxVisionImage(temp, SketchBox, effectsPanel, visionBM);
                         break;
                     default:
                         break;
-                }               
-            }
-            else if (isSelecting)
-            {               
-                if (SelectionRec!=null)
-                {
-                    e.Graphics.DrawRectangle(Pens.Red, GetRec());   
                 }
             }
         }
         
-
-        public void SketchBoxVisionImage(Bitmap bmp)
-        {  
-            Bitmap effectBM = new Bitmap(SketchBox.Width, SketchBox.Height);
-            Graphics  vGra = Graphics.FromImage(effectBM);
-             vGra.Clear(effectsPanel.color);
-            visionBM = new Bitmap(SketchBox.Width, SketchBox.Height);
-             vGra = Graphics.FromImage(visionBM);
-            if (bm!= currentLayerBitmap)
-                 vGra.DrawImage(bm, 0, 0, SketchBox.Width, SketchBox.Height);
-            else
-                 vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
-            for (int i = 0; i < LayerList.Count; i++)
-                if(LayerList[i]!=currentLayerBitmap)
-                     vGra.DrawImage(LayerList[i], 0, 0, SketchBox.Width, SketchBox.Height);
-                else
-                     vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
-             vGra.DrawImage(effectBM, 0, 0, SketchBox.Width, SketchBox.Height);
-            SketchBox.BackgroundImage = (Bitmap)visionBM.Clone();
-        }
-
+        
 
         public void SketchBoxShowResizepanel()
         {
@@ -734,7 +540,7 @@ namespace PaintUI
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height);
                 gra = Graphics.FromImage(bm);
                 gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
-                SketchBoxVisionImage(bm);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
             }
             else
             {
@@ -742,41 +548,11 @@ namespace PaintUI
             }
            
         }
-        private List<Bitmap> tempBitmaps()
-        {
-            temp =(Bitmap) bm.Clone();
-            Graphics tempGra;
-            List<Bitmap> bitmaps = new List<Bitmap>();
-            for (int i = 0; i < LayerList.Count; i++)
-            {
-                Bitmap bitmap = (Bitmap)LayerList[i].Clone();
-                bitmaps.Add(bitmap);
-            }
-            return bitmaps;
-        }
-        private void tempBitmapsRisize()
-        {
-            Graphics tempGra;
-            Bitmap bitmap = new Bitmap(SketchBox.Width, SketchBox.Height);
-            bm=new Bitmap(SketchBox.Width, SketchBox.Height);
-            gra = Graphics.FromImage(bm);
-            gra.CompositingQuality = CompositingQuality.GammaCorrected;
-            gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
-            
-            for (int i = 0; i < LayerList.Count(); i++)
-            {
-                LayerList[i] = new Bitmap(SketchBox.Width, SketchBox.Height); ;
-                tempGra = Graphics.FromImage(LayerList[i]);
-                tempGra.CompositingQuality = CompositingQuality.GammaCorrected;
-                tempGra.DrawImage(templistBM[i], 0, 0,SketchBox.Width,SketchBox.Height);
-            }
-            SketchBoxVisionImage(bm);
-            currentLayerBitmap = bm;
-        }
+
         private void LeftTopPanel_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = e.Location;
-            templistBM = tempBitmaps();
+            temp = (Bitmap)bm;
             isDragged = true;
         }
 
@@ -794,7 +570,11 @@ namespace PaintUI
                     SketchBox.Location = new Point(oldLocation.X - startPoint.X + pOld.X, oldLocation.Y - startPoint.Y + pOld.Y);
                     SketchBox.Size = new Size(SketchBox.Width + startPoint.X - pOld.X, SketchBox.Height + startPoint.Y - pOld.Y);
                 }
-                tempBitmapsRisize();
+                bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+                gra = Graphics.FromImage(bm);
+               
+                gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                 panelCavas.Refresh();
             }
         }
@@ -807,7 +587,7 @@ namespace PaintUI
         private void LeftBottomPanel_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = e.Location;
-            templistBM = tempBitmaps();
+            temp = (Bitmap)bm;
             isDragged = true;
         }
 
@@ -825,7 +605,11 @@ namespace PaintUI
                     SketchBox.Location = new Point(oldLocation.X - startPoint.X + pOld.X, oldLocation.Y);
                     SketchBox.Size = new Size(SketchBox.Width + startPoint.X - pOld.X, SketchBox.Height - startPoint.Y + pOld.Y);
                 }
-                tempBitmapsRisize();
+                bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+                gra = Graphics.FromImage(bm);
+                
+                gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                 panelCavas.Refresh();
             }
         }
@@ -839,7 +623,7 @@ namespace PaintUI
         private void RightTopPanel_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = e.Location;
-            templistBM = tempBitmaps();
+            temp = (Bitmap)bm;
             isDragged = true;
         }
 
@@ -857,7 +641,11 @@ namespace PaintUI
                     SketchBox.Size = new Size(SketchBox.Width - startPoint.X + pOld.X, SketchBox.Height + startPoint.Y - pOld.Y);
                 }
 
-                tempBitmapsRisize();
+                bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+                gra = Graphics.FromImage(bm);
+               
+                gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                 panelCavas.Refresh();
             }
         }
@@ -870,7 +658,7 @@ namespace PaintUI
         private void RightBottomPanel_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = e.Location;
-            templistBM = tempBitmaps();
+            temp = (Bitmap)bm;
             isDragged = true;
         }
 
@@ -886,7 +674,11 @@ namespace PaintUI
                     SketchBox.Size = new Size(SketchBox.Width - startPoint.X + pOld.X, SketchBox.Height - startPoint.Y + pOld.Y);
                 }
 
-                tempBitmapsRisize();
+                bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+                gra = Graphics.FromImage(bm);
+            
+                gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
+                SketchBoxEffect.SketchBoxVisionImage(bm, SketchBox, effectsPanel, visionBM);
                 panelCavas.Refresh();
             }
           
@@ -1104,8 +896,6 @@ namespace PaintUI
                 this.Refresh();
             }
         }
-
-        
 
         private void RightBottomPanel_1_MouseUp(object sender, MouseEventArgs e)
         {
