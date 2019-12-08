@@ -35,11 +35,11 @@
             // AddButton
             // 
             this.AddButton.BackColor = System.Drawing.Color.White;
-            this.AddButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AddButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.AddButton.Font = new System.Drawing.Font("Segoe Print", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddButton.Location = new System.Drawing.Point(0, 0);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(60, 30);
+            this.AddButton.Size = new System.Drawing.Size(60, 58);
             this.AddButton.TabIndex = 0;
             this.AddButton.Text = "+";
             this.AddButton.UseVisualStyleBackColor = false;
@@ -48,12 +48,12 @@
             // BaseLayer
             // 
             this.BaseLayer.BackColor = System.Drawing.Color.White;
-            this.BaseLayer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BaseLayer.Dock = System.Windows.Forms.DockStyle.Left;
             this.BaseLayer.Font = new System.Drawing.Font("Segoe Print", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BaseLayer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BaseLayer.Location = new System.Drawing.Point(0, 30);
+            this.BaseLayer.Location = new System.Drawing.Point(60, 0);
             this.BaseLayer.Name = "BaseLayer";
-            this.BaseLayer.Size = new System.Drawing.Size(60, 30);
+            this.BaseLayer.Size = new System.Drawing.Size(60, 58);
             this.BaseLayer.TabIndex = 1;
             this.BaseLayer.Text = "Base";
             this.BaseLayer.UseVisualStyleBackColor = false;
@@ -67,7 +67,7 @@
             this.Controls.Add(this.BaseLayer);
             this.Controls.Add(this.AddButton);
             this.Name = "LayerPanel";
-            this.Size = new System.Drawing.Size(60, 369);
+            this.Size = new System.Drawing.Size(699, 58);
             this.ResumeLayout(false);
 
         }

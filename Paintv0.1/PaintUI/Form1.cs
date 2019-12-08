@@ -152,7 +152,6 @@ namespace PaintUI
             UNDO.Push(bm, -1);
             REDO = new ListStackBitmap();
             numberofLayerRemoved = -1;
-            curLayer = -1;
             RemovedLayer = new List<Bitmap>();
         }
         #endregion
@@ -283,6 +282,13 @@ namespace PaintUI
         #endregion
 
         #region ButtonClicks
+        private void LayerButton_Click(object sender, EventArgs e)
+        {
+            if (!layerPanel.Visible)
+                bunifuTransition1.ShowSync(layerPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            else
+                bunifuTransition1.HideSync(layerPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+        }
         private void PanButton_Click(object sender, EventArgs e)
         {
             PanClicked = !PanClicked;
@@ -1024,6 +1030,8 @@ namespace PaintUI
                 this.Refresh();
             }
         }
+
+      
 
         private void BottomPanel_MouseUp(object sender, MouseEventArgs e)
         {
