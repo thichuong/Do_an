@@ -152,6 +152,7 @@ namespace PaintUI
             UNDO.Push(bm, -1);
             REDO = new ListStackBitmap();
             numberofLayerRemoved = -1;
+            curLayer = -1;
             RemovedLayer = new List<Bitmap>();
         }
         #endregion
