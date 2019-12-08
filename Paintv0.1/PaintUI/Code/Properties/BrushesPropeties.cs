@@ -15,16 +15,21 @@ namespace PaintUI
         public BrushesPropeties()
         {
             InitializeComponent();
+            ThicknessSlide.Value = 5;
+            OpacitySlide.Value = 255;
+            ThicknessSlide.MaximumValue = 30;
+        }
+        
+        public int Thickness
+        {
+            get { return ThicknessSlide.Value; }
+            set { ThicknessSlide.Value = value; }
         }
 
-        public int getThickness()
+        public int Opacity
         {
-            return thicknessSlide.Value;
-        }
-
-        public int getOpacity()
-        {
-            return opacitySlide.Value;
+            get { return OpacitySlide.Value; }
+            set { OpacitySlide.Value = value; }
         }
     }
 }
