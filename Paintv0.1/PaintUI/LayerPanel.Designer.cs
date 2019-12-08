@@ -34,35 +34,40 @@
             // 
             // AddButton
             // 
+            this.AddButton.BackColor = System.Drawing.Color.White;
             this.AddButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AddButton.Font = new System.Drawing.Font("Segoe Print", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddButton.Location = new System.Drawing.Point(0, 0);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(62, 23);
+            this.AddButton.Size = new System.Drawing.Size(60, 30);
             this.AddButton.TabIndex = 0;
             this.AddButton.Text = "+";
-            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.UseVisualStyleBackColor = false;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // BaseLayer
             // 
+            this.BaseLayer.BackColor = System.Drawing.Color.White;
             this.BaseLayer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BaseLayer.Location = new System.Drawing.Point(0, 23);
+            this.BaseLayer.Font = new System.Drawing.Font("Segoe Print", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BaseLayer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BaseLayer.Location = new System.Drawing.Point(0, 30);
             this.BaseLayer.Name = "BaseLayer";
-            this.BaseLayer.Size = new System.Drawing.Size(62, 23);
+            this.BaseLayer.Size = new System.Drawing.Size(60, 30);
             this.BaseLayer.TabIndex = 1;
             this.BaseLayer.Text = "Base";
-            this.BaseLayer.UseVisualStyleBackColor = true;
+            this.BaseLayer.UseVisualStyleBackColor = false;
             this.BaseLayer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BaseLayer_MouseDown);
             // 
             // LayerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.Controls.Add(this.BaseLayer);
             this.Controls.Add(this.AddButton);
             this.Name = "LayerPanel";
-            this.Size = new System.Drawing.Size(62, 369);
+            this.Size = new System.Drawing.Size(60, 369);
             this.ResumeLayout(false);
 
         }
