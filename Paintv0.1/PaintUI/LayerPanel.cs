@@ -20,13 +20,21 @@ namespace PaintUI
         public bool rightclicked = false;
         Button layer1;
         public int removedLayerIndex=0;
-        List<Button> layerIconList = new List<Button>();
+        public List<Button> layerIconList = new List<Button>();
         public LayerPanel()
         {
             InitializeComponent();
             this.ControlRemoved += LayerPanel_ControlRemoved;
+           
         }
-       
+        public void reset()
+        {
+            while(LayerCounter>-1)
+            {
+                this.Controls.Remove(layerIconList[LayerCounter]);
+                LayerCounter--;
+            }
+        }
         private void LayerPanel_ControlRemoved(object sender, ControlEventArgs e)
         {            
             removedLayerIndex = Convert.ToInt32(e.Control.Name);

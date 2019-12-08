@@ -135,6 +135,18 @@ namespace PaintUI
             List<Bitmap> ListException = LayerList.Except(RemovedLayer).ToList();
             return ListException;
         }
+        private void resetLayer()
+        {
+            layerPanel.reset();
+            bm = new Bitmap(SketchBox.Width, SketchBox.Height);
+            gra = Graphics.FromImage(bm);
+            LayerList = new List<Bitmap>();
+            UNDO = new StackListBitmap();
+            UNDO.Push(LayerList, bm);
+            REDO = new StackListBitmap();
+            numberofLayerRemoved = -1;
+            RemovedLayer = new List<Bitmap>();
+        }
         #endregion
         //Giau Panels
         private void HideAllPanel()
@@ -231,18 +243,13 @@ namespace PaintUI
 
         private void New()
         {
-            bm = new Bitmap(SketchBox.Width, SketchBox.Height);
-            gra = Graphics.FromImage(bm);
+            resetLayer();
             SketchBox.Refresh();
+            currentLayerBitmap = bm;
             SketchBoxVisionImage(bm);
-            while (UNDO.Count() > 1)
-            {
-                UNDO.Pop();
-            }
-            while (REDO.Count() > 0)
-            {
-                REDO.Pop();
-            }
+            UNDO = new StackListBitmap();
+            UNDO.Push(LayerList, bm);
+            REDO = new StackListBitmap();
             titleLb.Text = "Untitled - Skuitch";
             path = "";
             isSaved = false;
@@ -258,6 +265,7 @@ namespace PaintUI
                 path = ofd.FileName;
                 titleLb.Text = Path.GetFileNameWithoutExtension(path) + " - Skuitch";
                 Image img = Image.FromFile(path);
+                resetLayer();
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height);
                 gra = Graphics.FromImage(bm);
                 gra.DrawImage(img, new Rectangle(0, 0, bm.Width, bm.Height));
