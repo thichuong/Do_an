@@ -159,23 +159,7 @@ namespace PaintUI
             RemovedLayer = new List<Bitmap>();
         }
         #endregion
-
-        //Giau Panels
-        private void HideAllPanel()
-        {
-            shapesPanel.Visible = false;
-            textPanel.Visible = false;
-            canvasPanel.Visible = false;
-            brushesPanel.Visible = false;
-            effectsPanel.Visible = false;
-
-            menuPanel.Visible = false;
-            LeftTopPanel.Visible = false;
-            LeftBottomPanel.Visible = false;
-            RightTopPanel.Visible = false;
-            RightBottomPanel.Visible = false;
-        }
-
+        
         #region Window States
         private void MinimizeButton_Click(object sender, EventArgs e)
         {
@@ -369,11 +353,29 @@ namespace PaintUI
 
         private void StopActive()
         {
+            lb1.BackColor = Color.Transparent;
+            lb2.BackColor = Color.Transparent;
+            lb3.BackColor = Color.Transparent;
+            lb4.BackColor = Color.Transparent;
+            lb5.BackColor = Color.Transparent;
+
             TextButton.BackColor = Color.Transparent;
-            BrushesButton.BackColor = Color.Transparent;
             ShapesButton.BackColor = Color.Transparent;
-            CanvasButton.BackColor = Color.Transparent;
+            BrushesButton.BackColor = Color.Transparent;
             EffectsButton.BackColor = Color.Transparent;
+            CanvasButton.BackColor = Color.Transparent;
+        }
+
+        private void HideAllPanel()
+        {
+            brushesPanel.BringToFront();
+
+            menuPanel.Visible = false;
+
+            LeftTopPanel.Visible = false;
+            LeftBottomPanel.Visible = false;
+            RightTopPanel.Visible = false;
+            RightBottomPanel.Visible = false;
         }
 
         private void MenuButton_Click(object sender, EventArgs e)
@@ -386,81 +388,78 @@ namespace PaintUI
 
         private void TextButton_Click(object sender, EventArgs e)
         {
-            if (!textPanel.Visible)
-            {
-                HideAllPanel();
-                bunifuTransition1.ShowSync(textPanel, true, BunifuAnimatorNS.Animation.HorizSlide);
-            }
+            HideAllPanel();
+            textPanel.BringToFront();
+
             StopActive();
-            TextButton.BackColor = Color.LightBlue;
+            TextButton.BackColor = Color.CornflowerBlue;
+            lb1.BackColor = Color.CornflowerBlue;
         }
 
         private void ShapesButton_Click(object sender, EventArgs e)
         {
-            if (!shapesPanel.Visible)
-            {
-                HideAllPanel();
-                bunifuTransition1.ShowSync(shapesPanel, true, BunifuAnimatorNS.Animation.HorizSlide);
-            }
-            curTool = Tools.SHAPE;
+            HideAllPanel();
+            shapesPanel.BringToFront();
+                
             StopActive();
-            ShapesButton.BackColor = Color.LightBlue;
+            ShapesButton.BackColor = Color.CornflowerBlue;
+            lb4.BackColor = Color.CornflowerBlue;
+
+            curTool = Tools.SHAPE;
         }
 
         private void CanvasButton_Click(object sender, EventArgs e)
         {
-            if (!canvasPanel.Visible)
-            {
-                HideAllPanel();
-                bunifuTransition1.ShowSync(canvasPanel, true, BunifuAnimatorNS.Animation.HorizSlide);
-                LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
-                RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
-                RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
-                LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
-                if (!canvasPanel.ShowCheckBox)
-                {
-                    LeftTopPanel.Visible = false;
-                    LeftBottomPanel.Visible = false;
-                    RightTopPanel.Visible = false;
-                    RightBottomPanel.Visible = false;
-                }
-                else
-                {
-                    LeftTopPanel.Visible = true;
-                    LeftBottomPanel.Visible = true;
-                    RightTopPanel.Visible = true;
-                    RightBottomPanel.Visible = true;
-                }
-            }
-
+            HideAllPanel();
+            canvasPanel.BringToFront();
+                
             StopActive();
-            CanvasButton.BackColor = Color.LightBlue;
+            CanvasButton.BackColor = Color.CornflowerBlue;
+            lb2.BackColor = Color.CornflowerBlue;
+
+            LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
+            RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
+            RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
+            LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
+
+            if (!canvasPanel.ShowCheckBox)
+            {
+                LeftTopPanel.Visible = false;
+                LeftBottomPanel.Visible = false;
+                RightTopPanel.Visible = false;
+                RightBottomPanel.Visible = false;
+            }
+            else
+            {
+                LeftTopPanel.Visible = true;
+                LeftBottomPanel.Visible = true;
+                RightTopPanel.Visible = true;
+                RightBottomPanel.Visible = true;
+            }
         }
 
         private void BrushesButton_Click(object sender, EventArgs e)
         {
             currentLayerBitmap = bm;
-            if (!brushesPanel.Visible)
-            {
-                HideAllPanel();
-                bunifuTransition1.ShowSync(brushesPanel, true, BunifuAnimatorNS.Animation.HorizSlide);
-            }
-            curTool = Tools.BRUSH;
+
+            HideAllPanel();
+            brushesPanel.BringToFront();
 
             StopActive();
-            BrushesButton.BackColor = Color.LightBlue;
+            BrushesButton.BackColor = Color.CornflowerBlue;
+            lb3.BackColor = Color.CornflowerBlue;
+            
+            curTool = Tools.BRUSH;
         }
 
         private void EffectsButton_Click(object sender, EventArgs e)
         {
-            if (!effectsPanel.Visible)
-            {
-                HideAllPanel();
-                bunifuTransition1.ShowSync(effectsPanel, true, BunifuAnimatorNS.Animation.HorizSlide);
-            }
+            HideAllPanel();
+            effectsPanel.BringToFront();
 
             StopActive();
-            EffectsButton.BackColor = Color.LightBlue;
+            EffectsButton.BackColor = Color.CornflowerBlue;
+            lb5.BackColor = Color.CornflowerBlue;
         }
         #endregion
 
