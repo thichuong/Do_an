@@ -30,15 +30,15 @@
         private void InitializeComponent()
         {
             this.bunifuCards1 = new Bunifu.Framework.UI.BunifuCards();
-            this.curBrushBtn = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.Brushes_Label1 = new System.Windows.Forms.Label();
             this.CalliProp = new PaintUI.Code.Properties.CalligraphyProp();
             this.FillProp = new PaintUI.Code.Properties.FillProp();
             this.SprProp = new PaintUI.BrushesPropeties();
             this.EraProp = new PaintUI.BrushesPropeties();
             this.PelProp = new PaintUI.BrushesPropeties();
             this.MarProp = new PaintUI.BrushesPropeties();
+            this.curBrushBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.colorPanel = new PaintUI.ColorPanel();
+            this.Brushes_Label1 = new System.Windows.Forms.Label();
             this.bunifuCards1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +47,7 @@
             this.bunifuCards1.BackColor = System.Drawing.Color.Transparent;
             this.bunifuCards1.BorderRadius = 5;
             this.bunifuCards1.BottomSahddow = true;
-            this.bunifuCards1.color = System.Drawing.Color.Tomato;
+            this.bunifuCards1.color = System.Drawing.Color.Transparent;
             this.bunifuCards1.Controls.Add(this.CalliProp);
             this.bunifuCards1.Controls.Add(this.FillProp);
             this.bunifuCards1.Controls.Add(this.SprProp);
@@ -60,11 +60,72 @@
             this.bunifuCards1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuCards1.LeftSahddow = false;
             this.bunifuCards1.Location = new System.Drawing.Point(0, 0);
+            this.bunifuCards1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuCards1.Name = "bunifuCards1";
             this.bunifuCards1.RightSahddow = true;
             this.bunifuCards1.ShadowDepth = 20;
-            this.bunifuCards1.Size = new System.Drawing.Size(338, 746);
+            this.bunifuCards1.Size = new System.Drawing.Size(300, 597);
             this.bunifuCards1.TabIndex = 1;
+            // 
+            // CalliProp
+            // 
+            this.CalliProp.Location = new System.Drawing.Point(3, 145);
+            this.CalliProp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CalliProp.Name = "CalliProp";
+            this.CalliProp.Opacity = 255;
+            this.CalliProp.Size = new System.Drawing.Size(294, 172);
+            this.CalliProp.TabIndex = 33;
+            this.CalliProp.Thickness = 5;
+            // 
+            // FillProp
+            // 
+            this.FillProp.Location = new System.Drawing.Point(3, 145);
+            this.FillProp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FillProp.Name = "FillProp";
+            this.FillProp.Opacity = 255;
+            this.FillProp.Size = new System.Drawing.Size(294, 172);
+            this.FillProp.TabIndex = 32;
+            this.FillProp.Thickness = 5;
+            // 
+            // SprProp
+            // 
+            this.SprProp.Location = new System.Drawing.Point(3, 145);
+            this.SprProp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SprProp.Name = "SprProp";
+            this.SprProp.Opacity = 255;
+            this.SprProp.Size = new System.Drawing.Size(294, 172);
+            this.SprProp.TabIndex = 31;
+            this.SprProp.Thickness = 5;
+            // 
+            // EraProp
+            // 
+            this.EraProp.Location = new System.Drawing.Point(3, 145);
+            this.EraProp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EraProp.Name = "EraProp";
+            this.EraProp.Opacity = 255;
+            this.EraProp.Size = new System.Drawing.Size(294, 172);
+            this.EraProp.TabIndex = 30;
+            this.EraProp.Thickness = 5;
+            // 
+            // PelProp
+            // 
+            this.PelProp.Location = new System.Drawing.Point(3, 145);
+            this.PelProp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PelProp.Name = "PelProp";
+            this.PelProp.Opacity = 255;
+            this.PelProp.Size = new System.Drawing.Size(294, 172);
+            this.PelProp.TabIndex = 29;
+            this.PelProp.Thickness = 5;
+            // 
+            // MarProp
+            // 
+            this.MarProp.Location = new System.Drawing.Point(3, 145);
+            this.MarProp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MarProp.Name = "MarProp";
+            this.MarProp.Opacity = 255;
+            this.MarProp.Size = new System.Drawing.Size(294, 172);
+            this.MarProp.TabIndex = 28;
+            this.MarProp.Thickness = 5;
             // 
             // curBrushBtn
             // 
@@ -88,103 +149,50 @@
             this.curBrushBtn.IconVisible = true;
             this.curBrushBtn.IconZoom = 90D;
             this.curBrushBtn.IsTab = false;
-            this.curBrushBtn.Location = new System.Drawing.Point(128, 88);
-            this.curBrushBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.curBrushBtn.Location = new System.Drawing.Point(114, 70);
+            this.curBrushBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.curBrushBtn.Name = "curBrushBtn";
             this.curBrushBtn.Normalcolor = System.Drawing.Color.Transparent;
             this.curBrushBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.curBrushBtn.OnHoverTextColor = System.Drawing.Color.White;
             this.curBrushBtn.selected = false;
-            this.curBrushBtn.Size = new System.Drawing.Size(83, 85);
+            this.curBrushBtn.Size = new System.Drawing.Size(74, 68);
             this.curBrushBtn.TabIndex = 27;
             this.curBrushBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.curBrushBtn.Textcolor = System.Drawing.Color.White;
             this.curBrushBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.curBrushBtn.Click += new System.EventHandler(this.curBrushBtn_Click);
             // 
+            // colorPanel
+            // 
+            this.colorPanel.BackColor = System.Drawing.Color.Transparent;
+            this.colorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.colorPanel.Location = new System.Drawing.Point(0, 319);
+            this.colorPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.colorPanel.Name = "colorPanel";
+            this.colorPanel.Size = new System.Drawing.Size(300, 278);
+            this.colorPanel.TabIndex = 26;
+            // 
             // Brushes_Label1
             // 
             this.Brushes_Label1.AutoSize = true;
             this.Brushes_Label1.BackColor = System.Drawing.Color.Transparent;
             this.Brushes_Label1.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Brushes_Label1.Location = new System.Drawing.Point(100, 30);
+            this.Brushes_Label1.Location = new System.Drawing.Point(89, 24);
             this.Brushes_Label1.Name = "Brushes_Label1";
-            this.Brushes_Label1.Size = new System.Drawing.Size(139, 52);
+            this.Brushes_Label1.Size = new System.Drawing.Size(116, 43);
             this.Brushes_Label1.TabIndex = 21;
             this.Brushes_Label1.Text = "Brushes";
             // 
-            // CalliProp
-            // 
-            this.CalliProp.Location = new System.Drawing.Point(3, 181);
-            this.CalliProp.Name = "CalliProp";
-            this.CalliProp.Opacity = 255;
-            this.CalliProp.Size = new System.Drawing.Size(331, 215);
-            this.CalliProp.TabIndex = 33;
-            this.CalliProp.Thickness = 5;
-            // 
-            // FillProp
-            // 
-            this.FillProp.Location = new System.Drawing.Point(3, 181);
-            this.FillProp.Name = "FillProp";
-            this.FillProp.Opacity = 255;
-            this.FillProp.Size = new System.Drawing.Size(331, 215);
-            this.FillProp.TabIndex = 32;
-            this.FillProp.Thickness = 5;
-            // 
-            // SprProp
-            // 
-            this.SprProp.Location = new System.Drawing.Point(3, 181);
-            this.SprProp.Name = "SprProp";
-            this.SprProp.Opacity = 255;
-            this.SprProp.Size = new System.Drawing.Size(331, 215);
-            this.SprProp.TabIndex = 31;
-            this.SprProp.Thickness = 5;
-            // 
-            // EraProp
-            // 
-            this.EraProp.Location = new System.Drawing.Point(3, 181);
-            this.EraProp.Name = "EraProp";
-            this.EraProp.Opacity = 255;
-            this.EraProp.Size = new System.Drawing.Size(331, 215);
-            this.EraProp.TabIndex = 30;
-            this.EraProp.Thickness = 5;
-            // 
-            // PelProp
-            // 
-            this.PelProp.Location = new System.Drawing.Point(3, 181);
-            this.PelProp.Name = "PelProp";
-            this.PelProp.Opacity = 255;
-            this.PelProp.Size = new System.Drawing.Size(331, 215);
-            this.PelProp.TabIndex = 29;
-            this.PelProp.Thickness = 5;
-            // 
-            // MarProp
-            // 
-            this.MarProp.Location = new System.Drawing.Point(3, 181);
-            this.MarProp.Name = "MarProp";
-            this.MarProp.Opacity = 255;
-            this.MarProp.Size = new System.Drawing.Size(331, 215);
-            this.MarProp.TabIndex = 28;
-            this.MarProp.Thickness = 5;
-            // 
-            // colorPanel
-            // 
-            this.colorPanel.BackColor = System.Drawing.Color.Transparent;
-            this.colorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.colorPanel.Location = new System.Drawing.Point(0, 399);
-            this.colorPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.colorPanel.Name = "colorPanel";
-            this.colorPanel.Size = new System.Drawing.Size(338, 347);
-            this.colorPanel.TabIndex = 26;
-            // 
             // BrushesPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.bunifuCards1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "BrushesPanel";
-            this.Size = new System.Drawing.Size(338, 746);
+            this.Size = new System.Drawing.Size(300, 597);
             this.bunifuCards1.ResumeLayout(false);
             this.bunifuCards1.PerformLayout();
             this.ResumeLayout(false);

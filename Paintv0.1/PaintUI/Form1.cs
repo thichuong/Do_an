@@ -31,6 +31,7 @@ namespace PaintUI
         List<Bitmap> RemovedLayer = new List<Bitmap>();
         List<Bitmap> templistBM = new List<Bitmap>();
         bool isDown, isDragged, isSaved, isChanged, PanClicked, isPanning;
+        bool SelectClicked, CropClicked, ZoomClicked,MoveClicked;
         ListStackBitmap UNDO, REDO;
 
         Graphics graphics;
@@ -68,12 +69,12 @@ namespace PaintUI
                 menuPanel.SaveButtonClick += MenuPanel_SaveButtonClick;
                 menuPanel.SaveAsButtonClick += MenuPanel_SaveAsButtonClick;
                 menuPanel.ExitButtonClick += MenuPanel_ExitButtonClick;
-
                 menuPanel.Parent = this;
                 panelCavas.Parent = this;
                 doubleBufferPanel1.Parent = this;
-                menuPanel.Location = new Point(3, 126);
+                menuPanel.Location = new Point(0, 80);
                 menuPanel.BringToFront();
+                titleLb.Font = ShapesButton.Font;
             }
 
             {
@@ -90,6 +91,7 @@ namespace PaintUI
                 layerPanel.BaseLayerClicked += LayerPanel_BaseLayerClicked;
                 layerPanel.LayerRemoved += LayerPanel_LayerRemoved;
             }
+            DisableButtonFuncs();
             currentLayerBitmap = bm;
             #endregion
         }
@@ -272,10 +274,80 @@ namespace PaintUI
         #endregion
 
         #region ButtonClicks
-
+        private void DisableButtonFuncs()
+        {
+            SelectClicked = false;
+            CropClicked = false;
+            PanClicked = false;
+            ZoomClicked = false;
+            MoveClicked = false;
+            isPanning = false;
+        }
+        private void NormalColorReset()
+        {
+            SelectButton.Normalcolor = Color.Transparent;
+            CropButton.Normalcolor = Color.Transparent;
+            PanButton.Normalcolor = Color.Transparent;
+            ZoomButton.Normalcolor = Color.Transparent;
+            MoveButton.Normalcolor = Color.Transparent;
+        }
+        private void BackColorReset()
+        {
+            TextButton.color = Color.Transparent;
+            TextButton.colorActive = Color.Transparent;
+            ShapesButton.color = Color.Transparent;
+            ShapesButton.colorActive = Color.Transparent;
+            CanvasButton.color = Color.Transparent;
+            CanvasButton.colorActive = Color.Transparent;
+            BrushesButton.color = Color.Transparent;
+            BrushesButton.colorActive = Color.Transparent;
+            EffectsButton.color = Color.Transparent;
+            EffectsButton.colorActive = Color.Transparent;
+        }
+        private void ZoomButton_Click(object sender, EventArgs e)
+        {
+            if (!ZoomClicked)
+            {
+                DisableButtonFuncs();
+                NormalColorReset();
+                ZoomButton.Normalcolor = Color.LightGray;
+                ZoomClicked = true;
+            }
+            else
+            {
+                NormalColorReset();
+                ZoomClicked = false;
+            }
+        }
+        private void SelectButton_Click(object sender, EventArgs e)
+        {
+            if (!SelectClicked)
+            {
+                DisableButtonFuncs();
+                NormalColorReset();
+                SelectButton.Normalcolor = Color.LightGray;
+                SelectClicked = true;
+            }
+            else
+            {
+                NormalColorReset();
+                SelectClicked = false;
+            }
+        }
         private void PanButton_Click(object sender, EventArgs e)
         {
-            PanClicked = !PanClicked;
+            if (!PanClicked)
+            {
+                DisableButtonFuncs();
+                NormalColorReset();
+                PanButton.Normalcolor = Color.LightGray;
+                PanClicked = true;
+            }
+            else
+            {
+                NormalColorReset();
+                PanClicked = false;
+            };
         }
         private void MenuPanel_SaveAsButtonClick(object sender, EventArgs e)
         {
@@ -349,29 +421,15 @@ namespace PaintUI
 
 
         //Hien thi cac Panels khi click va hover va leave
-
-
-        private void StopActive()
-        {
-            lb1.BackColor = Color.Transparent;
-            lb2.BackColor = Color.Transparent;
-            lb3.BackColor = Color.Transparent;
-            lb4.BackColor = Color.Transparent;
-            lb5.BackColor = Color.Transparent;
-
-            TextButton.BackColor = Color.Transparent;
-            ShapesButton.BackColor = Color.Transparent;
-            BrushesButton.BackColor = Color.Transparent;
-            EffectsButton.BackColor = Color.Transparent;
-            CanvasButton.BackColor = Color.Transparent;
-        }
-
         private void HideAllPanel()
         {
             brushesPanel.BringToFront();
-
             menuPanel.Visible = false;
-
+            brushesPanel.Visible = false;
+            effectsPanel.Visible = false;
+            textPanel.Visible = false;
+            canvasPanel.Visible = false;
+            shapesPanel.Visible = false;
             LeftTopPanel.Visible = false;
             LeftBottomPanel.Visible = false;
             RightTopPanel.Visible = false;
@@ -388,35 +446,42 @@ namespace PaintUI
 
         private void TextButton_Click(object sender, EventArgs e)
         {
-            HideAllPanel();
-            textPanel.BringToFront();
 
-            StopActive();
-            TextButton.BackColor = Color.CornflowerBlue;
-            lb1.BackColor = Color.CornflowerBlue;
+            if (!textPanel.Visible)
+            {
+                BackColorReset();
+                TextButton.color = Color.CornflowerBlue;
+                TextButton.colorActive = Color.CornflowerBlue;
+                HideAllPanel();
+                bunifuTransition1.ShowSync(textPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            }
         }
 
         private void ShapesButton_Click(object sender, EventArgs e)
         {
-            HideAllPanel();
-            shapesPanel.BringToFront();
-                
-            StopActive();
-            ShapesButton.BackColor = Color.CornflowerBlue;
-            lb4.BackColor = Color.CornflowerBlue;
 
+            if (!shapesPanel.Visible)
+            {
+                BackColorReset();
+                ShapesButton.color = Color.CornflowerBlue;
+                ShapesButton.colorActive = Color.CornflowerBlue;
+                HideAllPanel();
+                bunifuTransition1.ShowSync(shapesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            }
             curTool = Tools.SHAPE;
         }
 
         private void CanvasButton_Click(object sender, EventArgs e)
         {
-            HideAllPanel();
-            canvasPanel.BringToFront();
-                
-            StopActive();
-            CanvasButton.BackColor = Color.CornflowerBlue;
-            lb2.BackColor = Color.CornflowerBlue;
 
+            if (!canvasPanel.Visible)
+            {
+                BackColorReset();
+                CanvasButton.color = Color.CornflowerBlue;
+                CanvasButton.colorActive = Color.CornflowerBlue;
+                HideAllPanel();
+                bunifuTransition1.ShowSync(canvasPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            }
             LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
             RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
             RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
@@ -442,24 +507,28 @@ namespace PaintUI
         {
             currentLayerBitmap = bm;
 
-            HideAllPanel();
-            brushesPanel.BringToFront();
-
-            StopActive();
-            BrushesButton.BackColor = Color.CornflowerBlue;
-            lb3.BackColor = Color.CornflowerBlue;
-            
+            if (!brushesPanel.Visible)
+            {
+                BackColorReset();
+                BrushesButton.color = Color.CornflowerBlue;
+                BrushesButton.colorActive = Color.CornflowerBlue;
+                HideAllPanel();
+                bunifuTransition1.ShowSync(brushesPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            }
             curTool = Tools.BRUSH;
         }
 
         private void EffectsButton_Click(object sender, EventArgs e)
         {
-            HideAllPanel();
-            effectsPanel.BringToFront();
 
-            StopActive();
-            EffectsButton.BackColor = Color.CornflowerBlue;
-            lb5.BackColor = Color.CornflowerBlue;
+            if (!effectsPanel.Visible)
+            {
+                BackColorReset();
+                EffectsButton.color = Color.CornflowerBlue;
+                EffectsButton.colorActive = Color.CornflowerBlue;
+                HideAllPanel();
+                bunifuTransition1.ShowSync(effectsPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            }
         }
         #endregion
 
@@ -693,7 +762,8 @@ namespace PaintUI
             if (canvasPanel.getCanvasTextWidth() > 100 && canvasPanel.getCanvasTextHeight() > 100)
             {
                 templistBM = tempBitmaps();
-                SketchBox.Size = new Size(canvasPanel.getCanvasTextWidth(), canvasPanel.getCanvasTextHeight());
+                SketchBox.Width = canvasPanel.getCanvasTextWidth();
+                SketchBox.Height = canvasPanel.getCanvasTextHeight();
                 tempBitmapsRisize();
                 panelCavas.Refresh();
             }
@@ -729,7 +799,7 @@ namespace PaintUI
                 LayerList[i] = new Bitmap(SketchBox.Width, SketchBox.Height); ;
                 tempGra = Graphics.FromImage(LayerList[i]);
                 tempGra.CompositingQuality = CompositingQuality.GammaCorrected;
-                tempGra.DrawImage(templistBM[i], 0, 0, SketchBox.Width, SketchBox.Height);
+                if (templistBM.Count>0 )tempGra.DrawImage(templistBM[i], 0, 0, SketchBox.Width, SketchBox.Height);
             }
             SketchBoxVisionImage(bm);
             currentLayerBitmap = bm;
@@ -969,14 +1039,6 @@ namespace PaintUI
             }
         }
 
-        private void OpenLayerListButton_Click(object sender, EventArgs e)
-        {
-            if (!layerPanel.Visible)
-                bunifuTransition1.ShowSync(layerPanel, false, BunifuAnimatorNS.Animation.VertSlide);
-            else
-                bunifuTransition1.HideSync(layerPanel, false, BunifuAnimatorNS.Animation.VertSlide);
-        }
-
         private void LeftPanel_MouseUp(object sender, MouseEventArgs e)
         {
             isLeftPanelDragged = false;
@@ -1044,6 +1106,48 @@ namespace PaintUI
                 this.Refresh();
             }
         }
+
+        private void CropButton_Click(object sender, EventArgs e)
+        {
+            if (!CropClicked)
+            {
+                DisableButtonFuncs();
+                NormalColorReset();
+                CropButton.Normalcolor = Color.LightGray;
+                CropClicked = true;
+            }
+            else
+            {
+                NormalColorReset();
+                CropClicked = false;
+            }
+        }
+
+        private void MoveButton_Click(object sender, EventArgs e)
+        {
+            if (!MoveClicked)
+            {
+                DisableButtonFuncs();
+                NormalColorReset();
+                MoveButton.Normalcolor = Color.LightGray;
+                MoveClicked = true;
+            }
+            else
+            {
+                NormalColorReset();
+                MoveClicked = false;
+            }
+        }
+
+        private void LayerButton_Click(object sender, EventArgs e)
+        {
+            if (!layerPanel.Visible)
+                bunifuTransition1.ShowSync(layerPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            else
+                bunifuTransition1.HideSync(layerPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+        }
+
+       
 
         private void BottomPanel_MouseUp(object sender, MouseEventArgs e)
         {
@@ -1183,9 +1287,6 @@ namespace PaintUI
         }
         #endregion
 
-        private void ZoomButton_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
