@@ -693,8 +693,7 @@ namespace PaintUI
             if (canvasPanel.getCanvasTextWidth() > 100 && canvasPanel.getCanvasTextHeight() > 100)
             {
                 templistBM = tempBitmaps();
-                SketchBox.Width = canvasPanel.getCanvasTextWidth();
-                SketchBox.Height = canvasPanel.getCanvasTextHeight();
+                SketchBox.Size = new Size(canvasPanel.getCanvasTextWidth(), canvasPanel.getCanvasTextHeight());
                 tempBitmapsRisize();
                 panelCavas.Refresh();
             }

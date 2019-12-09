@@ -60,11 +60,11 @@ namespace PaintUI
         {
             int keycode;
             keycode = e.KeyChar;
-            if (keycode >= 48 && keycode <= 57 || keycode == 8 )
-            {    
+            if (keycode >= 48 && keycode <= 57 || keycode == 8)
+            {
             }
             else e.Handled = true;
-            if(keycode==13)
+            if (keycode == 13)
             {
                 Form1 parent = (Form1)this.ParentForm;
                 parent.resizeSketchBox();
