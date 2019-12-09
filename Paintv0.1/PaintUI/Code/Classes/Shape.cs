@@ -94,5 +94,21 @@ namespace PaintUI
                             old.X + size.Width / 2, old.Y + size.Height);
             return path;
         }
+
+        static public PointF[] FormShuriken(Point old, Point cur, Size size)
+        {
+            PointF[] vertices = { new PointF(old.X + (float)(size.Width / 2), old.Y), new PointF(old.X + (float)size.Width*3/8, (float)(old.Y + size.Height*3/8)),
+                        new PointF((float)(old.X), (float)(old.Y + size.Height / 2)), new PointF((float)(old.X+size.Width*3/8), (float)(old.Y + size.Height*5/8)),
+                        new PointF((float)(old.X + size.Width/2), (float)(old.Y + size.Height)), new PointF((float)(old.X + size.Width*5/8), (float)(old.Y + size.Height*5/8)),
+                        new PointF((float)(old.X + size.Width), old.Y + size.Height/2), new PointF((float)(old.X + size.Width*5/8), old.Y + size.Height*3/8) };
+            return vertices;
+        }
+
+        static public PointF[] FormDiamond(Point old, Point cur, Size size)
+        {
+            PointF[] vertices = { new PointF(old.X + (float)(size.Width / 2), old.Y), new PointF(old.X, (float)(old.Y + size.Height/2)),
+                        new PointF((float)(old.X) + size.Width/2, (float)(old.Y + size.Height)), new PointF((float)(old.X+size.Width), (float)(old.Y + size.Height/2)) };
+            return vertices;
+        }
     }
 }

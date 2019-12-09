@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Canvas_Label1 = new System.Windows.Forms.Label();
             this.colorBox = new System.Windows.Forms.Panel();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
@@ -46,6 +47,7 @@
             this.mainColor1 = new System.Windows.Forms.PictureBox();
             this.mainColor2 = new System.Windows.Forms.PictureBox();
             this.addColorButton = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colorBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -105,6 +107,7 @@
             this.pictureBox12.Size = new System.Drawing.Size(51, 46);
             this.pictureBox12.TabIndex = 23;
             this.pictureBox12.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox12, "Orange");
             this.pictureBox12.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox2
@@ -117,6 +120,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(51, 46);
             this.pictureBox2.TabIndex = 23;
             this.pictureBox2.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox2, "White");
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox11
@@ -129,6 +133,7 @@
             this.pictureBox11.Size = new System.Drawing.Size(51, 46);
             this.pictureBox11.TabIndex = 23;
             this.pictureBox11.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox11, "Green");
             this.pictureBox11.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox6
@@ -141,6 +146,7 @@
             this.pictureBox6.Size = new System.Drawing.Size(51, 46);
             this.pictureBox6.TabIndex = 23;
             this.pictureBox6.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox6, "Red");
             this.pictureBox6.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox10
@@ -153,6 +159,7 @@
             this.pictureBox10.Size = new System.Drawing.Size(51, 46);
             this.pictureBox10.TabIndex = 23;
             this.pictureBox10.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox10, "Lime");
             this.pictureBox10.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox5
@@ -165,11 +172,12 @@
             this.pictureBox5.Size = new System.Drawing.Size(51, 46);
             this.pictureBox5.TabIndex = 23;
             this.pictureBox5.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox5, "Maroon");
             this.pictureBox5.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox9
             // 
-            this.pictureBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.pictureBox9.BackColor = System.Drawing.Color.Fuchsia;
             this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox9.Location = new System.Drawing.Point(153, 48);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -177,6 +185,7 @@
             this.pictureBox9.Size = new System.Drawing.Size(51, 46);
             this.pictureBox9.TabIndex = 23;
             this.pictureBox9.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox9, "Fuchisa");
             this.pictureBox9.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox4
@@ -189,6 +198,7 @@
             this.pictureBox4.Size = new System.Drawing.Size(51, 46);
             this.pictureBox4.TabIndex = 23;
             this.pictureBox4.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox4, "Black");
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox8
@@ -201,6 +211,7 @@
             this.pictureBox8.Size = new System.Drawing.Size(51, 48);
             this.pictureBox8.TabIndex = 23;
             this.pictureBox8.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox8, "Cyan");
             this.pictureBox8.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox3
@@ -213,6 +224,7 @@
             this.pictureBox3.Size = new System.Drawing.Size(51, 48);
             this.pictureBox3.TabIndex = 23;
             this.pictureBox3.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox3, "Dark Gray");
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox7
@@ -225,6 +237,7 @@
             this.pictureBox7.Size = new System.Drawing.Size(51, 46);
             this.pictureBox7.TabIndex = 23;
             this.pictureBox7.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox7, "Yellow");
             this.pictureBox7.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox1
@@ -237,6 +250,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(51, 46);
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox1, "Light Gray");
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // colorPicker
@@ -251,6 +265,7 @@
             this.colorPicker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.colorPicker.TabIndex = 27;
             this.colorPicker.TabStop = false;
+            this.toolTip1.SetToolTip(this.colorPicker, "Eyedropper");
             this.colorPicker.Click += new System.EventHandler(this.colorPicker_Click);
             // 
             // mainColor1
@@ -264,6 +279,7 @@
             this.mainColor1.Size = new System.Drawing.Size(86, 78);
             this.mainColor1.TabIndex = 23;
             this.mainColor1.TabStop = false;
+            this.toolTip1.SetToolTip(this.mainColor1, "Fore Color");
             this.mainColor1.Click += new System.EventHandler(this.mainColor1_Click);
             // 
             // mainColor2
@@ -277,6 +293,7 @@
             this.mainColor2.Size = new System.Drawing.Size(83, 79);
             this.mainColor2.TabIndex = 26;
             this.mainColor2.TabStop = false;
+            this.toolTip1.SetToolTip(this.mainColor2, "Back Color");
             this.mainColor2.Click += new System.EventHandler(this.mainColor2_Click);
             // 
             // addColorButton
@@ -313,6 +330,7 @@
             this.addColorButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.addColorButton.Textcolor = System.Drawing.Color.Black;
             this.addColorButton.TextFont = new System.Drawing.Font("Segoe Print", 12F);
+            this.toolTip1.SetToolTip(this.addColorButton, "Add Color");
             this.addColorButton.Click += new System.EventHandler(this.addColorButton_Click);
             // 
             // ColorPanel
@@ -369,5 +387,6 @@
         private Bunifu.Framework.UI.BunifuFlatButton addColorButton;
         private System.Windows.Forms.PictureBox mainColor2;
         private System.Windows.Forms.PictureBox colorPicker;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

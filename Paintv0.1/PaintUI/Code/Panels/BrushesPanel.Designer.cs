@@ -30,15 +30,15 @@
         private void InitializeComponent()
         {
             this.bunifuCards1 = new Bunifu.Framework.UI.BunifuCards();
+            this.curBrushBtn = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.Brushes_Label1 = new System.Windows.Forms.Label();
+            this.CalliProp = new PaintUI.Code.Properties.CalligraphyProp();
             this.FillProp = new PaintUI.Code.Properties.FillProp();
             this.SprProp = new PaintUI.BrushesPropeties();
             this.EraProp = new PaintUI.BrushesPropeties();
             this.PelProp = new PaintUI.BrushesPropeties();
             this.MarProp = new PaintUI.BrushesPropeties();
-            this.curBrushBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.colorPanel = new PaintUI.ColorPanel();
-            this.Brushes_Label1 = new System.Windows.Forms.Label();
-            this.CalliProp = new PaintUI.Code.Properties.CalligraphyProp();
             this.bunifuCards1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,62 @@
             this.bunifuCards1.ShadowDepth = 20;
             this.bunifuCards1.Size = new System.Drawing.Size(338, 746);
             this.bunifuCards1.TabIndex = 1;
+            // 
+            // curBrushBtn
+            // 
+            this.curBrushBtn.Activecolor = System.Drawing.Color.Aqua;
+            this.curBrushBtn.BackColor = System.Drawing.Color.Transparent;
+            this.curBrushBtn.BackgroundImage = global::PaintUI.Properties.Resources.Artboard_1BaoKq;
+            this.curBrushBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.curBrushBtn.BorderRadius = 0;
+            this.curBrushBtn.ButtonText = "";
+            this.curBrushBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.curBrushBtn.DisabledColor = System.Drawing.Color.Gray;
+            this.curBrushBtn.Iconcolor = System.Drawing.Color.Transparent;
+            this.curBrushBtn.Iconimage = null;
+            this.curBrushBtn.Iconimage_right = null;
+            this.curBrushBtn.Iconimage_right_Selected = null;
+            this.curBrushBtn.Iconimage_Selected = null;
+            this.curBrushBtn.IconMarginLeft = 0;
+            this.curBrushBtn.IconMarginRight = 0;
+            this.curBrushBtn.IconRightVisible = true;
+            this.curBrushBtn.IconRightZoom = 0D;
+            this.curBrushBtn.IconVisible = true;
+            this.curBrushBtn.IconZoom = 90D;
+            this.curBrushBtn.IsTab = false;
+            this.curBrushBtn.Location = new System.Drawing.Point(128, 88);
+            this.curBrushBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.curBrushBtn.Name = "curBrushBtn";
+            this.curBrushBtn.Normalcolor = System.Drawing.Color.Transparent;
+            this.curBrushBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.curBrushBtn.OnHoverTextColor = System.Drawing.Color.White;
+            this.curBrushBtn.selected = false;
+            this.curBrushBtn.Size = new System.Drawing.Size(83, 85);
+            this.curBrushBtn.TabIndex = 27;
+            this.curBrushBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.curBrushBtn.Textcolor = System.Drawing.Color.White;
+            this.curBrushBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.curBrushBtn.Click += new System.EventHandler(this.curBrushBtn_Click);
+            // 
+            // Brushes_Label1
+            // 
+            this.Brushes_Label1.AutoSize = true;
+            this.Brushes_Label1.BackColor = System.Drawing.Color.Transparent;
+            this.Brushes_Label1.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Brushes_Label1.Location = new System.Drawing.Point(100, 30);
+            this.Brushes_Label1.Name = "Brushes_Label1";
+            this.Brushes_Label1.Size = new System.Drawing.Size(139, 52);
+            this.Brushes_Label1.TabIndex = 21;
+            this.Brushes_Label1.Text = "Brushes";
+            // 
+            // CalliProp
+            // 
+            this.CalliProp.Location = new System.Drawing.Point(3, 181);
+            this.CalliProp.Name = "CalliProp";
+            this.CalliProp.Opacity = 255;
+            this.CalliProp.Size = new System.Drawing.Size(331, 215);
+            this.CalliProp.TabIndex = 33;
+            this.CalliProp.Thickness = 5;
             // 
             // FillProp
             // 
@@ -111,73 +167,15 @@
             this.MarProp.TabIndex = 28;
             this.MarProp.Thickness = 5;
             // 
-            // curBrushBtn
-            // 
-            this.curBrushBtn.Activecolor = System.Drawing.Color.Aqua;
-            this.curBrushBtn.BackColor = System.Drawing.Color.Transparent;
-            this.curBrushBtn.BackgroundImage = global::PaintUI.Properties.Resources.Artboard_1BaoKq;
-            this.curBrushBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.curBrushBtn.BorderRadius = 0;
-            this.curBrushBtn.ButtonText = "";
-            this.curBrushBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.curBrushBtn.DisabledColor = System.Drawing.Color.Gray;
-            this.curBrushBtn.Iconcolor = System.Drawing.Color.Transparent;
-            this.curBrushBtn.Iconimage = null;
-            this.curBrushBtn.Iconimage_right = null;
-            this.curBrushBtn.Iconimage_right_Selected = null;
-            this.curBrushBtn.Iconimage_Selected = null;
-            this.curBrushBtn.IconMarginLeft = 0;
-            this.curBrushBtn.IconMarginRight = 0;
-            this.curBrushBtn.IconRightVisible = true;
-            this.curBrushBtn.IconRightZoom = 0D;
-            this.curBrushBtn.IconVisible = true;
-            this.curBrushBtn.IconZoom = 90D;
-            this.curBrushBtn.IsTab = false;
-            this.curBrushBtn.Location = new System.Drawing.Point(128, 88);
-            this.curBrushBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.curBrushBtn.Name = "curBrushBtn";
-            this.curBrushBtn.Normalcolor = System.Drawing.Color.Transparent;
-            this.curBrushBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.curBrushBtn.OnHoverTextColor = System.Drawing.Color.White;
-            this.curBrushBtn.selected = false;
-            this.curBrushBtn.Size = new System.Drawing.Size(83, 85);
-            this.curBrushBtn.TabIndex = 27;
-            this.curBrushBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.curBrushBtn.Textcolor = System.Drawing.Color.White;
-            this.curBrushBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.curBrushBtn.Click += new System.EventHandler(this.curBrushBtn_Click);
-            // 
             // colorPanel
             // 
-            this.colorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.colorPanel.BackColor = System.Drawing.Color.Transparent;
-            this.colorPanel.Location = new System.Drawing.Point(0, 393);
+            this.colorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.colorPanel.Location = new System.Drawing.Point(0, 399);
             this.colorPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.colorPanel.Name = "colorPanel";
             this.colorPanel.Size = new System.Drawing.Size(338, 347);
             this.colorPanel.TabIndex = 26;
-            // 
-            // Brushes_Label1
-            // 
-            this.Brushes_Label1.AutoSize = true;
-            this.Brushes_Label1.BackColor = System.Drawing.Color.Transparent;
-            this.Brushes_Label1.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Brushes_Label1.Location = new System.Drawing.Point(100, 30);
-            this.Brushes_Label1.Name = "Brushes_Label1";
-            this.Brushes_Label1.Size = new System.Drawing.Size(139, 52);
-            this.Brushes_Label1.TabIndex = 21;
-            this.Brushes_Label1.Text = "Brushes";
-            // 
-            // CalliProp
-            // 
-            this.CalliProp.Location = new System.Drawing.Point(3, 181);
-            this.CalliProp.Name = "CalliProp";
-            this.CalliProp.Opacity = 255;
-            this.CalliProp.Size = new System.Drawing.Size(331, 215);
-            this.CalliProp.TabIndex = 33;
-            this.CalliProp.Thickness = 5;
             // 
             // BrushesPanel
             // 

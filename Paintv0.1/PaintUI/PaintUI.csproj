@@ -354,6 +354,7 @@
     <None Include="Resources\CalligraphyPen.png" />
     <None Include="Resources\Artboard 1Pencil1.png" />
     <None Include="Resources\Artboard 1Pencil2.png" />
+    <None Include="Resources\Diamond.png" />
     <Content Include="Resources\ellip.bmp" />
     <None Include="Resources\Ellipse.png" />
     <None Include="Resources\heart.png" />
@@ -377,6 +378,9 @@
     <None Include="Resources\Rectangle.png" />
     <None Include="Resources\Rectangle1.png" />
     <None Include="Resources\spray.png" />
+    <None Include="Resources\shuriken.png" />
+    <None Include="Resources\shuriken1.png" />
+    <None Include="Resources\shiruken3.png" />
     <Content Include="Resources\star.bmp" />
     <None Include="Resources\Star.png" />
     <Content Include="Resources\triange.bmp" />

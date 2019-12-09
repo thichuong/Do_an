@@ -176,10 +176,8 @@
             // 
             // colorPanel
             // 
-            this.colorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.colorPanel.BackColor = System.Drawing.Color.Transparent;
+            this.colorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.colorPanel.Location = new System.Drawing.Point(0, 400);
             this.colorPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.colorPanel.Name = "colorPanel";

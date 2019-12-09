@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.bunifuCards1 = new Bunifu.Framework.UI.BunifuCards();
             this.calliBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.fillBtn = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -35,6 +36,7 @@
             this.peciBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.eraBtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.marBtn = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.bunifuCards1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,6 +95,7 @@
             this.calliBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.calliBtn.Textcolor = System.Drawing.Color.White;
             this.calliBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTip1.SetToolTip(this.calliBtn, "Calligraphy Pen");
             this.calliBtn.Click += new System.EventHandler(this.calliBtn_Click);
             // 
             // fillBtn
@@ -129,6 +132,7 @@
             this.fillBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.fillBtn.Textcolor = System.Drawing.Color.White;
             this.fillBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTip1.SetToolTip(this.fillBtn, "Fill Can");
             this.fillBtn.Click += new System.EventHandler(this.fillBtn_Click);
             // 
             // sprBtn
@@ -165,6 +169,7 @@
             this.sprBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.sprBtn.Textcolor = System.Drawing.Color.White;
             this.sprBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTip1.SetToolTip(this.sprBtn, "Spray Can");
             this.sprBtn.Click += new System.EventHandler(this.sprBtn_Click);
             // 
             // peciBtn
@@ -201,6 +206,7 @@
             this.peciBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.peciBtn.Textcolor = System.Drawing.Color.White;
             this.peciBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTip1.SetToolTip(this.peciBtn, "Pencil");
             this.peciBtn.Click += new System.EventHandler(this.peciBtn_Click);
             // 
             // eraBtn
@@ -237,6 +243,7 @@
             this.eraBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.eraBtn.Textcolor = System.Drawing.Color.White;
             this.eraBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTip1.SetToolTip(this.eraBtn, "Eraser");
             this.eraBtn.Click += new System.EventHandler(this.eraBtn_Click);
             // 
             // marBtn
@@ -273,6 +280,7 @@
             this.marBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.marBtn.Textcolor = System.Drawing.Color.White;
             this.marBtn.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTip1.SetToolTip(this.marBtn, "Marker");
             this.marBtn.Click += new System.EventHandler(this.marBtn_Click);
             // 
             // BrushesSelection
@@ -296,5 +304,6 @@
         private Bunifu.Framework.UI.BunifuFlatButton calliBtn;
         private Bunifu.Framework.UI.BunifuFlatButton sprBtn;
         private Bunifu.Framework.UI.BunifuFlatButton peciBtn;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -47,7 +47,6 @@ namespace PaintUI
 
                 isDown = isSaved = isChanged = isDragged = PanClicked = isPanning = false;
 
-                menuPanel.BringToFront();
                 SketchBox.Cursor = Cursors.Cross;
 
                 UNDO = new ListStackBitmap();
@@ -60,7 +59,7 @@ namespace PaintUI
                 this.SetStyle(ControlStyles.UserPaint, true);
                 this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
                 this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-                gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                gra.SmoothingMode = SmoothingMode.AntiAlias;
             }
 
             {
@@ -69,6 +68,12 @@ namespace PaintUI
                 menuPanel.SaveButtonClick += MenuPanel_SaveButtonClick;
                 menuPanel.SaveAsButtonClick += MenuPanel_SaveAsButtonClick;
                 menuPanel.ExitButtonClick += MenuPanel_ExitButtonClick;
+
+                menuPanel.Parent = this;
+                panelCavas.Parent = this;
+                doubleBufferPanel1.Parent = this;
+                menuPanel.Location = new Point(3, 126);
+                menuPanel.BringToFront();
             }
 
             {
@@ -78,8 +83,7 @@ namespace PaintUI
                 RightBottomPanel.Visible = false;
                 layerPanel.Visible = false;
             }
-
-            //Layerings
+            
             {
                 layerPanel.LayerClicked += LayerPanel_LayerClicked;
                 layerPanel.AddLayerClicked += LayerPanel_AddLayerClicked;
@@ -87,7 +91,6 @@ namespace PaintUI
                 layerPanel.LayerRemoved += LayerPanel_LayerRemoved;
             }
             currentLayerBitmap = bm;
-            SelectButton.Click += SelectButton_Click;
             #endregion
         }
         #region Layer Actions
@@ -156,6 +159,7 @@ namespace PaintUI
             RemovedLayer = new List<Bitmap>();
         }
         #endregion
+
         //Giau Panels
         private void HideAllPanel()
         {
@@ -164,6 +168,7 @@ namespace PaintUI
             canvasPanel.Visible = false;
             brushesPanel.Visible = false;
             effectsPanel.Visible = false;
+
             menuPanel.Visible = false;
             LeftTopPanel.Visible = false;
             LeftBottomPanel.Visible = false;
@@ -283,12 +288,10 @@ namespace PaintUI
         #endregion
 
         #region ButtonClicks
+
         private void PanButton_Click(object sender, EventArgs e)
         {
             PanClicked = !PanClicked;
-        }
-        private void SelectButton_Click(object sender, EventArgs e)
-        {
         }
         private void MenuPanel_SaveAsButtonClick(object sender, EventArgs e)
         {
@@ -363,13 +366,22 @@ namespace PaintUI
 
         //Hien thi cac Panels khi click va hover va leave
 
+
+        private void StopActive()
+        {
+            TextButton.BackColor = Color.Transparent;
+            BrushesButton.BackColor = Color.Transparent;
+            ShapesButton.BackColor = Color.Transparent;
+            CanvasButton.BackColor = Color.Transparent;
+            EffectsButton.BackColor = Color.Transparent;
+        }
+
         private void MenuButton_Click(object sender, EventArgs e)
         {
             if (!menuPanel.Visible)
                 bunifuTransition1.ShowSync(menuPanel, false, BunifuAnimatorNS.Animation.VertSlide);
             else
                 bunifuTransition1.HideSync(menuPanel, false, BunifuAnimatorNS.Animation.VertSlide);
-
         }
 
         private void TextButton_Click(object sender, EventArgs e)
@@ -379,7 +391,8 @@ namespace PaintUI
                 HideAllPanel();
                 bunifuTransition1.ShowSync(textPanel, true, BunifuAnimatorNS.Animation.HorizSlide);
             }
-
+            StopActive();
+            TextButton.BackColor = Color.LightBlue;
         }
 
         private void ShapesButton_Click(object sender, EventArgs e)
@@ -390,6 +403,8 @@ namespace PaintUI
                 bunifuTransition1.ShowSync(shapesPanel, true, BunifuAnimatorNS.Animation.HorizSlide);
             }
             curTool = Tools.SHAPE;
+            StopActive();
+            ShapesButton.BackColor = Color.LightBlue;
         }
 
         private void CanvasButton_Click(object sender, EventArgs e)
@@ -418,6 +433,8 @@ namespace PaintUI
                 }
             }
 
+            StopActive();
+            CanvasButton.BackColor = Color.LightBlue;
         }
 
         private void BrushesButton_Click(object sender, EventArgs e)
@@ -429,6 +446,9 @@ namespace PaintUI
                 bunifuTransition1.ShowSync(brushesPanel, true, BunifuAnimatorNS.Animation.HorizSlide);
             }
             curTool = Tools.BRUSH;
+
+            StopActive();
+            BrushesButton.BackColor = Color.LightBlue;
         }
 
         private void EffectsButton_Click(object sender, EventArgs e)
@@ -439,6 +459,8 @@ namespace PaintUI
                 bunifuTransition1.ShowSync(effectsPanel, true, BunifuAnimatorNS.Animation.HorizSlide);
             }
 
+            StopActive();
+            EffectsButton.BackColor = Color.LightBlue;
         }
         #endregion
 

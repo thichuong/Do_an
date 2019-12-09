@@ -24,27 +24,9 @@ namespace PaintUI
             InitializeComponent();
             curShape = 0;
             curImg = recBtn.BackgroundImage;
-
-            SetRevolution();
+            
         }
-
-        private void SetRevolution()
-        {
-            /*
-            ResizeHelper.SetRevolution(recBtn);
-            ResizeHelper.SetRevolution(elpBtn);
-            ResizeHelper.SetRevolution(lineBtn);
-            ResizeHelper.SetRevolution(arwBtn);
-            ResizeHelper.SetRevolution(starBtn);
-            ResizeHelper.SetRevolution(triBtn);
-            ResizeHelper.SetRevolution(lgtBtn);
-            ResizeHelper.SetRevolution(isoBtn);
-            ResizeHelper.SetRevolution(hexBtn);
-            ResizeHelper.SetRevolution(hrtBtn);
-            ResizeHelper.SetRevolution(bunifuFlatButton2);
-            ResizeHelper.SetRevolution(bunifuFlatButton3);
-            */
-        }
+        
 
         private void recBtn_Click(object sender, EventArgs e)
         {
@@ -126,6 +108,22 @@ namespace PaintUI
                 this.ShapeSelected(this, e);
         }
 
+        private void shurBtn_Click(object sender, EventArgs e)
+        {
+            curShape = 10;
+            curImg = shurBtn.BackgroundImage;
+            if (this.ShapeSelected != null)
+                this.ShapeSelected(this, e);
+        }
+
+        private void dimdBtn_Click(object sender, EventArgs e)
+        {
+            curShape = 11;
+            curImg = dimdBtn.BackgroundImage;
+            if (this.ShapeSelected != null)
+                this.ShapeSelected(this, e);
+        }
+
         public int getShape()
         {
             return curShape;
@@ -136,5 +134,6 @@ namespace PaintUI
             return curImg;
         }
 
+        
     }
 }

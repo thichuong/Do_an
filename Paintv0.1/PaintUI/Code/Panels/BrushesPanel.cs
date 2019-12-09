@@ -33,7 +33,7 @@ namespace PaintUI
 
             selBrush = new BrushesSelection();
             selBrush.Location = new Point(0, curBrushBtn.Location.Y + curBrushBtn.Size.Height + 10);
-            selBrush.Size = new Size(Width + 20, 210);
+            selBrush.Size = new Size(Width + 20, 300);
             Controls.Add(selBrush);
             selBrush.Hide();
             selBrush.BringToFront();

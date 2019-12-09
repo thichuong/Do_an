@@ -41,7 +41,7 @@ namespace PaintUI
 
             selShape = new ShapeSelections();
             selShape.Location = new Point(0, curShapeBtn.Location.Y+curShapeBtn.Size.Height + 10);
-            selShape.Size = new Size(Width+20, 210);
+            selShape.Size = new Size(Width+20, 330);
             Controls.Add(selShape);
             selShape.Hide();
             selShape.BringToFront();
@@ -64,7 +64,7 @@ namespace PaintUI
                 selShape.Show();
         }
 
-        //Button Click
+        //Button 
         private void curShapeBtn_Click(object sender, EventArgs e)
         {
             if (selShape.Visible)
@@ -72,7 +72,10 @@ namespace PaintUI
             else
                 selShape.Show();
         }
+
+       
         
+
         //draw outline and fill color
         private void FillShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
@@ -106,6 +109,12 @@ namespace PaintUI
                     break;
                 case 9: //hrt
                     g.FillPath(brush, Shape.FormWHeart(old, cur, size));
+                    break;
+                case 10:
+                    g.FillPolygon(brush, Shape.FormShuriken(old, cur, size));
+                    break;
+                case 11:
+                    g.FillPolygon(brush, Shape.FormDiamond(old, cur, size));
                     break;
                 default:
                     break;
@@ -155,6 +164,12 @@ namespace PaintUI
 
                     }
                     break;
+                case 10:
+                    g.DrawPolygon(pen, Shape.FormShuriken(old, cur, size));
+                    break;
+                case 11:
+                    g.DrawPolygon(pen, Shape.FormDiamond(old, cur, size));
+                    break;
                 default:
                     break;
             }
@@ -191,11 +206,7 @@ namespace PaintUI
             else
                 outline = true;
         }
-
-        public void ProcessMouseDown()
-        {
-
-        }
+        
 
         public void ProcessMouseUp(PictureBox SketchBox, Bitmap bm, Graphics gra, Point old, Point cur, Size size, Stack<Bitmap> UNDO)
         {
@@ -217,13 +228,10 @@ namespace PaintUI
             if (!pickerActive)
             {
                 DrawShapes(SketchBox, bm, gra, old, cur, size); 
-            
             }
         }
+        
 
-        public void ProcessMouseMove()
-        {
-
-        }
+        
     }
 }
