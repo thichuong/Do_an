@@ -174,7 +174,18 @@ namespace PaintUI
                     break;
             }
         }
+        public bool ProcessMouseUp()
+        {
+            if (!pickerActive)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
+        }
         public void DrawShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
             if(fill)

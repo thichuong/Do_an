@@ -138,7 +138,7 @@ namespace PaintUI
         }
 
 
-        public void ProcessMouseUp(Bitmap bm, Point cur/*, Stack<Bitmap> UNDO*/)
+        public bool ProcessMouseUp(Bitmap bm, Point cur)
         {
             switch (selBrush.getBrush())
             {
@@ -159,15 +159,15 @@ namespace PaintUI
 
             if (!pickerActive)
             {
-                //UNDO.Push((Bitmap)bm.Clone());
+                return true;
             }
             else
             {
                 colorPanel.getPixelColor(bm, cur);
-
                 pickerActive = false;
+                return false;
             }
-
+            
         }
 
         public void ProcessMouseMove(Point cur, Point old, Graphics gra)
