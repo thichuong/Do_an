@@ -60,7 +60,7 @@ namespace PaintUI
         {     
             layer1 = new Button();
             layer1.Size = AddButton.Size;
-            layer1.Dock = DockStyle.Top;
+            layer1.Dock = DockStyle.Left;
             layer1.BackColor = Color.White;
             layer1.Font = AddButton.Font;
             if (LayerCounter == 0) layer1.Text = LayerCounter.ToString();
