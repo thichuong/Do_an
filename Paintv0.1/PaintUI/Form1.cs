@@ -706,13 +706,14 @@ namespace PaintUI
                 {
                     brushesPanel.ProcessMouseMove(cur, old, gra);
                 }
-                SketchBox.Refresh();
+                //SketchBox.Refresh();
             }
             else if (isPanning)
             {
                 cur = new Point(e.Location.X, e.Location.Y);
                 SketchBox.Left = SketchBox.Location.X + (cur.X - old.X);
                 SketchBox.Top = SketchBox.Location.Y + (cur.Y - old.Y);
+                panelCavas.Refresh();
             }
         }
 
@@ -742,25 +743,29 @@ namespace PaintUI
             }
             wid = hei = 0;
             //Them vao stack UNDO khi het net ve
-            if(Drawed)
+            if (Drawed)
             {
+                temp = (Bitmap)temp.Clone();
                 if (curLayer == -1)
                 {
-                    bm = temp;
+                    bm = (Bitmap)temp.Clone();
+                    currentLayerBitmap = bm;
                 }
                 else
                 {
-                    LayerList[curLayer] = temp;
+                    LayerList[curLayer] = (Bitmap)temp.Clone();
+                    currentLayerBitmap = LayerList[curLayer];
                 }
-                currentLayerBitmap = temp;
                 SketchBoxVisionImage(currentLayerBitmap);
                 UNDO.Push(currentLayerBitmap, curLayer);
                 while (REDO.Count(curLayer) > 0)
                 {
                     REDO.Pop(curLayer);
                 }
+                Drawed = false;
             }
-            
+            temp.Dispose();
+
         }
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
@@ -771,7 +776,10 @@ namespace PaintUI
                     old = new Point(e.Location.X, e.Location.Y);
                     cur = old;
                     gra = Graphics.FromImage(currentLayerBitmap);
-                    brushesPanel.ProcessMouseDown(currentLayerBitmap, gra, old, cur);
+                    if(curTool==Tools.BRUSH)
+                    {
+                        brushesPanel.ProcessMouseDown(currentLayerBitmap, gra, old, cur);
+                    }
                     gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                     gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                     SketchBoxVisionImage(currentLayerBitmap);
@@ -806,6 +814,7 @@ namespace PaintUI
                     default:
                         break;
                 }
+                temp.Dispose();
             }
         }
         public void SketchBoxVisionImage(Bitmap bmp)
@@ -887,6 +896,12 @@ namespace PaintUI
                 SketchBox.Width = canvasPanel.getCanvasTextWidth();
                 SketchBox.Height = canvasPanel.getCanvasTextHeight();
                 tempBitmapsRisize();
+                temp.Dispose();
+                for (int i = 0; i < templistBM.Count(); i++)
+                {
+                    templistBM[i].Dispose();
+                }
+                templistBM = new List<Bitmap>();
                 panelCavas.Refresh();
             }
             else
@@ -963,6 +978,12 @@ namespace PaintUI
         private void LeftTopPanel_MouseUp(object sender, MouseEventArgs e)
         {
             isDragged = false;
+            temp.Dispose();
+            for (int i = 0; i < templistBM.Count(); i++)
+            {
+                templistBM[i].Dispose();
+            }
+            templistBM = new List<Bitmap>();
         }
 
         private void LeftBottomPanel_MouseDown(object sender, MouseEventArgs e)
@@ -994,7 +1015,12 @@ namespace PaintUI
         private void LeftBottomPanel_MouseUp(object sender, MouseEventArgs e)
         {
             isDragged = false;
-
+            temp.Dispose();
+            for (int i = 0; i < templistBM.Count(); i++)
+            {
+                templistBM[i].Dispose();
+            }
+            templistBM = new List<Bitmap>();
         }
 
         private void RightTopPanel_MouseDown(object sender, MouseEventArgs e)
@@ -1026,6 +1052,12 @@ namespace PaintUI
         private void RightTopPanel_MouseUp(object sender, MouseEventArgs e)
         {
             isDragged = false;
+            temp.Dispose();
+            for (int i = 0; i < templistBM.Count(); i++)
+            {
+                templistBM[i].Dispose();
+            }
+            templistBM = new List<Bitmap>();
         }
 
         private void RightBottomPanel_MouseDown(object sender, MouseEventArgs e)
@@ -1056,6 +1088,12 @@ namespace PaintUI
         private void RightBottomPanel_MouseUp(object sender, MouseEventArgs e)
         {
             isDragged = false;
+            temp.Dispose();
+            for (int i = 0; i < templistBM.Count(); i++)
+            {
+                templistBM[i].Dispose();
+            }
+            templistBM = new List<Bitmap>();
         }
 
         private void panelCavas_SizeChanged(object sender, EventArgs e)
