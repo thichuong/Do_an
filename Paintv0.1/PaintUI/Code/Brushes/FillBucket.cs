@@ -17,7 +17,7 @@ namespace PaintUI
 
         }
 
-        static public void Fill(Bitmap bmp, Point pt, Color pointColor, Color replaceColor)
+        public void Fill(Bitmap bmp, Point pt, Color pointColor, Color replaceColor)
         {
             BitmapData data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             int[] bits = new int[data.Stride / 4 * data.Height];

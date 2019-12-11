@@ -107,13 +107,14 @@ namespace PaintUI
                     marker.MouseDown(ref gra, cur, ref _pts);
                     break;
                 case 1: //eraser 
-                   
                     eraser = new Eraser(EraProp.Thickness);
                     eraser.MouseDown(ref gra, cur, ref _pts);
                     break;
                 case 2: //fill
+                    FillBucket bucket = new FillBucket();
+                    Color pointColor = Color.FromArgb(255, bm.GetPixel(old.X, old.Y));
                     color = Color.FromArgb(FillProp.Opacity, colorPanel.getColor2());
-                    FillBucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), color);
+                    bucket.Fill(bm, old, pointColor, color);
                     break;
                 case 3:
                     ModifyComponents.Graphics(gra);
