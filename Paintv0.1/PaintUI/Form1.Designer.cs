@@ -41,21 +41,20 @@
             this.RightPanel = new System.Windows.Forms.Panel();
             this.RightTopPanel_1 = new System.Windows.Forms.Panel();
             this.EditPanel = new System.Windows.Forms.Panel();
+            this.layerPanel = new PaintUI.LayerPanel();
             this.LayerButton = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.menuPanel = new PaintUI.MenuPanel();
             this.SelectButton = new Bunifu.Framework.UI.BunifuFlatButton();
             this.MoveButton = new Bunifu.Framework.UI.BunifuFlatButton();
             this.ZoomButton = new Bunifu.Framework.UI.BunifuFlatButton();
             this.PanButton = new Bunifu.Framework.UI.BunifuFlatButton();
             this.CropButton = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelCavas = new PaintUI.DoubleBufferPanel();
             this.SketchBox = new PaintUI.Canvas();
             this.RightTopPanel = new PaintUI.DoubleBufferPanel();
             this.LeftBottomPanel = new PaintUI.DoubleBufferPanel();
             this.RightBottomPanel = new PaintUI.DoubleBufferPanel();
             this.LeftTopPanel = new PaintUI.DoubleBufferPanel();
-            this.layerPanel = new PaintUI.LayerPanel();
-            this.menuPanel = new PaintUI.MenuPanel();
             this.doubleBufferPanel2 = new PaintUI.DoubleBufferPanel();
             this.shapesPanel = new PaintUI.ShapesPanel();
             this.effectsPanel = new PaintUI.EffectsPanel();
@@ -75,6 +74,7 @@
             this.MaximizeButton = new Bunifu.Framework.UI.BunifuImageButton();
             this.TextButton = new Bunifu.Framework.UI.BunifuTileButton();
             this.MenuButton = new Bunifu.Framework.UI.BunifuTileButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.EditPanel.SuspendLayout();
             this.panelCavas.SuspendLayout();
@@ -240,6 +240,17 @@
             this.EditPanel.Size = new System.Drawing.Size(1424, 58);
             this.EditPanel.TabIndex = 42;
             // 
+            // layerPanel
+            // 
+            this.layerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.layerPanel.BackColor = System.Drawing.Color.LightGray;
+            this.bunifuTransition1.SetDecoration(this.layerPanel, BunifuAnimatorNS.DecorationType.None);
+            this.layerPanel.Location = new System.Drawing.Point(903, 1);
+            this.layerPanel.Name = "layerPanel";
+            this.layerPanel.Size = new System.Drawing.Size(522, 58);
+            this.layerPanel.TabIndex = 31;
+            // 
             // LayerButton
             // 
             this.LayerButton.Activecolor = System.Drawing.Color.Transparent;
@@ -277,6 +288,17 @@
             this.LayerButton.TextFont = new System.Drawing.Font("Segoe Print", 10.6F);
             this.toolTip1.SetToolTip(this.LayerButton, "Move");
             this.LayerButton.Click += new System.EventHandler(this.LayerButton_Click);
+            // 
+            // menuPanel
+            // 
+            this.menuPanel.BackColor = System.Drawing.Color.White;
+            this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bunifuTransition1.SetDecoration(this.menuPanel, BunifuAnimatorNS.DecorationType.None);
+            this.menuPanel.Location = new System.Drawing.Point(38, 0);
+            this.menuPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.menuPanel.Name = "menuPanel";
+            this.menuPanel.Size = new System.Drawing.Size(198, 151);
+            this.menuPanel.TabIndex = 43;
             // 
             // SelectButton
             // 
@@ -468,10 +490,6 @@
             this.toolTip1.SetToolTip(this.CropButton, "Crop");
             this.CropButton.Click += new System.EventHandler(this.CropButton_Click);
             // 
-            // toolTip1
-            // 
-            this.toolTip1.IsBalloon = true;
-            // 
             // panelCavas
             // 
             this.panelCavas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -558,28 +576,6 @@
             this.LeftTopPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LeftTopPanel_MouseDown);
             this.LeftTopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LeftTopPanel_MouseMove);
             this.LeftTopPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LeftTopPanel_MouseUp);
-            // 
-            // layerPanel
-            // 
-            this.layerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.layerPanel.BackColor = System.Drawing.Color.LightGray;
-            this.bunifuTransition1.SetDecoration(this.layerPanel, BunifuAnimatorNS.DecorationType.None);
-            this.layerPanel.Location = new System.Drawing.Point(903, 1);
-            this.layerPanel.Name = "layerPanel";
-            this.layerPanel.Size = new System.Drawing.Size(522, 58);
-            this.layerPanel.TabIndex = 31;
-            // 
-            // menuPanel
-            // 
-            this.menuPanel.BackColor = System.Drawing.Color.White;
-            this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.bunifuTransition1.SetDecoration(this.menuPanel, BunifuAnimatorNS.DecorationType.None);
-            this.menuPanel.Location = new System.Drawing.Point(38, 0);
-            this.menuPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.menuPanel.Name = "menuPanel";
-            this.menuPanel.Size = new System.Drawing.Size(198, 151);
-            this.menuPanel.TabIndex = 43;
             // 
             // doubleBufferPanel2
             // 
@@ -914,6 +910,10 @@
             this.MenuButton.TabIndex = 4;
             this.toolTip1.SetToolTip(this.MenuButton, "Expand Menu");
             this.MenuButton.Click += new System.EventHandler(this.MenuButton_Click);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
             // 
             // bunifuDragControl1
             // 

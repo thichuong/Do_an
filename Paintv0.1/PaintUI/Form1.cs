@@ -18,6 +18,7 @@ namespace PaintUI
     public partial class Form1 : Form
     {
         #region Variables
+        public static Form1 current;
         enum Tools { BRUSH, SHAPE, TEXT };
         Tools curTool;
         List<Bitmap> LayerList = new List<Bitmap>();
@@ -41,12 +42,12 @@ namespace PaintUI
         {
             InitializeComponent();
             HideAllPanel();
-            brushesPanel.Show();
+            brushesPanel.Show();            
             #region initiation
             {
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
                 gra = Graphics.FromImage(bm);
-
+                current = this;
                 isDown = isSaved = isChanged = isDragged = PanClicked = isPanning = false;
 
                 SketchBox.Cursor = Cursors.Cross;
@@ -94,8 +95,11 @@ namespace PaintUI
             }
             DisableButtonFuncs();
             currentLayerBitmap = bm;
+            SketchBox.MouseWheel += SketchBox_MouseWheel;
             #endregion
         }
+
+       
         #region Layer Actions
         private void LayerPanel_LayerRemoved(object sender, EventArgs e)
         {
@@ -275,14 +279,29 @@ namespace PaintUI
         #endregion
 
         #region ButtonClicks
+        private void DisableButtons()
+        {
+            DisableButtonFuncs();
+            NormalColorReset();
+        }
         private void DisableButtonFuncs()
         {
             SelectClicked = false;
             CropClicked = false;
-            PanClicked = false;
+            {
+                PanClicked = false;
+                isPanning = false;
+                SketchBox.Cursor = Cursors.Cross;
+            }
             ZoomClicked = false;
-            MoveClicked = false;
-            isPanning = false;
+            MoveClicked = false;           
+            //Crop Funcs
+            {
+                LeftTopPanel.Visible = false;
+                LeftBottomPanel.Visible = false;
+                RightTopPanel.Visible = false;
+                RightBottomPanel.Visible = false;
+            }
         }
         private void NormalColorReset()
         {
@@ -313,10 +332,11 @@ namespace PaintUI
                 NormalColorReset();
                 ZoomButton.Normalcolor = Color.LightGray;
                 ZoomClicked = true;
+                SketchBox.Focus();
             }
             else
             {
-                NormalColorReset();
+                DisableButtons();
                 ZoomClicked = false;
             }
         }
@@ -331,7 +351,7 @@ namespace PaintUI
             }
             else
             {
-                NormalColorReset();
+                DisableButtons();
                 SelectClicked = false;
             }
         }
@@ -341,15 +361,14 @@ namespace PaintUI
             {
                 DisableButtonFuncs();
                 NormalColorReset();
-                PanButton.Normalcolor = Color.LightGray;
                 PanClicked = true;
+                PanButton.Normalcolor = Color.LightGray;
                 SketchBox.Cursor = Cursors.Hand;
             }
             else
             {
-                NormalColorReset();
+                DisableButtons();
                 PanClicked = false;
-                SketchBox.Cursor = Cursors.Default;
             };
         }
         private void MenuPanel_SaveAsButtonClick(object sender, EventArgs e)
@@ -449,7 +468,7 @@ namespace PaintUI
 
         private void TextButton_Click(object sender, EventArgs e)
         {
-
+            DisableButtons();
             if (!textPanel.Visible)
             {
                 BackColorReset();
@@ -463,7 +482,7 @@ namespace PaintUI
 
         private void ShapesButton_Click(object sender, EventArgs e)
         {
-
+            DisableButtons();
             if (!shapesPanel.Visible)
             {
                 BackColorReset();
@@ -477,7 +496,8 @@ namespace PaintUI
 
         private void CanvasButton_Click(object sender, EventArgs e)
         {
-
+            DisableButtons();
+            
             if (!canvasPanel.Visible)
             {
                 BackColorReset();
@@ -509,8 +529,16 @@ namespace PaintUI
 
         private void BrushesButton_Click(object sender, EventArgs e)
         {
-            currentLayerBitmap = bm;
-
+            {
+                currentLayerBitmap = bm;
+                curLayer = -1;
+                gra = Graphics.FromImage(currentLayerBitmap);
+                LayerDrawer();
+                SketchBoxVisionImage(temp);
+            }
+            layerPanel.HighLightBaseLayer();
+            SelectButton.Focus();
+            DisableButtons();                    
             if (!brushesPanel.Visible)
             {
                 BackColorReset();
@@ -521,10 +549,71 @@ namespace PaintUI
             }
             curTool = Tools.BRUSH;
         }
+        private void CropButton_Click(object sender, EventArgs e)
+        {        
+            if (!CropClicked)
+            {
+                //initiation
+                {
+                    DisableButtonFuncs();
+                    NormalColorReset();
+                    CropButton.Normalcolor = Color.LightGray;
+                    CropClicked = true;
+                    {
+                        currentLayerBitmap = bm;
+                        curLayer = -1;
+                        gra = Graphics.FromImage(currentLayerBitmap);
+                        LayerDrawer();
+                        SketchBoxVisionImage(temp);
+                    }
+                    layerPanel.HighLightBaseLayer();
+                    SelectButton.Focus();
+                }
+                //functions
+                {
+                    LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
+                    RightBottomPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y + SketchBox.Height);
+                    RightTopPanel.Location = new Point(SketchBox.Location.X + SketchBox.Width, SketchBox.Location.Y - 10);
+                    LeftBottomPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y + SketchBox.Height);
+                    LeftTopPanel.Visible = true;
+                    RightBottomPanel.Visible = true;
+                    RightTopPanel.Visible = true;
+                    LeftBottomPanel.Visible = true;
+                }
+            }
+            else
+            {
+                DisableButtons();
+                CropClicked = false;
+            }
+        }
 
+        private void MoveButton_Click(object sender, EventArgs e)
+        {
+            if (!MoveClicked)
+            {
+                DisableButtonFuncs();
+                NormalColorReset();
+                MoveButton.Normalcolor = Color.LightGray;
+                MoveClicked = true;
+            }
+            else
+            {
+                DisableButtons();
+                MoveClicked = false;
+            }
+        }
+
+        private void LayerButton_Click(object sender, EventArgs e)
+        {
+            if (!layerPanel.Visible)
+                bunifuTransition1.ShowSync(layerPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+            else
+                bunifuTransition1.HideSync(layerPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
+        }
         private void EffectsButton_Click(object sender, EventArgs e)
         {
-
+            DisableButtons();
             if (!effectsPanel.Visible)
             {
                 BackColorReset();
@@ -584,6 +673,21 @@ namespace PaintUI
         #endregion
 
         #region SketchBoxActions
+        private void SketchBox_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (ZoomClicked)
+                if (e.Delta > 0)
+                {
+                    SketchBox.Width = Convert.ToInt32(SketchBox.Width * 1.25);
+                    SketchBox.Height = Convert.ToInt32(SketchBox.Height * 1.25);
+                }
+                else
+                {
+                    SketchBox.Width = Convert.ToInt32(SketchBox.Width / 1.25);
+                    SketchBox.Height = Convert.ToInt32(SketchBox.Height / 1.25);
+                }
+            SketchBoxVisionImage(currentLayerBitmap);
+        }
         private void LayerDrawer()
         {
             temp = new Bitmap(SketchBox.Width, SketchBox.Height);
@@ -802,7 +906,7 @@ namespace PaintUI
                 bitmaps.Add(bitmap);
             }
             return bitmaps;
-        }
+        }      
         private void tempBitmapsRisize()
         {
             Graphics tempGra;
@@ -810,14 +914,21 @@ namespace PaintUI
             bm = new Bitmap(SketchBox.Width, SketchBox.Height);
             gra = Graphics.FromImage(bm);
             gra.CompositingQuality = CompositingQuality.GammaCorrected;
-            gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
-
+            if (!CropClicked) gra.DrawImage(temp, 0, 0, SketchBox.Width, SketchBox.Height);
+            else gra.DrawImage(temp, 0, 0);
+            Console.WriteLine(templistBM.Count + "=" + LayerList.Count);
             for (int i = 0; i < LayerList.Count(); i++)
             {
                 LayerList[i] = new Bitmap(SketchBox.Width, SketchBox.Height); ;
                 tempGra = Graphics.FromImage(LayerList[i]);
                 tempGra.CompositingQuality = CompositingQuality.GammaCorrected;
-                if (templistBM.Count>0 )tempGra.DrawImage(templistBM[i], 0, 0, SketchBox.Width, SketchBox.Height);
+                if (templistBM.Count > 0)
+                {
+                    if (!CropClicked)
+                        tempGra.DrawImage(templistBM[i], 0, 0, SketchBox.Width, SketchBox.Height);
+                    else
+                        tempGra.DrawImage(templistBM[i], 0, 0);
+                }
             }
             SketchBoxVisionImage(bm);
             currentLayerBitmap = bm;
@@ -1124,49 +1235,6 @@ namespace PaintUI
                 this.Refresh();
             }
         }
-
-        private void CropButton_Click(object sender, EventArgs e)
-        {
-            if (!CropClicked)
-            {
-                DisableButtonFuncs();
-                NormalColorReset();
-                CropButton.Normalcolor = Color.LightGray;
-                CropClicked = true;
-            }
-            else
-            {
-                NormalColorReset();
-                CropClicked = false;
-            }
-        }
-
-        private void MoveButton_Click(object sender, EventArgs e)
-        {
-            if (!MoveClicked)
-            {
-                DisableButtonFuncs();
-                NormalColorReset();
-                MoveButton.Normalcolor = Color.LightGray;
-                MoveClicked = true;
-            }
-            else
-            {
-                NormalColorReset();
-                MoveClicked = false;
-            }
-        }
-
-        private void LayerButton_Click(object sender, EventArgs e)
-        {
-            if (!layerPanel.Visible)
-                bunifuTransition1.ShowSync(layerPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
-            else
-                bunifuTransition1.HideSync(layerPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
-        }
-
-       
-
         private void BottomPanel_MouseUp(object sender, MouseEventArgs e)
         {
             isBottomPanelDragged = false;

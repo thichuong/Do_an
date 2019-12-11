@@ -18,7 +18,6 @@ namespace PaintUI.Code.Brushes
             this.pen = new Pen(c, Thickness);
             calliSize = standarSize = Thickness;
             distance = 0;
-            
         }
 
         public override void MouseDown(ref Graphics gra, Point cur, ref List<Point> _pts)
