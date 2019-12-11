@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using PaintUI.Code.Brushes;
@@ -17,19 +18,19 @@ namespace PaintUI
     {
         static BrushesSelection selBrush;
         static List<Point> _pts = null;
-
+        Point[] points; 
         Marker marker;
         Eraser eraser;
         Pencil pencil;
         CalligraphyPen calligraphy;
-
+        Thread thrd;
         static bool pickerActive;
 
         public BrushesPanel()
         {
             InitializeComponent();
-            
-           // ResizeHelper.SetRevolution(curBrushBtn);
+
+            // ResizeHelper.SetRevolution(curBrushBtn);
 
             selBrush = new BrushesSelection();
             selBrush.Location = new Point(0, curBrushBtn.Location.Y + curBrushBtn.Size.Height + 10);
@@ -135,6 +136,7 @@ namespace PaintUI
                     calligraphy.MouseMove(gra, old, cur, color);
                     break;
             }
+            points = _pts.ToArray();
         }
 
 
@@ -167,47 +169,49 @@ namespace PaintUI
                 pickerActive = false;
                 return false;
             }
-            
+
         }
 
-        public void ProcessMouseMove(Point cur, Point old, Graphics gra)
+        public void ProcessMouseMove(Point cur, Point old)
         {
             if (!pickerActive)
             {
                 if (selBrush.getBrush() == 4)
                     sprayer.getLocation(cur);
-                if (selBrush.getBrush() == 5)
-                    calligraphy.MouseMove(gra, old, cur, color);
-
-                if (selBrush.getBrush()==0 || selBrush.getBrush()==1)
+                //if (selBrush.getBrush() == 5)
+                // calligraphy.MouseMove(gra, old, cur, color);
+                
+                if (selBrush.getBrush() == 0 || selBrush.getBrush() == 1)
+                {
                     _pts.Add(cur);
+                    thrd = new Thread(() => points = _pts.ToArray());
+                    thrd.Start();
+                }
             }
         }
 
         public void ProcessPaint(Graphics gra, Point old, Point cur)
         {
-            if (!pickerActive)
+            if (!pickerActive && points.Length > 0)
             {
                 GraphicsPath gPath = new GraphicsPath();
                 switch (selBrush.getBrush())
                 {
                     case 0: //marker
-                        if (_pts != null)
-                            marker.Paint(gra, cur, gPath, _pts);
+                            marker.Paint(gra, cur, gPath,points);
                         break;
                     case 1: //eraser
-                        if (_pts != null)
-                            eraser.Paint(gra, cur, gPath, _pts);
+                            gra.CompositingMode = CompositingMode.SourceCopy;
+                            eraser.Paint(gra, cur, gPath, points);
                         break;
                     case 3:
-                        if (_pts != null)
-                            pencil.Paint(gra, cur, gPath, _pts);
+                            pencil.Paint(gra, cur, gPath, points);
                         break;
                     default:
                         break;
                 }
             }
         }
-        
+
     }
 }

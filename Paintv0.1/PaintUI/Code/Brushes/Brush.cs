@@ -31,11 +31,9 @@ namespace PaintUI.Code.Brushes
 
         }
 
-        virtual public void Paint(Graphics gra, Point cur, GraphicsPath gPath, List<Point> _pts)
+        virtual public void Paint(Graphics gra, Point cur, GraphicsPath gPath,Point[] points)
         {
-            _pts.Add(cur);
-            gPath.AddLines(_pts.ToArray());
-            pen.LineJoin = LineJoin.Round;
+            gPath.AddLines(points);
             gra.DrawPath(pen, gPath);
         }
     }
