@@ -66,11 +66,11 @@ namespace PaintUI
         {
             int keycode;
             keycode = e.KeyChar;
-
-            if(keycode < 48 || keycode > 57)
+            if (keycode >= 48 && keycode <= 57 )
             {
-                e.Handled = true;
+
             }
+            else e.Handled = true;
         }
         public void DrawText(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {

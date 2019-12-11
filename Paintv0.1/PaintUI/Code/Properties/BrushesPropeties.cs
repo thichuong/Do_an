@@ -18,9 +18,6 @@ namespace PaintUI
             ThicknessSlide.Value = 5;
             OpacitySlide.Value = 255;
             ThicknessSlide.MaximumValue = 30;
-
-            ThicknessTb.Text = ThicknessSlide.Value.ToString();
-            OpacityTb.Text = OpacitySlide.Value.ToString();
         }
         
         public int Thickness
@@ -33,66 +30,6 @@ namespace PaintUI
         {
             get { return OpacitySlide.Value; }
             set { OpacitySlide.Value = value; }
-        }
-
-        private void ThicknessSlide_ValueChanged(object sender, EventArgs e)
-        {
-            ThicknessTb.Text = ThicknessSlide.Value.ToString();
-        }
-
-        private void OpacitySlide_ValueChanged(object sender, EventArgs e)
-        {
-            OpacityTb.Text = OpacitySlide.Value.ToString();
-        }
-
-     
-        public int getThickness()
-        {
-            if (ThicknessTb.Text != "")
-                return Int32.Parse(ThicknessTb.Text);
-            else
-                return 0;
-        }
-
-        public int getOpacityText()
-        {
-            if (OpacityTb.Text != "")
-                return Int32.Parse(OpacityTb.Text);
-            else
-                return 0;
-        }
-
-        private void ThicknessTb_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            int keycode;
-            keycode = e.KeyChar;
-            if (keycode >= 48 && keycode <= 57 || keycode == 8)
-            {
-            }
-            else e.Handled = true;
-
-            if(keycode == 13)
-            {
-                ThicknessSlide.Value = getThickness();
-                this.SelectNextControl(this.ActiveControl, true, true, true, true);
-            }
-        }
-
-        private void OpacityTb_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            int keycode;
-            keycode = e.KeyChar;
-            if (keycode >= 48 && keycode <= 57 || keycode == 8)
-            {
-            }
-            else e.Handled = true;
-
-            if(keycode == 13)
-            {
-                OpacitySlide.Value = getOpacityText();
-                this.SelectNextControl(this.ActiveControl, true, true, true, true);
-            }
-            
         }
     }
 }
