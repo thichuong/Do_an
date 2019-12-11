@@ -25,7 +25,7 @@ namespace PaintUI
         {
             InitializeComponent();
             this.ControlRemoved += LayerPanel_ControlRemoved;
-           
+            HighLightBaseLayer();
         }
         public void reset()
         {
@@ -74,9 +74,19 @@ namespace PaintUI
             Console.WriteLine("counting " +layerIconList.Count);          
             layer1.MouseDown += Layer1_MouseDown;
         }
-
+        private void NormalizeLayersColor()
+        {
+            BaseLayer.BackColor = Color.White;
+            for (int i=0;i<layerIconList.Count;i++)
+            {
+                layerIconList[i].BackColor = Color.White;
+            }
+        }
         private void Layer1_MouseDown(object sender, MouseEventArgs e)
         {
+            NormalizeLayersColor();
+            Button bn = sender as Button;
+            bn.BackColor = Color.LightGray;
             rightclicked = false;
             if (e.Button == MouseButtons.Right)
             {
@@ -90,9 +100,14 @@ namespace PaintUI
                 this.LayerClicked(sender, e);
             }
         }
-
+        public void HighLightBaseLayer()
+        {
+            NormalizeLayersColor();
+            BaseLayer.BackColor = Color.LightGray;
+        }
         private void BaseLayer_MouseDown(object sender, MouseEventArgs e)
         {
+            HighLightBaseLayer();
             if (this.BaseLayerClicked!=null)
             {
                 this.BaseLayerClicked(sender, e);
