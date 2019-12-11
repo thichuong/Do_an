@@ -29,8 +29,6 @@ namespace PaintUI
         {
             InitializeComponent();
             
-           // ResizeHelper.SetRevolution(curBrushBtn);
-
             selBrush = new BrushesSelection();
             selBrush.Location = new Point(0, curBrushBtn.Location.Y + curBrushBtn.Size.Height + 10);
             selBrush.Size = new Size(Width + 20, 300);
@@ -97,12 +95,10 @@ namespace PaintUI
 
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
         {
-            color = Color.FromArgb(MarProp.Opacity, colorPanel.getColor1());
-
             switch (selBrush.getBrush())
             {
                 case 0: //marker
-                    ModifyComponents.Graphics(gra);
+                    color = Color.FromArgb(MarProp.Opacity*2/3, colorPanel.getColor1());
                     marker = new Marker(color, MarProp.Thickness);
                     marker.MouseDown(ref gra, cur, ref _pts);
                     break;
@@ -116,7 +112,7 @@ namespace PaintUI
                     FillBucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), color);
                     break;
                 case 3:
-                    ModifyComponents.Graphics(gra);
+                    color = Color.FromArgb(PelProp.Opacity, colorPanel.getColor1());
                     pencil = new Pencil(color, PelProp.Thickness);
                     pencil.MouseDown(ref gra, cur, ref _pts);
                     break;
@@ -128,9 +124,7 @@ namespace PaintUI
                     }
                     break;
                 case 5:
-                    //gra.CompositingMode = CompositingMode.SourceOver;
-                    //gra.SmoothingMode = SmoothingMode.AntiAlias;
-                    ModifyComponents.Graphics(gra);
+                    color = Color.FromArgb(CalliProp.Opacity, colorPanel.getColor1());
                     calligraphy = new CalligraphyPen(color, CalliProp.Thickness);
                     calligraphy.MouseMove(gra, old, cur, color);
                     break;
@@ -175,9 +169,15 @@ namespace PaintUI
             if (!pickerActive)
             {
                 if (selBrush.getBrush() == 4)
+                {
+                    ModifyComponents.Graphics(gra);
                     sprayer.getLocation(cur);
+                }
                 if (selBrush.getBrush() == 5)
+                {
+                    ModifyComponents.Graphics(gra);
                     calligraphy.MouseMove(gra, old, cur, color);
+                }
 
                 if (selBrush.getBrush()==0 || selBrush.getBrush()==1)
                     _pts.Add(cur);
@@ -193,15 +193,24 @@ namespace PaintUI
                 {
                     case 0: //marker
                         if (_pts != null)
+                        {
+                            ModifyComponents.Graphics(gra);
                             marker.Paint(gra, cur, gPath, _pts);
+                        }
                         break;
                     case 1: //eraser
                         if (_pts != null)
+                        {
+                            gra.CompositingMode = CompositingMode.SourceCopy;
                             eraser.Paint(gra, cur, gPath, _pts);
+                        }
                         break;
                     case 3:
                         if (_pts != null)
+                        {
+                            ModifyComponents.Graphics(gra);
                             pencil.Paint(gra, cur, gPath, _pts);
+                        }
                         break;
                     default:
                         break;

@@ -18,6 +18,9 @@ namespace PaintUI.Code.Properties
 
             Controls.Remove(OpacityLb);
             Controls.Remove(OpacitySlide);
+            Controls.Remove(OpacityTb);
+            Controls.Remove(label2);
+            
         }
     }
 }

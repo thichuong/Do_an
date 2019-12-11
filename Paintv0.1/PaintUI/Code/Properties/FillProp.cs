@@ -18,9 +18,13 @@ namespace PaintUI.Code.Properties
 
             OpacityLb.Location = ThicknessLb.Location;
             OpacitySlide.Location = ThicknessSlide.Location;
+            OpacityTb.Location = ThicknessTb.Location;
+            label2.Location = label1.Location;
 
             Controls.Remove(ThicknessLb);
             Controls.Remove(ThicknessSlide);
+            Controls.Remove(ThicknessTb);
+            Controls.Remove(label1);
         }
     }
 }

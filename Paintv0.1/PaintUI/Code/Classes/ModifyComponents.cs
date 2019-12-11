@@ -12,7 +12,7 @@ namespace PaintUI.Code.Classes
     {
         static public void Graphics(Graphics gra)
         {
-            gra.CompositingMode = CompositingMode.SourceCopy;
+            gra.CompositingMode = CompositingMode.SourceOver;
             gra.SmoothingMode = SmoothingMode.AntiAlias;
         }
     }

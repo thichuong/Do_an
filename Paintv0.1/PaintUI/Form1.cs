@@ -343,11 +343,13 @@ namespace PaintUI
                 NormalColorReset();
                 PanButton.Normalcolor = Color.LightGray;
                 PanClicked = true;
+                SketchBox.Cursor = Cursors.Hand;
             }
             else
             {
                 NormalColorReset();
                 PanClicked = false;
+                SketchBox.Cursor = Cursors.Default;
             };
         }
         private void MenuPanel_SaveAsButtonClick(object sender, EventArgs e)

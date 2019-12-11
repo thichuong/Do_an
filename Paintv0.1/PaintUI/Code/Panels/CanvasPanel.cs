@@ -41,6 +41,7 @@ namespace PaintUI
             else
                 Canvas_Height.Text = hei.ToString();
         }
+
         public int getCanvasTextWidth()
         {
             if (Canvas_Width.Text != "")
@@ -64,9 +65,12 @@ namespace PaintUI
             {    
             }
             else e.Handled = true;
+            
+
             if(keycode==13)
             {
                 Form1 parent = (Form1)this.ParentForm;
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
                 parent.resizeSketchBox();
             }
         }     
@@ -79,17 +83,14 @@ namespace PaintUI
 
         private void _Click(object sender, EventArgs e)
         {
-
             Form1 parent = (Form1)this.ParentForm;
             parent.resizeSketchBox();
         }
 
         private void Canvas_TransparentCheckBox_OnChange(object sender, EventArgs e)
         {
-            
-                Form1 parent = (Form1)this.ParentForm;
-                parent.SketchBoxTransparent();
-            
+            Form1 parent = (Form1)this.ParentForm;
+            parent.SketchBoxTransparent();
         }
 
         private void Canvas_ShowCheckBox_OnChange(object sender, EventArgs e)
