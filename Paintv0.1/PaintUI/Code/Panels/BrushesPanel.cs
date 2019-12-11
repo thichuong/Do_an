@@ -107,7 +107,7 @@ namespace PaintUI
                     marker.MouseDown(ref gra, cur, ref _pts);
                     break;
                 case 1: //eraser 
-                    gra.CompositingMode = CompositingMode.SourceCopy;
+                   
                     eraser = new Eraser(EraProp.Thickness);
                     eraser.MouseDown(ref gra, cur, ref _pts);
                     break;
@@ -197,7 +197,10 @@ namespace PaintUI
                         break;
                     case 1: //eraser
                         if (_pts != null)
+                        {
+                            gra.CompositingMode = CompositingMode.SourceCopy;
                             eraser.Paint(gra, cur, gPath, _pts);
+                        }
                         break;
                     case 3:
                         if (_pts != null)
