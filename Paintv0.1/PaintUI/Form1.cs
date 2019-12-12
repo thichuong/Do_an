@@ -46,6 +46,7 @@ namespace PaintUI
             HideAllPanel();
             brushesPanel.Show();
             Thread.CurrentThread.Priority = ThreadPriority.Highest;
+            
             #region initiation
             {
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
@@ -725,7 +726,8 @@ namespace PaintUI
 
             isDown = false;
             isPanning = false;
-            thread.Join();
+            if(curTool!= Tools.TEXT)
+                 thread.Join();
             if (!PanClicked)
             {
                 LayerDrawer();

@@ -132,7 +132,7 @@ namespace PaintUI
                 case 5:
                     ModifyComponents.Graphics(gra);
                     calligraphy = new CalligraphyPen(color, CalliProp.Thickness);
-                    calligraphy.MouseMove( old, cur, color);
+                    calligraphy.MouseDown(ref gra, cur, ref _pts);
                     break;
             }
         }
@@ -174,13 +174,20 @@ namespace PaintUI
         {
             if (!pickerActive)
             {
-                if (selBrush.getBrush() == 4)
-                    sprayer.getLocation(cur);
-                if (selBrush.getBrush() == 5)
-                    calligraphy.MouseMove( old, cur, color);
-
-                if (selBrush.getBrush()==0 || selBrush.getBrush()==1)
-                    _pts.Add(cur);
+                switch (selBrush.getBrush())
+                {
+                    case 0: //marker
+                    case 1: //eraser
+                    case 3:
+                    case 5:
+                        _pts.Add(cur);
+                        break;
+                    case 4:
+                        sprayer.getLocation(cur);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -197,11 +204,19 @@ namespace PaintUI
                         break;
                     case 1: //eraser
                         if (_pts != null)
+                        {
+                            gra.CompositingMode = CompositingMode.SourceCopy;
                             eraser.Paint(gra, cur, gPath, _pts);
+                        }
+                            
                         break;
                     case 3:
                         if (_pts != null)
                             pencil.Paint(gra, cur, gPath, _pts);
+                        break;
+                    case 5:
+                        if(_pts!=null)
+                            calligraphy.Paint(gra, cur, gPath, _pts);
                         break;
                     default:
                         break;

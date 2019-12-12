@@ -19,31 +19,34 @@ namespace PaintUI.Code.Brushes
             calliSize = standarSize = Thickness;
             distance = 0;
         }
-
-        public override void MouseDown(ref Graphics gra, Point cur, ref List<Point> _pts)
+        public void Paint(Graphics gra, Point Cur, GraphicsPath gPath, List<Point> _pts)
         {
             calliSize = standarSize;
+            //_pts.Add(Cur);
+            Point cur, old;
+            old = _pts[0];
+            for(int i=1;i<_pts.Count;i++)
+            {
+                cur = _pts[i];
+                CalliPaint(gra, old, cur, this.pen.Color);
+                old = _pts[i];
+            }
         }
-
-        public override void MouseMove(Point old, Point cur, Color color)
+        private void CalliPaint(Graphics gra, Point old, Point cur, Color color)
         {
-            distance = Convert.ToInt32((cur.X - old.X) * (cur.X - old.X) + (cur.Y - old.Y) * (cur.Y - old.Y)) / 10;
+            distance = Convert.ToInt32((cur.X - old.X) * (cur.X - old.X) + (cur.Y - old.Y) * (cur.Y - old.Y));
 
             if (distance > 0)
             {
                 if (distance < 15 && calliSize <= standarSize)
-                    calliSize += standarSize / 20;
+                    calliSize += standarSize / 5;
                 else if (distance >= 5 && calliSize > standarSize / 10)
-                    calliSize -= standarSize / 20;
+                    calliSize -= standarSize / 5;
             }
             pen = new Pen(color, (float)calliSize);
             pen.DashStyle = DashStyle.Solid;
             pen.SetLineCap(LineCap.Round, LineCap.Round, DashCap.Round);
-        }
-
-        public override void MouseUp()
-        {
-            calliSize = standarSize;
+            gra.DrawLine(pen, old, cur);
         }
     }
 }

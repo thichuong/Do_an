@@ -82,14 +82,13 @@
             this.bunifuCards1.Controls.Add(this.Text_Label2);
             this.bunifuCards1.Controls.Add(this.Text_Label3);
             this.bunifuCards1.Controls.Add(this.Text_Label1);
-            this.bunifuCards1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuCards1.LeftSahddow = false;
             this.bunifuCards1.Location = new System.Drawing.Point(0, 0);
             this.bunifuCards1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuCards1.Name = "bunifuCards1";
             this.bunifuCards1.RightSahddow = true;
             this.bunifuCards1.ShadowDepth = 20;
-            this.bunifuCards1.Size = new System.Drawing.Size(347, 588);
+            this.bunifuCards1.Size = new System.Drawing.Size(347, 693);
             this.bunifuCards1.TabIndex = 0;
             this.bunifuCards1.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
@@ -97,9 +96,9 @@
             // 
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(36, 269);
+            this.richTextBox1.Location = new System.Drawing.Point(18, 272);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(301, 89);
+            this.richTextBox1.Size = new System.Drawing.Size(288, 159);
             this.richTextBox1.TabIndex = 29;
             this.richTextBox1.Text = "";
             // 
@@ -108,7 +107,7 @@
             this.mainColor1.BackColor = System.Drawing.Color.Black;
             this.mainColor1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.mainColor1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mainColor1.Location = new System.Drawing.Point(127, 375);
+            this.mainColor1.Location = new System.Drawing.Point(123, 486);
             this.mainColor1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mainColor1.Name = "mainColor1";
             this.mainColor1.Size = new System.Drawing.Size(77, 63);
@@ -130,7 +129,7 @@
             this.colorBox.Controls.Add(this.pictureBox3);
             this.colorBox.Controls.Add(this.pictureBox7);
             this.colorBox.Controls.Add(this.pictureBox1);
-            this.colorBox.Location = new System.Drawing.Point(36, 442);
+            this.colorBox.Location = new System.Drawing.Point(32, 553);
             this.colorBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.colorBox.Name = "colorBox";
             this.colorBox.Size = new System.Drawing.Size(274, 77);
@@ -302,7 +301,7 @@
             this.addColorButton.IconVisible = true;
             this.addColorButton.IconZoom = 90D;
             this.addColorButton.IsTab = false;
-            this.addColorButton.Location = new System.Drawing.Point(54, 534);
+            this.addColorButton.Location = new System.Drawing.Point(50, 645);
             this.addColorButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addColorButton.Name = "addColorButton";
             this.addColorButton.Normalcolor = System.Drawing.Color.Gainsboro;
