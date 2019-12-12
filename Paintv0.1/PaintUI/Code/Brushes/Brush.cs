@@ -34,9 +34,14 @@ namespace PaintUI.Code.Brushes
         virtual public void Paint(Graphics gra, Point cur, GraphicsPath gPath, Point[] points)
         {
            
-            gPath.AddLines(points);
-            pen.LineJoin = LineJoin.Round;
-            gra.DrawPath(pen, gPath);
+            if (points.Count()>0)
+            {
+                gPath.AddLines(points);
+                pen.LineJoin = LineJoin.Round;
+                gra.DrawPath(pen, gPath);   
+            }
+                
+            
         }
     }
 }

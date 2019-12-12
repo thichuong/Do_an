@@ -29,11 +29,13 @@ namespace PaintUI
         }
         public void reset()
         {
-            while(LayerCounter>-1)
+            int n = layerIconList.Count-1;
+            while(n>-1)
             {
-                this.Controls.Remove(layerIconList[LayerCounter]);
-                LayerCounter--;
+                this.Controls.Remove(layerIconList[n]);
+                n--;
             }
+            LayerCounter = -1;
         }
         private void LayerPanel_ControlRemoved(object sender, ControlEventArgs e)
         {            

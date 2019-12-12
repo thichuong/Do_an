@@ -313,7 +313,7 @@ namespace PaintUI
             CropButton.Normalcolor = Color.Transparent;
             PanButton.Normalcolor = Color.Transparent;
             ZoomButton.Normalcolor = Color.Transparent;
-            MoveButton.Normalcolor = Color.Transparent;
+           
         }
         private void BackColorReset()
         {
@@ -592,21 +592,7 @@ namespace PaintUI
             }
         }
 
-        private void MoveButton_Click(object sender, EventArgs e)
-        {
-            if (!MoveClicked)
-            {
-                DisableButtonFuncs();
-                NormalColorReset();
-                MoveButton.Normalcolor = Color.LightGray;
-                MoveClicked = true;
-            }
-            else
-            {
-                DisableButtons();
-                MoveClicked = false;
-            }
-        }
+       
 
         private void LayerButton_Click(object sender, EventArgs e)
         {
@@ -677,6 +663,12 @@ namespace PaintUI
         #endregion
 
         #region SketchBoxActions
+        private bool NothingElseIsClicked()
+        {
+            if (!SelectClicked && !CropClicked && !ZoomClicked && !canvasPanel.Visible)
+                return true;
+            else return false;
+        }
         private void SketchBox_MouseWheel(object sender, MouseEventArgs e)
         {
             if (ZoomClicked)
@@ -775,6 +767,7 @@ namespace PaintUI
         }
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
+            if (NothingElseIsClicked())
             if (e.Button == MouseButtons.Left)
             {
                 if (!isDown)
@@ -793,7 +786,6 @@ namespace PaintUI
                 if (PanClicked) isPanning = true;
                 else isDown = true;
                 isChanged = true;
-
             }
         }
 
