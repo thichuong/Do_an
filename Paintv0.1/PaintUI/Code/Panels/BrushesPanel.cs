@@ -17,7 +17,7 @@ namespace PaintUI
     {
         static BrushesSelection selBrush;
         static List<Point> _pts = null;
-
+        static Point[] points;
         Marker marker;
         Eraser eraser;
         Pencil pencil;
@@ -105,11 +105,13 @@ namespace PaintUI
                     ModifyComponents.Graphics(gra);
                     marker = new Marker(color, MarProp.Thickness);
                     marker.MouseDown(ref gra, cur, ref _pts);
+                    points = _pts.ToArray();
                     break;
                 case 1: //eraser 
                     gra.CompositingMode = CompositingMode.SourceCopy;
                     eraser = new Eraser(EraProp.Thickness);
                     eraser.MouseDown(ref gra, cur, ref _pts);
+                    points = _pts.ToArray();
                     break;
                 case 2: //fill
                    
@@ -121,6 +123,7 @@ namespace PaintUI
                     ModifyComponents.Graphics(gra);
                     pencil = new Pencil(color, PelProp.Thickness);
                     pencil.MouseDown(ref gra, cur, ref _pts);
+                    points = _pts.ToArray();
                     break;
                 case 4:
                     if (!pickerActive)
@@ -133,6 +136,7 @@ namespace PaintUI
                     ModifyComponents.Graphics(gra);
                     calligraphy = new CalligraphyPen(color, CalliProp.Thickness);
                     calligraphy.MouseDown(ref gra, cur, ref _pts);
+                    points = _pts.ToArray();
                     break;
             }
         }
@@ -146,6 +150,7 @@ namespace PaintUI
                 case 1:
                 case 3:
                     _pts = new List<Point>();
+                    points = _pts.ToArray();
                     break;
                 case 4:
                     sprayer.StopSpraying();
@@ -181,6 +186,7 @@ namespace PaintUI
                     case 3:
                     case 5:
                         _pts.Add(cur);
+                        points = _pts.ToArray();
                         break;
                     case 4:
                         sprayer.getLocation(cur);
@@ -199,23 +205,23 @@ namespace PaintUI
                 switch (selBrush.getBrush())
                 {
                     case 0: //marker
-                        if (_pts != null)
-                            marker.Paint(gra, cur, gPath, _pts);
+                        if (points != null)
+                            marker.Paint(gra, cur, gPath, points);
                         break;
                     case 1: //eraser
-                        if (_pts != null)
+                        if (points != null)
                         {
                             gra.CompositingMode = CompositingMode.SourceCopy;
-                            eraser.Paint(gra, cur, gPath, _pts);
+                            eraser.Paint(gra, cur, gPath, points);
                         }
                             
                         break;
                     case 3:
-                        if (_pts != null)
-                            pencil.Paint(gra, cur, gPath, _pts);
+                        if (points != null)
+                            pencil.Paint(gra, cur, gPath, points);
                         break;
                     case 5:
-                        if(_pts!=null)
+                        if(points != null)
                             calligraphy.Paint(gra, cur, gPath, _pts);
                         break;
                     default:
