@@ -21,7 +21,7 @@ namespace PaintUI.Code.Brushes
             _pts.Add(cur);
         }
 
-        virtual public void MouseMove(Graphics gra, Point old, Point cur, Color colors)
+        virtual public void MouseMove( Point old, Point cur, Color colors)
         {
 
         }

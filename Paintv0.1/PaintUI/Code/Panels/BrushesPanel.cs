@@ -112,8 +112,10 @@ namespace PaintUI
                     eraser.MouseDown(ref gra, cur, ref _pts);
                     break;
                 case 2: //fill
+                   
+                    Color pointColor = Color.FromArgb(255, bm.GetPixel(old.X, old.Y));
                     color = Color.FromArgb(FillProp.Opacity, colorPanel.getColor2());
-                    FillBucket.Fill(bm, old, bm.GetPixel(old.X, old.Y), color);
+                    FillBucket.Fill(bm, old, pointColor, color);
                     break;
                 case 3:
                     ModifyComponents.Graphics(gra);
@@ -128,11 +130,9 @@ namespace PaintUI
                     }
                     break;
                 case 5:
-                    //gra.CompositingMode = CompositingMode.SourceOver;
-                    //gra.SmoothingMode = SmoothingMode.AntiAlias;
                     ModifyComponents.Graphics(gra);
                     calligraphy = new CalligraphyPen(color, CalliProp.Thickness);
-                    calligraphy.MouseMove(gra, old, cur, color);
+                    calligraphy.MouseMove( old, cur, color);
                     break;
             }
         }
@@ -170,14 +170,14 @@ namespace PaintUI
             
         }
 
-        public void ProcessMouseMove(Point cur, Point old, Graphics gra)
+        public void ProcessMouseMove(Point cur, Point old)
         {
             if (!pickerActive)
             {
                 if (selBrush.getBrush() == 4)
                     sprayer.getLocation(cur);
                 if (selBrush.getBrush() == 5)
-                    calligraphy.MouseMove(gra, old, cur, color);
+                    calligraphy.MouseMove( old, cur, color);
 
                 if (selBrush.getBrush()==0 || selBrush.getBrush()==1)
                     _pts.Add(cur);

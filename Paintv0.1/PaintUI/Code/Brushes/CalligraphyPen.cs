@@ -25,7 +25,7 @@ namespace PaintUI.Code.Brushes
             calliSize = standarSize;
         }
 
-        public override void MouseMove(Graphics gra, Point old, Point cur, Color color)
+        public override void MouseMove(Point old, Point cur, Color color)
         {
             distance = Convert.ToInt32((cur.X - old.X) * (cur.X - old.X) + (cur.Y - old.Y) * (cur.Y - old.Y)) / 10;
 
@@ -39,8 +39,6 @@ namespace PaintUI.Code.Brushes
             pen = new Pen(color, (float)calliSize);
             pen.DashStyle = DashStyle.Solid;
             pen.SetLineCap(LineCap.Round, LineCap.Round, DashCap.Round);
-            gra.CompositingMode = CompositingMode.SourceOver;
-            gra.DrawLine(pen, old, cur);
         }
 
         public override void MouseUp()

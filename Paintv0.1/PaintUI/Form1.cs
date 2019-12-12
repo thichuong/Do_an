@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using Bunifu.Framework.UI;
 using System.IO;
@@ -35,14 +36,16 @@ namespace PaintUI
         bool SelectClicked, CropClicked, ZoomClicked,MoveClicked;
         bool Drawed;
         ListStackBitmap UNDO, REDO;
-
+        Thread thread;
+        static object syncObj = new object();
         Graphics graphics;
         #endregion
         public Form1()
         {
             InitializeComponent();
             HideAllPanel();
-            brushesPanel.Show();            
+            brushesPanel.Show();
+            Thread.CurrentThread.Priority = ThreadPriority.Highest;
             #region initiation
             {
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
@@ -704,7 +707,7 @@ namespace PaintUI
                 hei = cur.Y - old.Y;
                 if (curTool == Tools.BRUSH)
                 {
-                    brushesPanel.ProcessMouseMove(cur, old, gra);
+                    brushesPanel.ProcessMouseMove(cur, old);
                 }
                 //SketchBox.Refresh();
             }
@@ -722,6 +725,7 @@ namespace PaintUI
 
             isDown = false;
             isPanning = false;
+            thread.Join();
             if (!PanClicked)
             {
                 LayerDrawer();
@@ -795,25 +799,42 @@ namespace PaintUI
         {
             if (isDown)
             {
+                if (curTool == Tools.TEXT)
+                {
+                    LayerDrawer();
+                    textPanel.DrawText(SketchBox, temp, graphics, old, cur, new Size(wid, hei));
+                    SketchBoxVisionImage(temp);
+                    temp.Dispose();
+                }
+                else
+                {
+                    thread = new Thread(Threadpaint);
+                    thread.Priority = ThreadPriority.Lowest;
+                    thread.Start();
+                }
+
+            }
+        }
+        void Threadpaint()
+        {
+            lock (syncObj)
+            {
                 LayerDrawer();
                 switch (curTool)
                 {
                     case Tools.BRUSH:
                         brushesPanel.ProcessPaint(graphics, old, cur);
                         old = cur;
-                        SketchBoxVisionImage(temp);
+                        // SketchBoxVisionImage(temp);
                         break;
                     case Tools.SHAPE:
                         shapesPanel.DrawShapes(SketchBox, temp, graphics, old, cur, new Size(wid, hei));
-                        SketchBoxVisionImage(temp);
-                        break;
-                    case Tools.TEXT:
-                        textPanel.DrawText(SketchBox, temp, graphics, old, cur, new Size(wid, hei));
-                        SketchBoxVisionImage(temp);
+                        // SketchBoxVisionImage(temp);
                         break;
                     default:
                         break;
                 }
+                SketchBoxVisionImage(temp);
                 temp.Dispose();
             }
         }
@@ -893,8 +914,7 @@ namespace PaintUI
             if (canvasPanel.getCanvasTextWidth() > 100 && canvasPanel.getCanvasTextHeight() > 100)
             {
                 templistBM = tempBitmaps();
-                SketchBox.Width = canvasPanel.getCanvasTextWidth();
-                SketchBox.Height = canvasPanel.getCanvasTextHeight();
+                SketchBox.Size = new Size(canvasPanel.getCanvasTextWidth(), canvasPanel.getCanvasTextHeight());
                 tempBitmapsRisize();
                 temp.Dispose();
                 for (int i = 0; i < templistBM.Count(); i++)
