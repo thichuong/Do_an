@@ -45,7 +45,7 @@ namespace PaintUI
         private void Text_FontCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //size = Convert.ToInt32(Text_SizeComboBox.Text);
-            Text_FontCombobox.Font= new Font(fonts[Text_FontCombobox.SelectedIndex],12);
+            //Text_FontCombobox.Font= new Font(fonts[Text_FontCombobox.SelectedIndex],12);
             textFont = new Font(fonts[Text_FontCombobox.SelectedIndex], richTextBox1.Font.Size, FontStyle.Regular);
             richTextBox1.Font = textFont;
         }
@@ -72,7 +72,7 @@ namespace PaintUI
             }
             else e.Handled = true;
         }
-        public void DrawText(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
+        public void DrawText(Graphics g,Point cur, Size size)
         {
             
             g.DrawString(richTextBox1.Text, richTextBox1.Font, brush, cur.X, cur.Y);

@@ -441,7 +441,15 @@ namespace PaintUI
         //Xu li cac xu kien cua effectPanel
         public void Effect_change(Color color, Color colorpanelCavas)
         {
-            SketchBoxVisionImage(bm);
+            thread = new Thread(() =>
+            {
+                lock (syncObj)
+                {
+                    SketchBoxVisionImage(bm);
+                }
+            }
+             );
+            thread.Start();
             panelCavas.BackColor = colorpanelCavas;
         }
 
@@ -735,7 +743,7 @@ namespace PaintUI
                 }
                 if(curTool==Tools.TEXT)
                 {
-                    textPanel.DrawText(SketchBox, currentLayerBitmap, graphics, old, cur, new Size(wid, hei));
+                    textPanel.DrawText( graphics, cur, new Size(wid, hei));
                     Drawed = true;
                 }
             }
@@ -796,7 +804,7 @@ namespace PaintUI
                 if (curTool == Tools.TEXT)
                 {
                     LayerDrawer();
-                    textPanel.DrawText(SketchBox, temp, graphics, old, cur, new Size(wid, hei));
+                    textPanel.DrawText(graphics, cur, new Size(wid, hei));
                     SketchBoxVisionImage(temp);
                     temp.Dispose();
                 }
