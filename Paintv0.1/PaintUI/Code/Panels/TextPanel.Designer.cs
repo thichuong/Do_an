@@ -82,13 +82,14 @@
             this.bunifuCards1.Controls.Add(this.Text_Label2);
             this.bunifuCards1.Controls.Add(this.Text_Label3);
             this.bunifuCards1.Controls.Add(this.Text_Label1);
+            this.bunifuCards1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuCards1.LeftSahddow = false;
             this.bunifuCards1.Location = new System.Drawing.Point(0, 0);
             this.bunifuCards1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bunifuCards1.Name = "bunifuCards1";
             this.bunifuCards1.RightSahddow = true;
             this.bunifuCards1.ShadowDepth = 20;
-            this.bunifuCards1.Size = new System.Drawing.Size(390, 866);
+            this.bunifuCards1.Size = new System.Drawing.Size(347, 588);
             this.bunifuCards1.TabIndex = 0;
             this.bunifuCards1.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
@@ -96,10 +97,9 @@
             // 
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(20, 340);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.richTextBox1.Location = new System.Drawing.Point(36, 269);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(324, 199);
+            this.richTextBox1.Size = new System.Drawing.Size(301, 89);
             this.richTextBox1.TabIndex = 29;
             this.richTextBox1.Text = "";
             // 
@@ -108,10 +108,10 @@
             this.mainColor1.BackColor = System.Drawing.Color.Black;
             this.mainColor1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.mainColor1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mainColor1.Location = new System.Drawing.Point(138, 608);
+            this.mainColor1.Location = new System.Drawing.Point(127, 375);
             this.mainColor1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mainColor1.Name = "mainColor1";
-            this.mainColor1.Size = new System.Drawing.Size(86, 78);
+            this.mainColor1.Size = new System.Drawing.Size(77, 63);
             this.mainColor1.TabIndex = 28;
             this.mainColor1.TabStop = false;
             this.mainColor1.BackColorChanged += new System.EventHandler(this.mainColor1_BackColorChanged);
@@ -130,10 +130,10 @@
             this.colorBox.Controls.Add(this.pictureBox3);
             this.colorBox.Controls.Add(this.pictureBox7);
             this.colorBox.Controls.Add(this.pictureBox1);
-            this.colorBox.Location = new System.Drawing.Point(36, 691);
+            this.colorBox.Location = new System.Drawing.Point(36, 442);
             this.colorBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.colorBox.Name = "colorBox";
-            this.colorBox.Size = new System.Drawing.Size(308, 96);
+            this.colorBox.Size = new System.Drawing.Size(274, 77);
             this.colorBox.TabIndex = 27;
             this.colorBox.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
@@ -141,10 +141,10 @@
             // 
             this.pictureBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.pictureBox12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox12.Location = new System.Drawing.Point(0, 48);
+            this.pictureBox12.Location = new System.Drawing.Point(0, 38);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(51, 46);
+            this.pictureBox12.Size = new System.Drawing.Size(45, 37);
             this.pictureBox12.TabIndex = 23;
             this.pictureBox12.TabStop = false;
             this.pictureBox12.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -156,7 +156,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(0, 1);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(51, 46);
+            this.pictureBox2.Size = new System.Drawing.Size(45, 37);
             this.pictureBox2.TabIndex = 23;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -165,10 +165,10 @@
             // 
             this.pictureBox11.BackColor = System.Drawing.Color.Green;
             this.pictureBox11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox11.Location = new System.Drawing.Point(255, 48);
+            this.pictureBox11.Location = new System.Drawing.Point(227, 38);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(51, 46);
+            this.pictureBox11.Size = new System.Drawing.Size(45, 37);
             this.pictureBox11.TabIndex = 23;
             this.pictureBox11.TabStop = false;
             this.pictureBox11.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -177,10 +177,10 @@
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.Red;
             this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox6.Location = new System.Drawing.Point(255, 1);
+            this.pictureBox6.Location = new System.Drawing.Point(227, 1);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(51, 46);
+            this.pictureBox6.Size = new System.Drawing.Size(45, 37);
             this.pictureBox6.TabIndex = 23;
             this.pictureBox6.TabStop = false;
             this.pictureBox6.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -189,10 +189,10 @@
             // 
             this.pictureBox10.BackColor = System.Drawing.Color.Lime;
             this.pictureBox10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox10.Location = new System.Drawing.Point(204, 48);
+            this.pictureBox10.Location = new System.Drawing.Point(181, 38);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(51, 46);
+            this.pictureBox10.Size = new System.Drawing.Size(45, 37);
             this.pictureBox10.TabIndex = 23;
             this.pictureBox10.TabStop = false;
             this.pictureBox10.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -201,10 +201,10 @@
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Maroon;
             this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox5.Location = new System.Drawing.Point(204, 1);
+            this.pictureBox5.Location = new System.Drawing.Point(181, 1);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(51, 46);
+            this.pictureBox5.Size = new System.Drawing.Size(45, 37);
             this.pictureBox5.TabIndex = 23;
             this.pictureBox5.TabStop = false;
             this.pictureBox5.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -213,10 +213,10 @@
             // 
             this.pictureBox9.BackColor = System.Drawing.Color.Fuchsia;
             this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox9.Location = new System.Drawing.Point(153, 48);
+            this.pictureBox9.Location = new System.Drawing.Point(136, 38);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(51, 46);
+            this.pictureBox9.Size = new System.Drawing.Size(45, 37);
             this.pictureBox9.TabIndex = 23;
             this.pictureBox9.TabStop = false;
             this.pictureBox9.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -225,10 +225,10 @@
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Black;
             this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox4.Location = new System.Drawing.Point(153, 1);
+            this.pictureBox4.Location = new System.Drawing.Point(136, 1);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(51, 46);
+            this.pictureBox4.Size = new System.Drawing.Size(45, 37);
             this.pictureBox4.TabIndex = 23;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -237,10 +237,10 @@
             // 
             this.pictureBox8.BackColor = System.Drawing.Color.Aqua;
             this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox8.Location = new System.Drawing.Point(102, 46);
+            this.pictureBox8.Location = new System.Drawing.Point(91, 37);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(51, 48);
+            this.pictureBox8.Size = new System.Drawing.Size(45, 38);
             this.pictureBox8.TabIndex = 23;
             this.pictureBox8.TabStop = false;
             this.pictureBox8.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -249,10 +249,10 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.DarkGray;
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Location = new System.Drawing.Point(102, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(91, 0);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(51, 48);
+            this.pictureBox3.Size = new System.Drawing.Size(45, 38);
             this.pictureBox3.TabIndex = 23;
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -261,10 +261,10 @@
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.Yellow;
             this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox7.Location = new System.Drawing.Point(51, 48);
+            this.pictureBox7.Location = new System.Drawing.Point(45, 38);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(51, 46);
+            this.pictureBox7.Size = new System.Drawing.Size(45, 37);
             this.pictureBox7.TabIndex = 23;
             this.pictureBox7.TabStop = false;
             this.pictureBox7.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -273,10 +273,10 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.LightGray;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Location = new System.Drawing.Point(51, 1);
+            this.pictureBox1.Location = new System.Drawing.Point(45, 1);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(51, 46);
+            this.pictureBox1.Size = new System.Drawing.Size(45, 37);
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -302,14 +302,14 @@
             this.addColorButton.IconVisible = true;
             this.addColorButton.IconZoom = 90D;
             this.addColorButton.IsTab = false;
-            this.addColorButton.Location = new System.Drawing.Point(56, 806);
-            this.addColorButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.addColorButton.Location = new System.Drawing.Point(54, 534);
+            this.addColorButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addColorButton.Name = "addColorButton";
             this.addColorButton.Normalcolor = System.Drawing.Color.Gainsboro;
             this.addColorButton.OnHovercolor = System.Drawing.Color.Silver;
             this.addColorButton.OnHoverTextColor = System.Drawing.Color.Black;
             this.addColorButton.selected = false;
-            this.addColorButton.Size = new System.Drawing.Size(255, 62);
+            this.addColorButton.Size = new System.Drawing.Size(227, 50);
             this.addColorButton.TabIndex = 26;
             this.addColorButton.Text = "+ Add Color";
             this.addColorButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -319,26 +319,22 @@
             // 
             // Text_SizeComboBox
             // 
-            this.Text_SizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Text_SizeComboBox.Font = new System.Drawing.Font("Segoe Print", 12F);
             this.Text_SizeComboBox.FormattingEnabled = true;
-            this.Text_SizeComboBox.Location = new System.Drawing.Point(40, 242);
-            this.Text_SizeComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Text_SizeComboBox.Location = new System.Drawing.Point(36, 194);
             this.Text_SizeComboBox.Name = "Text_SizeComboBox";
-            this.Text_SizeComboBox.Size = new System.Drawing.Size(258, 50);
+            this.Text_SizeComboBox.Size = new System.Drawing.Size(230, 43);
             this.Text_SizeComboBox.TabIndex = 15;
             this.Text_SizeComboBox.SelectedIndexChanged += new System.EventHandler(this.Text_SizeComboBox_SelectedIndexChanged);
             this.Text_SizeComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Text_SizeComboBox_KeyPress);
             // 
             // Text_FontCombobox
             // 
-            this.Text_FontCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Text_FontCombobox.Font = new System.Drawing.Font("Segoe Print", 12F);
             this.Text_FontCombobox.FormattingEnabled = true;
-            this.Text_FontCombobox.Location = new System.Drawing.Point(40, 132);
-            this.Text_FontCombobox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Text_FontCombobox.Location = new System.Drawing.Point(36, 106);
             this.Text_FontCombobox.Name = "Text_FontCombobox";
-            this.Text_FontCombobox.Size = new System.Drawing.Size(258, 50);
+            this.Text_FontCombobox.Size = new System.Drawing.Size(230, 43);
             this.Text_FontCombobox.TabIndex = 14;
             this.Text_FontCombobox.SelectedIndexChanged += new System.EventHandler(this.Text_FontCombobox_SelectedIndexChanged);
             this.Text_FontCombobox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Text_FontCombobox_KeyPress);
@@ -348,9 +344,9 @@
             this.Text_Label2.AutoSize = true;
             this.Text_Label2.BackColor = System.Drawing.Color.Transparent;
             this.Text_Label2.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Text_Label2.Location = new System.Drawing.Point(32, 186);
+            this.Text_Label2.Location = new System.Drawing.Point(28, 149);
             this.Text_Label2.Name = "Text_Label2";
-            this.Text_Label2.Size = new System.Drawing.Size(82, 52);
+            this.Text_Label2.Size = new System.Drawing.Size(68, 43);
             this.Text_Label2.TabIndex = 13;
             this.Text_Label2.Text = "Size";
             // 
@@ -359,9 +355,9 @@
             this.Text_Label3.AutoSize = true;
             this.Text_Label3.BackColor = System.Drawing.Color.Transparent;
             this.Text_Label3.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Text_Label3.Location = new System.Drawing.Point(100, 30);
+            this.Text_Label3.Location = new System.Drawing.Point(89, 24);
             this.Text_Label3.Name = "Text_Label3";
-            this.Text_Label3.Size = new System.Drawing.Size(101, 52);
+            this.Text_Label3.Size = new System.Drawing.Size(84, 43);
             this.Text_Label3.TabIndex = 10;
             this.Text_Label3.Text = "Text ";
             // 
@@ -370,21 +366,21 @@
             this.Text_Label1.AutoSize = true;
             this.Text_Label1.BackColor = System.Drawing.Color.Transparent;
             this.Text_Label1.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Text_Label1.Location = new System.Drawing.Point(30, 76);
+            this.Text_Label1.Location = new System.Drawing.Point(27, 61);
             this.Text_Label1.Name = "Text_Label1";
-            this.Text_Label1.Size = new System.Drawing.Size(92, 52);
+            this.Text_Label1.Size = new System.Drawing.Size(77, 43);
             this.Text_Label1.TabIndex = 11;
             this.Text_Label1.Text = "Font";
             // 
             // TextPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.Controls.Add(this.bunifuCards1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "TextPanel";
-            this.Size = new System.Drawing.Size(390, 735);
+            this.Size = new System.Drawing.Size(347, 588);
             this.bunifuCards1.ResumeLayout(false);
             this.bunifuCards1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainColor1)).EndInit();

@@ -8,7 +8,6 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Threading;
 using System.Windows.Forms;
 using Bunifu.Framework.UI;
 using System.IO;
@@ -36,17 +35,14 @@ namespace PaintUI
         bool SelectClicked, CropClicked, ZoomClicked,MoveClicked;
         bool Drawed;
         ListStackBitmap UNDO, REDO;
-        Thread thread;
-        static object syncObj = new object();
+
         Graphics graphics;
         #endregion
         public Form1()
         {
             InitializeComponent();
             HideAllPanel();
-            brushesPanel.Show();
-            Thread.CurrentThread.Priority = ThreadPriority.Highest;
-            
+            brushesPanel.Show();            
             #region initiation
             {
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
@@ -283,6 +279,10 @@ namespace PaintUI
         #endregion
 
         #region ButtonClicks
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
         private void DisableButtons()
         {
             DisableButtonFuncs();
@@ -312,8 +312,7 @@ namespace PaintUI
             SelectButton.Normalcolor = Color.Transparent;
             CropButton.Normalcolor = Color.Transparent;
             PanButton.Normalcolor = Color.Transparent;
-            ZoomButton.Normalcolor = Color.Transparent;
-            MoveButton.Normalcolor = Color.Transparent;
+            ZoomButton.Normalcolor = Color.Transparent;          
         }
         private void BackColorReset()
         {
@@ -500,8 +499,7 @@ namespace PaintUI
 
         private void CanvasButton_Click(object sender, EventArgs e)
         {
-            DisableButtons();
-            
+            DisableButtons();            
             if (!canvasPanel.Visible)
             {
                 BackColorReset();
@@ -591,23 +589,6 @@ namespace PaintUI
                 CropClicked = false;
             }
         }
-
-        private void MoveButton_Click(object sender, EventArgs e)
-        {
-            if (!MoveClicked)
-            {
-                DisableButtonFuncs();
-                NormalColorReset();
-                MoveButton.Normalcolor = Color.LightGray;
-                MoveClicked = true;
-            }
-            else
-            {
-                DisableButtons();
-                MoveClicked = false;
-            }
-        }
-
         private void LayerButton_Click(object sender, EventArgs e)
         {
             if (!layerPanel.Visible)
@@ -628,6 +609,7 @@ namespace PaintUI
             }
         }
         #endregion
+
 
         #region Undo and Redo
         private void UndoButton_Click(object sender, EventArgs e)
@@ -677,6 +659,12 @@ namespace PaintUI
         #endregion
 
         #region SketchBoxActions
+        private bool NotThingElseIsClicked()
+        {
+            if (!SelectClicked && !CropClicked && !ZoomClicked &&!canvasPanel.Visible)
+                return true;
+            else return false;
+        }
         private void SketchBox_MouseWheel(object sender, MouseEventArgs e)
         {
             if (ZoomClicked)
@@ -708,7 +696,7 @@ namespace PaintUI
                 hei = cur.Y - old.Y;
                 if (curTool == Tools.BRUSH)
                 {
-                    brushesPanel.ProcessMouseMove(cur, old);
+                    brushesPanel.ProcessMouseMove(cur, old, gra);
                 }
                 //SketchBox.Refresh();
             }
@@ -726,8 +714,6 @@ namespace PaintUI
 
             isDown = false;
             isPanning = false;
-            if(curTool!= Tools.TEXT)
-                 thread.Join();
             if (!PanClicked)
             {
                 LayerDrawer();
@@ -771,10 +757,10 @@ namespace PaintUI
                 Drawed = false;
             }
             temp.Dispose();
-
         }
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)
         {
+           if (NotThingElseIsClicked())
             if (e.Button == MouseButtons.Left)
             {
                 if (!isDown)
@@ -793,7 +779,6 @@ namespace PaintUI
                 if (PanClicked) isPanning = true;
                 else isDown = true;
                 isChanged = true;
-
             }
         }
 
@@ -801,42 +786,25 @@ namespace PaintUI
         {
             if (isDown)
             {
-                if (curTool == Tools.TEXT)
-                {
-                    LayerDrawer();
-                    textPanel.DrawText(SketchBox, temp, graphics, old, cur, new Size(wid, hei));
-                    SketchBoxVisionImage(temp);
-                    temp.Dispose();
-                }
-                else
-                {
-                    thread = new Thread(Threadpaint);
-                    thread.Priority = ThreadPriority.Lowest;
-                    thread.Start();
-                }
-
-            }
-        }
-        void Threadpaint()
-        {
-            lock (syncObj)
-            {
                 LayerDrawer();
                 switch (curTool)
                 {
                     case Tools.BRUSH:
                         brushesPanel.ProcessPaint(graphics, old, cur);
                         old = cur;
-                        // SketchBoxVisionImage(temp);
+                        SketchBoxVisionImage(temp);
                         break;
                     case Tools.SHAPE:
                         shapesPanel.DrawShapes(SketchBox, temp, graphics, old, cur, new Size(wid, hei));
-                        // SketchBoxVisionImage(temp);
+                        SketchBoxVisionImage(temp);
+                        break;
+                    case Tools.TEXT:
+                        textPanel.DrawText(SketchBox, temp, graphics, old, cur, new Size(wid, hei));
+                        SketchBoxVisionImage(temp);
                         break;
                     default:
                         break;
                 }
-                SketchBoxVisionImage(temp);
                 temp.Dispose();
             }
         }
@@ -916,7 +884,8 @@ namespace PaintUI
             if (canvasPanel.getCanvasTextWidth() > 100 && canvasPanel.getCanvasTextHeight() > 100)
             {
                 templistBM = tempBitmaps();
-                SketchBox.Size = new Size(canvasPanel.getCanvasTextWidth(), canvasPanel.getCanvasTextHeight());
+                SketchBox.Width = canvasPanel.getCanvasTextWidth();
+                SketchBox.Height = canvasPanel.getCanvasTextHeight();
                 tempBitmapsRisize();
                 temp.Dispose();
                 for (int i = 0; i < templistBM.Count(); i++)
@@ -1244,6 +1213,8 @@ namespace PaintUI
                 isRightPanelDragged = false;
             }
         }
+
+       
 
         private void RightPanel_MouseMove(object sender, MouseEventArgs e)
         {

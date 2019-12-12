@@ -48,6 +48,7 @@
             this.bunifuCards1.BorderRadius = 5;
             this.bunifuCards1.BottomSahddow = true;
             this.bunifuCards1.color = System.Drawing.Color.Transparent;
+            this.bunifuCards1.Controls.Add(this.colorPanel);
             this.bunifuCards1.Controls.Add(this.CalliProp);
             this.bunifuCards1.Controls.Add(this.FillProp);
             this.bunifuCards1.Controls.Add(this.SprProp);
@@ -55,7 +56,6 @@
             this.bunifuCards1.Controls.Add(this.PelProp);
             this.bunifuCards1.Controls.Add(this.MarProp);
             this.bunifuCards1.Controls.Add(this.curBrushBtn);
-            this.bunifuCards1.Controls.Add(this.colorPanel);
             this.bunifuCards1.Controls.Add(this.Brushes_Label1);
             this.bunifuCards1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuCards1.LeftSahddow = false;
@@ -165,12 +165,12 @@
             // 
             // colorPanel
             // 
+            this.colorPanel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.colorPanel.BackColor = System.Drawing.Color.Transparent;
-            this.colorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.colorPanel.Location = new System.Drawing.Point(0, 319);
+            this.colorPanel.Location = new System.Drawing.Point(0, 272);
             this.colorPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.colorPanel.Name = "colorPanel";
-            this.colorPanel.Size = new System.Drawing.Size(300, 278);
+            this.colorPanel.Size = new System.Drawing.Size(300, 322);
             this.colorPanel.TabIndex = 26;
             // 
             // Brushes_Label1

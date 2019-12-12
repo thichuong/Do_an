@@ -179,10 +179,10 @@
             // 
             this.colorPanel.BackColor = System.Drawing.Color.Transparent;
             this.colorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.colorPanel.Location = new System.Drawing.Point(0, 320);
+            this.colorPanel.Location = new System.Drawing.Point(0, 308);
             this.colorPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.colorPanel.Name = "colorPanel";
-            this.colorPanel.Size = new System.Drawing.Size(300, 277);
+            this.colorPanel.Size = new System.Drawing.Size(300, 289);
             this.colorPanel.TabIndex = 1;
             // 
             // ShapesPanel
