@@ -39,9 +39,9 @@ namespace PaintUI.Code.Brushes
             if (distance > 0)
             {
                 if (distance < 15 && calliSize <= standarSize)
-                    calliSize += standarSize / 5;
+                    calliSize += standarSize / 20;
                 else if (distance >= 5 && calliSize > standarSize / 10)
-                    calliSize -= standarSize / 5;
+                    calliSize -= standarSize / 20;
             }
             pen = new Pen(color, (float)calliSize);
             pen.DashStyle = DashStyle.Solid;

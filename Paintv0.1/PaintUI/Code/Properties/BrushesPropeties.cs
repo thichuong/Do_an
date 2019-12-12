@@ -15,14 +15,16 @@ namespace PaintUI
         public BrushesPropeties()
         {
             InitializeComponent();
-            ThicknessSlide.Value = 5;
+            if (Name == "PelProp")
+                ThicknessSlide.MaximumValue = 5;
+            else ThicknessSlide.MaximumValue = 30;
+            ThicknessSlide.Value = 10;
             OpacitySlide.Value = 255;
-            ThicknessSlide.MaximumValue = 30;
         }
         
         public int Thickness
         {
-            get { return ThicknessSlide.Value; }
+            get { return Name=="PelProp"?ThicknessSlide.Value/10 + 1:ThicknessSlide.Value+15; }
             set { ThicknessSlide.Value = value; }
         }
 
