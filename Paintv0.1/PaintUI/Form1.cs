@@ -34,6 +34,7 @@ namespace PaintUI
         List<Bitmap> templistBM = new List<Bitmap>();
         bool isDown, isDragged, isSaved, isChanged, PanClicked, isPanning;
         bool SelectClicked, CropClicked, ZoomClicked,MoveClicked;
+        bool multilayer;
         bool Drawed;
         ListStackBitmap UNDO, REDO;
         Thread thread;
@@ -98,6 +99,7 @@ namespace PaintUI
                 layerPanel.LayerRemoved += LayerPanel_LayerRemoved;
             }
             DisableButtonFuncs();
+            multilayer = true;
             currentLayerBitmap = bm;
             SketchBox.MouseWheel += SketchBox_MouseWheel;
             #endregion
@@ -358,6 +360,11 @@ namespace PaintUI
                 DisableButtons();
                 SelectClicked = false;
             }
+            if (multilayer)
+                multilayer = false;
+            else
+                multilayer = true;
+            SketchBoxVisionImage(currentLayerBitmap);
         }
         private void PanButton_Click(object sender, EventArgs e)
         {
@@ -847,15 +854,20 @@ namespace PaintUI
             vGra.Clear(effectsPanel.color);
             visionBM = new Bitmap(SketchBox.Width, SketchBox.Height);
             vGra = Graphics.FromImage(visionBM);
-            if (bm != currentLayerBitmap)
-                vGra.DrawImage(bm, 0, 0, SketchBox.Width, SketchBox.Height);
-            else
-                vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
-            for (int i = 0; i < LayerList.Count; i++)
-                if (LayerList[i] != currentLayerBitmap)
-                    vGra.DrawImage(LayerList[i], 0, 0, SketchBox.Width, SketchBox.Height);
+            if(multilayer)
+            {
+                if (bm != currentLayerBitmap)
+                    vGra.DrawImage(bm, 0, 0, SketchBox.Width, SketchBox.Height);
                 else
                     vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
+                for (int i = 0; i < LayerList.Count; i++)
+                    if (LayerList[i] != currentLayerBitmap)
+                        vGra.DrawImage(LayerList[i], 0, 0, SketchBox.Width, SketchBox.Height);
+                    else
+                        vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
+            }
+            else
+                vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
             vGra.DrawImage(effectBM, 0, 0, SketchBox.Width, SketchBox.Height);
             SketchBox.BackgroundImage = (Bitmap)visionBM.Clone();
         }
