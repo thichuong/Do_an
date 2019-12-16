@@ -115,6 +115,7 @@ namespace PaintUI
             LayerList[layerPanel.removedLayerIndex] = bm;
             currentLayerBitmap = bm;
             Console.WriteLine("Currently on bm");
+            SketchBoxVisionImage(currentLayerBitmap);
         }
 
         private void LayerPanel_BaseLayerClicked(object sender, EventArgs e)
@@ -680,7 +681,7 @@ namespace PaintUI
         #region SketchBoxActions
         private bool NothingElseIsClicked()
         {
-            if (!SelectClicked && !CropClicked && !ZoomClicked && !canvasPanel.Visible)
+            if (!CropClicked && !ZoomClicked && !canvasPanel.Visible)
                 return true;
             else return false;
         }
@@ -733,7 +734,7 @@ namespace PaintUI
 
             isDown = false;
             isPanning = false;
-            if(curTool!= Tools.TEXT)
+            if(thread!=null)
                  thread.Join();
             if (!PanClicked)
             {
@@ -818,7 +819,6 @@ namespace PaintUI
                 else
                 {
                     thread = new Thread(Threadpaint);
-                    thread.Priority = ThreadPriority.Lowest;
                     thread.Start();
                 }
 
