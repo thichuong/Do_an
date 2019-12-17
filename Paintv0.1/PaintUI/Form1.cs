@@ -734,7 +734,8 @@ namespace PaintUI
 
             isDown = false;
             isPanning = false;
-            if(thread!=null)
+            Drawed = false;
+            if (thread!=null)
                  thread.Join();
             if (!PanClicked)
             {
@@ -777,8 +778,8 @@ namespace PaintUI
                     REDO.Pop(curLayer);
                 }
                 Drawed = false;
+                temp.Dispose();
             }
-            temp.Dispose();
 
         }
         private void SketchBox_MouseDown(object sender, MouseEventArgs e)

@@ -98,9 +98,9 @@ namespace PaintUI
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
         {
             color = Color.FromArgb(MarProp.Opacity, colorPanel.getColor1());
-
-            switch (selBrush.getBrush())
-            {
+            if (!pickerActive)
+                switch (selBrush.getBrush())
+                {
                 case 0: //marker
                     ModifyComponents.Graphics(gra);
                     marker = new Marker(color, MarProp.Thickness);
@@ -126,11 +126,9 @@ namespace PaintUI
                     points = _pts.ToArray();
                     break;
                 case 4:
-                    if (!pickerActive)
-                    {
+                  
                         sprayer = new Sprayer();
                         sprayer.StartSpraying(gra, SprProp.Thickness, cur, color);
-                    }
                     break;
                 case 5:
                     ModifyComponents.Graphics(gra);
@@ -138,7 +136,7 @@ namespace PaintUI
                     calligraphy.MouseDown(ref gra, cur, ref _pts);
                     points = _pts.ToArray();
                     break;
-            }
+                }
         }
 
 
