@@ -192,18 +192,21 @@ namespace PaintUI
         public void DrawShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
             if (!pickerActive)
+            {
                 if (fill)
                 {
-                brush = new SolidBrush(colorPanel.getColor2());
+                    brush = new SolidBrush(colorPanel.getColor2());
 
-                FillShapes(p, bm, g, old, cur, size);
+                    FillShapes(p, bm, g, old, cur, size);
                 }
-                if(outline)
+                if (outline)
                 {
-                pen = new Pen(colorPanel.getColor1(), thicknessSlide.Value);
-                
-                DrawOutline(p, bm, g, old, cur, size);
+                    pen = new Pen(colorPanel.getColor1(), thicknessSlide.Value);
+
+                    DrawOutline(p, bm, g, old, cur, size);
                 }
+            }
+               
         }
         
         private void Shapes_FillCheckBox_OnChange(object sender, EventArgs e)
