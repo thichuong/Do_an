@@ -174,7 +174,8 @@ namespace PaintUI
                     break;
             }
         }
-        public bool ProcessMouseUp()
+      
+        public bool ProcessMouseUp(Bitmap bm, Point cur)
         {
             if (!pickerActive)
             {
@@ -182,24 +183,27 @@ namespace PaintUI
             }
             else
             {
+                colorPanel.getPixelColor(bm, cur);
+                pickerActive = false;
                 return false;
             }
 
         }
         public void DrawShapes(PictureBox p, Bitmap bm, Graphics g, Point old, Point cur, Size size)
         {
-            if(fill)
-            {
+            if (!pickerActive)
+                if (fill)
+                {
                 brush = new SolidBrush(colorPanel.getColor2());
 
                 FillShapes(p, bm, g, old, cur, size);
-            }
-            if(outline)
-            {
+                }
+                if(outline)
+                {
                 pen = new Pen(colorPanel.getColor1(), thicknessSlide.Value);
                 
                 DrawOutline(p, bm, g, old, cur, size);
-            }
+                }
         }
         
         private void Shapes_FillCheckBox_OnChange(object sender, EventArgs e)

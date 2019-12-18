@@ -743,7 +743,7 @@ namespace PaintUI
                 if (curTool == Tools.SHAPE)
                 {
                     shapesPanel.DrawShapes(SketchBox, currentLayerBitmap, graphics, old, cur, new Size(wid, hei));
-                    Drawed=shapesPanel.ProcessMouseUp();
+                    Drawed=shapesPanel.ProcessMouseUp(currentLayerBitmap, cur);
                 }
                 if (curTool == Tools.BRUSH)
                 {
@@ -796,6 +796,7 @@ namespace PaintUI
                     {
                         brushesPanel.ProcessMouseDown(currentLayerBitmap, gra, old, cur);
                     }
+                   
                     gra.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                     gra.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                     SketchBoxVisionImage(currentLayerBitmap);
