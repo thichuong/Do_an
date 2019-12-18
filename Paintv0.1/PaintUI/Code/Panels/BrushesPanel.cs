@@ -97,12 +97,12 @@ namespace PaintUI
 
         public void ProcessMouseDown(Bitmap bm, Graphics gra, Point old, Point cur)
         {
-            color = Color.FromArgb(MarProp.Opacity, colorPanel.getColor1());
             if (!pickerActive)
                 switch (selBrush.getBrush())
                 {
                 case 0: //marker
                     ModifyComponents.Graphics(gra);
+                    color = Color.FromArgb(MarProp.Opacity, colorPanel.getColor1());
                     marker = new Marker(color, MarProp.Thickness);
                     marker.MouseDown(ref gra, cur, ref _pts);
                     points = _pts.ToArray();
@@ -114,24 +114,25 @@ namespace PaintUI
                     points = _pts.ToArray();
                     break;
                 case 2: //fill
-                   
                     Color pointColor = Color.FromArgb(255, bm.GetPixel(old.X, old.Y));
                     color = Color.FromArgb(FillProp.Opacity, colorPanel.getColor2());
                     FillBucket.Fill(bm, old, pointColor, color);
                     break;
                 case 3:
                     ModifyComponents.Graphics(gra);
+                    color = Color.FromArgb(PelProp.Opacity, colorPanel.getColor1());
                     pencil = new Pencil(color, PelProp.Thickness);
                     pencil.MouseDown(ref gra, cur, ref _pts);
                     points = _pts.ToArray();
                     break;
                 case 4:
-                  
-                        sprayer = new Sprayer();
-                        sprayer.StartSpraying(gra, SprProp.Thickness, cur, color);
+                    color = Color.FromArgb(SprProp.Opacity, colorPanel.getColor1());
+                    sprayer = new Sprayer();
+                    sprayer.StartSpraying(gra, SprProp.Thickness, cur, color);
                     break;
                 case 5:
                     ModifyComponents.Graphics(gra);
+                    color = Color.FromArgb(CalliProp.Opacity, colorPanel.getColor1());
                     calligraphy = new CalligraphyPen(color, CalliProp.Thickness);
                     calligraphy.MouseDown(ref gra, cur, ref _pts);
                     points = _pts.ToArray();
@@ -200,31 +201,28 @@ namespace PaintUI
             if (!pickerActive)
             {
                 GraphicsPath gPath = new GraphicsPath();
-                switch (selBrush.getBrush())
+
+                if (points != null)
                 {
-                    case 0: //marker
-                        if (points != null)
+                    switch (selBrush.getBrush())
+                    {
+                        case 0: //marker
                             marker.Paint(gra, cur, gPath, points);
-                        break;
-                    case 1: //eraser
-                        if (points != null)
-                        {
+                            break;
+                        case 1: //eraser
                             gra.CompositingMode = CompositingMode.SourceCopy;
                             eraser.Paint(gra, cur, gPath, points);
-                        }
-                            
-                        break;
-                    case 3:
-                        if (points != null)
+                            break;
+                        case 3:
                             pencil.Paint(gra, cur, gPath, points);
-                        break;
-                    case 5:
-                        if(points != null)
+                            break;
+                        case 5:
                             calligraphy.Paint(gra, cur, gPath, _pts);
-                        break;
-                    default:
-                        break;
-                }
+                            break;
+                        default:
+                            break;
+                    }
+                }   
             }
         }
         
