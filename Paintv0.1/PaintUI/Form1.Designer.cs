@@ -41,13 +41,20 @@
             this.RightPanel = new System.Windows.Forms.Panel();
             this.RightTopPanel_1 = new System.Windows.Forms.Panel();
             this.EditPanel = new System.Windows.Forms.Panel();
-            this.layerPanel = new PaintUI.LayerPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.LayerButton = new Bunifu.Framework.UI.BunifuFlatButton();
             this.menuPanel = new PaintUI.MenuPanel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.SelectButton = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.ZoomButton = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.label4 = new System.Windows.Forms.Label();
             this.PanButton = new Bunifu.Framework.UI.BunifuFlatButton();
             this.CropButton = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.ZoomButton = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.layerPanel = new PaintUI.LayerPanel();
             this.panelCavas = new PaintUI.DoubleBufferPanel();
             this.SketchBox = new PaintUI.Canvas();
             this.RightTopPanel = new PaintUI.DoubleBufferPanel();
@@ -61,6 +68,12 @@
             this.brushesPanel = new PaintUI.BrushesPanel();
             this.canvasPanel = new PaintUI.CanvasPanel();
             this.doubleBufferPanel1 = new PaintUI.DoubleBufferPanel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.EffectsButton = new Bunifu.Framework.UI.BunifuTileButton();
             this.titleLb = new System.Windows.Forms.Label();
             this.CanvasButton = new Bunifu.Framework.UI.BunifuTileButton();
@@ -224,13 +237,20 @@
             // EditPanel
             // 
             this.EditPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.EditPanel.Controls.Add(this.layerPanel);
+            this.EditPanel.Controls.Add(this.label1);
+            this.EditPanel.Controls.Add(this.label2);
+            this.EditPanel.Controls.Add(this.label3);
+            this.EditPanel.Controls.Add(this.label5);
             this.EditPanel.Controls.Add(this.LayerButton);
             this.EditPanel.Controls.Add(this.menuPanel);
+            this.EditPanel.Controls.Add(this.label13);
+            this.EditPanel.Controls.Add(this.label12);
             this.EditPanel.Controls.Add(this.SelectButton);
-            this.EditPanel.Controls.Add(this.ZoomButton);
+            this.EditPanel.Controls.Add(this.label4);
             this.EditPanel.Controls.Add(this.PanButton);
             this.EditPanel.Controls.Add(this.CropButton);
+            this.EditPanel.Controls.Add(this.ZoomButton);
+            this.EditPanel.Controls.Add(this.layerPanel);
             this.bunifuTransition1.SetDecoration(this.EditPanel, BunifuAnimatorNS.DecorationType.None);
             this.EditPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.EditPanel.Location = new System.Drawing.Point(3, 101);
@@ -238,16 +258,49 @@
             this.EditPanel.Size = new System.Drawing.Size(1424, 58);
             this.EditPanel.TabIndex = 42;
             // 
-            // layerPanel
+            // label1
             // 
-            this.layerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.layerPanel.BackColor = System.Drawing.Color.LightGray;
-            this.bunifuTransition1.SetDecoration(this.layerPanel, BunifuAnimatorNS.DecorationType.None);
-            this.layerPanel.Location = new System.Drawing.Point(859, 1);
-            this.layerPanel.Name = "layerPanel";
-            this.layerPanel.Size = new System.Drawing.Size(566, 58);
-            this.layerPanel.TabIndex = 31;
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.LightGray;
+            this.bunifuTransition1.SetDecoration(this.label1, BunifuAnimatorNS.DecorationType.None);
+            this.label1.Location = new System.Drawing.Point(61, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 17);
+            this.label1.TabIndex = 57;
+            this.label1.Text = "S";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.LightGray;
+            this.bunifuTransition1.SetDecoration(this.label2, BunifuAnimatorNS.DecorationType.None);
+            this.label2.Location = new System.Drawing.Point(242, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(17, 17);
+            this.label2.TabIndex = 58;
+            this.label2.Text = "C";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.LightGray;
+            this.bunifuTransition1.SetDecoration(this.label3, BunifuAnimatorNS.DecorationType.None);
+            this.label3.Location = new System.Drawing.Point(411, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(18, 17);
+            this.label3.TabIndex = 59;
+            this.label3.Text = "H";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.LightGray;
+            this.bunifuTransition1.SetDecoration(this.label5, BunifuAnimatorNS.DecorationType.None);
+            this.label5.Location = new System.Drawing.Point(749, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(16, 17);
+            this.label5.TabIndex = 61;
+            this.label5.Text = "L";
             // 
             // LayerButton
             // 
@@ -292,11 +345,35 @@
             this.menuPanel.BackColor = System.Drawing.Color.White;
             this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bunifuTransition1.SetDecoration(this.menuPanel, BunifuAnimatorNS.DecorationType.None);
-            this.menuPanel.Location = new System.Drawing.Point(38, 0);
+            this.menuPanel.Location = new System.Drawing.Point(34, 0);
             this.menuPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.menuPanel.Name = "menuPanel";
-            this.menuPanel.Size = new System.Drawing.Size(198, 151);
+            this.menuPanel.Size = new System.Drawing.Size(202, 142);
             this.menuPanel.TabIndex = 43;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Silver;
+            this.bunifuTransition1.SetDecoration(this.label13, BunifuAnimatorNS.DecorationType.None);
+            this.label13.Location = new System.Drawing.Point(1273, 1);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(46, 17);
+            this.label13.TabIndex = 69;
+            this.label13.Text = "Ctrl+Y";
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Silver;
+            this.bunifuTransition1.SetDecoration(this.label12, BunifuAnimatorNS.DecorationType.None);
+            this.label12.Location = new System.Drawing.Point(1186, 1);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(54, 17);
+            this.label12.TabIndex = 68;
+            this.label12.Text = "Ctrl + Z";
             // 
             // SelectButton
             // 
@@ -336,43 +413,16 @@
             this.toolTip1.SetToolTip(this.SelectButton, "Select");
             this.SelectButton.Click += new System.EventHandler(this.SelectButton_Click);
             // 
-            // ZoomButton
+            // label4
             // 
-            this.ZoomButton.Activecolor = System.Drawing.Color.LightGray;
-            this.ZoomButton.BackColor = System.Drawing.Color.Transparent;
-            this.ZoomButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ZoomButton.BorderRadius = 0;
-            this.ZoomButton.ButtonText = "Zoom";
-            this.ZoomButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTransition1.SetDecoration(this.ZoomButton, BunifuAnimatorNS.DecorationType.None);
-            this.ZoomButton.DisabledColor = System.Drawing.Color.Gray;
-            this.ZoomButton.Iconcolor = System.Drawing.Color.Transparent;
-            this.ZoomButton.Iconimage = ((System.Drawing.Image)(resources.GetObject("ZoomButton.Iconimage")));
-            this.ZoomButton.Iconimage_right = null;
-            this.ZoomButton.Iconimage_right_Selected = null;
-            this.ZoomButton.Iconimage_Selected = null;
-            this.ZoomButton.IconMarginLeft = 0;
-            this.ZoomButton.IconMarginRight = 0;
-            this.ZoomButton.IconRightVisible = true;
-            this.ZoomButton.IconRightZoom = 0D;
-            this.ZoomButton.IconVisible = true;
-            this.ZoomButton.IconZoom = 55D;
-            this.ZoomButton.IsTab = false;
-            this.ZoomButton.Location = new System.Drawing.Point(510, 0);
-            this.ZoomButton.Margin = new System.Windows.Forms.Padding(6);
-            this.ZoomButton.Name = "ZoomButton";
-            this.ZoomButton.Normalcolor = System.Drawing.Color.Transparent;
-            this.ZoomButton.OnHovercolor = System.Drawing.Color.Gainsboro;
-            this.ZoomButton.OnHoverTextColor = System.Drawing.Color.Black;
-            this.ZoomButton.selected = false;
-            this.ZoomButton.Size = new System.Drawing.Size(170, 60);
-            this.ZoomButton.TabIndex = 4;
-            this.ZoomButton.Text = "Zoom";
-            this.ZoomButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ZoomButton.Textcolor = System.Drawing.Color.Black;
-            this.ZoomButton.TextFont = new System.Drawing.Font("Segoe Print", 10.6F);
-            this.toolTip1.SetToolTip(this.ZoomButton, "Zoom");
-            this.ZoomButton.Click += new System.EventHandler(this.ZoomButton_Click);
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.LightGray;
+            this.bunifuTransition1.SetDecoration(this.label4, BunifuAnimatorNS.DecorationType.None);
+            this.label4.Location = new System.Drawing.Point(578, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(17, 17);
+            this.label4.TabIndex = 60;
+            this.label4.Text = "Z";
             // 
             // PanButton
             // 
@@ -449,6 +499,55 @@
             this.CropButton.TextFont = new System.Drawing.Font("Segoe Print", 10.6F);
             this.toolTip1.SetToolTip(this.CropButton, "Crop");
             this.CropButton.Click += new System.EventHandler(this.CropButton_Click);
+            // 
+            // ZoomButton
+            // 
+            this.ZoomButton.Activecolor = System.Drawing.Color.LightGray;
+            this.ZoomButton.BackColor = System.Drawing.Color.Transparent;
+            this.ZoomButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ZoomButton.BorderRadius = 0;
+            this.ZoomButton.ButtonText = "Zoom";
+            this.ZoomButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTransition1.SetDecoration(this.ZoomButton, BunifuAnimatorNS.DecorationType.None);
+            this.ZoomButton.DisabledColor = System.Drawing.Color.Gray;
+            this.ZoomButton.Iconcolor = System.Drawing.Color.Transparent;
+            this.ZoomButton.Iconimage = ((System.Drawing.Image)(resources.GetObject("ZoomButton.Iconimage")));
+            this.ZoomButton.Iconimage_right = null;
+            this.ZoomButton.Iconimage_right_Selected = null;
+            this.ZoomButton.Iconimage_Selected = null;
+            this.ZoomButton.IconMarginLeft = 0;
+            this.ZoomButton.IconMarginRight = 0;
+            this.ZoomButton.IconRightVisible = true;
+            this.ZoomButton.IconRightZoom = 0D;
+            this.ZoomButton.IconVisible = true;
+            this.ZoomButton.IconZoom = 55D;
+            this.ZoomButton.IsTab = false;
+            this.ZoomButton.Location = new System.Drawing.Point(510, 0);
+            this.ZoomButton.Margin = new System.Windows.Forms.Padding(6);
+            this.ZoomButton.Name = "ZoomButton";
+            this.ZoomButton.Normalcolor = System.Drawing.Color.Transparent;
+            this.ZoomButton.OnHovercolor = System.Drawing.Color.Gainsboro;
+            this.ZoomButton.OnHoverTextColor = System.Drawing.Color.Black;
+            this.ZoomButton.selected = false;
+            this.ZoomButton.Size = new System.Drawing.Size(170, 60);
+            this.ZoomButton.TabIndex = 4;
+            this.ZoomButton.Text = "Zoom";
+            this.ZoomButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ZoomButton.Textcolor = System.Drawing.Color.Black;
+            this.ZoomButton.TextFont = new System.Drawing.Font("Segoe Print", 10.6F);
+            this.toolTip1.SetToolTip(this.ZoomButton, "Zoom");
+            this.ZoomButton.Click += new System.EventHandler(this.ZoomButton_Click);
+            // 
+            // layerPanel
+            // 
+            this.layerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.layerPanel.BackColor = System.Drawing.Color.LightGray;
+            this.bunifuTransition1.SetDecoration(this.layerPanel, BunifuAnimatorNS.DecorationType.None);
+            this.layerPanel.Location = new System.Drawing.Point(859, 1);
+            this.layerPanel.Name = "layerPanel";
+            this.layerPanel.Size = new System.Drawing.Size(566, 58);
+            this.layerPanel.TabIndex = 31;
             // 
             // panelCavas
             // 
@@ -606,6 +705,12 @@
             // doubleBufferPanel1
             // 
             this.doubleBufferPanel1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.doubleBufferPanel1.Controls.Add(this.label11);
+            this.doubleBufferPanel1.Controls.Add(this.label6);
+            this.doubleBufferPanel1.Controls.Add(this.label8);
+            this.doubleBufferPanel1.Controls.Add(this.label7);
+            this.doubleBufferPanel1.Controls.Add(this.label10);
+            this.doubleBufferPanel1.Controls.Add(this.label9);
             this.doubleBufferPanel1.Controls.Add(this.EffectsButton);
             this.doubleBufferPanel1.Controls.Add(this.titleLb);
             this.doubleBufferPanel1.Controls.Add(this.CanvasButton);
@@ -625,6 +730,77 @@
             this.doubleBufferPanel1.Name = "doubleBufferPanel1";
             this.doubleBufferPanel1.Size = new System.Drawing.Size(1424, 98);
             this.doubleBufferPanel1.TabIndex = 29;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Silver;
+            this.bunifuTransition1.SetDecoration(this.label11, BunifuAnimatorNS.DecorationType.None);
+            this.label11.Location = new System.Drawing.Point(135, 79);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(19, 17);
+            this.label11.TabIndex = 67;
+            this.label11.Text = "M";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Silver;
+            this.bunifuTransition1.SetDecoration(this.label6, BunifuAnimatorNS.DecorationType.None);
+            this.label6.Location = new System.Drawing.Point(506, 79);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(16, 17);
+            this.label6.TabIndex = 62;
+            this.label6.Text = "1";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Silver;
+            this.bunifuTransition1.SetDecoration(this.label8, BunifuAnimatorNS.DecorationType.None);
+            this.label8.Location = new System.Drawing.Point(703, 80);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(16, 17);
+            this.label8.TabIndex = 64;
+            this.label8.Text = "3";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Silver;
+            this.bunifuTransition1.SetDecoration(this.label7, BunifuAnimatorNS.DecorationType.None);
+            this.label7.Location = new System.Drawing.Point(609, 79);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(16, 17);
+            this.label7.TabIndex = 63;
+            this.label7.Text = "2";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Silver;
+            this.bunifuTransition1.SetDecoration(this.label10, BunifuAnimatorNS.DecorationType.None);
+            this.label10.Location = new System.Drawing.Point(902, 80);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(16, 17);
+            this.label10.TabIndex = 66;
+            this.label10.Text = "5";
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Silver;
+            this.bunifuTransition1.SetDecoration(this.label9, BunifuAnimatorNS.DecorationType.None);
+            this.label9.Location = new System.Drawing.Point(801, 81);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(16, 17);
+            this.label9.TabIndex = 65;
+            this.label9.Text = "4";
             // 
             // EffectsButton
             // 
@@ -710,8 +886,8 @@
             // 
             this.BrushesButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BrushesButton.AutoSize = true;
-            this.BrushesButton.BackColor = System.Drawing.Color.Transparent;
-            this.BrushesButton.color = System.Drawing.Color.Transparent;
+            this.BrushesButton.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.BrushesButton.color = System.Drawing.Color.CornflowerBlue;
             this.BrushesButton.colorActive = System.Drawing.Color.CornflowerBlue;
             this.BrushesButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuTransition1.SetDecoration(this.BrushesButton, BunifuAnimatorNS.DecorationType.None);
@@ -903,11 +1079,16 @@
             this.Controls.Add(this.RightBottomPanel_1);
             this.bunifuTransition1.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(100, 100);
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Text = "Paint";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.EditPanel.ResumeLayout(false);
+            this.EditPanel.PerformLayout();
             this.panelCavas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SketchBox)).EndInit();
             this.doubleBufferPanel2.ResumeLayout(false);
@@ -965,6 +1146,19 @@
         private Bunifu.Framework.UI.BunifuTileButton TextButton;
         private Bunifu.Framework.UI.BunifuFlatButton LayerButton;
         private LayerPanel layerPanel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }
 

@@ -20,6 +20,9 @@ namespace PaintUI
     {
         #region Variables
         public static Form1 current;
+        List<Label> labels = new List<Label>();
+        public Size normalsize;
+        
         enum Tools { BRUSH, SHAPE, TEXT };
         Tools curTool;
         List<Bitmap> LayerList = new List<Bitmap>();
@@ -47,7 +50,6 @@ namespace PaintUI
             HideAllPanel();
             brushesPanel.Show();
             Thread.CurrentThread.Priority = ThreadPriority.Highest;
-            
             #region initiation
             {
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
@@ -79,7 +81,7 @@ namespace PaintUI
                 menuPanel.Parent = this;
                 panelCavas.Parent = this;
                 doubleBufferPanel1.Parent = this;
-                menuPanel.Location = new Point(0, 80);
+                menuPanel.Location = new Point(5, 82);
                 menuPanel.BringToFront();
                 titleLb.Font = ShapesButton.Font;
             }
@@ -102,10 +104,19 @@ namespace PaintUI
             multilayer = true;
             currentLayerBitmap = bm;
             SketchBox.MouseWheel += SketchBox_MouseWheel;
+            LabelSetup();
+            for (int i = 0; i < labels.Count; i++)
+                labels[i].Visible = false;
+            normalsize = SketchBox.Size;
             #endregion
         }
-
-       
+        void LabelSetup()
+        {
+            labels.Add(label1); labels.Add(label2); labels.Add(label3); labels.Add(label4);
+            labels.Add(label8); labels.Add(label7); labels.Add(label6); labels.Add(label5);
+            labels.Add(label9); labels.Add(label10); labels.Add(label11); labels.Add(label12);
+            labels.Add(label13);
+        }
         #region Layer Actions
         private void LayerPanel_LayerRemoved(object sender, EventArgs e)
         {
@@ -286,6 +297,49 @@ namespace PaintUI
         #endregion
 
         #region ButtonClicks
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            //keycodes for tools
+            {
+                if (!e.Control && !e.Shift)
+                    if (e.KeyCode == Keys.S) SelectButton_Click(sender, e);
+                    else if (e.KeyCode == Keys.C) CropButton_Click(sender, e);
+                    else if (e.KeyCode == Keys.H) PanButton_Click(sender, e);
+                    else if (e.KeyCode == Keys.Z) ZoomButton_Click(sender, e);
+                    else if (e.KeyCode == Keys.L) LayerButton_Click(sender, e);
+            }
+            //keycodes for panels
+            {
+                if (e.KeyCode == Keys.D1) TextButton_Click(sender, e);
+                else if (e.KeyCode == Keys.D2) ShapesButton_Click(sender, e);
+                else if (e.KeyCode == Keys.D3) CanvasButton_Click(sender, e);
+                else if (e.KeyCode == Keys.D4) BrushesButton_Click(sender, e);
+                else if (e.KeyCode == Keys.D5) EffectsButton_Click(sender, e);
+            }
+            //keycode for menu & it's buttons & extras
+            {
+                if (e.KeyCode == Keys.M) MenuButton_Click(sender, e);
+                if (e.Control)
+                    if (e.KeyCode == Keys.S && !e.Shift) MenuPanel_SaveButtonClick(sender, e);
+                    else if (e.KeyCode == Keys.N) MenuPanel_NewButtonClick(sender, e);
+                    else if (e.KeyCode == Keys.O) MenuPanel_OpenButtonClick(sender, e);
+                    else if (e.KeyCode == Keys.S && e.Shift)
+                        MenuPanel_SaveAsButtonClick(sender, e);
+                    else if (e.KeyCode == Keys.X) MenuPanel_ExitButtonClick(sender, e);
+                    else if (e.KeyCode == Keys.Z) UndoButton_Click(sender, e);
+                    else if (e.KeyCode == Keys.Y) RedoButton_Click(sender, e);
+            }
+            //    
+            if (e.Alt)
+                for (int i = 0; i < labels.Count; i++)
+                    labels[i].Visible = true;
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            for (int i = 0; i < labels.Count; i++)
+                labels[i].Visible = false;
+        }
         private void DisableButtons()
         {
             DisableButtonFuncs();
@@ -679,6 +733,14 @@ namespace PaintUI
         #endregion
 
         #region SketchBoxActions
+        public int NormalWidth()
+        {
+            return normalsize.Width;
+        }
+        public int SketchBoxWidth()
+        {
+            return SketchBox.Width;
+        }
         private bool NothingElseIsClicked()
         {
             if (!CropClicked && !ZoomClicked && !canvasPanel.Visible)
@@ -698,6 +760,7 @@ namespace PaintUI
                     SketchBox.Width = Convert.ToInt32(SketchBox.Width / 1.25);
                     SketchBox.Height = Convert.ToInt32(SketchBox.Height / 1.25);
                 }
+         
             SketchBoxVisionImage(currentLayerBitmap);
         }
         private void LayerDrawer()
@@ -1258,6 +1321,8 @@ namespace PaintUI
                 isRightPanelDragged = false;
             }
         }
+
+    
 
         private void RightPanel_MouseMove(object sender, MouseEventArgs e)
         {

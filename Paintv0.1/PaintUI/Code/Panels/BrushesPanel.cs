@@ -22,7 +22,7 @@ namespace PaintUI
         Eraser eraser;
         Pencil pencil;
         CalligraphyPen calligraphy;
-
+        
         static bool pickerActive;
 
         public BrushesPanel()
@@ -103,14 +103,14 @@ namespace PaintUI
                 case 0: //marker
                     ModifyComponents.Graphics(gra);
                     color = Color.FromArgb(MarProp.Opacity, colorPanel.getColor1());
-                    marker = new Marker(color, MarProp.Thickness);
-                    marker.MouseDown(ref gra, cur, ref _pts);
+                    marker = new Marker(color, MarProp.Thickness* Form1.current.SketchBoxWidth() / Form1.current.NormalWidth());
+                        marker.MouseDown(ref gra, cur, ref _pts);
                     points = _pts.ToArray();
                     break;
                 case 1: //eraser 
                     gra.CompositingMode = CompositingMode.SourceCopy;
-                    eraser = new Eraser(EraProp.Thickness);
-                    eraser.MouseDown(ref gra, cur, ref _pts);
+                    eraser = new Eraser(EraProp.Thickness * Form1.current.SketchBoxWidth() / Form1.current.NormalWidth());
+                        eraser.MouseDown(ref gra, cur, ref _pts);
                     points = _pts.ToArray();
                     break;
                 case 2: //fill
@@ -121,20 +121,20 @@ namespace PaintUI
                 case 3:
                     ModifyComponents.Graphics(gra);
                     color = Color.FromArgb(PelProp.Opacity, colorPanel.getColor1());
-                    pencil = new Pencil(color, PelProp.Thickness);
-                    pencil.MouseDown(ref gra, cur, ref _pts);
+                    pencil = new Pencil(color, PelProp.Thickness * Form1.current.SketchBoxWidth() / Form1.current.NormalWidth());
+                        pencil.MouseDown(ref gra, cur, ref _pts);
                     points = _pts.ToArray();
                     break;
                 case 4:
                     color = Color.FromArgb(SprProp.Opacity, colorPanel.getColor1());
                     sprayer = new Sprayer();
-                    sprayer.StartSpraying(gra, SprProp.Thickness, cur, color);
+                    sprayer.StartSpraying(gra, SprProp.Thickness * Form1.current.SketchBoxWidth() / Form1.current.NormalWidth(), cur, color);
                     break;
                 case 5:
                     ModifyComponents.Graphics(gra);
                     color = Color.FromArgb(CalliProp.Opacity, colorPanel.getColor1());
-                    calligraphy = new CalligraphyPen(color, CalliProp.Thickness);
-                    calligraphy.MouseDown(ref gra, cur, ref _pts);
+                    calligraphy = new CalligraphyPen(color, CalliProp.Thickness * Form1.current.SketchBoxWidth() / Form1.current.NormalWidth());
+                        calligraphy.MouseDown(ref gra, cur, ref _pts);
                     points = _pts.ToArray();
                     break;
                 }
