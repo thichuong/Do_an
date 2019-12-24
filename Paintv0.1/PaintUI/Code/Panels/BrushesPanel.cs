@@ -34,8 +34,8 @@ namespace PaintUI
             selBrush = new BrushesSelection();
             selBrush.Location = new Point(0, curBrushBtn.Location.Y + curBrushBtn.Size.Height + 10);
             selBrush.Size = new Size(Width + 20, 220);
-            selBrush.Hide();
             selBrush.BringToFront();
+            selBrush.Hide();
 
             Controls.Add(selBrush);
             MarProp.BringToFront();
@@ -98,8 +98,10 @@ namespace PaintUI
             if (selBrush.Visible)
                 selBrush.Hide();
             else
+            {
                 selBrush.Show();
-
+            }
+            selBrush.BringToFront();
         }
 
 

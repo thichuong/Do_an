@@ -110,6 +110,8 @@ namespace PaintUI
             normalsize = SketchBox.Size;
 
             BackColorReset();
+            BrushesButton.color = Color.CornflowerBlue;
+            BrushesButton.colorActive = Color.CornflowerBlue;
             #endregion
         }
         void LabelSetup()
