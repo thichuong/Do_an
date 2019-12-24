@@ -86,6 +86,7 @@
             this.curShapeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.curShapeBtn.BorderRadius = 0;
             this.curShapeBtn.ButtonText = "";
+            this.curShapeBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.curShapeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.curShapeBtn.DisabledColor = System.Drawing.Color.Gray;
             this.curShapeBtn.Iconcolor = System.Drawing.Color.Transparent;

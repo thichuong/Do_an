@@ -108,6 +108,8 @@ namespace PaintUI
             for (int i = 0; i < labels.Count; i++)
                 labels[i].Visible = false;
             normalsize = SketchBox.Size;
+
+            BackColorReset();
             #endregion
         }
         void LabelSetup()

@@ -38,6 +38,7 @@
             this.FillProp = new PaintUI.Code.Properties.FillProp();
             this.PelProp = new PaintUI.BrushesPropeties();
             this.SprProp = new PaintUI.BrushesPropeties();
+            this.MultiProp = new BrushesPropeties();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -73,8 +74,8 @@
             this.curBrushBtn.BackColor = System.Drawing.Color.Transparent;
             this.curBrushBtn.BackgroundImage = global::PaintUI.Properties.Resources.Artboard_1BaoKq;
             this.curBrushBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.curBrushBtn.BorderRadius = 0;
             this.curBrushBtn.ButtonText = "";
+            this.curBrushBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.curBrushBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.curBrushBtn.DisabledColor = System.Drawing.Color.Gray;
             this.curBrushBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -200,7 +201,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 120);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(223, 171);
+            this.panel2.Size = new System.Drawing.Size(223, 200);
             this.panel2.TabIndex = 35;
             // 
             // panel3
@@ -209,7 +210,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 291);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(223, 261);
+            this.panel3.Size = new System.Drawing.Size(223, 230);
             this.panel3.TabIndex = 36;
             // 
             // EraProp
@@ -222,6 +223,17 @@
             this.EraProp.Size = new System.Drawing.Size(223, 171);
             this.EraProp.TabIndex = 34;
             this.EraProp.Thickness = 25;
+            //
+            // MultiProp
+            //
+            this.MultiProp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MultiProp.Location = new System.Drawing.Point(0, 0);
+            this.MultiProp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MultiProp.Name = "MultiProp";
+            this.MultiProp.Opacity = 255;
+            this.MultiProp.Size = new System.Drawing.Size(223, 171);
+            this.MultiProp.TabIndex = 34;
+            this.MultiProp.Thickness = 25;
             // 
             // BrushesPanel
             // 
@@ -252,6 +264,7 @@
         private Code.Properties.FillProp FillProp;
         private BrushesPropeties PelProp;
         private BrushesPropeties SprProp;
+        private BrushesPropeties MultiProp;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;

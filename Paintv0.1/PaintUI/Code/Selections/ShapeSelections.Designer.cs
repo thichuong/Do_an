@@ -79,6 +79,7 @@
             this.dimdBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.dimdBtn.BorderRadius = 0;
             this.dimdBtn.ButtonText = "";
+            this.dimdBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dimdBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dimdBtn.DisabledColor = System.Drawing.Color.Gray;
             this.dimdBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -115,6 +116,7 @@
             this.shurBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.shurBtn.BorderRadius = 0;
             this.shurBtn.ButtonText = "";
+            this.shurBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.shurBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.shurBtn.DisabledColor = System.Drawing.Color.Gray;
             this.shurBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -151,6 +153,7 @@
             this.hrtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.hrtBtn.BorderRadius = 0;
             this.hrtBtn.ButtonText = "";
+            this.hrtBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.hrtBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.hrtBtn.DisabledColor = System.Drawing.Color.Gray;
             this.hrtBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -187,6 +190,7 @@
             this.hexBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.hexBtn.BorderRadius = 0;
             this.hexBtn.ButtonText = "";
+            this.hexBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.hexBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.hexBtn.DisabledColor = System.Drawing.Color.Gray;
             this.hexBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -223,6 +227,7 @@
             this.triBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.triBtn.BorderRadius = 0;
             this.triBtn.ButtonText = "";
+            this.triBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.triBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.triBtn.DisabledColor = System.Drawing.Color.Gray;
             this.triBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -259,6 +264,7 @@
             this.isoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.isoBtn.BorderRadius = 0;
             this.isoBtn.ButtonText = "";
+            this.isoBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.isoBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.isoBtn.DisabledColor = System.Drawing.Color.Gray;
             this.isoBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -295,6 +301,7 @@
             this.starBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.starBtn.BorderRadius = 0;
             this.starBtn.ButtonText = "";
+            this.starBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.starBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.starBtn.DisabledColor = System.Drawing.Color.Gray;
             this.starBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -331,6 +338,7 @@
             this.lgtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.lgtBtn.BorderRadius = 0;
             this.lgtBtn.ButtonText = "";
+            this.lgtBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lgtBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lgtBtn.DisabledColor = System.Drawing.Color.Gray;
             this.lgtBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -367,6 +375,7 @@
             this.arwBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.arwBtn.BorderRadius = 0;
             this.arwBtn.ButtonText = "";
+            this.arwBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.arwBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.arwBtn.DisabledColor = System.Drawing.Color.Gray;
             this.arwBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -403,6 +412,7 @@
             this.lineBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.lineBtn.BorderRadius = 0;
             this.lineBtn.ButtonText = "";
+            this.lineBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lineBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lineBtn.DisabledColor = System.Drawing.Color.Gray;
             this.lineBtn.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -440,6 +450,7 @@
             this.elpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.elpBtn.BorderRadius = 0;
             this.elpBtn.ButtonText = "";
+            this.elpBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.elpBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.elpBtn.DisabledColor = System.Drawing.Color.Gray;
             this.elpBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -476,6 +487,7 @@
             this.recBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.recBtn.BorderRadius = 0;
             this.recBtn.ButtonText = "";
+            this.recBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.recBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.recBtn.DisabledColor = System.Drawing.Color.Gray;
             this.recBtn.Iconcolor = System.Drawing.Color.Transparent;

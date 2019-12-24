@@ -33,11 +33,16 @@ namespace PaintUI
 
             selBrush = new BrushesSelection();
             selBrush.Location = new Point(0, curBrushBtn.Location.Y + curBrushBtn.Size.Height + 10);
-            selBrush.Size = new Size(Width + 20, 250);
-            Controls.Add(selBrush);
+            selBrush.Size = new Size(Width + 20, 220);
             selBrush.Hide();
             selBrush.BringToFront();
+
+            Controls.Add(selBrush);
             MarProp.BringToFront();
+
+            Brushes_Label1.Text = "Marker";
+            Brushes_Label1.Location = new Point(77, 8);
+            curBrushBtn.Location = new Point((this.Width - curBrushBtn.Width) / 2, curBrushBtn.Location.Y);
 
             selBrush.BrushSelected += SelBrush_BrushSelected;
             colorPanel.StateChanged += ColorPanel_StateChanged;
@@ -56,23 +61,31 @@ namespace PaintUI
             {
                 case 0:
                     MarProp.BringToFront();
+                    Brushes_Label1.Text = "Marker";
                     break;
                 case 1:
                     EraProp.BringToFront();
+                    Brushes_Label1.Text = "Eraser";
                     break;
                 case 2:
                     FillProp.BringToFront();
+                    Brushes_Label1.Text = "Fill Can";
                     break;
                 case 3:
                     PelProp.BringToFront();
+                    Brushes_Label1.Text = "Pencil";
                     break;
                 case 4:
                     SprProp.BringToFront();
+                    Brushes_Label1.Text = "Spray Can";
                     break;
                 case 5:
                     CalliProp.BringToFront();
+                    Brushes_Label1.Text = "Calligraphy Pen";
                     break;
             }
+
+            Brushes_Label1.Location = new Point((this.Width - Brushes_Label1.Width) / 2, Brushes_Label1.Location.Y);
 
             if (selBrush.Visible)
                 selBrush.Hide();
@@ -122,7 +135,7 @@ namespace PaintUI
                     ModifyComponents.Graphics(gra);
                     color = Color.FromArgb(PelProp.Opacity, colorPanel.getColor1());
                     pencil = new Pencil(color, PelProp.Thickness * Form1.current.SketchBoxWidth() / Form1.current.NormalWidth());
-                        pencil.MouseDown(ref gra, cur, ref _pts);
+                    pencil.MouseDown(ref gra, cur, ref _pts);
                     points = _pts.ToArray();
                     break;
                 case 4:
@@ -134,7 +147,7 @@ namespace PaintUI
                     ModifyComponents.Graphics(gra);
                     color = Color.FromArgb(CalliProp.Opacity, colorPanel.getColor1());
                     calligraphy = new CalligraphyPen(color, CalliProp.Thickness * Form1.current.SketchBoxWidth() / Form1.current.NormalWidth());
-                        calligraphy.MouseDown(ref gra, cur, ref _pts);
+                    calligraphy.MouseDown(ref gra, cur, ref _pts);
                     points = _pts.ToArray();
                     break;
                 }

@@ -41,7 +41,7 @@ namespace PaintUI
 
             selShape = new ShapeSelections();
             selShape.Location = new Point(0, curShapeBtn.Location.Y+curShapeBtn.Size.Height + 10);
-            selShape.Size = new Size(Width+20, 330);
+            selShape.Size = new Size(Width+20, 250);
             Controls.Add(selShape);
             selShape.Hide();
             selShape.BringToFront();

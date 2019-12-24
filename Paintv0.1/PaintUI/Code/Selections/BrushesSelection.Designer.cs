@@ -69,6 +69,7 @@
             this.calliBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.calliBtn.BorderRadius = 0;
             this.calliBtn.ButtonText = "";
+            this.calliBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.calliBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.calliBtn.DisabledColor = System.Drawing.Color.Gray;
             this.calliBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -106,6 +107,7 @@
             this.fillBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fillBtn.BorderRadius = 0;
             this.fillBtn.ButtonText = "";
+            this.fillBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.fillBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.fillBtn.DisabledColor = System.Drawing.Color.Gray;
             this.fillBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -143,6 +145,7 @@
             this.sprBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.sprBtn.BorderRadius = 0;
             this.sprBtn.ButtonText = "";
+            this.sprBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.sprBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.sprBtn.DisabledColor = System.Drawing.Color.Gray;
             this.sprBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -180,6 +183,7 @@
             this.peciBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.peciBtn.BorderRadius = 0;
             this.peciBtn.ButtonText = "";
+            this.peciBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.peciBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.peciBtn.DisabledColor = System.Drawing.Color.Gray;
             this.peciBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -217,6 +221,7 @@
             this.eraBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.eraBtn.BorderRadius = 0;
             this.eraBtn.ButtonText = "";
+            this.eraBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.eraBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.eraBtn.DisabledColor = System.Drawing.Color.Gray;
             this.eraBtn.Iconcolor = System.Drawing.Color.Transparent;
@@ -254,6 +259,7 @@
             this.marBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.marBtn.BorderRadius = 0;
             this.marBtn.ButtonText = "";
+            this.marBtn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.marBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.marBtn.DisabledColor = System.Drawing.Color.Gray;
             this.marBtn.Iconcolor = System.Drawing.Color.Transparent;

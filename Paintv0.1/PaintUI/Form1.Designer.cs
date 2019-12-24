@@ -807,6 +807,7 @@
             this.EffectsButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.EffectsButton.AutoSize = true;
             this.EffectsButton.BackColor = System.Drawing.Color.Transparent;
+            this.EffectsButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EffectsButton.color = System.Drawing.Color.Transparent;
             this.EffectsButton.colorActive = System.Drawing.Color.CornflowerBlue;
             this.EffectsButton.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -841,6 +842,7 @@
             this.CanvasButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.CanvasButton.AutoSize = true;
             this.CanvasButton.BackColor = System.Drawing.Color.Transparent;
+            this.CanvasButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CanvasButton.color = System.Drawing.Color.Transparent;
             this.CanvasButton.colorActive = System.Drawing.Color.CornflowerBlue;
             this.CanvasButton.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -887,6 +889,7 @@
             this.BrushesButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BrushesButton.AutoSize = true;
             this.BrushesButton.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.BrushesButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BrushesButton.color = System.Drawing.Color.CornflowerBlue;
             this.BrushesButton.colorActive = System.Drawing.Color.CornflowerBlue;
             this.BrushesButton.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -950,6 +953,7 @@
             this.ShapesButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ShapesButton.AutoSize = true;
             this.ShapesButton.BackColor = System.Drawing.Color.Transparent;
+            this.ShapesButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ShapesButton.color = System.Drawing.Color.Transparent;
             this.ShapesButton.colorActive = System.Drawing.Color.Transparent;
             this.ShapesButton.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1007,6 +1011,7 @@
             this.TextButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.TextButton.AutoSize = true;
             this.TextButton.BackColor = System.Drawing.Color.Transparent;
+            this.TextButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TextButton.color = System.Drawing.Color.Transparent;
             this.TextButton.colorActive = System.Drawing.Color.Transparent;
             this.TextButton.Cursor = System.Windows.Forms.Cursors.Hand;
