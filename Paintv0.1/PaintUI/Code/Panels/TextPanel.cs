@@ -13,7 +13,7 @@ namespace PaintUI
 {
     public partial class TextPanel : UserControl
     {
-
+        public bool isBusy;
         List<FontFamily> fonts;
         Font textFont;
         float size;
@@ -23,6 +23,7 @@ namespace PaintUI
             InitializeComponent();
             InitComboBox();
             brush = new SolidBrush(Color.Black);
+            isBusy = false;
         }
         private void InitComboBox()
         {
@@ -74,7 +75,6 @@ namespace PaintUI
         }
         public void DrawText(Graphics g,Point cur, Size size)
         {
-            
             g.DrawString(richTextBox1.Text, richTextBox1.Font, brush, cur.X, cur.Y);
         }
         private void addColorButton_Click(object sender, EventArgs e)
@@ -82,7 +82,7 @@ namespace PaintUI
             ColorDialog cld = new ColorDialog();
             if (cld.ShowDialog() == DialogResult.OK)
             {
-                    mainColor1.BackColor = cld.Color;
+               mainColor1.BackColor = cld.Color;
             }
         }
 
@@ -95,6 +95,18 @@ namespace PaintUI
         {
             PictureBox colorCell = sender as PictureBox;
             mainColor1.BackColor = colorCell.BackColor;
+        }
+
+        private void richTextBox1_Enter(object sender, EventArgs e)
+        {
+            if (!isBusy)
+                isBusy = true;
+        }
+
+        private void richTextBox1_Leave(object sender, EventArgs e)
+        {
+            if (isBusy)
+                isBusy = false;
         }
     }
 }

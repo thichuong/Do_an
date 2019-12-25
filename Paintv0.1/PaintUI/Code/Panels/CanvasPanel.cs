@@ -13,6 +13,8 @@ namespace PaintUI
     public partial class CanvasPanel : UserControl
     {
         //int trackkeypoint = 0;
+        public bool isBusy;
+
         public bool ShowCheckBox;
         int wid, hei;
         public CanvasPanel()
@@ -23,6 +25,7 @@ namespace PaintUI
             ShowCheckBox = Canvas_ShowCheckBox.Checked;
             wid = 0;
             hei = 0;
+            isBusy = false;
         }
         public void setCanvasText(Canvas SketchBox)
         {
@@ -41,6 +44,7 @@ namespace PaintUI
             else
                 Canvas_Height.Text = hei.ToString();
         }
+
         public int getCanvasTextWidth()
         {
             if (Canvas_Width.Text != "")
@@ -67,29 +71,44 @@ namespace PaintUI
             if(keycode==13)
             {
                 Form1 parent = (Form1)this.ParentForm;
-                parent.resizeSketchBox();
+                if (parent.resizeSketchBox())
+                    this.SelectNextControl(ActiveControl, true, true, true, true);
             }
-        }     
+        }
+        
 
         private void CanvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
             Form1 parent = (Form1)this.ParentForm;
-            parent.resizeSketchBox();
+            if(parent.resizeSketchBox())
+                this.SelectNextControl(ActiveControl, true, true, true, true);
         }
 
         private void _Click(object sender, EventArgs e)
         {
 
-            Form1 parent = (Form1)this.ParentForm;
-            parent.resizeSketchBox();
         }
 
         private void Canvas_TransparentCheckBox_OnChange(object sender, EventArgs e)
         {
-            
+            Form1 parent = (Form1)this.ParentForm;
+            parent.SketchBoxTransparent();
+        }
+
+        private void Canvas_Width_Leave(object sender, EventArgs e)
+        {
+            if (isBusy)
+            {
+                isBusy = false;
                 Form1 parent = (Form1)this.ParentForm;
-                parent.SketchBoxTransparent();
-            
+                parent.resizeSketchBox();
+            }
+        }
+
+        private void Canvas_Width_Enter(object sender, EventArgs e)
+        {
+            if (!isBusy)
+                isBusy = true;
         }
 
         private void Canvas_ShowCheckBox_OnChange(object sender, EventArgs e)

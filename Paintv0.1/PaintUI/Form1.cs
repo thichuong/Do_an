@@ -23,7 +23,7 @@ namespace PaintUI
         List<Label> labels = new List<Label>();
         public Size normalsize;
         
-        enum Tools { BRUSH, SHAPE, TEXT };
+        enum Tools { BRUSH, SHAPE, TEXT, EFFECT, CANVAS};
         Tools curTool;
         List<Bitmap> LayerList = new List<Bitmap>();
         Bitmap bm, temp, visionBM, currentLayerBitmap, bitmap1;
@@ -48,6 +48,7 @@ namespace PaintUI
         {
             InitializeComponent();
             HideAllPanel();
+            canvasPanel.setCanvasText(SketchBox);
             brushesPanel.Show();
             Thread.CurrentThread.Priority = ThreadPriority.Highest;
             #region initiation
@@ -303,40 +304,43 @@ namespace PaintUI
         #region ButtonClicks
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            //keycodes for tools
+            if(!canvasPanel.isBusy && !textPanel.isBusy)
             {
-                if (!e.Control && !e.Shift)
-                    if (e.KeyCode == Keys.S) SelectButton_Click(sender, e);
-                    else if (e.KeyCode == Keys.C) CropButton_Click(sender, e);
-                    else if (e.KeyCode == Keys.H) PanButton_Click(sender, e);
-                    else if (e.KeyCode == Keys.Z) ZoomButton_Click(sender, e);
-                    else if (e.KeyCode == Keys.L) LayerButton_Click(sender, e);
+                //keycodes for tools
+                {
+                    if (!e.Control && !e.Shift)
+                        if (e.KeyCode == Keys.S) SelectButton_Click(sender, e);
+                        else if (e.KeyCode == Keys.C) CropButton_Click(sender, e);
+                        else if (e.KeyCode == Keys.H) PanButton_Click(sender, e);
+                        else if (e.KeyCode == Keys.Z) ZoomButton_Click(sender, e);
+                        else if (e.KeyCode == Keys.L) LayerButton_Click(sender, e);
+                }
+                //keycodes for panels
+                {
+                    if (e.KeyCode == Keys.D1) TextButton_Click(sender, e);
+                    else if (e.KeyCode == Keys.D2) ShapesButton_Click(sender, e);
+                    else if (e.KeyCode == Keys.D3) CanvasButton_Click(sender, e);
+                    else if (e.KeyCode == Keys.D4) BrushesButton_Click(sender, e);
+                    else if (e.KeyCode == Keys.D5) EffectsButton_Click(sender, e);
+                }
+                //keycode for menu & it's buttons & extras
+                {
+                    if (e.KeyCode == Keys.M) MenuButton_Click(sender, e);
+                    if (e.Control)
+                        if (e.KeyCode == Keys.S && !e.Shift) MenuPanel_SaveButtonClick(sender, e);
+                        else if (e.KeyCode == Keys.N) MenuPanel_NewButtonClick(sender, e);
+                        else if (e.KeyCode == Keys.O) MenuPanel_OpenButtonClick(sender, e);
+                        else if (e.KeyCode == Keys.S && e.Shift)
+                            MenuPanel_SaveAsButtonClick(sender, e);
+                        else if (e.KeyCode == Keys.X) MenuPanel_ExitButtonClick(sender, e);
+                        else if (e.KeyCode == Keys.Z) UndoButton_Click(sender, e);
+                        else if (e.KeyCode == Keys.Y) RedoButton_Click(sender, e);
+                }
+                //    
+                if (e.Alt)
+                    for (int i = 0; i < labels.Count; i++)
+                        labels[i].Visible = true;
             }
-            //keycodes for panels
-            {
-                if (e.KeyCode == Keys.D1) TextButton_Click(sender, e);
-                else if (e.KeyCode == Keys.D2) ShapesButton_Click(sender, e);
-                else if (e.KeyCode == Keys.D3) CanvasButton_Click(sender, e);
-                else if (e.KeyCode == Keys.D4) BrushesButton_Click(sender, e);
-                else if (e.KeyCode == Keys.D5) EffectsButton_Click(sender, e);
-            }
-            //keycode for menu & it's buttons & extras
-            {
-                if (e.KeyCode == Keys.M) MenuButton_Click(sender, e);
-                if (e.Control)
-                    if (e.KeyCode == Keys.S && !e.Shift) MenuPanel_SaveButtonClick(sender, e);
-                    else if (e.KeyCode == Keys.N) MenuPanel_NewButtonClick(sender, e);
-                    else if (e.KeyCode == Keys.O) MenuPanel_OpenButtonClick(sender, e);
-                    else if (e.KeyCode == Keys.S && e.Shift)
-                        MenuPanel_SaveAsButtonClick(sender, e);
-                    else if (e.KeyCode == Keys.X) MenuPanel_ExitButtonClick(sender, e);
-                    else if (e.KeyCode == Keys.Z) UndoButton_Click(sender, e);
-                    else if (e.KeyCode == Keys.Y) RedoButton_Click(sender, e);
-            }
-            //    
-            if (e.Alt)
-                for (int i = 0; i < labels.Count; i++)
-                    labels[i].Visible = true;
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -603,6 +607,7 @@ namespace PaintUI
                 RightTopPanel.Visible = true;
                 RightBottomPanel.Visible = true;
             }
+            curTool = Tools.CANVAS;
         }
 
         private void BrushesButton_Click(object sender, EventArgs e)
@@ -686,6 +691,7 @@ namespace PaintUI
                 HideAllPanel();
                 bunifuTransition1.ShowSync(effectsPanel, false, BunifuAnimatorNS.Animation.HorizSlide);
             }
+            curTool = Tools.EFFECT;
         }
         #endregion
 
@@ -992,9 +998,9 @@ namespace PaintUI
         #endregion
 
         #region Resize SketchBox
-        public void resizeSketchBox()
+        public bool resizeSketchBox()
         {
-            if (canvasPanel.getCanvasTextWidth() > 100 && canvasPanel.getCanvasTextHeight() > 100)
+            if (canvasPanel.getCanvasTextWidth() >= 100 && canvasPanel.getCanvasTextHeight() >= 100 && canvasPanel.getCanvasTextWidth() <=1000 && canvasPanel.getCanvasTextHeight() <= 1000)
             {
                 templistBM = tempBitmaps();
                 SketchBox.Size = new Size(canvasPanel.getCanvasTextWidth(), canvasPanel.getCanvasTextHeight());
@@ -1006,10 +1012,21 @@ namespace PaintUI
                 }
                 templistBM = new List<Bitmap>();
                 panelCavas.Refresh();
+                canvasPanel.setCanvasText(SketchBox);
+                return true;
             }
             else
             {
+                if (canvasPanel.getCanvasTextWidth() < 100)
+                    MessageBox.Show("Minimum width: 100");
+                else if (canvasPanel.getCanvasTextHeight() < 100)
+                    MessageBox.Show("Minimum height: 100");
+                else if (canvasPanel.getCanvasTextWidth() > 1000)
+                    MessageBox.Show("Maxnimum width: 1000");
+                else if (canvasPanel.getCanvasTextHeight() > 1000)
+                    MessageBox.Show("Maxnimum height: 1000");
                 canvasPanel.setCanvasText(SketchBox);
+                return false;
             }
 
         }
@@ -1325,8 +1342,6 @@ namespace PaintUI
                 isRightPanelDragged = false;
             }
         }
-
-    
 
         private void RightPanel_MouseMove(object sender, MouseEventArgs e)
         {
