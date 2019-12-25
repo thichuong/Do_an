@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,7 @@ namespace PaintUI
             canvasPanel.setCanvasText(SketchBox);
             brushesPanel.Show();
             Thread.CurrentThread.Priority = ThreadPriority.Highest;
+
             #region initiation
             {
                 bm = new Bitmap(SketchBox.Width, SketchBox.Height, SketchBox.CreateGraphics());
@@ -113,6 +115,8 @@ namespace PaintUI
             BackColorReset();
             BrushesButton.color = Color.CornflowerBlue;
             BrushesButton.colorActive = Color.CornflowerBlue;
+            currentLayerBitmap.SetResolution(SketchBox.Width, SketchBox.Height);
+
             #endregion
         }
         void LabelSetup()
@@ -278,6 +282,7 @@ namespace PaintUI
             path = "";
             isSaved = false;
             isChanged = false;
+            currentLayerBitmap.SetResolution(SketchBox.Width, SketchBox.Height);
         }
 
         private void Open()
@@ -759,19 +764,20 @@ namespace PaintUI
         }
         private void SketchBox_MouseWheel(object sender, MouseEventArgs e)
         {
-            if (ZoomClicked)
-                if (e.Delta > 0)
-                {
-                    SketchBox.Width = Convert.ToInt32(SketchBox.Width * 1.25);
-                    SketchBox.Height = Convert.ToInt32(SketchBox.Height * 1.25);
-                }
-                else
-                {
-                    SketchBox.Width = Convert.ToInt32(SketchBox.Width / 1.25);
-                    SketchBox.Height = Convert.ToInt32(SketchBox.Height / 1.25);
-                }
-         
-            SketchBoxVisionImage(currentLayerBitmap);
+            
+                if (ZoomClicked)
+                    if (e.Delta > 0 && (SketchBox.Width * 1.1 <= panelCavas.Width))
+                    {
+                        SketchBox.Width = Convert.ToInt32(SketchBox.Width * 1.1);
+                        SketchBox.Height = Convert.ToInt32(SketchBox.Height * 1.1);
+                    }
+                    else
+                    {
+                        SketchBox.Width = Convert.ToInt32(SketchBox.Width / 1.1);
+                        SketchBox.Height = Convert.ToInt32(SketchBox.Height / 1.1);
+                    }
+                SketchBoxVisionImage(currentLayerBitmap);
+                       
         }
         private void LayerDrawer()
         {
@@ -1004,6 +1010,7 @@ namespace PaintUI
             {
                 templistBM = tempBitmaps();
                 SketchBox.Size = new Size(canvasPanel.getCanvasTextWidth(), canvasPanel.getCanvasTextHeight());
+                currentLayerBitmap.SetResolution(SketchBox.Width, SketchBox.Height);
                 tempBitmapsRisize();
                 temp.Dispose();
                 for (int i = 0; i < templistBM.Count(); i++)
