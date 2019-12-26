@@ -23,7 +23,7 @@ namespace PaintUI
         public static Form1 current;
         List<Label> labels = new List<Label>();
         public Size normalsize;
-        
+        Canvas CloneSketchBox;
         enum Tools { BRUSH, SHAPE, TEXT, EFFECT, CANVAS};
         Tools curTool;
         List<Bitmap> LayerList = new List<Bitmap>();
@@ -33,7 +33,8 @@ namespace PaintUI
         Point pOld, startPoint, oldLocation;
         int numberofLayerRemoved = -1;
         int curLayer = -1;
-        int wid, hei;
+        int wid, hei,w,h;
+        double scale;
         List<Bitmap> RemovedLayer = new List<Bitmap>();
         List<Bitmap> templistBM = new List<Bitmap>();
         bool isDown, isDragged, isSaved, isChanged, PanClicked, isPanning;
@@ -110,8 +111,10 @@ namespace PaintUI
             LabelSetup();
             for (int i = 0; i < labels.Count; i++)
                 labels[i].Visible = false;
-            normalsize = SketchBox.Size;
-
+            normalsize = SketchBox.Size;         
+            scale = 1;
+            w = SketchBox.Width;
+            h = SketchBox.Height;
             BackColorReset();
             BrushesButton.color = Color.CornflowerBlue;
             BrushesButton.colorActive = Color.CornflowerBlue;
@@ -402,6 +405,7 @@ namespace PaintUI
         {
             if (!ZoomClicked)
             {
+                changeRes();
                 DisableButtonFuncs();
                 NormalColorReset();
                 ZoomButton.Normalcolor = Color.LightGray;
@@ -748,6 +752,12 @@ namespace PaintUI
         #endregion
 
         #region SketchBoxActions
+        void changeRes()
+        {
+            bm.SetResolution(SketchBox.Width, SketchBox.Height);
+            for (int i = 0; i < LayerList.Count; i++)
+                LayerList[i].SetResolution(SketchBox.Width, SketchBox.Height);
+        }
         public int NormalWidth()
         {
             return normalsize.Width;
@@ -763,21 +773,24 @@ namespace PaintUI
             else return false;
         }
         private void SketchBox_MouseWheel(object sender, MouseEventArgs e)
-        {
-            
+        {            
                 if (ZoomClicked)
-                    if (e.Delta > 0 && (SketchBox.Width * 1.1 <= panelCavas.Width))
+                    if (e.Delta > 0  && scale<2.5)
                     {
+                        scale *= 1.1;
                         SketchBox.Width = Convert.ToInt32(SketchBox.Width * 1.1);
                         SketchBox.Height = Convert.ToInt32(SketchBox.Height * 1.1);
                     }
                     else
-                    {
-                        SketchBox.Width = Convert.ToInt32(SketchBox.Width / 1.1);
-                        SketchBox.Height = Convert.ToInt32(SketchBox.Height / 1.1);
+                    { 
+                    if (SketchBox.Width>100)
+                        {
+                          scale/=1.1;
+                            SketchBox.Width = Convert.ToInt32(SketchBox.Width / 1.1);
+                            SketchBox.Height = Convert.ToInt32(SketchBox.Height / 1.1);
+                        }
                     }
-                SketchBoxVisionImage(currentLayerBitmap);
-                       
+            SketchBoxVisionImage(currentLayerBitmap);
         }
         private void LayerDrawer()
         {
@@ -934,8 +947,8 @@ namespace PaintUI
             Graphics vGra = Graphics.FromImage(effectBM);
             vGra.Clear(effectsPanel.color);
             visionBM = new Bitmap(SketchBox.Width, SketchBox.Height);
-            vGra = Graphics.FromImage(visionBM);
-            if(multilayer)
+            vGra = Graphics.FromImage(visionBM);    
+            if (multilayer)
             {
                 if (bm != currentLayerBitmap)
                     vGra.DrawImage(bm, 0, 0, SketchBox.Width, SketchBox.Height);
@@ -948,7 +961,7 @@ namespace PaintUI
                         vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
             }
             else
-                vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
+            vGra.DrawImage(bmp, 0, 0, SketchBox.Width, SketchBox.Height);
             vGra.DrawImage(effectBM, 0, 0, SketchBox.Width, SketchBox.Height);
             SketchBox.BackgroundImage = (Bitmap)visionBM.Clone();
         }
@@ -986,6 +999,7 @@ namespace PaintUI
 
         private void SketchBox_SizeChanged(object sender, EventArgs e)
         {
+  
             canvasPanel.setCanvasText(SketchBox);
             SketchBox.Location = new Point(panelCavas.Width / 2 - SketchBox.Width / 2, panelCavas.Height / 2 - SketchBox.Height / 2);
             LeftTopPanel.Location = new Point(SketchBox.Location.X - 10, SketchBox.Location.Y - 10);
@@ -1008,9 +1022,9 @@ namespace PaintUI
         {
             if (canvasPanel.getCanvasTextWidth() >= 100 && canvasPanel.getCanvasTextHeight() >= 100 && canvasPanel.getCanvasTextWidth() <=1000 && canvasPanel.getCanvasTextHeight() <= 1000)
             {
+
                 templistBM = tempBitmaps();
                 SketchBox.Size = new Size(canvasPanel.getCanvasTextWidth(), canvasPanel.getCanvasTextHeight());
-                currentLayerBitmap.SetResolution(SketchBox.Width, SketchBox.Height);
                 tempBitmapsRisize();
                 temp.Dispose();
                 for (int i = 0; i < templistBM.Count(); i++)
