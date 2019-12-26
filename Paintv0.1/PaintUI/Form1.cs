@@ -803,12 +803,15 @@ namespace PaintUI
         {
             if (isDown)
             {
-                cur = new Point(e.Location.X, e.Location.Y);
-                wid = cur.X - old.X;
-                hei = cur.Y - old.Y;
-                if (curTool == Tools.BRUSH)
+                if (NothingElseIsClicked())
                 {
-                    brushesPanel.ProcessMouseMove(cur, old);
+                    cur = new Point(e.Location.X, e.Location.Y);
+                    wid = cur.X - old.X;
+                    hei = cur.Y - old.Y;
+                    if (curTool == Tools.BRUSH)
+                    {
+                        brushesPanel.ProcessMouseMove(cur, old);
+                    }
                 }
                 //SketchBox.Refresh();
             }
@@ -837,7 +840,7 @@ namespace PaintUI
                     shapesPanel.DrawShapes(SketchBox, currentLayerBitmap, graphics, old, cur, new Size(wid, hei));
                     Drawed=shapesPanel.ProcessMouseUp(currentLayerBitmap, cur);
                 }
-                if (curTool == Tools.BRUSH)
+                if (curTool == Tools.BRUSH && NothingElseIsClicked())
                 {
                     brushesPanel.ProcessPaint(graphics, old, cur);
                     Drawed=brushesPanel.ProcessMouseUp(currentLayerBitmap, cur);
@@ -901,21 +904,24 @@ namespace PaintUI
 
         private void SketchBox_Paint(object sender, PaintEventArgs e)
         {
-            if (isDown)
+            if (NothingElseIsClicked())
             {
-                if (curTool == Tools.TEXT)
+                if (isDown)
                 {
-                    LayerDrawer();
-                    textPanel.DrawText(graphics, cur, new Size(wid, hei));
-                    SketchBoxVisionImage(temp);
-                    temp.Dispose();
-                }
-                else
-                {
-                    thread = new Thread(Threadpaint);
-                    thread.Start();
-                }
+                    if (curTool == Tools.TEXT)
+                    {
+                        LayerDrawer();
+                        textPanel.DrawText(graphics, cur, new Size(wid, hei));
+                        SketchBoxVisionImage(temp);
+                        temp.Dispose();
+                    }
+                    else
+                    {
+                        thread = new Thread(Threadpaint);
+                        thread.Start();
+                    }
 
+                }
             }
         }
         void Threadpaint()
@@ -1345,6 +1351,11 @@ namespace PaintUI
                     this.Refresh();
                 }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void LeftPanel_MouseUp(object sender, MouseEventArgs e)
